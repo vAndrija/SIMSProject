@@ -1,0 +1,1 @@
+#samo zbog initaS
