@@ -3,6 +3,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import QSize
+from view.ProzorZaRegistraciju import *
 
 class ProzorZaPrijavu(QWidget):
     def __init__(self):
@@ -17,29 +18,53 @@ class ProzorZaPrijavu(QWidget):
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
 
-        labela1 = QLabel("Unesite korisnicko ime:", self)
-        labela1.setFont(QFont("Times", 10, QFont.Bold))
-        labela1.move(330,200)
+        grid = QGridLayout()
+        self.setLayout(grid)
 
-        tekst1 = QLineEdit(self)
-        tekst1.move(340,220)
+        matrica = [ '', '', '',
+                    '', '', '',
+                    '', '', '',
+                    '', '', '',
+                    '', '', '',
+                 '', 'Unesite korisniko ime:', '',
+                 '', '*', '',
+                 '', 'Unesite lozinku:', '',
+                 '', '*', '',
+                 '', '+', '',
+                 '', '/', '',
+                    '', '', '',
+                    '', '', '',
+                    '', '', '',
+                    '', '', '',
+                 ]
 
-        labela2 = QLabel("Unesite lozinku:", self)
-        labela2.setFont(QFont("Times", 10, QFont.Bold))
-        labela2.move(350, 250)
+        pozicije = [(i, j) for i in range(14) for j in range(3)]
 
-        tekst2 = QLineEdit(self)
-        tekst2.move(340, 270)
+        for pozicija, sadrzaj in zip(pozicije, matrica):
 
-        dugme1 = QPushButton("Prijavite se", self)
-        dugme1.move(360,300)
-        dugme1.setStyleSheet("background-color: beige")
-
-        dugme2 = QPushButton("Registrujte se", self)
-        dugme2.move(360,400)
-        dugme2.setStyleSheet("background-color: beige")
-
-
-
+            if sadrzaj == "*":
+                tekst = QLineEdit()
+                grid.addWidget(tekst, *pozicija)
+            elif sadrzaj == "+":
+                dugme = QPushButton("Prijavite se")
+                dugme.clicked.connect(self.prijava)
+                grid.addWidget(dugme, *pozicija)
+            elif sadrzaj == "/":
+                dugme = QPushButton("Registrujte se")
+                dugme.clicked.connect(self.registracija)
+                grid.addWidget(dugme, *pozicija)
+            else:
+                labela = QLabel(sadrzaj)
+                labela.setFixedSize(240, 20)
+                grid.addWidget(labela, *pozicija)
 
         self.show()
+
+
+    def registracija(self):
+        prozor = ProzorZaRegistraciju()
+
+    def prijava(self):
+        pass
+
+
