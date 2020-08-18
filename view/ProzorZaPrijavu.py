@@ -17,7 +17,10 @@ class ProzorZaPrijavu(QWidget):
         self.setPalette(palette)
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
-
+        sadrzaj = ""
+        with open("..\slike\stajl.css", "r") as stream:
+            sadrzaj = stream.read()
+        self.setStyleSheet(sadrzaj)
         grid = QGridLayout()
         self.setLayout(grid)
 
