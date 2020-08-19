@@ -7,6 +7,7 @@ from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
 class ProzorZaPrijavu(QWidget):
     def __init__(self):
+
         super().__init__()
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.setFixedSize(800,600)

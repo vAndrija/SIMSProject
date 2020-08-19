@@ -12,9 +12,7 @@ class Toolbar(QToolBar):
     def dodajSadrzaj(self):
         vidzet = QWidget()
 
-
-
-        vidzet.setFixedSize(900,40)
+        vidzet.setFixedSize(1200,40)
         vidzet.show()
         self.addWidget(vidzet)
         self.addAction(SopstveniProfilAkcija(self))

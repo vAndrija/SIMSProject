@@ -4,14 +4,14 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from view.Toolbar import *
 import traceback
+import os
 
 class KuvarPocetna(QMainWindow):
    def __init__(self):
        super().__init__()
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
-       self.setCentralWidget(QTabWidget())
-       self.setFixedSize(1000,700)
+       self.setFixedSize(1300,900)
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
        self.inicijalizacijaToolbar()
@@ -27,12 +27,25 @@ class KuvarPocetna(QMainWindow):
        x = (dWidth - wWidth) / 2
        y =y - 50
        self.move(x,y)
+       self.inicijalizujPocetnu()
 
    def inicijalizacijaToolbar(self):
        self.toolbar = Toolbar(self)
 
        self.addToolBar(self.toolbar)
 
+   def inicijalizujPocetnu(self):
+        self.recepti = QWebEngineView()
+        self.setCentralWidget(self.recepti)
+
+        dio =  os.getcwd()[:-4]
+        dio= dio.split("\\")
+        dio = "/".join(dio)
+        putanja = 'file:///'+ dio +'dizajn/pocetnaRecepti/index.html'
+
+        print(putanja)
+
+        self.recepti.setUrl(QUrl(putanja))
 
 
    def inicijalizujLijevuReklamu(self):
