@@ -14,7 +14,7 @@ class Toolbar(QToolBar):
 
 
 
-        vidzet.setFixedSize(1300,40)
+        vidzet.setFixedSize(900,40)
         vidzet.show()
         self.addWidget(vidzet)
         self.addAction(SopstveniProfilAkcija(self))

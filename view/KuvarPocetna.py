@@ -11,7 +11,7 @@ class KuvarPocetna(QMainWindow):
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
        self.setCentralWidget(QTabWidget())
-       self.setFixedSize(1400,900)
+       self.setFixedSize(1000,700)
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
        self.inicijalizacijaToolbar()
@@ -42,7 +42,7 @@ class KuvarPocetna(QMainWindow):
 
        self.addDockWidget(Qt.LeftDockWidgetArea, self.lijevaReklama)
        self.lijevaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures )
-       self.lijevaReklama.setFixedSize(300,900)
+       self.lijevaReklama.setFixedSize(300,700)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/categories/60008342/idea-organic"))
 
@@ -53,7 +53,7 @@ class KuvarPocetna(QMainWindow):
 
        self.addDockWidget(Qt.RightDockWidgetArea, self.desnaReklama)
        self.desnaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures)
-       self.desnaReklama.setFixedSize(300, 900)
+       self.desnaReklama.setFixedSize(300, 700)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/offers"))
 
