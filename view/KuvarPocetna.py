@@ -35,18 +35,29 @@ class KuvarPocetna(QMainWindow):
        self.addToolBar(self.toolbar)
 
    def inicijalizujPocetnu(self):
-        self.recepti = QWebEngineView()
-        self.setCentralWidget(self.recepti)
+        self.lista = QWidget()
+        self.setCentralWidget(self.lista)
+        self.izgled = QGridLayout()
+        self.lista.setLayout(self.izgled)
+
 
         dio =  os.getcwd()[:-4]
         dio= dio.split("\\")
         dio = "/".join(dio)
         putanja = 'file:///'+ dio +'dizajn/pocetnaRecepti/index.html'
+        pozicije =  [(i, j) for i in range(5) for j in range(2)]
+        for pozicija in pozicije:
+            privrem = QWidget()
 
-        print(putanja)
+            izgled1 = QVBoxLayout()
+            privrem.setLayout(izgled1)
+            privremeni = QWebEngineView()
+            privremeni.setUrl(QUrl(putanja))
 
-        self.recepti.setUrl(QUrl(putanja))
-
+            izgled1.addWidget(privremeni)
+            izgled1.addWidget(QPushButton("andrija"))
+            self.izgled.addWidget(privrem,*pozicija)
+        self.lista.show()
 
    def inicijalizujLijevuReklamu(self):
        reklama = QWebEngineView()
@@ -55,7 +66,7 @@ class KuvarPocetna(QMainWindow):
 
        self.addDockWidget(Qt.LeftDockWidgetArea, self.lijevaReklama)
        self.lijevaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures )
-       self.lijevaReklama.setFixedSize(300,700)
+       self.lijevaReklama.setFixedSize(300,900)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/categories/60008342/idea-organic"))
 
@@ -66,7 +77,7 @@ class KuvarPocetna(QMainWindow):
 
        self.addDockWidget(Qt.RightDockWidgetArea, self.desnaReklama)
        self.desnaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures)
-       self.desnaReklama.setFixedSize(300, 700)
+       self.desnaReklama.setFixedSize(300, 900)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/offers"))
 
