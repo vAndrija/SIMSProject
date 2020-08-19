@@ -1,0 +1,32 @@
+{
+    "korisnici": [
+        {
+            "ime": "jovana",
+            "prezime": "jevtic",
+            "korisnickoIme": "jojev",
+            "lozinka": "andro",
+            "mejl": "jo.jevtic@gmail.com",
+            "datumRodjenja": "1999-06-22",
+            "adresa": "jo.jevtic@gmail.com",
+            "mesto": {
+                "nazivMesta": "mali zvornik",
+                "postanskiBroj": "15318"
+            },
+            "pol": 0
+        },
+        {
+            "ime": "andrija",
+            "prezime": "vojnovic",
+            "korisnickoIme": "andro",
+            "lozinka": "jojev",
+            "mejl": "andrija.vojnovic@gmail.com",
+            "datumRodjenja": "1998-09-21",
+            "adresa": "ljeskovac",
+            "mesto": {
+                "nazivMesta": "bijeljina",
+                "postanskiBroj": "18745"
+            },
+            "pol": 0
+        }
+    ]
+}

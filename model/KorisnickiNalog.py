@@ -8,4 +8,4 @@ class KorisnickiNalog(object):
         self.datumRodjenja = None
         self.adresa = None
         self.mesto = None
-
+        self.pol = None
