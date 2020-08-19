@@ -9,8 +9,12 @@ from view.ProzorZaPrijavu import *
 import sys
 def main():
     app = QApplication(sys.argv)
+
     aplikacija = ProzorZaPrijavu()
-    app.actionManager = ActionManager(aplikacija)
+    glavniProzor = KuvarPocetna()
+    glavniProzor.hide()
+    app.actionManager = ActionManager(aplikacija,glavniProzor,aplikacija)
+
     sys.exit(app.exec_())
 
 

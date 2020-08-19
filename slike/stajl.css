@@ -39,3 +39,16 @@ QComboBox:hover,QPushButton:hover
     border: 2px solid #ffffff
 
 }
+
+QToolBar
+{
+    background-color: #4d004d;
+	spacing: 3px;
+	padding: 4px;
+}
+
+QMainWindow
+{
+     color: #ffffff;
+
+}

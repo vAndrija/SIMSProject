@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import QSize
 from view.ProzorZaRegistraciju import *
-
+from view.KuvarPocetna import *
 class ProzorZaPrijavu(QWidget):
     def __init__(self):
         super().__init__()
@@ -68,6 +68,9 @@ class ProzorZaPrijavu(QWidget):
         prozor = ProzorZaRegistraciju()
 
     def prijava(self):
-        pass
+        self.hide()
+        QApplication.instance().actionManager.glavniProzor.show()
+
+
 
 
