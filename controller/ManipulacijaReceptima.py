@@ -29,6 +29,6 @@ class ManipulacijaReceptima():
         putanja  =  os.path.join(os.getcwd()[:-4],'slike')
         putanjaSlike = "C:\\Users\\korisnik\\Desktop\\SIMS\\sampita.jpg"
         ekstenzija = "."+putanjaSlike.split(".")[1]
-        shutil.move(putanjaSlike, putanja)
-        os.rename(os.path.join(putanja,"sampita.jpg"),os.path.join(putanja,str(1)+".jpg"))
+        # shutil.move(putanjaSlike, putanja)
+        # os.rename(os.path.join(putanja,"sampita.jpg"),os.path.join(putanja,str(1)+".jpg"))
 

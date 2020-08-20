@@ -44,7 +44,6 @@ class ManipulacijaKorisnikom(object):
             self.podaci = jsonpickle.decode(tekst)
 
         for i in self.podaci:
-            print(i)
             korisnik = KuvarPocetnik(**i)
             mesto = Mesto(**i['mesto'])
             korisnik.mesto = mesto
@@ -65,8 +64,6 @@ class ManipulacijaKorisnikom(object):
             mjesto = Mesto(**ur['mesto'])
             urednik.mesto=mjesto
             self.sviUrednici.append(urednik)
-            print(urednik)
-            print(type(urednik.mesto))
 
 
 

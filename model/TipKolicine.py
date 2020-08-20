@@ -6,3 +6,6 @@ class TipKolicine(Enum):
     KOMAD = 2
     SUPENAKASIKA = 3
     PRSTOHVAT = 4
+
+    def __str__(self):
+        return self.name
