@@ -90,7 +90,6 @@ class ProzorZaRegistraciju(QDialog):
         self.exec()
 
     def registracija(self):
-        manipulacijaKorisnikom = ManipulacijaKorisnikom()
         ime = self.tekstovi[0].text()
         prezime = self.tekstovi[1].text()
         kIme = self.tekstovi[2].text()
@@ -117,5 +116,5 @@ class ProzorZaRegistraciju(QDialog):
             poruka.setText("Niste popunili sva polja.")
             poruka.exec_()
         else:
-            korisnik = manipulacijaKorisnikom.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
+            korisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
 

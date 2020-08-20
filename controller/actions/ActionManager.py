@@ -1,4 +1,4 @@
-
+from controller.actions.ManipulacijaKorisnikom import *
 
 class ActionManager(object):
 
@@ -7,3 +7,4 @@ class ActionManager(object):
         self.glavniProzor = glavni
         self.prijava = aplikacija
         self.prijavljeniKorisnik =None
+        self.informacije = ManipulacijaKorisnikom()

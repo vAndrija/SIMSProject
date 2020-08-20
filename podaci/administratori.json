@@ -1,0 +1,14 @@
+{
+    "korisnickoIme": "admin",
+    "lozinka": "aplikacija",
+    "ime": "Savo",
+    "prezime": "Oroz",
+    "mejl": "savo.kukuriku@gmail.com",
+    "datumRodjenja": "1999-06-22",
+    "adresa": "ljeskovac",
+    "mesto": {
+        "nazivMesta": "Bijeljina",
+        "postanskiBroj": "76300"
+    },
+    "pol": 1
+}
