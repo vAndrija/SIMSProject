@@ -5,6 +5,7 @@ from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import QSize
 from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
+from view.ProzorZaPretragu import *
 
 
 

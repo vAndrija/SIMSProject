@@ -9,9 +9,14 @@ class ProzorZaPretragu(QDialog):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
-        self.setBaseSize(800, 600)
+        self.setFixedSize(800, 600)
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
+        image = QImage("..\slike\pretraga.jpg")
+        sImage = image.scaled(QSize(800, 600))
+        palette = QPalette()
+        palette.setBrush(QPalette.Window, QBrush(sImage))
+        self.setPalette(palette)
         sadrzaj = ""
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()

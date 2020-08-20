@@ -9,7 +9,7 @@ class ManipulacijaKorisnikom(object):
     def __init__(self):
         super().__init__()
         self.podaci = []
-        self.sviKorisnici = []
+        self.sviKuvari = []
         self.sviUrednici = []
         self.administrator =None
         self.citanjeKorisnika()
@@ -20,7 +20,7 @@ class ManipulacijaKorisnikom(object):
         noviKorisnik = KorisnickiNalog(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol)
 
 
-        self.sviKorisnici.append(noviKorisnik)
+        self.sviKuvari.append(noviKorisnik)
         self.upisiKorisnika(noviKorisnik)
 
     def objToDict(self, obj):
@@ -29,7 +29,7 @@ class ManipulacijaKorisnikom(object):
     def upisiKorisnika(self,korisnik):
         with open('.\..\podaci\kuvari.json', 'w') as outfile:
             # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
-            json.dump(self.sviKorisnici, outfile, default= self.objToDict,  indent=4)
+            json.dump(self.sviKuvari, outfile, default= self.objToDict,  indent=4)
 
     def citanjeKorisnika(self):
         # with open('.\..\podaci\kuvari.json', 'r') as outfile:
@@ -41,11 +41,10 @@ class ManipulacijaKorisnikom(object):
             self.podaci = jsonpickle.decode(tekst)
 
         for i in self.podaci:
-            print(i)
             korisnik = KorisnickiNalog(**i)
             mesto = Mesto(**i['mesto'])
             korisnik.mesto = mesto
-            self.sviKorisnici.append(korisnik)
+            self.sviKuvari.append(korisnik)
 
 
     def citajAdmineUrednike(self):
@@ -62,8 +61,6 @@ class ManipulacijaKorisnikom(object):
             mjesto = Mesto(**ur['mesto'])
             urednik.mesto=mjesto
             self.sviUrednici.append(urednik)
-            print(urednik)
-            print(type(urednik.mesto))
 
 
 

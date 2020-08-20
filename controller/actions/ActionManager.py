@@ -1,4 +1,4 @@
-from controller.actions.ManipulacijaKorisnikom import *
+from controller.ManipulacijaKorisnikom import *
 
 class ActionManager(object):
 

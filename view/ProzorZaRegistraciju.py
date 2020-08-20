@@ -3,7 +3,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import *
-from controller.actions.ManipulacijaKorisnikom import *
+from src.view.ProzorZaDodavanjeSastojaka import *
+
 
 class ProzorZaRegistraciju(QDialog):
     def __init__(self):
@@ -70,6 +71,7 @@ class ProzorZaRegistraciju(QDialog):
             elif sadrzaj == "+":
                 dugme = QPushButton("Izaberite sastojke")
                 dugme.setFixedSize(250,30)
+                dugme.clicked.connect(self.dodavanjeSastojaka)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == ")":
                 dugme = QPushButton("Izaberite opremu")
@@ -118,3 +120,6 @@ class ProzorZaRegistraciju(QDialog):
         else:
             korisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
 
+
+    def dodavanjeSastojaka(self):
+        prozor = ProzorZaDodavanjeSastojaka()
