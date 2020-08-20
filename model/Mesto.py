@@ -1,4 +1,4 @@
 class Mesto(object):
-    def __init__(self):
-        self.nazivMesta = None
-        self.postanskiBroj = None
+    def __init__(self, nazivMesta, postanskiBroj):
+        self.nazivMesta = nazivMesta
+        self.postanskiBroj = postanskiBroj

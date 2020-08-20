@@ -1,32 +1,58 @@
-{
-    "korisnici": [
-        {
-            "ime": "jovana",
-            "prezime": "jevtic",
-            "korisnickoIme": "jojev",
-            "lozinka": "andro",
-            "mejl": "jo.jevtic@gmail.com",
-            "datumRodjenja": "1999-06-22",
-            "adresa": "jo.jevtic@gmail.com",
-            "mesto": {
-                "nazivMesta": "mali zvornik",
-                "postanskiBroj": "15318"
-            },
-            "pol": 0
+[
+    {
+        "korisnickoIme": "jojev",
+        "lozinka": "andro",
+        "ime": "jovana",
+        "prezime": "jevtic",
+        "mejl": "jo.jevtic@gmail.com",
+        "datumRodjenja": "1999-06-22",
+        "adresa": "drinska 13",
+        "mesto": {
+            "nazivMesta": "mali zvornik",
+            "postanskiBroj": "15318"
         },
-        {
-            "ime": "andrija",
-            "prezime": "vojnovic",
-            "korisnickoIme": "andro",
-            "lozinka": "jojev",
-            "mejl": "andrija.vojnovic@gmail.com",
-            "datumRodjenja": "1998-09-21",
-            "adresa": "ljeskovac",
-            "mesto": {
-                "nazivMesta": "bijeljina",
-                "postanskiBroj": "18745"
-            },
-            "pol": 0
-        }
-    ]
-}
+        "pol": 0
+    },
+    {
+        "korisnickoIme": "necika",
+        "lozinka": "prijedor",
+        "ime": "nemanja",
+        "prezime": "milutinovic",
+        "mejl": "necika@gmail.com",
+        "datumRodjenja": "1999-04-13",
+        "adresa": "pucile",
+        "mesto": {
+            "nazivMesta": "biljeljina",
+            "postanskiBroj": "18945"
+        },
+        "pol": 1
+    },
+    {
+        "korisnickoIme": "mladjo",
+        "lozinka": "pricinovic",
+        "ime": "mladen",
+        "prezime": "vasic",
+        "mejl": "mladjo@gmail.com",
+        "datumRodjenja": "1999-08-02",
+        "adresa": "pricinovic",
+        "mesto": {
+            "nazivMesta": "sabac",
+            "postanskiBroj": "16978"
+        },
+        "pol": 1
+    },
+    {
+        "korisnickoIme": "andro",
+        "lozinka": "kokica",
+        "ime": "andrija",
+        "prezime": "vojnovic",
+        "mejl": "andrija.vojnovic@gmail.com",
+        "datumRodjenja": "1998-09-21",
+        "adresa": "ljeskovac 29",
+        "mesto": {
+            "nazivMesta": "bijeljina",
+            "postanskiBroj": "76300"
+        },
+        "pol": 1
+    }
+]

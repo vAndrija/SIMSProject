@@ -15,8 +15,8 @@ def main():
     glavniProzor.hide()
     app.actionManager = ActionManager(aplikacija,glavniProzor,aplikacija)
 
-    sys.exit(app.exec_())
 
+    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':

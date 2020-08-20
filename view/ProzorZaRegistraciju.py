@@ -117,5 +117,5 @@ class ProzorZaRegistraciju(QDialog):
             poruka.setText("Niste popunili sva polja.")
             poruka.exec_()
         else:
-            korisnik = manipulacijaKorisnikom.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,datum,adresa,mesto,ppt,pol)
+            korisnik = manipulacijaKorisnikom.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
 
