@@ -1,5 +1,6 @@
 from model.KorisnickiNalog import *
 
+
 class KuvarPocetnik(KorisnickiNalog):
     def __init__(self):
         super().__init__()
@@ -10,4 +11,3 @@ class KuvarPocetnik(KorisnickiNalog):
         self.spisakZaKupovinu = None
         self.praceniKuvari = []
         self.praceneKategorije = []
-        

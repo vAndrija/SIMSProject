@@ -9,6 +9,7 @@ import os
 class KuvarPocetna(QMainWindow):
    def __init__(self):
        super().__init__()
+       self.showMinimized()
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
        self.sledecaStranica=0
@@ -20,16 +21,20 @@ class KuvarPocetna(QMainWindow):
        with open("..\slike\stajl.css", "r") as stream:
            sadrzaj = stream.read()
        self.setStyleSheet(sadrzaj)
+
+       self.inicijalizujPocetnu()
+       self.hide()
+
+
+   def postaviPoziciju(self):
        dHeight = QApplication.desktop().height()
        dWidth = QApplication.desktop().width()
        wHeight = self.size().height()
-       wWidth =self.size().width()
+       wWidth = self.size().width()
        y = (dHeight - wHeight) / 2
        x = (dWidth - wWidth) / 2
-       y =y - 50
-       self.move(x,y)
-       self.inicijalizujPocetnu()
-
+       y = y - 50
+       self.move(x, y)
    def inicijalizacijaToolbar(self):
        self.toolbar = Toolbar(self)
 

@@ -5,6 +5,9 @@ from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import QSize
 from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
+
+
+
 class ProzorZaPrijavu(QWidget):
     def __init__(self):
 
@@ -77,7 +80,12 @@ class ProzorZaPrijavu(QWidget):
 
 
         self.hide()
+
+        QApplication.instance().actionManager.glavniProzor.showMaximized()
+        QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
+
         QApplication.instance().actionManager.glavniProzor.show()
+
 
 
 
