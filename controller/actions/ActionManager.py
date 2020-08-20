@@ -6,3 +6,4 @@ class ActionManager(object):
 
         self.glavniProzor = glavni
         self.prijava = aplikacija
+        self.prijavljeniKorisnik =None

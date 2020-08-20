@@ -33,7 +33,7 @@ class ProzorZaPrijavu(QWidget):
                  '', 'Unesite korisniko ime:', '',
                  '', '*', '',
                  '', 'Unesite lozinku:', '',
-                 '', '*', '',
+                 '', '^', '',
                  '', '+', '',
                  '', '/', '',
                     '', '', '',
@@ -47,8 +47,11 @@ class ProzorZaPrijavu(QWidget):
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "*":
-                tekst = QLineEdit()
-                grid.addWidget(tekst, *pozicija)
+                self.korisnickoIme = QLineEdit()
+                grid.addWidget(self.korisnickoIme, *pozicija)
+            elif sadrzaj =="^":
+                self.lozinka = QLineEdit()
+                grid.addWidget(self.lozinka,*pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Prijavite se")
                 dugme.clicked.connect(self.prijava)
@@ -69,6 +72,10 @@ class ProzorZaPrijavu(QWidget):
         prozor = ProzorZaRegistraciju()
 
     def prijava(self):
+        #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
+        # i vraca objekat sa svim njegovim informacijama
+
+
         self.hide()
         QApplication.instance().actionManager.glavniProzor.show()
 

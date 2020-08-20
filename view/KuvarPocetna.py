@@ -11,6 +11,7 @@ class KuvarPocetna(QMainWindow):
        super().__init__()
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
+       self.sledecaStranica=0
        self.setFixedSize(1300,900)
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
@@ -45,18 +46,22 @@ class KuvarPocetna(QMainWindow):
         dio= dio.split("\\")
         dio = "/".join(dio)
         putanja = 'file:///'+ dio +'dizajn/pocetnaRecepti/index.html'
-        pozicije =  [(i, j) for i in range(5) for j in range(2)]
+        pozicije =  [(i, j) for i in range(self.sledecaStranica+4) for j in range(2)]
         for pozicija in pozicije:
-            privrem = QWidget()
-
-            izgled1 = QVBoxLayout()
-            privrem.setLayout(izgled1)
-            privremeni = QWebEngineView()
-            privremeni.setUrl(QUrl(putanja))
-
-            izgled1.addWidget(privremeni)
-            izgled1.addWidget(QPushButton("andrija"))
-            self.izgled.addWidget(privrem,*pozicija)
+            if(pozicija[0]!=3):
+                privrem = QWidget()
+                izgled1 = QVBoxLayout()
+                privrem.setLayout(izgled1)
+                privremeni = QWebEngineView()
+                privremeni.setUrl(QUrl(putanja))
+                izgled1.addWidget(privremeni)
+                dugme = QPushButton(">>")
+                dugme.setFixedSize(30,30)
+                izgled1.addWidget(dugme)
+                self.izgled.addWidget(privrem,*pozicija)
+        self.trenutniRecepti=4
+        self.sledecaStranica = QPushButton("Sledeca stranica")
+        self.izgled.addWidget(self.sledecaStranica,3,0)
         self.lista.show()
 
    def inicijalizujLijevuReklamu(self):
