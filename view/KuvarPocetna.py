@@ -84,7 +84,6 @@ class KuvarPocetna(QMainWindow):
        reklama = QWebEngineView()
        self.desnaReklama = QDockWidget()
        self.desnaReklama.setWidget(reklama)
-
        self.addDockWidget(Qt.RightDockWidgetArea, self.desnaReklama)
        self.desnaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures)
        self.desnaReklama.setFixedSize(300, 900)

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "naziv": "Sampita",
+        "oprema": [],
+        "sastojci": {},
+        "kategorije": [
+            "desert",
+            "brza priprema"
+        ],
+        "ocena": "Kolac sa najvise slasti poznat svima od malena",
+        "opis": "Najsladji kolac"
+    },
+    {
+        "id": 2,
+        "naziv": "Krempita",
+        "oprema": [],
+        "sastojci": {},
+        "kategorije": [
+            "desert",
+            "brza priprema"
+        ],
+        "ocena": "Kolac sa najvise slasti poznat svima od malena sa pudingom",
+        "opis": "Jos sladji kolac"
+    }
+]

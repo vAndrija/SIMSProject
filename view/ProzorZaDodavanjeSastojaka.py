@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from src.model.TipKolicine import *
+from model.TipKolicine import *
 
 class ProzorZaDodavanjeSastojaka(QDialog):
     def __init__(self):

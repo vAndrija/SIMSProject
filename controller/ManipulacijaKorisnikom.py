@@ -2,6 +2,7 @@ from model.KorisnickiNalog import *
 from model.Administrator import *
 from model.Urednik import *
 from model.Mesto import *
+from model.KuvarPocetnik import *
 import json
 import  jsonpickle
 
@@ -15,18 +16,20 @@ class ManipulacijaKorisnikom(object):
         self.citanjeKorisnika()
         self.citajAdmineUrednike()
 
+
+
     def kreirajKorisnika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol):
         grad = Mesto(mesto, postanskiBr)
         noviKorisnik = KorisnickiNalog(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol)
 
 
         self.sviKuvari.append(noviKorisnik)
-        self.upisiKorisnika(noviKorisnik)
+        self.upisiKorisnika()
 
     def objToDict(self, obj):
         return  obj.__dict__
 
-    def upisiKorisnika(self,korisnik):
+    def upisiKorisnika(self):
         with open('.\..\podaci\kuvari.json', 'w') as outfile:
             # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
             json.dump(self.sviKuvari, outfile, default= self.objToDict,  indent=4)
@@ -41,7 +44,8 @@ class ManipulacijaKorisnikom(object):
             self.podaci = jsonpickle.decode(tekst)
 
         for i in self.podaci:
-            korisnik = KorisnickiNalog(**i)
+            print(i)
+            korisnik = KuvarPocetnik(**i)
             mesto = Mesto(**i['mesto'])
             korisnik.mesto = mesto
             self.sviKuvari.append(korisnik)
@@ -61,6 +65,10 @@ class ManipulacijaKorisnikom(object):
             mjesto = Mesto(**ur['mesto'])
             urednik.mesto=mjesto
             self.sviUrednici.append(urednik)
+            print(urednik)
+            print(type(urednik.mesto))
+
+
 
 
 

@@ -5,6 +5,7 @@ from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import QSize
 from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
+from controller.osnovneFunkcije import *
 from view.ProzorZaPretragu import *
 
 
@@ -79,13 +80,15 @@ class ProzorZaPrijavu(QWidget):
         #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
         # i vraca objekat sa svim njegovim informacijama
 
+        if(provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())==0):
+            self.hide()
 
-        self.hide()
+            QApplication.instance().actionManager.glavniProzor.showMaximized()
+            QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
 
-        QApplication.instance().actionManager.glavniProzor.showMaximized()
-        QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
-
-        QApplication.instance().actionManager.glavniProzor.show()
+            QApplication.instance().actionManager.glavniProzor.show()
+        else:
+            self.lozinka.setText("Pogresna lozinka ili korisnicko ime")
 
 
 

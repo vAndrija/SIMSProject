@@ -3,7 +3,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import *
-from src.view.ProzorZaDodavanjeSastojaka import *
+from view.ProzorZaDodavanjeSastojaka import *
 
 
 class ProzorZaRegistraciju(QDialog):
