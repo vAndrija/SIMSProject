@@ -57,7 +57,7 @@ class ManipulacijaReceptima():
         :return:
         """
         osnovnaPutanja = os.getcwd()[:-4]
-        putanja  =  os.path.join(osnovnaPutanja,'slike')
+        putanja  =  os.path.join(osnovnaPutanja,'dizajn')
         ekstenzija = "."+putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("\\")[-1]
         id= self.recepti[-1].id+1
@@ -75,7 +75,7 @@ class ManipulacijaReceptima():
         for i in range(len(sadrzaj)):
             if("<img src=" in sadrzaj[i]):
                 sadrzaj[i]='<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
-                    os.path.join(osnovnaPutanja,"slike",str(id)+".jpg"))
+                    "..\\"+str(id)+".jpg")
             if('<h3 class="name">' in sadrzaj[i]):
                 sadrzaj[i]='<h3 class="name">{}</h3>\n'.format(naziv)
         with open(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"),"w") as output:
