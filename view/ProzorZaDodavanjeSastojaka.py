@@ -62,8 +62,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 self.nazivSastojka.setFixedSize(250,25)
                 grid.addWidget(self.nazivSastojka, *pozicija)
             elif sadrzaj == "*":
-                sastojciMenadzer = QApplication.instance().actionManager.sastojciMenadzer
-                sviSastojci = sastojciMenadzer.sviSastojci
+                sviSastojci = self.sastojciMenadzer.sviSastojci
                 self.postojeciSastojci = QTableWidget()
                 self.postojeciSastojci.setColumnCount(3)
                 self.postojeciSastojci.setRowCount(len(sviSastojci) + 1)

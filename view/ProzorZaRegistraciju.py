@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import *
 from view.ProzorZaDodavanjeSastojaka import *
+from view.ProzorZaDodavanjeOpreme import *
 
 
 class ProzorZaRegistraciju(QDialog):
@@ -77,6 +78,7 @@ class ProzorZaRegistraciju(QDialog):
             elif sadrzaj == ")":
                 dugme = QPushButton("Izaberite opremu")
                 dugme.setFixedSize(250,30)
+                dugme.clicked.connect(self.dodavanjeOpremen)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "(":
                 dugme = QPushButton("Registrujte se")
@@ -126,3 +128,6 @@ class ProzorZaRegistraciju(QDialog):
         prozor = ProzorZaDodavanjeSastojaka()
         self.setWindowModality(Qt.WindowModal)
         self.dugotrajniSastojci = prozor.dodatiUTabelu
+
+    def dodavanjeOpremen(self):
+        prozor = ProzorZaDodavanjeOpreme()
