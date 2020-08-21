@@ -3,5 +3,10 @@
         "sifra": 0,
         "naziv": "Prvi sastojak",
         "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 1,
+        "naziv": "Drugi sastojak",
+        "tipKolicine": "GRAM"
     }
 ]

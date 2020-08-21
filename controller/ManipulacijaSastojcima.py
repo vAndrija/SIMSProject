@@ -14,12 +14,17 @@ class ManipulacijaSastojcima(object):
         if len(self.sviSastojci) == 0:
             sifra = 0
         else:
-            sifra = self.sviSastojci[self.sviSastojci()-1].sifra + 1
+            sifra = self.sviSastojci[len(self.sviSastojci)-1].sifra + 1
+
 
         noviSastojak = Sastojak(sifra, nazivSastojka, tipKolicine)
-
-        self.sviSastojci.append(noviSastojak)
-        self.upisiSastojak()
+        provera = self.proveraPostojanjaSastojka(noviSastojak)
+        if provera == True:
+            return None
+        else:
+            self.sviSastojci.append(noviSastojak)
+            self.upisiSastojak()
+            return noviSastojak
 
 
     def objToDict(self, obj):
@@ -54,3 +59,10 @@ class ManipulacijaSastojcima(object):
             sastojak.tipKolicine = tipKolicine
 
             self.sviSastojci.append(sastojak)
+
+
+    def proveraPostojanjaSastojka(self, sastojak):
+        for jedanSastojak in self.sviSastojci:
+            if jedanSastojak.naziv.upper() == sastojak.naziv.upper():
+                return True
+        return False

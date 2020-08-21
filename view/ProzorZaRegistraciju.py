@@ -9,6 +9,7 @@ from view.ProzorZaDodavanjeSastojaka import *
 class ProzorZaRegistraciju(QDialog):
     def __init__(self):
         super().__init__()
+        self.dugotrajniSastojci = []
         self.initUI()
 
     def initUI(self):
@@ -123,3 +124,5 @@ class ProzorZaRegistraciju(QDialog):
 
     def dodavanjeSastojaka(self):
         prozor = ProzorZaDodavanjeSastojaka()
+        self.setWindowModality(Qt.WindowModal)
+        self.dugotrajniSastojci = prozor.dodatiUTabelu
