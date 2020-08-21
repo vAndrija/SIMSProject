@@ -9,6 +9,7 @@
             "brza priprema"
         ],
         "ocena": "Kolac sa najvise slasti poznat svima od malena",
+        "ekstenzijaSlike": "jpg",
         "opis": "Najsladji kolac"
     },
     {
@@ -21,6 +22,7 @@
             "brza priprema"
         ],
         "ocena": "Kolac sa najvise slasti poznat svima od malena sa pudingom",
+        "ekstenzijaSlike": "jpg",
         "opis": "Jos sladji kolac"
     }
 ]

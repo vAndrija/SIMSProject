@@ -18,7 +18,7 @@
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [],
-        "praceneKategorije": []
+        "praceneKategorije": ["desert"]
     },
     {
         "korisnickoIme": "necika",

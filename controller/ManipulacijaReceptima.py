@@ -1,5 +1,7 @@
 from model.ObicniRecept import *
 import json
+from PyQt5.QtWidgets import *
+from model.KuvarPocetnik import *
 import os
 import  jsonpickle
 import shutil
@@ -7,28 +9,116 @@ class ManipulacijaReceptima():
     def __init__(self):
         self.recepti = []
         self.ucitajRecepte()
-        self.kreirajRecept()
+
 
     def ucitajRecepte(self):
+        """
+        Funkcija ucitava sadrzaj iz .json fajla i kastuje ih u objekte ObicniRecept klase
+        :return:
+        """
         tekst = open('.\..\podaci\\recepti.json').read()
         tekst = jsonpickle.decode(tekst)
         for item in tekst:
             recept = ObicniRecept(**item)
             self.recepti.append(recept)
 
+
     def objToDict(self, obj):
+        """
+        Pomocna funkcija za redefinisanje serijalizacije za json paket
+        :param obj:
+        :return:
+        """
         return  obj.__dict__
 
     def sacuvajRecepte(self):
+        """
+        Funkcija vrsi serijalizaciju svih recepata iz liste u recepti.json fajl
+        :return:
+        """
         with open('.\..\podaci\\recepti.json',"w") as stream:
             json.dump(self.recepti, stream, default=self.objToDict, indent=4)
 
 
-    def kreirajRecept(self):
-        #premjestanje fajla slike koji je ucitan prilikom dodavanja recepta
-        putanja  =  os.path.join(os.getcwd()[:-4],'slike')
-        putanjaSlike = "C:\\Users\\korisnik\\Desktop\\SIMS\\sampita.jpg"
+    def kreirajRecept(self,naziv,putanjaSlike,opis,oprema,kategorije,sastojci):
+        """
+        Funkcija izvrsava kreiranje novog recepta u sledecim koracima:
+        1. Premjesta sliku sa dobijene putanje u folder slike i mijenja joj naziv po predefinisanom pravilu
+        2. Kreira izgled za nju radi prikazivanja na pocetnoj strani tako sto .html sablon kreira u
+        odgovaarajuci folder i preimenuje ga prema predefinisanom pravilu
+        3. Mijenja sadrzaj .html sablona da bi se prikazivala slika recepta i naziv novog recepta
+        4. Kreira objekat tipa ObicanRecept, dodaje ga u listu svih recepata i vrsi njegovo serijalizovanje
+        :param naziv: naziv recepta
+        :param putanjaSlike:  putanja do slike recepta
+        :param opis: opis recepta
+        :param oprema:  oprema potreban za izradu recepta
+        :param kategorije:  kategorije kojima pripada recept
+        :param sastojci: sastojci koji idu u recept
+        :return:
+        """
+        osnovnaPutanja = os.getcwd()[:-4]
+        putanja  =  os.path.join(osnovnaPutanja,'slike')
         ekstenzija = "."+putanjaSlike.split(".")[1]
-        # shutil.move(putanjaSlike, putanja)
-        # os.rename(os.path.join(putanja,"sampita.jpg"),os.path.join(putanja,str(1)+".jpg"))
+        nazivSlike = putanjaSlike.split("\\")[-1]
+        id= self.recepti[-1].id+1
+        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija,opis)
+        shutil.move(putanjaSlike, putanja)
+        os.rename(os.path.join(putanja,nazivSlike),os.path.join(putanja,str(id)+ekstenzija))
+        shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
+                    os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))
+        os.rename(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti","sablonPocetna.html"),
+                  os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"))
+        sadrzaj = []
+        with open(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"),"r") as stream:
+            sadrzaj = stream.readlines()
+
+        for i in range(len(sadrzaj)):
+            if("<img src=" in sadrzaj[i]):
+                sadrzaj[i]='<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
+                    os.path.join(osnovnaPutanja,"slike",str(id)+".jpg"))
+            if('<h3 class="name">' in sadrzaj[i]):
+                sadrzaj[i]='<h3 class="name">{}</h3>\n'.format(naziv)
+        with open(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"),"w") as output:
+            output.writelines(sadrzaj)
+
+        self.recepti.append(noviRecept)
+        self.sacuvajRecepte()
+
+    def receptiZaPrikaz(self):
+        """
+        Funkcija za ulogovanog kuvara pocetnika vraca sve recepte iz kategorija koje on prati
+        i sve recepte od korisnika koje on prati radi prikazivanja na pocetnoj strani
+        :return: lista recepata
+        """
+        recepti=[]
+        kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
+        for pracenaKategorija in kuvarPocetnik.praceneKategorije:
+            for recept in self.recepti:
+                for kategorija in recept.kategorije:
+                    if(kategorija==pracenaKategorija):
+                        postoji=False
+                        for postojeci in recepti:
+                            if(recept is postojeci):
+                                postoji=True
+                        if not postoji:
+                            recepti.append(recept)
+                        break
+        for praceniKuvar in kuvarPocetnik.praceniKuvari:
+            for recept in praceniKuvar.recepti:
+                postoji = False
+                for postojeci in recepti:
+                    if (recept is postojeci):
+                        postoji = True
+                if not postoji:
+                    recepti.append(recept)
+                recepti.append(recept)
+
+
+        return recepti
+
+
+
+
+
+
 

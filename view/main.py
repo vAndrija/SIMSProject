@@ -14,8 +14,10 @@ import sys
 def main():
     app = QApplication(sys.argv)
     aplikacija = ProzorZaPrijavu()
+
+    app.actionManager = ActionManager(aplikacija)
     glavniProzor = KuvarPocetna()
-    app.actionManager = ActionManager(aplikacija,glavniProzor,aplikacija)
+    app.actionManager.glavniProzor=glavniProzor
     sys.exit(app.exec_())
 
 

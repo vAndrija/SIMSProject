@@ -7,7 +7,9 @@ from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
 from controller.osnovneFunkcije import *
 from view.ProzorZaPretragu import *
-
+from model.Administrator import *
+from model.KuvarPocetnik import *
+from model.Urednik import *
 
 
 class ProzorZaPrijavu(QWidget):
@@ -79,14 +81,19 @@ class ProzorZaPrijavu(QWidget):
     def prijava(self):
         #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
         # i vraca objekat sa svim njegovim informacijama
-
-        if(provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())==0):
+        korisnik = provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())
+        if(korisnik!=None):
             self.hide()
-
-            QApplication.instance().actionManager.glavniProzor.showMaximized()
-            QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
-
-            QApplication.instance().actionManager.glavniProzor.show()
+            if(isinstance(korisnik,Administrator)):
+                pass
+            elif(isinstance(korisnik,Urednik)):
+                pass
+            else:
+                QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
+                QApplication.instance().actionManager.glavniProzor.showMaximized()
+                QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
+                QApplication.instance().actionManager.glavniProzor.show()
+                QApplication.instance().actionManager.glavniProzor.refresujPocetnu()
         else:
             self.lozinka.setText("Pogresna lozinka ili korisnicko ime")
 
