@@ -1,6 +1,7 @@
 from controller.ManipulacijaKorisnikom import *
 from controller.ManipulacijaReceptima import *
 from controller.ManipulacijaSastojcima import *
+from controller.ManipulacijaOpremom import *
 class ActionManager(object):
 
     def __init__(self,aplikacija):
@@ -11,3 +12,4 @@ class ActionManager(object):
         self.informacije = ManipulacijaKorisnikom()
         self.receptiMenadzer = ManipulacijaReceptima()
         self.sastojciMenadzer = ManipulacijaSastojcima()
+        self.opremaMenadzer = ManipulacijaOpremom()

@@ -34,8 +34,8 @@ class ManipulacijaSastojcima(object):
             return obj.__dict__
 
     def upisiSastojak(self):
-        with open('.\..\podaci\sastojci.json', 'w') as outfile:
-            json.dump(self.sviSastojci, outfile, default=self.objToDict, indent=4)
+        with open('.\..\podaci\sastojci.json', 'w') as izlazniFajl:
+            json.dump(self.sviSastojci, izlazniFajl, default=self.objToDict, indent=4)
 
     def citanjeSastojaka(self):
         tekst = open('.\..\podaci\sastojci.json').read()

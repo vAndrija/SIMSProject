@@ -1,5 +1,5 @@
 class Oprema(object):
-    def __init__(self):
-        self.sifra = None
-        self.naziv = None
-        self.marka = None
+    def __init__(self, sifra, naziv, marka):
+        self.sifra = sifra
+        self.naziv = naziv
+        self.marka = marka

@@ -30,9 +30,9 @@ class ManipulacijaKorisnikom(object):
         return  obj.__dict__
 
     def upisiKorisnika(self):
-        with open('.\..\podaci\kuvari.json', 'w') as outfile:
+        with open('.\..\podaci\kuvari.json', 'w') as izlazniFajl:
             # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
-            json.dump(self.sviKuvari, outfile, default= self.objToDict,  indent=4)
+            json.dump(self.sviKuvari, izlazniFajl, default= self.objToDict,  indent=4)
 
     def citanjeKorisnika(self):
         # with open('.\..\podaci\kuvari.json', 'r') as outfile:

@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 class ProzorZaDodavanjeOpreme(QDialog):
     def __init__(self):
         super().__init__()
+        self.opremaMenadzer = QApplication.instance().actionManager.opremaMenadzer
         self.initUI()
 
     def initUI(self):
@@ -88,6 +89,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
             elif sadrzaj == "+":
                 dugme = QPushButton("Dodaj aparat")
                 dugme.setFixedSize(250,30)
+                dugme.clicked.connect(self.dodajNoviAparat)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "!":
                 self.dodataOprema = QTableWidget()
@@ -123,3 +125,11 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(100,35)
                 grid.addWidget(labela, *pozicija)
+
+
+    def dodajNoviAparat(self):
+        naziv = self.nazivOpreme.text()
+        marka = self.nazivMarke.text()
+
+        oprema = self.opremaMenadzer.kreirajOpremu(naziv, marka)
+

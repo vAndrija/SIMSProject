@@ -194,14 +194,17 @@ class ProzorZaDodavanjeSastojaka(QDialog):
             tipKolicine = TipKolicine.SUPENAKASIKA
         else:
             tipKolicine = TipKolicine.PRSTOHVAT
-        sastojak = self.sastojciMenadzer.kreirajSastojak(naziv, tipKolicine)
-        if sastojak == None:
-
-            self.kreirajDijalogSPorukom("Uneti sastojak vec postoji u listi sastojaka.")
+        if naziv == "":
+            self.kreirajDijalogSPorukom("Potrebno je uneti naziv sastojka.")
         else:
-            brojRedova = self.dodatiSastojci.rowCount()
-            self.dodatiSastojci.insertRow(brojRedova)
-            self.dodatiUTabelu.append(sastojak)
-            self.dodatiSastojci.setItem(brojRedova, 0, QTableWidgetItem(str(sastojak.sifra)))
-            self.dodatiSastojci.setItem(brojRedova, 1, QTableWidgetItem(sastojak.naziv))
-            self.dodatiSastojci.setItem(brojRedova, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
+            sastojak = self.sastojciMenadzer.kreirajSastojak(naziv, tipKolicine)
+            if sastojak == None:
+
+                self.kreirajDijalogSPorukom("Uneti sastojak vec postoji u listi sastojaka.")
+            else:
+                brojRedova = self.dodatiSastojci.rowCount()
+                self.dodatiSastojci.insertRow(brojRedova)
+                self.dodatiUTabelu.append(sastojak)
+                self.dodatiSastojci.setItem(brojRedova, 0, QTableWidgetItem(str(sastojak.sifra)))
+                self.dodatiSastojci.setItem(brojRedova, 1, QTableWidgetItem(sastojak.naziv))
+                self.dodatiSastojci.setItem(brojRedova, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
