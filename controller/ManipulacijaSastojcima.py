@@ -11,6 +11,13 @@ class ManipulacijaSastojcima(object):
         self.citanjeSastojaka()
 
     def kreirajSastojak(self, nazivSastojka, tipKolicine):
+        """
+        Funkcija koja kreira objekat klase Sastojak i smesta ga u listu postojecih sastojaka i poziva funkciju
+        koja upisuje sastojke u fajl sastojci.json.
+        :param nazivSastojka:   naziv novog sastojaka
+        :param tipKolicine:     tip kolicine novog sastojka
+        :return:
+        """
         if len(self.sviSastojci) == 0:
             sifra = 0
         else:
@@ -28,16 +35,29 @@ class ManipulacijaSastojcima(object):
 
 
     def objToDict(self, obj):
+        """
+        Pomocna funkcija za redefinisanje serijalizacije za json paket
+        :param obj:
+        :return:
+        """
         if isinstance(obj, TipKolicine):
             return obj.__str__()
         else:
             return obj.__dict__
 
     def upisiSastojak(self):
+        """
+        Funkcija koja vrsi serijalizaciju svih sastojaka iz liste u fajl sastojci.json.
+        :return:
+        """
         with open('.\..\podaci\sastojci.json', 'w') as izlazniFajl:
             json.dump(self.sviSastojci, izlazniFajl, default=self.objToDict, indent=4)
 
     def citanjeSastojaka(self):
+        """
+        Funkcija koja ucitava sve sastojke iz fajla sastojci.json u listu svih sastojaka.
+        :return:
+        """
         tekst = open('.\..\podaci\sastojci.json').read()
         if tekst == "":
             self.podaci = []
@@ -62,6 +82,11 @@ class ManipulacijaSastojcima(object):
 
 
     def proveraPostojanjaSastojka(self, sastojak):
+        """
+        Funkcija koja proverava da li je prosledjenji objekat vec upisan u fajl.
+        :param sastojak: objekat koji se proverava
+        :return:
+        """
         for jedanSastojak in self.sviSastojci:
             if jedanSastojak.naziv.upper() == sastojak.naziv.upper():
                 return True

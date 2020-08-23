@@ -1,3 +1,5 @@
+# Napomena: da li dodati novi sastojak u tabelu vec postojecih sastojaka
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -12,6 +14,11 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         self.initUI()
 
     def initUI(self):
+        """
+        Funkcija koja definise izgled prozora koji se prikazuje kada korisnik zeli da doda dugotrajne sastojke
+        prilikom registracije.
+        :return:
+        """
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         ikonica = QIcon('..\slike\ikonica.png')
         self.setWindowIcon(ikonica)
@@ -31,6 +38,10 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         self.exec_()
 
     def postaviGrid(self):
+        """
+        Funkcija koja postavlja layout prozora za dodavanje dugotrajnih sastojaka prilikom registracije.
+        :return:
+        """
         grid = QGridLayout()
         self.setLayout(grid)
 
@@ -147,6 +158,11 @@ class ProzorZaDodavanjeSastojaka(QDialog):
 
 
     def dodajSastojak(self):
+        """
+        Funkcija koja se poziva kada korisnik zali da oznaceni sastojak iz tabele postojecih sastojaka doda u
+        listu svojih dugotrajnih sastojaka prilikom registracije. Aktivira se pritiskom na dugme 'Dodaj sastojak'.
+        :return:
+        """
         sviSastojci = self.sastojciMenadzer.sviSastojci
         redovi = self.postojeciSastojci.selectionModel().selectedRows()
         brojRedova = self.dodatiSastojci.rowCount()
@@ -164,9 +180,15 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                     self.dodatiSastojci.setItem(brojRedova + brojac, 0, QTableWidgetItem(str(sastojak.sifra)))
                     self.dodatiSastojci.setItem(brojRedova + brojac, 1, QTableWidgetItem(sastojak.naziv))
                     self.dodatiSastojci.setItem(brojRedova + brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
+                    brojac += 1
 
 
     def kreirajDijalogSPorukom(self, porukaZaIspis):
+        """
+        Funkcija koja se poziva kada je potrebno kreirati dijalog sa porukom koja se salje korisniku.
+        :param porukaZaIspis: poruka koja se prikazuje korisniku
+        :return:
+        """
         poruka = QMessageBox()
         poruka.setWindowTitle("Aplikacija za kuvare pocetnike")
         icon = QIcon("..\slike\ikonica.png")
@@ -176,11 +198,21 @@ class ProzorZaDodavanjeSastojaka(QDialog):
 
 
     def zavrsenoDodavanje(self):
+        """
+        Funkcija koja se poziva kada korisnik pritisne dugme 'Zavrsi dodavanje'. Prozor za dodavanje sastojaka se
+        sakriva.
+        :return:
+        """
         self.hide()
         return self.dodatiUTabelu
 
 
     def dodavanjeNovogSastojka(self):
+        """
+        Funkcija koja se poziva kada korisnik pritisne dugme 'Dodaj sastojak', a prethodno je uneo naziv sastojka
+        i izabrao tip kolicine. Korisnik na ovaj nacin dodaje sastojak koji se ne nalazi u tabeli postojecih sastojaka.
+        :return:
+        """
         naziv = self.nazivSastojka.text()
         tip = self.comboBox.currentIndex()
 

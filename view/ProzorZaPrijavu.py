@@ -14,8 +14,14 @@ from model.Urednik import *
 
 class ProzorZaPrijavu(QWidget):
     def __init__(self):
-
         super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        """
+        Funkcija koja definise izgled prozora za prijavu korisnika na aplikaciju.
+        :return:
+        """
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.setFixedSize(800,600)
         image = QImage("..\slike\prijava.jpg")
@@ -76,9 +82,19 @@ class ProzorZaPrijavu(QWidget):
 
 
     def registracija(self):
+        """
+        Funkcija koja se poziva kada korisnik pritisne na dugme "Registruj se'. Prikazuje se prozor za registraciju
+        korisnika.
+        :return:
+        """
         prozor = ProzorZaRegistraciju()
 
     def prijava(self):
+        """
+        Funkcija koja se poziva kada korisnik pritisne dugme 'Prijavi se'. Unutar funkcije poziva se funkcija koja
+        proverava tacnost korisnickog imena i lozinke. U zavisnosti od uloge korisnika u sistemu objekat se kastuje.
+        :return:
+        """
         #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
         # i vraca objekat sa svim njegovim informacijama
         korisnik = provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())

@@ -19,6 +19,21 @@ class ManipulacijaKorisnikom(object):
 
 
     def kreirajKorisnika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol):
+        """
+        Funkcija koja kreira novog korisnika, smesta ga u odgovarajucu listu i poziva funkciju koja
+        upisuje korisnike u .json fajl.
+        :param ime: ime novog korisnika
+        :param prezime: prezime novog korisnika
+        :param kIme: korisnicko ime novog korisnika
+        :param lozinka: lozinka novog korisnika
+        :param mejl: mejl novog korisnika
+        :param datum: datum rodjenja novog korisnika
+        :param adresa: adresa novog korisnika
+        :param mesto: naziv mesta stanovanja novog korisnika
+        :param postanskiBr: postanski broj mesta
+        :param pol: pol novog korisnika
+        :return:
+        """
         grad = Mesto(mesto, postanskiBr)
         noviKorisnik = KorisnickiNalog(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol)
 
@@ -27,14 +42,27 @@ class ManipulacijaKorisnikom(object):
         self.upisiKorisnika()
 
     def objToDict(self, obj):
+        """
+        Pomocna funkcija za redefinisanje serijalizacije za json paket
+        :param obj:
+        :return:
+        """
         return  obj.__dict__
 
     def upisiKorisnika(self):
+        """
+        Funkcija koja vrsi serijalizaciju kuvara u kuvari.json fajl.
+        :return:
+        """
         with open('.\..\podaci\kuvari.json', 'w') as izlazniFajl:
             # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
             json.dump(self.sviKuvari, izlazniFajl, default= self.objToDict,  indent=4)
 
     def citanjeKorisnika(self):
+        """
+        Funnkcija koja ucitava kuvare iz fajla kuvari.json.
+        :return:
+        """
         # with open('.\..\podaci\kuvari.json', 'r') as outfile:
         #     self.sviKorisnici = json.load(outfile,default=lambda  o: o.__dict__,indent = 4)
         tekst = open('.\..\podaci\kuvari.json').read()
@@ -51,6 +79,10 @@ class ManipulacijaKorisnikom(object):
 
 
     def citajAdmineUrednike(self):
+        """
+        Funkcija koja ucitava administratore i urednike iz fajlova administratori.json i urednici.json.
+        :return:
+        """
         tekst = open('.\..\podaci\\administratori.json').read()
         tekst = jsonpickle.decode(tekst)
         self.administrator = Administrator(**tekst)

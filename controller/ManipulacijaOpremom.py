@@ -11,6 +11,12 @@ class ManipulacijaOpremom(object):
 
 
     def kreirajOpremu(self, naziv, marka):
+        """
+        Funkcija koja poziva konstruktor klase Oprema i dodaje novi objekat u listu opreme koja je vec sacuvana.
+        :param naziv: naziv novog aparata
+        :param marka: naziv marke novog aparata
+        :return:
+        """
         if len(self.svaOprema) == 0:
             sifra = 0
         else:
@@ -28,14 +34,27 @@ class ManipulacijaOpremom(object):
 
 
     def objToDict(self, obj):
+        """
+        Pomocna funkcija za redefinisanje serijalizacije za json paket
+        :param obj:
+        :return:
+        """
         return obj.__dict__
 
 
     def upisiOpremu(self):
+        """
+        Funkcija koja vrsi serijalizaciju svih aparata iz liste u fajl oprema.json.
+        :return:
+        """
         with open('.\..\podaci\oprema.json', 'w') as izlazniFajl:
             json.dump(self.svaOprema, izlazniFajl, default=self.objToDict, indent=4)
 
     def citanjeOpreme(self):
+        """
+        Funkcija koja ucitava sve aparate iz oprema.json fajla i smesta ih u listu.
+        :return:
+        """
         tekst = open('.\..\podaci\oprema.json').read()
         if tekst == "":
             self.podaci = []
@@ -47,8 +66,13 @@ class ManipulacijaOpremom(object):
             self.svaOprema.append(oprema)
 
     def proveraPostojanjaOpreme(self, novaOprema):
+        """
+        Funkcija koja proverava da li je prosledjeni aparat vec upisan u fajl oprema.json.
+        :param novaOprema: objekat koji se proverava
+        :return:
+        """
         for oprema in self.svaOprema:
-            if oprema.naziv.upper() == novaOprema.naziv.upper():
+            if oprema.naziv.upper() == novaOprema.naziv.upper() and oprema.marka.upper() == novaOprema.marka.upper():
                 return True
 
         return False

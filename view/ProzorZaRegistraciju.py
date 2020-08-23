@@ -11,9 +11,14 @@ class ProzorZaRegistraciju(QDialog):
     def __init__(self):
         super().__init__()
         self.dugotrajniSastojci = []
+        self.dugotrajnaOprema = []
         self.initUI()
 
     def initUI(self):
+        """
+        Funkcija koja se definise izgled prozora za registraciju novog korisnika aplikacije.
+        :return:
+        """
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.setFixedSize(1000,800)
         image = QImage("..\slike\zaRegistraciju.jpg")
@@ -95,6 +100,10 @@ class ProzorZaRegistraciju(QDialog):
         self.exec()
 
     def registracija(self):
+        """
+        Funkcija koja preuzima podatke koje je korisnik uneo i kreira novog korisnika aplikacije.
+        :return:
+        """
         ime = self.tekstovi[0].text()
         prezime = self.tekstovi[1].text()
         kIme = self.tekstovi[2].text()
@@ -125,9 +134,20 @@ class ProzorZaRegistraciju(QDialog):
 
 
     def dodavanjeSastojaka(self):
+        """
+        Funkcija koja se poziva kada korisnik pritisne dugme 'Dodaj sastojke'. Prikazuje se prozor za dodavanje
+        dugotrajnih sastojaka.
+        :return:
+        """
         prozor = ProzorZaDodavanjeSastojaka()
         self.setWindowModality(Qt.WindowModal)
         self.dugotrajniSastojci = prozor.dodatiUTabelu
 
     def dodavanjeOpremen(self):
+        """
+        Funkcija koja se pozica kada korisnik pritisne dugme 'Dodaj opremu'. Prikazuje se prozor za dodavanje opreme.
+        :return:
+        """
         prozor = ProzorZaDodavanjeOpreme()
+        self.setWindowModality(Qt.WindowModal)
+        self.dugotrajnaOprema = prozor.dodatiUTabelu
