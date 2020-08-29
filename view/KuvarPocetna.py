@@ -3,6 +3,7 @@ from PyQt5.QtWebEngineWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from view.Toolbar import *
+from view.ProzorZaPretragu import *
 import traceback
 import os
 
@@ -14,7 +15,7 @@ class KuvarPocetna(QMainWindow):
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
        self.sledecaStranica=0
-       self.setFixedSize(1300,900)
+       self.setFixedSize(1360,700)
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
        self.inicijalizacijaToolbar()

@@ -6,7 +6,6 @@ from PyQt5.QtCore import QSize
 from view.ProzorZaRegistraciju import *
 from view.KuvarPocetna import *
 from controller.osnovneFunkcije import *
-from view.ProzorZaPretragu import *
 from model.Administrator import *
 from model.KuvarPocetnik import *
 from model.Urednik import *

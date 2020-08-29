@@ -9,6 +9,7 @@ class ActionManager(object):
         self.glavniProzor = None
         self.prijava = aplikacija
         self.prijavljeniKorisnik =None
+        self.pretragaProzor = None
         self.informacije = ManipulacijaKorisnikom()
         self.receptiMenadzer = ManipulacijaReceptima()
         self.sastojciMenadzer = ManipulacijaSastojcima()
