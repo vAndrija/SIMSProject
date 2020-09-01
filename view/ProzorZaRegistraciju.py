@@ -5,6 +5,7 @@ from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
 from PyQt5.QtCore import *
 from view.ProzorZaDodavanjeSastojaka import *
 from view.ProzorZaDodavanjeOpreme import *
+from view.ObavestavajucaPoruka import *
 
 
 class ProzorZaRegistraciju(QDialog):
@@ -116,19 +117,9 @@ class ProzorZaRegistraciju(QDialog):
         pol = self.pol.currentIndex()
         datum = self.datum.date().toPyDate()
         if lozinka != ponovnaLozinka:
-            poruka = QMessageBox()
-            poruka.setWindowTitle("Aplikacija za kuvare pocetnike")
-            icon = QIcon("..\slike\ikonica.png")
-            poruka.setWindowIcon(icon)
-            poruka.setText("Vasa lozinka nije ispravna.")
-            poruka.exec_()
+            ObavestavajucaPoruka("Vasa lozinka nije ispravna.")
         elif ime == "" or prezime == "" or kIme == "" or lozinka == "" or mejl == "" or adresa == "" or mesto == "" or ppt == "":
-            poruka = QMessageBox()
-            poruka.setWindowTitle("Aplikacija za kuvare pocetnike")
-            icon = QIcon("..\slike\ikonica.png")
-            poruka.setWindowIcon(icon)
-            poruka.setText("Niste popunili sva polja.")
-            poruka.exec_()
+            ObavestavajucaPoruka("Niste popunili sva polja.")
         else:
             korisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
 

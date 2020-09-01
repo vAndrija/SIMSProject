@@ -11,3 +11,10 @@ def provjeraPostojanjaKorisnika(korisnickoIme,lozinka):
         return baza.administrator
     return None
 
+def nadjiKorisnika(korisnickoIme):
+    baza = QApplication.instance().actionManager.informacije
+    for kuvar in baza.sviKuvari:
+        if kuvar.korisnickoIme == korisnickoIme:
+            return kuvar
+    return None
+

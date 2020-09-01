@@ -9,6 +9,7 @@ from controller.osnovneFunkcije import *
 from model.Administrator import *
 from model.KuvarPocetnik import *
 from model.Urednik import *
+from view.AdministratorPocetna import *
 
 
 class ProzorZaPrijavu(QWidget):
@@ -24,7 +25,7 @@ class ProzorZaPrijavu(QWidget):
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.setFixedSize(800,600)
         image = QImage("..\slike\prijava.jpg")
-        sImage = image.scaled(QSize(800, 600))
+        sImage = image.scaled(self.size())
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
@@ -34,6 +35,7 @@ class ProzorZaPrijavu(QWidget):
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
+
         grid = QGridLayout()
         self.setLayout(grid)
 
@@ -79,7 +81,6 @@ class ProzorZaPrijavu(QWidget):
 
         self.show()
 
-
     def registracija(self):
         """
         Funkcija koja se poziva kada korisnik pritisne na dugme "Registruj se'. Prikazuje se prozor za registraciju
@@ -100,7 +101,11 @@ class ProzorZaPrijavu(QWidget):
         if(korisnik!=None):
             self.hide()
             if(isinstance(korisnik,Administrator)):
-                pass
+                QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
+                QApplication.instance().actionManager.glavniProzor = AdministratorPocetna()
+                QApplication.instance().actionManager.glavniProzor.showMaximized()
+                QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
+                QApplication.instance().actionManager.glavniProzor.show()
             elif(isinstance(korisnik,Urednik)):
                 pass
             else:

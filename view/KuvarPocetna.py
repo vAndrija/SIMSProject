@@ -19,6 +19,8 @@ class KuvarPocetna(QMainWindow):
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
        self.inicijalizacijaToolbar()
+       icon = QIcon("..\slike\ikonica.png")
+       self.setWindowIcon(icon)
        sadrzaj = ""
        with open("..\slike\stajl.css", "r") as stream:
            sadrzaj = stream.read()
