@@ -14,11 +14,11 @@
         "pol": 0,
         "dugotrajniSastojci": {},
         "oprema": [],
-        "recepti": [1,2],
+        "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
-        "praceneKategorije": ["desert"]
+        "praceniKuvari": ["necika"],
+        "praceneKategorije": ["desert","brzo"]
     },
     {
         "korisnickoIme": "necika",
@@ -35,7 +35,7 @@
         "pol": 1,
         "dugotrajniSastojci": {},
         "oprema": [],
-        "recepti": [],
+        "recepti": [1,2,5],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [],
@@ -56,7 +56,7 @@
         "pol": 1,
         "dugotrajniSastojci": {},
         "oprema": [],
-        "recepti": [],
+        "recepti": [3],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [],
@@ -81,7 +81,7 @@
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
+        "praceniKuvari": [4],
         "praceneKategorije": []
     }
 ]

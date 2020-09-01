@@ -97,6 +97,11 @@ class ManipulacijaKorisnikom(object):
             urednik.mesto=mjesto
             self.sviUrednici.append(urednik)
 
+    def vratiKuvara(self,korisnickoIme):
+        for kuvar in self.sviKuvari:
+            if(kuvar.korisnickoIme==korisnickoIme):
+                return kuvar
+
 
 
 

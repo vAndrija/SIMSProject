@@ -110,10 +110,8 @@ class ProzorZaPrijavu(QWidget):
                 pass
             else:
                 QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
-                QApplication.instance().actionManager.glavniProzor.showMaximized()
-                QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
-                QApplication.instance().actionManager.glavniProzor.show()
-                QApplication.instance().actionManager.glavniProzor.refresujPocetnu()
+                QApplication.instance().actionManager.glavniProzor=KuvarPocetna()
+                QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None)
         else:
             self.lozinka.setText("Pogresna lozinka ili korisnicko ime")
 

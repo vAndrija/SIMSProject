@@ -21,10 +21,9 @@ class ProzorZaPretragu(QDialog):
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
-
+        self.kategorije=[]
         grid = QGridLayout()
         self.setLayout(grid)
-
         matrica = ["List","","",
                    "Unos kategorije", "kat", "dodaj",
                    "Naziv recepta", "naziv", "",
@@ -39,7 +38,6 @@ class ProzorZaPretragu(QDialog):
 
 
         pozicije = [(i, j) for i in range(9) for j in range(3)]
-
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "List":
@@ -61,6 +59,7 @@ class ProzorZaPretragu(QDialog):
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "refresh":
                 dugme = QPushButton("Osvezi rezultate")
+                dugme.clicked.connect(self.osvjeziRezultate)
                 dugme.setFixedSize(150, 30)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "kat":
@@ -100,7 +99,7 @@ class ProzorZaPretragu(QDialog):
                     msg.setStandardButtons(QMessageBox.Ok)
                     msg.exec()
                     return
-
+        self.kategorije.append(self.unetaKategorija.text().lower())
         item = QTreeWidgetItem()
         item.setCheckState(0, Qt.Unchecked)
         item.setText(1, self.unetaKategorija.text())
@@ -117,10 +116,19 @@ class ProzorZaPretragu(QDialog):
                 for i in range(self.lista.topLevelItemCount()):
                     item = self.lista.topLevelItem(i)
                     if item.checkState(0) == Qt.Checked:
+                        self.kategorije.remove(self.lista.topLevelItem(i).text(1))
                         self.lista.takeTopLevelItem(i)
+
                         prolaz = True
                         break
 
             self.lista.repaint()
         except:
             traceback.print_exc()
+
+    def osvjeziRezultate(self):
+        naziv = self.unetNaziv.text()
+        kategorije = self.kategorije
+        QApplication.instance().actionManager.receptiMenadzer.receptiPretraga(naziv,kategorije)
+        self.close()
+

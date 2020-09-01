@@ -24,5 +24,43 @@
         "ocena": "Kolac sa najvise slasti poznat svima od malena sa pudingom",
         "ekstenzijaSlike": "jpg",
         "opis": "Jos sladji kolac"
+    },
+    {
+        "id": 3,
+        "naziv": "makarone",
+        "oprema": [],
+        "sastojci": {},
+        "kategorije": [
+            "pasta",
+            "brzo"
+        ],
+        "ocena": 0,
+        "ekstenzijaSlike": ".jpg",
+        "opis": "slano ukusno jelo"
+    },
+    {
+        "id": 4,
+        "naziv": "Jaje na oko",
+        "oprema": [],
+        "sastojci": {},
+        "kategorije": [
+            "brzo"
+        ],
+        "ocena": 0,
+        "ekstenzijaSlike": ".jpeg",
+        "opis": "brzi dorucak"
+    },
+    {
+        "id": 5,
+        "naziv": "Piletina",
+        "oprema": [],
+        "sastojci": {},
+        "kategorije": [
+            "glavno jelo",
+            "ukusno"
+        ],
+        "ocena": 0,
+        "ekstenzijaSlike": ".jpeg",
+        "opis": "Glavno jelo za posebne prilike"
     }
 ]

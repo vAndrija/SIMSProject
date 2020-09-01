@@ -11,11 +11,13 @@ import os
 class KuvarPocetna(QMainWindow):
    def __init__(self):
        super().__init__()
-       self.showMinimized()
+
        self.setWindowTitle("Aplikacija za kuvare pocetnike")
        self.show()
-       self.sledecaStranica=0
+       self.sledecaStranicaBrojac=0
+       self.sledecaPostoji  =None
        self.setFixedSize(1360,700)
+       self.postaviPoziciju()
        self.inicijalizujDesnuReklamu()
        self.inicijalizujLijevuReklamu()
        self.inicijalizacijaToolbar()
@@ -26,8 +28,9 @@ class KuvarPocetna(QMainWindow):
            sadrzaj = stream.read()
        self.setStyleSheet(sadrzaj)
 
+       self.recepti = []
        self.inicijalizujPocetnu()
-       self.hide()
+
 
 
    def postaviPoziciju(self):
@@ -42,8 +45,9 @@ class KuvarPocetna(QMainWindow):
 
    def inicijalizacijaToolbar(self):
        self.toolbar = Toolbar(self)
-
+       self.toolbar.setMovable(False)
        self.addToolBar(self.toolbar)
+
 
    def inicijalizujPocetnu(self):
         """
@@ -56,37 +60,110 @@ class KuvarPocetna(QMainWindow):
         self.lista.setLayout(self.izgled)
         self.lista.show()
 
-   def refresujPocetnu(self):
-       try:
+
+   def refresujPocetnu(self,recepti):
+
+       dio = os.getcwd()[:-4]
+       dio = dio.split("\\")
+       dio = "/".join(dio)
+       putanja = 'file:///' + dio + 'dizajn/pocetnaRecepti'
+       pozicije = [(i, j) for i in range(4) for j in range(2)]
+       self.dugmad = []
+       self.sledecaStranicaBrojac = 0
+       if(recepti==None):
+           self.recepti = QApplication.instance().actionManager.receptiMenadzer.receptiZaPrikaz()
+       else:
+           print(len(recepti))
+           self.recepti  =recepti
+
+       trenutni = []
+       if (len(self.recepti) >= ((self.sledecaStranicaBrojac + 1) * 4)):
+           if((len(self.recepti) == ((self.sledecaStranicaBrojac + 1) * 4))):
+               self.sledecaPostoji=False
+           else:
+               self.sledecaPostoji=True
+           for i in range(self.sledecaStranicaBrojac * 4, self.sledecaStranicaBrojac + 4):
+               trenutni.append(self.recepti[i])
+       else:
+           self.sledecaPostoji=False
+           for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti)):
+               trenutni.append(self.recepti[i])
+           for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti),
+                           (self.sledecaStranicaBrojac+1)*4):
+                trenutni.append("*")
+
+       for pozicija, recept in zip(pozicije, trenutni):
+           if (pozicija[0] != 3):
+               if(recept!="*"):
+                   privrem = QWidget()
+                   izgled1 = QVBoxLayout()
+                   privrem.setLayout(izgled1)
+                   privremeni = QWebEngineView()
+                   privremeni.setUrl(QUrl(putanja+"/"+ str(recept.id) + ".html"))
+                   izgled1.addWidget(privremeni)
+                   dugme = QPushButton(">>")
+                   self.dugmad.append(dugme)
+                   dugme.setFixedSize(30, 30)
+                   izgled1.addWidget(dugme)
+                   self.izgled.addWidget(privrem, *pozicija)
+               else:
+                   privrem = QWidget()
+                   izgled1 = QVBoxLayout()
+                   privrem.setLayout(izgled1)
+                   self.izgled.addWidget(privrem, *pozicija)
+       if(len(self.recepti )==0):
+           for pozicija in pozicije:
+               if (pozicija[0] != 3):
+                   privrem = QWidget()
+                   izgled1 = QVBoxLayout()
+                   privrem.setLayout(izgled1)
+                   self.izgled.addWidget(privrem, *pozicija)
+
+       self.trenutniRecepti = 4
+       self.sledecaStranica = QPushButton("Sledeca stranica")
+       self.sledecaStranica.clicked.connect(self.sledecaStranicaAkcija)
+       self.izgled.addWidget(self.sledecaStranica, 3, 0)
+
+
+   def sledecaStranicaAkcija(self):
+
+       if(self.sledecaPostoji):
+           self.inicijalizujPocetnu()
+           self.sledecaStranicaBrojac=+1
            dio = os.getcwd()[:-4]
            dio = dio.split("\\")
            dio = "/".join(dio)
            putanja = 'file:///' + dio + 'dizajn/pocetnaRecepti'
            pozicije = [(i, j) for i in range(4) for j in range(2)]
-           self.dugmad = []
-           self.recepti = QApplication.instance().actionManager.receptiMenadzer.receptiZaPrikaz()
            trenutni = []
-           if (len(self.recepti) >= (self.sledecaStranica + 1 * 6)):
-               for i in range(self.sledecaStranica * 6, self.sledecaStranica + 6):
+
+
+           if (len(self.recepti) >= ((self.sledecaStranicaBrojac + 1) * 4)):
+
+               if ((len(self.recepti) == ((self.sledecaStranicaBrojac + 1) * 4))):
+                   self.sledecaPostoji = False
+               else:
+                   self.sledecaPostoji = True
+               for i in range(self.sledecaStranicaBrojac * 4, self.sledecaStranicaBrojac + 4):
                    trenutni.append(self.recepti[i])
            else:
 
-               for i in range(self.sledecaStranica * 6, len(self.recepti)):
+               self.sledecaPostoji = False
+               for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti)):
                    trenutni.append(self.recepti[i])
-               for i in range(self.sledecaStranica * 6, len(self.recepti),
-                               (self.sledecaStranica+1)*6):
-                    trenutni.append("*")
+               for i in range(len(self.recepti),(self.sledecaStranicaBrojac+1)*4):
 
+
+                   trenutni.append("*")
 
            for pozicija, recept in zip(pozicije, trenutni):
                if (pozicija[0] != 3):
-                   if(recept!="*"):
+                   if (recept != "*"):
                        privrem = QWidget()
                        izgled1 = QVBoxLayout()
                        privrem.setLayout(izgled1)
                        privremeni = QWebEngineView()
-                       print(os.path.join(putanja, str(recept.id) + ".html"))
-                       privremeni.setUrl(QUrl(putanja+"/"+ str(recept.id) + ".html"))
+                       privremeni.setUrl(QUrl(putanja + "/" + str(recept.id) + ".html"))
                        izgled1.addWidget(privremeni)
                        dugme = QPushButton(">>")
                        self.dugmad.append(dugme)
@@ -98,12 +175,8 @@ class KuvarPocetna(QMainWindow):
                        izgled1 = QVBoxLayout()
                        privrem.setLayout(izgled1)
                        self.izgled.addWidget(privrem, *pozicija)
-
-           self.trenutniRecepti = 4
-           self.sledecaStranica = QPushButton("Sledeca stranica")
            self.izgled.addWidget(self.sledecaStranica, 3, 0)
-       except:
-           traceback.print_exc()
+
 
    def inicijalizujLijevuReklamu(self):
        """
@@ -115,7 +188,7 @@ class KuvarPocetna(QMainWindow):
        self.lijevaReklama.setWidget(reklama)
        self.addDockWidget(Qt.LeftDockWidgetArea, self.lijevaReklama)
        self.lijevaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures )
-       self.lijevaReklama.setFixedSize(300,900)
+       self.lijevaReklama.setFixedSize(300,700)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/categories/60008342/idea-organic"))
 
@@ -129,7 +202,7 @@ class KuvarPocetna(QMainWindow):
        self.desnaReklama.setWidget(reklama)
        self.addDockWidget(Qt.RightDockWidgetArea, self.desnaReklama)
        self.desnaReklama.setFeatures(QDockWidget.NoDockWidgetFeatures)
-       self.desnaReklama.setFixedSize(300, 900)
+       self.desnaReklama.setFixedSize(300, 700)
        reklama.showFullScreen()
        reklama.setUrl(QUrl("https://online.idea.rs/#!/offers"))
 

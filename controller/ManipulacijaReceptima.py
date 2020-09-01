@@ -1,15 +1,20 @@
-from model.ObicniRecept import *
 import json
-from PyQt5.QtWidgets import *
-from model.KuvarPocetnik import *
 import os
-import  jsonpickle
 import shutil
+import traceback
+
+import jsonpickle
+from PyQt5.QtWidgets import *
+
+from model.ObicniRecept import *
+
+
 class ManipulacijaReceptima():
     def __init__(self):
         self.recepti = []
         self.ucitajRecepte()
-
+        #self.kreirajRecept("Piletina","C:\\Users\\korisnik\\Desktop\piletina.jpeg",
+                           #"Glavno jelo za posebne prilike",[],["glavno jelo","ukusno"],{})
 
     def ucitajRecepte(self):
         """
@@ -22,25 +27,23 @@ class ManipulacijaReceptima():
             recept = ObicniRecept(**item)
             self.recepti.append(recept)
 
-
     def objToDict(self, obj):
         """
         Pomocna funkcija za redefinisanje serijalizacije za json paket
         :param obj:
         :return:
         """
-        return  obj.__dict__
+        return obj.__dict__
 
     def sacuvajRecepte(self):
         """
         Funkcija vrsi serijalizaciju svih recepata iz liste u recepti.json fajl
         :return:
         """
-        with open('.\..\podaci\\recepti.json',"w") as stream:
+        with open('.\..\podaci\\recepti.json', "w") as stream:
             json.dump(self.recepti, stream, default=self.objToDict, indent=4)
 
-
-    def kreirajRecept(self,naziv,putanjaSlike,opis,oprema,kategorije,sastojci):
+    def kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci):
         """
         Funkcija izvrsava kreiranje novog recepta u sledecim koracima:
         1. Premjesta sliku sa dobijene putanje u folder slike i mijenja joj naziv po predefinisanom pravilu
@@ -57,32 +60,56 @@ class ManipulacijaReceptima():
         :return:
         """
         osnovnaPutanja = os.getcwd()[:-4]
-        putanja  =  os.path.join(osnovnaPutanja,'dizajn')
-        ekstenzija = "."+putanjaSlike.split(".")[1]
+        putanja = os.path.join(osnovnaPutanja, 'dizajn')
+        ekstenzija = "." + putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("\\")[-1]
-        id= self.recepti[-1].id+1
-        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija,opis)
+        id = self.recepti[-1].id + 1
+        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
-        os.rename(os.path.join(putanja,nazivSlike),os.path.join(putanja,str(id)+ekstenzija))
+        os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) + ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))
-        os.rename(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti","sablonPocetna.html"),
-                  os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"))
+        os.rename(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", "sablonPocetna.html"),
+                  os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(id) + ".html"))
         sadrzaj = []
-        with open(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"),"r") as stream:
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(id) + ".html"), "r") as stream:
             sadrzaj = stream.readlines()
 
         for i in range(len(sadrzaj)):
-            if("<img src=" in sadrzaj[i]):
-                sadrzaj[i]='<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
-                    "..\\"+str(id)+".jpg")
-            if('<h3 class="name">' in sadrzaj[i]):
-                sadrzaj[i]='<h3 class="name">{}</h3>\n'.format(naziv)
-        with open(os.path.join(osnovnaPutanja,"dizajn","pocetnaRecepti",str(id)+".html"),"w") as output:
+            if ("<img src=" in sadrzaj[i]):
+                sadrzaj[
+                    i] = '<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
+                    "..\\" + str(id) + ekstenzija)
+            if ('<h3 class="name">' in sadrzaj[i]):
+                sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(naziv)
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(id) + ".html"), "w") as output:
             output.writelines(sadrzaj)
 
         self.recepti.append(noviRecept)
         self.sacuvajRecepte()
+
+    def receptiPretraga(self, naziv, kategorije):
+        try:
+            povratna = []
+            for recept in self.recepti:
+
+                if ( naziv!="" and (naziv.lower() in recept.naziv.lower())):
+                    povratna.append(recept)
+                    continue
+                for kategorija in recept.kategorije:
+                    if (kategorija in kategorije):
+                        povratna.append(recept)
+                        break
+            QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
+            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna)
+
+        except:
+            traceback.print_exc()
+
+    def vratiRecept(self, id):
+        for recept in self.recepti:
+            if (recept.id == id):
+                return recept
 
     def receptiZaPrikaz(self):
         """
@@ -90,35 +117,28 @@ class ManipulacijaReceptima():
         i sve recepte od korisnika koje on prati radi prikazivanja na pocetnoj strani
         :return: lista recepata
         """
-        recepti=[]
+        recepti = []
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         for pracenaKategorija in kuvarPocetnik.praceneKategorije:
             for recept in self.recepti:
                 for kategorija in recept.kategorije:
-                    if(kategorija==pracenaKategorija):
-                        postoji=False
+                    if (kategorija == pracenaKategorija):
+                        postoji = False
                         for postojeci in recepti:
-                            if(recept is postojeci):
-                                postoji=True
+                            if (recept.id == postojeci.id):
+                                postoji = True
                         if not postoji:
                             recepti.append(recept)
                         break
         for praceniKuvar in kuvarPocetnik.praceniKuvari:
-            for recept in praceniKuvar.recepti:
+            kuvar = QApplication.instance().actionManager.informacije.vratiKuvara(praceniKuvar)
+            for receptId in kuvar.recepti:
+                recept = self.vratiRecept(receptId)
                 postoji = False
                 for postojeci in recepti:
-                    if (recept is postojeci):
+                    if (recept.id == postojeci.id):
                         postoji = True
                 if not postoji:
                     recepti.append(recept)
-                recepti.append(recept)
-
 
         return recepti
-
-
-
-
-
-
-

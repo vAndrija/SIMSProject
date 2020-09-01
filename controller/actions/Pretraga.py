@@ -10,3 +10,4 @@ class PretragaAkcija(QAction):
 
     def actionCalled(self):
         QApplication.instance().actionManager.pretragaProzor = ProzorZaPretragu()
+
