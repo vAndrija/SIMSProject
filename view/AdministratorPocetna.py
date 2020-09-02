@@ -3,6 +3,7 @@ from view.ToolbarAdmin import *
 from view.PrikazInformacijaKuvara import *
 from view.Tabela import *
 from view.ObavestavajucaPoruka import *
+from view.ProzorZaRegistraciju import *
 
 class AdministratorPocetna(QMainWindow):
     def __init__(self):
@@ -83,6 +84,7 @@ class AdministratorPocetna(QMainWindow):
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Dodaj novi nalog")
+                dugme.clicked.connect(self.dodavanjeNovogNaloga)
                 grid.addWidget(dugme, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
@@ -101,22 +103,37 @@ class AdministratorPocetna(QMainWindow):
 
         brojac = 1
         for kuvarPocetnik in sviKuvari:
-            item1 = QTableWidgetItem(kuvarPocetnik.ime)
-            item1.setToolTip(kuvarPocetnik.ime)
-            item2 = QTableWidgetItem(kuvarPocetnik.prezime)
-            item2.setToolTip(kuvarPocetnik.prezime)
-            item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
-            item3.setToolTip(kuvarPocetnik.korisnickoIme)
-            item4 = QTableWidgetItem(kuvarPocetnik.mejl)
-            item4.setToolTip(kuvarPocetnik.mejl)
-            self.kuvari.setItem(brojac, 0, item1)
-            self.kuvari.setItem(brojac, 1, item2)
-            self.kuvari.setItem(brojac, 2, item3)
-            self.kuvari.setItem(brojac, 3, item4)
+            # item1 = QTableWidgetItem(kuvarPocetnik.ime)
+            # item1.setToolTip(kuvarPocetnik.ime)
+            # item2 = QTableWidgetItem(kuvarPocetnik.prezime)
+            # item2.setToolTip(kuvarPocetnik.prezime)
+            # item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
+            # item3.setToolTip(kuvarPocetnik.korisnickoIme)
+            # item4 = QTableWidgetItem(kuvarPocetnik.mejl)
+            # item4.setToolTip(kuvarPocetnik.mejl)
+            # self.kuvari.setItem(brojac, 0, item1)
+            # self.kuvari.setItem(brojac, 1, item2)
+            # self.kuvari.setItem(brojac, 2, item3)
+            # self.kuvari.setItem(brojac, 3, item4)
+            self.dodajRedUTabelu(kuvarPocetnik, brojac)
             brojac += 1
 
         self.kuvari.setFixedSize(700, 500)
 
+
+    def dodajRedUTabelu(self, kuvarPocetnik, brojReda):
+        item1 = QTableWidgetItem(kuvarPocetnik.ime)
+        item1.setToolTip(kuvarPocetnik.ime)
+        item2 = QTableWidgetItem(kuvarPocetnik.prezime)
+        item2.setToolTip(kuvarPocetnik.prezime)
+        item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
+        item3.setToolTip(kuvarPocetnik.korisnickoIme)
+        item4 = QTableWidgetItem(kuvarPocetnik.mejl)
+        item4.setToolTip(kuvarPocetnik.mejl)
+        self.kuvari.setItem(brojReda, 0, item1)
+        self.kuvari.setItem(brojReda, 1, item2)
+        self.kuvari.setItem(brojReda, 2, item3)
+        self.kuvari.setItem(brojReda, 3, item4)
 
     def prikazDetaljnihAplikacija(self):
         sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
@@ -129,7 +146,15 @@ class AdministratorPocetna(QMainWindow):
                     ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
                 else:
                     kuvar = sviKuvari[red.row()-1]
-            prozor = PrikazInformacijaKuvara(kuvar)
+                    prozor = PrikazInformacijaKuvara(kuvar)
+
+
+    def dodavanjeNovogNaloga(self):
+        prozor = ProzorZaRegistraciju()
+        self.setWindowModality(Qt.WindowModal)
+        registrovaniKorisnik = prozor.registrovaniKorisnik
+        self.kuvari.insertRow(self.kuvari.rowCount())
+        self.dodajRedUTabelu(registrovaniKorisnik, self.kuvari.rowCount()-1)
 
     def postaviPoziciju(self):
         dHeight = QApplication.desktop().height()

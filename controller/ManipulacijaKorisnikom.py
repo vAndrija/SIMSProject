@@ -18,7 +18,8 @@ class ManipulacijaKorisnikom(object):
 
 
 
-    def kreirajKorisnika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol):
+    def kreirajKorisnika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol, sastojci, oprema,
+                         recepti, kuvar, spisak, praceniKuvari, praceneKategorije):
         """
         Funkcija koja kreira novog korisnika, smesta ga u odgovarajucu listu i poziva funkciju koja
         upisuje korisnike u .json fajl.
@@ -35,11 +36,13 @@ class ManipulacijaKorisnikom(object):
         :return:
         """
         grad = Mesto(mesto, postanskiBr)
-        noviKorisnik = KorisnickiNalog(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol)
+        noviKorisnik = KuvarPocetnik(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol, sastojci, oprema, recepti,
+                                     kuvar, spisak, praceniKuvari, praceneKategorije)
 
 
         self.sviKuvari.append(noviKorisnik)
         self.upisiKorisnika()
+        return noviKorisnik
 
     def objToDict(self, obj):
         """

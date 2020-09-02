@@ -18,3 +18,20 @@ def nadjiKorisnika(korisnickoIme):
             return kuvar
     return None
 
+def nadjiSastojke(sastojci):
+    nadjenjiSastojci = []
+    for sastojak in sastojci:
+        for sastojakUBazi in QApplication.instance().actionManager.sastojciMenadzer.sviSastojci:
+            if sastojak == sastojakUBazi.sifra:
+                nadjenjiSastojci.append(sastojakUBazi)
+                break
+    return nadjenjiSastojci
+
+def nadjiOpremu(oprema):
+    nadjenaOprema = []
+    for aparat in oprema:
+        for aparatUBazi in QApplication.instance().actionManager.opremaMenadzer.svaOprema:
+            if aparat == aparatUBazi.sifra:
+                nadjenaOprema.append(aparatUBazi)
+    return nadjenaOprema
+

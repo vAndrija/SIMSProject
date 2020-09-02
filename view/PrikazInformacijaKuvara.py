@@ -92,7 +92,8 @@ class PrikazInformacijaKuvara(QDialog):
                 labela.setFixedSize(130, 20)
                 grid.addWidget(labela, *pozicija)
             elif sadrzaj == "10":
-                sviSastojci = QApplication.instance().actionManager.sastojciMenadzer.sviSastojci
+                sastojci = self.korisnik.dugotrajniSastojci
+                sviSastojci = nadjiSastojke(sastojci)
                 self.postojeciSastojci = Tabela(len(sviSastojci) + 1, 3)
                 self.postojeciSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
                 self.postojeciSastojci.setColumnWidth(0, 120)
@@ -107,7 +108,8 @@ class PrikazInformacijaKuvara(QDialog):
                 self.postojeciSastojci.setFixedSize(522, 165)
                 grid.addWidget(self.postojeciSastojci, *pozicija)
             elif sadrzaj == "11":
-                svaOprema = QApplication.instance().actionManager.opremaMenadzer.svaOprema
+                oprema = self.korisnik.oprema
+                svaOprema = nadjiOpremu(oprema)
                 tabela = Tabela(len(svaOprema) + 1,3)
                 tabela.dodajZaglavlja(["Sifra", "Naziv", "Naziv marke"])
                 tabela.setColumnWidth(0, 120)

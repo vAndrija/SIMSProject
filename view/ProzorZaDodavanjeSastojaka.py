@@ -145,7 +145,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                     ObavestavajucaPoruka("Vec ste dodali ovaj sastojak.")
                 else:
                     self.dodatiSastojci.insertRow(brojRedova + brojac)
-                    self.dodatiUTabelu.append(sastojak)
+                    self.dodatiUTabelu.append(sastojak.sifra)
                     self.dodatiSastojci.setItem(brojRedova + brojac, 0, QTableWidgetItem(str(sastojak.sifra)))
                     self.dodatiSastojci.setItem(brojRedova + brojac, 1, QTableWidgetItem(sastojak.naziv))
                     self.dodatiSastojci.setItem(brojRedova + brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
@@ -192,7 +192,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
             else:
                 brojRedova = self.dodatiSastojci.rowCount()
                 self.dodatiSastojci.insertRow(brojRedova)
-                self.dodatiUTabelu.append(sastojak)
+                self.dodatiUTabelu.append(sastojak.sifra)
                 self.dodatiSastojci.setItem(brojRedova, 0, QTableWidgetItem(str(sastojak.sifra)))
                 self.dodatiSastojci.setItem(brojRedova, 1, QTableWidgetItem(sastojak.naziv))
                 self.dodatiSastojci.setItem(brojRedova, 2, QTableWidgetItem(str(sastojak.tipKolicine)))

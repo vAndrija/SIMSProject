@@ -141,7 +141,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
                     ObavestavajucaPoruka("Oznaceni aparat ste vec dodali.")
                 else:
                     self.dodataOprema.insertRow(brojRedova + brojac)
-                    self.dodatiUTabelu.append(oprema)
+                    self.dodatiUTabelu.append(oprema.sifra)
                     self.dodataOprema.setItem(brojRedova + brojac, 0, QTableWidgetItem(str(oprema.sifra)))
                     self.dodataOprema.setItem(brojRedova + brojac, 1, QTableWidgetItem(oprema.naziv))
                     self.dodataOprema.setItem(brojRedova + brojac, 2, QTableWidgetItem(oprema.marka))
@@ -168,7 +168,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
             else:
                 brojRedova = self.dodataOprema.rowCount()
                 self.dodataOprema.insertRow(brojRedova)
-                self.dodatiUTabelu.append(oprema)
+                self.dodatiUTabelu.append(oprema.sifra)
                 self.dodataOprema.setItem(brojRedova, 0, QTableWidgetItem(str(oprema.sifra)))
                 self.dodataOprema.setItem(brojRedova, 1, QTableWidgetItem(oprema.naziv))
                 self.dodataOprema.setItem(brojRedova, 2, QTableWidgetItem(oprema.marka))

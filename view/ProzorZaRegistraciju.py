@@ -121,7 +121,9 @@ class ProzorZaRegistraciju(QDialog):
         elif ime == "" or prezime == "" or kIme == "" or lozinka == "" or mejl == "" or adresa == "" or mesto == "" or ppt == "":
             ObavestavajucaPoruka("Niste popunili sva polja.")
         else:
-            korisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol)
+            self.registrovaniKorisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol,
+                                                                                          self.dugotrajniSastojci, self.dugotrajnaOprema, [], 0, 0, [], [])
+            self.hide()
 
 
     def dodavanjeSastojaka(self):
@@ -142,3 +144,4 @@ class ProzorZaRegistraciju(QDialog):
         prozor = ProzorZaDodavanjeOpreme()
         self.setWindowModality(Qt.WindowModal)
         self.dugotrajnaOprema = prozor.dodatiUTabelu
+
