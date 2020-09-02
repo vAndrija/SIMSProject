@@ -1,6 +1,6 @@
 [
     {
-        "korisnickoIme": "jojev",
+        "korisnickoIme": "Jojev",
         "lozinka": "andro",
         "ime": "jovana",
         "prezime": "jevtic",
@@ -26,7 +26,7 @@
         ]
     },
     {
-        "korisnickoIme": "necika",
+        "korisnickoIme": "Necika",
         "lozinka": "prijedor",
         "ime": "nemanja",
         "prezime": "milutinovic",
@@ -74,7 +74,7 @@
         "praceneKategorije": []
     },
     {
-        "korisnickoIme": "andro",
+        "korisnickoIme": "Andro",
         "lozinka": "kokica",
         "ime": "andrija",
         "prezime": "vojnovic",
@@ -82,38 +82,12 @@
         "datumRodjenja": "1998-09-21",
         "adresa": "ljeskovac 29",
         "mesto": {
-            "nazivMesta": "bijeljina",
+            "nazivMesta": "Bijeljina",
             "postanskiBroj": "76300"
         },
         "pol": 1,
         "dugotrajniSastojci": [],
         "oprema": [],
-        "recepti": [],
-        "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Vanja02",
-        "lozinka": "odbojka",
-        "ime": "Valentina",
-        "prezime": "Jevtic",
-        "mejl": "vanja@gmail.com",
-        "datumRodjenja": "2002-10-09",
-        "adresa": "Drinska 13",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [
-            0
-        ],
-        "oprema": [
-            1,
-            2
-        ],
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
@@ -225,20 +199,26 @@
         "praceneKategorije": []
     },
     {
-        "korisnickoIme": "Tea99",
-        "lozinka": "animacije",
-        "ime": "Teodora",
-        "prezime": "Jovanovic",
-        "mejl": "teodora@gmail.com",
-        "datumRodjenja": "1999-11-15",
-        "adresa": "Jovanovici bb",
+        "korisnickoIme": "Vanja02",
+        "lozinka": "odbojka",
+        "ime": "Valentina",
+        "prezime": "Jevtic",
+        "mejl": "vanja@gmail.com",
+        "datumRodjenja": "2002-10-09",
+        "adresa": "Drisnka 13",
         "mesto": {
             "nazivMesta": "Mali Zvornik",
             "postanskiBroj": "15318"
         },
         "pol": 0,
-        "dugotrajniSastojci": [],
-        "oprema": [],
+        "dugotrajniSastojci": [
+            1,
+            0
+        ],
+        "oprema": [
+            1,
+            4
+        ],
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,

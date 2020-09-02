@@ -35,3 +35,8 @@ def nadjiOpremu(oprema):
                 nadjenaOprema.append(aparatUBazi)
     return nadjenaOprema
 
+def azurirajKuvara(staroKorisnicko, azuriranKuvar):
+    for kuvar in QApplication.instance().actionManager.informacije.sviKuvari:
+        if kuvar.korisnickoIme == staroKorisnicko:
+            kuvar = azuriranKuvar
+    QApplication.instance().actionManager.informacije.upisiKorisnika()

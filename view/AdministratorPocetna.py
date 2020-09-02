@@ -4,6 +4,7 @@ from view.PrikazInformacijaKuvara import *
 from view.Tabela import *
 from view.ObavestavajucaPoruka import *
 from view.ProzorZaRegistraciju import *
+from view.ProzorZaAzuriranjeNaloga import *
 
 class AdministratorPocetna(QMainWindow):
     def __init__(self):
@@ -74,9 +75,11 @@ class AdministratorPocetna(QMainWindow):
                 grid.addWidget(self.kuvari, *pozicija)
             elif sadrzaj == "?":
                 dugme = QPushButton("Obrisi nalog")
+                dugme.clicked.connect(self.brisanjeNaloga)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "-":
                 dugme = QPushButton("Azuriraj nalog")
+                dugme.clicked.connect(self.azuriranjeNaloga)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "/":
                 dugme = QPushButton("Prikazi detaljne informacije")
@@ -155,6 +158,42 @@ class AdministratorPocetna(QMainWindow):
         registrovaniKorisnik = prozor.registrovaniKorisnik
         self.kuvari.insertRow(self.kuvari.rowCount())
         self.dodajRedUTabelu(registrovaniKorisnik, self.kuvari.rowCount()-1)
+
+    def brisanjeNaloga(self):
+        sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
+        redovi = self.kuvari.selectionModel().selectedRows()
+        if len(redovi) == 0:
+            ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da obrisete.")
+        else:
+            for red in redovi:
+                if red.row() - 1 < 0:
+                    ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
+                else:
+                    potvrda = QMessageBox
+                    odgovor = potvrda.question(self, '', "Da li ste sigurni da zelite da obrisete nalog?", potvrda.Yes | potvrda.No)
+                    if odgovor == potvrda.Yes:
+                        kuvar = sviKuvari[red.row() - 1]
+                        sviKuvari.remove(kuvar)
+                        QApplication.instance().actionManager.informacije.sviKuvari = sviKuvari
+                        QApplication.instance().actionManager.informacije.upisiKorisnika()
+                        self.kuvari.removeRow(red.row())
+
+
+    def azuriranjeNaloga(self):
+        sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
+        redovi = self.kuvari.selectionModel().selectedRows()
+        if len(redovi) == 0:
+            ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da azurirate.")
+        else:
+            for red in redovi:
+                if red.row() - 1 < 0:
+                    ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
+                else:
+                    kuvar = sviKuvari[red.row() - 1]
+                    prozor = ProzorZaAzuriranjeNaloga(kuvar)
+                    self.setWindowModality(Qt.WindowModal)
+                    self.dodajRedUTabelu(kuvar, red.row())
+
 
     def postaviPoziciju(self):
         dHeight = QApplication.desktop().height()
