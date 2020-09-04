@@ -107,21 +107,59 @@ class ManipulacijaReceptima():
         self.recepti.append(noviRecept)
         self.sacuvajRecepte()
 
-    def receptiPretraga(self, naziv, kategorije):
-
+    def receptiPretraga(self, naziv, kategorije,napredno):
+        korisnik = QApplication.instance().actionManager.prijavljeniKorisnik
         try:
             povratna = []
+            nedostajeOpreme = []
+            nedostajeSastojaka = []
             for recept in self.recepti:
 
                 if ( naziv!="" and (naziv.lower() in recept.naziv.lower())):
                     povratna.append(recept)
+                    nedostajeOpreme.append(0)
+                    nedostajeSastojaka.append(0)
+                    for sastojak in recept.sastojci.keys():
+                        postoji = False
+                        for dugotrajni in korisnik.dugotrajniSastojci:
+                            if(dugotrajni==sastojak):
+                                postoji =True
+                                break
+                        if not postoji:
+                            nedostajeSastojaka[len(povratna)-1]+=1
+                    for oprema in recept.oprema:
+                        postoji = False
+                        for opremaKuvar in korisnik.oprema:
+                            if oprema==opremaKuvar:
+                                postoji=True
+                                break
+                        if not postoji:
+                            nedostajeOpreme[len(povratna)-1]+=1
                     continue
                 for kategorija in recept.kategorije:
                     if (kategorija in kategorije):
                         povratna.append(recept)
+                        nedostajeOpreme.append(0)
+                        nedostajeSastojaka.append(0)
+                        for sastojak in recept.sastojci.keys():
+                            postoji = False
+                            for dugotrajni in korisnik.dugotrajniSastojci:
+                                if (dugotrajni == sastojak):
+                                    postoji = True
+                                    break
+                            if not postoji:
+                                nedostajeSastojaka[len(povratna) - 1] += 1
+                        for oprema in recept.oprema:
+                            postoji = False
+                            for opremaKuvar in korisnik.oprema:
+                                if oprema == opremaKuvar:
+                                    postoji = True
+                                    break
+                            if not postoji:
+                                nedostajeOpreme[len(povratna) - 1] += 1
                         break
             QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
-            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna)
+            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna,nedostajeOpreme,nedostajeSastojaka,napredno)
 
         except:
             traceback.print_exc()
@@ -140,6 +178,30 @@ class ManipulacijaReceptima():
                 return kategorija.id
 
 
+    def vracanjeToolTipSadrzaja(self,recept):
+
+        sadrzaj ='<ul>Stvari koje nedostaju<br/>'
+        kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
+        for oprema in recept.oprema:
+            postoji=False
+            for opremaKuvar in kuvarPocetnik.oprema:
+                if(oprema==opremaKuvar):
+                    postoji=True
+                    break
+            if not postoji:
+                objekat = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(oprema)
+                sadrzaj +='<li>{0}</li>'.format(objekat.naziv)
+        for sastojak in recept.sastojci.keys():
+            postoji=False
+            for dugotrajniSastojak in kuvarPocetnik.dugotrajniSastojci:
+                if(sastojak==dugotrajniSastojak):
+                    postoji=True
+                    break
+            if not postoji:
+                objekat = QApplication.instance().actionManager.sastojciMenadzer.vratiSastojak(sastojak)
+                sadrzaj +='<li>{0}</li>'.format(objekat.naziv)
+        sadrzaj+='</ul>'
+        return sadrzaj
 
     def receptiZaPrikaz(self):
         """

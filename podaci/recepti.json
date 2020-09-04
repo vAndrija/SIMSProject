@@ -2,7 +2,7 @@
     {
         "id": 1,
         "naziv": "Sampita",
-        "oprema": [],
+        "oprema": [0],
         "sastojci": {},
         "kategorije": [
             1
@@ -14,7 +14,7 @@
     {
         "id": 2,
         "naziv": "Krempita",
-        "oprema": [],
+        "oprema": [1],
         "sastojci": {},
         "kategorije": [
             0,

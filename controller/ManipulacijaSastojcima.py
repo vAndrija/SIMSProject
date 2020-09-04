@@ -91,3 +91,8 @@ class ManipulacijaSastojcima(object):
             if jedanSastojak.naziv.upper() == sastojak.naziv.upper():
                 return True
         return False
+
+    def vratiSastojak(self,id):
+        for sastojak in self.sviSastojci:
+            if sastojak.sifra==id:
+                return sastojak

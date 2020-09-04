@@ -28,7 +28,7 @@ class ProzorZaPretragu(QDialog):
                    "Unos kategorije", "kat", "dodaj",
                    "Naziv recepta", "naziv", "",
                    "brisanje", "", "",
-                   "Napredna pretraga(sastojci i oprema): ", "", "*"
+                   "Napredna pretraga(sastojci i oprema): ", "*", ""
                    
                    "", "", "",
                    "",
@@ -64,7 +64,9 @@ class ProzorZaPretragu(QDialog):
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "*":
                 self.napredno = QCheckBox()
+                self.napredno.setFixedSize(50,50)
                 grid.addWidget(self.napredno,*pozicija)
+
             elif sadrzaj == "kat":
                 try:
                     self.kategorijeNazivi = QApplication.instance().actionManager.receptiMenadzer.vratiNaziveKategorija()
@@ -154,6 +156,9 @@ class ProzorZaPretragu(QDialog):
     def osvjeziRezultate(self):
         naziv = self.unetNaziv.text()
         kategorije = self.kategorije
-        QApplication.instance().actionManager.receptiMenadzer.receptiPretraga(naziv,kategorije)
+        napredno = self.napredno.isChecked()
+        QApplication.instance().actionManager.receptiMenadzer.receptiPretraga(naziv,kategorije,napredno)
         self.close()
+
+
 

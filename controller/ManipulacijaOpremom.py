@@ -76,3 +76,8 @@ class ManipulacijaOpremom(object):
                 return True
 
         return False
+
+    def vratiOpremu(self,id):
+        for oprema in self.svaOprema:
+            if oprema.sifra==id:
+                return oprema
