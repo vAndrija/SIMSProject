@@ -13,7 +13,9 @@
         },
         "pol": 0,
         "dugotrajniSastojci": [],
-        "oprema": [],
+        "oprema": [
+            1
+        ],
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,

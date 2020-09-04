@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from view.PrikazSopstvenihInformacija import *
 class SopstveniProfilAkcija(QAction):
     def __init__(self, parent):
         super().__init__("Profil", parent)
@@ -8,4 +9,4 @@ class SopstveniProfilAkcija(QAction):
         self.setIcon(QIcon('..\\slike\\user.png'))
 
     def actionCalled(self):
-        pass
+        PrikazSopstvenihInformacija(QApplication.instance().actionManager.prijavljeniKorisnik)

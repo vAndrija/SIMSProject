@@ -23,5 +23,15 @@
         "sifra": 4,
         "naziv": "Vaga",
         "marka": "Gorenje"
+    },
+    {
+        "sifra": 5,
+        "naziv": "sokovnik",
+        "marka": ""
+    },
+    {
+        "sifra": 6,
+        "naziv": "sokovnik",
+        "marka": "andrija"
     }
 ]

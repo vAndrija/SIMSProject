@@ -98,6 +98,7 @@ class ProzorZaPrijavu(QWidget):
         #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
         # i vraca objekat sa svim njegovim informacijama
         korisnik = provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())
+
         if(korisnik!=None):
             self.hide()
             if(isinstance(korisnik,Administrator)):
@@ -114,6 +115,7 @@ class ProzorZaPrijavu(QWidget):
                 QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None)
         else:
             self.lozinka.setText("Pogresna lozinka ili korisnicko ime")
+
 
 
 
