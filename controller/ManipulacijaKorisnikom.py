@@ -5,6 +5,9 @@ from model.Mesto import *
 from model.KuvarPocetnik import *
 import json
 import  jsonpickle
+import os
+import shutil
+import traceback
 
 class ManipulacijaKorisnikom(object):
     def __init__(self):
@@ -38,6 +41,27 @@ class ManipulacijaKorisnikom(object):
         grad = Mesto(mesto, postanskiBr)
         noviKorisnik = KuvarPocetnik(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol, sastojci, oprema, recepti,
                                      kuvar, spisak, praceniKuvari, praceneKategorije)
+
+        osnovnaPutanja = os.getcwd()[:-4]
+        shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonProfilKorisnika.html"),
+                    os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika"))
+        os.rename(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", "sablonProfilKorisnika.html"),
+                  os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"))
+
+        sadrzaj = []
+        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"), "r") as stream:
+            sadrzaj = stream.readlines()
+
+        for i in range(len(sadrzaj)):
+            if ('<h6 name="kIme">' in sadrzaj[i]):
+                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Korisnicko ime: " + kIme)
+            if ('<h6 name="ime">' in sadrzaj[i]):
+                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Ime: " + ime)
+            if ('<h6 name="kIme">' in sadrzaj[i]):
+                sadrzaj[i] = '<h6 name="prezime">{}</h6>\n'.format("Prezime: " + prezime)
+
+        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"), "w") as output:
+            output.writelines(sadrzaj)
 
 
         self.sviKuvari.append(noviKorisnik)

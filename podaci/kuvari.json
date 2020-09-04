@@ -18,7 +18,7 @@
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [
-            "necika"
+            "Necika"
         ],
         "praceneKategorije": [
             "desert",
@@ -219,6 +219,27 @@
             1,
             4
         ],
+        "recepti": [],
+        "virtuelniKuvar": 0,
+        "spisakZaKupovinu": 0,
+        "praceniKuvari": [],
+        "praceneKategorije": []
+    },
+    {
+        "korisnickoIme": "ja",
+        "lozinka": "ja",
+        "ime": "ja",
+        "prezime": "ja",
+        "mejl": "ja",
+        "datumRodjenja": "2020-09-03",
+        "adresa": "ja",
+        "mesto": {
+            "nazivMesta": "ja",
+            "postanskiBroj": "ja"
+        },
+        "pol": 0,
+        "dugotrajniSastojci": [],
+        "oprema": [],
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,

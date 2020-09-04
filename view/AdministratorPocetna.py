@@ -5,10 +5,15 @@ from view.Tabela import *
 from view.ObavestavajucaPoruka import *
 from view.ProzorZaRegistraciju import *
 from view.ProzorZaAzuriranjeNaloga import *
+import os
+from PyQt5.QtWebEngineWidgets import *
+from functools import partial
 
 class AdministratorPocetna(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.sledecaPostojiTab1 = None
+        self.sledecaStranicaBrTab1 = 0
         self.showMinimized()
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.show()
@@ -34,20 +39,106 @@ class AdministratorPocetna(QMainWindow):
         self.addToolBar(self.toolbar)
 
     def inicijalizujTabove(self):
-        tabovi = QTabWidget()
-        self.tab1 = QWidget()
-        image = QImage("..\slike\prijava.jpg")
-        sImage = image.scaled(self.tab1.size())
-        palette = QPalette()
-        palette.setBrush(QPalette.Window, QBrush(sImage))
-        self.tab1.setPalette(palette)
-        self.inicijalizujTab1()
+        self.tabovi = QTabWidget()
+        # self.tab1 = QWidget()
+
+        # self.inicijalizujTab1()
+        self.inicijalizujTabKuvari()
         self.tab2 = QWidget()
         self.tab3 = QWidget()
-        tabovi.addTab(self.tab1, "Kuvari pocetnici")
-        tabovi.addTab(self.tab2, "Urednici")
-        tabovi.addTab(self.tab3, "Reklame")
-        self.setCentralWidget(tabovi)
+        self.tabovi.addTab(self.tab1, "Kuvari pocetnici")
+        self.tabovi.addTab(self.tab2, "Urednici")
+        self.tabovi.addTab(self.tab3, "Reklame")
+
+        self.setCentralWidget(self.tabovi)
+
+    def inicijalizujTabKuvari(self):
+        self.tab1 = QWidget()
+        self.grid = QGridLayout()
+        self.tab1.setLayout(self.grid)
+
+        dio = os.getcwd()[:-4]
+        dio = dio.split("\\")
+        dio = "/".join(dio)
+        putanja = 'file:///' + dio + 'dizajn/profilKorisnika'
+
+        pozicije = [(i, j) for i in range(4) for j in range(2)]
+
+        sviKuvari = self.informacije.sviKuvari
+
+        self.dugmad = []
+        trenutni = []
+
+        if len(sviKuvari) >= (self.sledecaStranicaBrTab1 + 1)*4:
+            if len(sviKuvari) == (self.sledecaStranicaBrTab1 + 1)*4:
+                self.sledecaPostojiTab1 = False
+            else:
+                self.sledecaPostojiTab1 = True
+            for i in range(self.sledecaStranicaBrTab1*4, self.sledecaStranicaBrTab1*4+4):
+                trenutni.append(sviKuvari[i])
+        else:
+            self.sledecaPostojiTab1 = False
+            for i in range(self.sledecaStranicaBrTab1 * 4, len(sviKuvari)):
+                trenutni.append(sviKuvari[i])
+            for i in range(len(sviKuvari), (self.sledecaStranicaBrTab1 + 1) * 4):
+                trenutni.append("*")
+
+
+        for pozicija, kuvar in zip(pozicije, trenutni):
+            # if (pozicija[0] != 3):
+                if (kuvar != "*"):
+                    privrem = QWidget()
+                    izgled1 = QVBoxLayout()
+                    privrem.setLayout(izgled1)
+                    privremeni = QWebEngineView()
+                    privremeni.setUrl(QUrl(putanja + "/" + kuvar.korisnickoIme + ".html"))
+                    izgled1.addWidget(privremeni)
+                    dugme = QPushButton(">>")
+                    self.dugmad.append(dugme)
+                    dugme.clicked.connect(partial(self.prikazDetaljnihInformacija, kuvar))
+                    dugme.setFixedSize(30, 30)
+                    izgled1.addWidget(dugme)
+
+                    self.grid.addWidget(privrem, *pozicija)
+
+                else:
+                    privrem = QWidget()
+                    izgled1 = QVBoxLayout()
+                    privrem.setLayout(izgled1)
+                    self.grid.addWidget(privrem, *pozicija)
+
+        pozicije = [(i, j) for i in range(4,6) for j in range(2)]
+
+        dugmeSledecaStrana = QPushButton("Sledeca strana")
+        dugmePrethodnaStrana =  QPushButton("Prethodna strana")
+        dugmeDodajNovi = QPushButton("Dodajte novi nalog")
+
+        dugmici = []
+        if self.sledecaStranicaBrTab1 != 0:
+            dugmici.append(dugmePrethodnaStrana)
+            dugmePrethodnaStrana.clicked.connect(self.refresujPrethodnuTab1)
+        else:
+            dugmici.append(QLabel(""))
+        if self.sledecaPostojiTab1:
+            dugmici.append(dugmeSledecaStrana)
+            dugmeSledecaStrana.clicked.connect(self.refresujSledecuTab1)
+        else:
+            dugmici.append(QLabel(""))
+        dugmici.append(dugmeDodajNovi)
+
+        for pozicija, dugme in zip(pozicije, dugmici):
+            self.grid.addWidget(dugme, *pozicija)
+
+
+    def refresujSledecuTab1(self):
+        self.sledecaStranicaBrTab1 += 1
+        self.inicijalizujTabove()
+
+    def refresujPrethodnuTab1(self):
+        self.sledecaStranicaBrTab1 -= 1
+        self.inicijalizujTabove()
+
+
 
     def inicijalizujTab1(self):
         grid = QGridLayout()
@@ -138,17 +229,17 @@ class AdministratorPocetna(QMainWindow):
         self.kuvari.setItem(brojReda, 2, item3)
         self.kuvari.setItem(brojReda, 3, item4)
 
-    def prikazDetaljnihAplikacija(self):
-        sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
-        redovi = self.kuvari.selectionModel().selectedRows()
-        if len(redovi) == 0:
-            ObavestavajucaPoruka("Morate oznaciti korisnika ciji pregled zelite.")
-        else:
-            for red in redovi:
-                if red.row()-1 < 0:
-                    ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
-                else:
-                    kuvar = sviKuvari[red.row()-1]
+    def prikazDetaljnihInformacija(self, kuvar):
+        # sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
+        # redovi = self.kuvari.selectionModel().selectedRows()
+        # if len(redovi) == 0:
+        #     ObavestavajucaPoruka("Morate oznaciti korisnika ciji pregled zelite.")
+        # else:
+        #     for red in redovi:
+        #         if red.row()-1 < 0:
+        #             ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
+        #         else:
+        #             kuvar = sviKuvari[red.row()-1]
                     prozor = PrikazInformacijaKuvara(kuvar)
 
 
