@@ -5,8 +5,7 @@
         "oprema": [],
         "sastojci": {},
         "kategorije": [
-            "desert",
-            "brza priprema"
+            1
         ],
         "ocena": "Kolac sa najvise slasti poznat svima od malena",
         "ekstenzijaSlike": "jpg",
@@ -18,8 +17,8 @@
         "oprema": [],
         "sastojci": {},
         "kategorije": [
-            "desert",
-            "brza priprema"
+            0,
+            1
         ],
         "ocena": "Kolac sa najvise slasti poznat svima od malena sa pudingom",
         "ekstenzijaSlike": "jpg",
@@ -31,8 +30,8 @@
         "oprema": [],
         "sastojci": {},
         "kategorije": [
-            "pasta",
-            "brzo"
+            2,
+            0
         ],
         "ocena": 0,
         "ekstenzijaSlike": ".jpg",
@@ -44,7 +43,7 @@
         "oprema": [],
         "sastojci": {},
         "kategorije": [
-            "brzo"
+            0
         ],
         "ocena": 0,
         "ekstenzijaSlike": ".jpeg",
@@ -56,8 +55,7 @@
         "oprema": [],
         "sastojci": {},
         "kategorije": [
-            "glavno jelo",
-            "ukusno"
+            0
         ],
         "ocena": 0,
         "ekstenzijaSlike": ".jpeg",

@@ -28,8 +28,8 @@ class ProzorZaPretragu(QDialog):
                    "Unos kategorije", "kat", "dodaj",
                    "Naziv recepta", "naziv", "",
                    "brisanje", "", "",
-                   "Rezultat pretrage: ", "", ""
-                   "", "", "",
+                   "Napredna pretraga(sastojci i oprema): ", "", "*"
+                   
                    "", "", "",
                    "",
                    "refresh", "", ""
@@ -62,10 +62,20 @@ class ProzorZaPretragu(QDialog):
                 dugme.clicked.connect(self.osvjeziRezultate)
                 dugme.setFixedSize(150, 30)
                 grid.addWidget(dugme, *pozicija)
+            elif sadrzaj == "*":
+                self.napredno = QCheckBox()
+                grid.addWidget(self.napredno,*pozicija)
             elif sadrzaj == "kat":
-                self.unetaKategorija = QLineEdit()
-                self.unetaKategorija.setFixedSize(250, 25)
-                grid.addWidget(self.unetaKategorija, *pozicija)
+                try:
+                    self.kategorijeNazivi = QApplication.instance().actionManager.receptiMenadzer.vratiNaziveKategorija()
+                    kompleter = QCompleter(self.kategorijeNazivi)
+                    kompleter.setCaseSensitivity(Qt.CaseInsensitive)
+                    self.unetaKategorija = QLineEdit()
+                    self.unetaKategorija.setCompleter(kompleter)
+                    self.unetaKategorija.setFixedSize(250, 25)
+                    grid.addWidget(self.unetaKategorija, *pozicija)
+                except:
+                    traceback.print_exc()
             elif sadrzaj == "naziv":
                 self.unetNaziv = QLineEdit()
                 self.unetNaziv.setFixedSize(250, 25)
@@ -78,6 +88,17 @@ class ProzorZaPretragu(QDialog):
         self.exec()
 
     def dodajKategoriju(self):
+        if self.unetaKategorija.text().lower() not in self.kategorijeNazivi:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+
+            msg.setText("Potrebno je uneti vec postojecu kategoriju!")
+            msg.setWindowTitle("Greska")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec()
+            return
+
+
         if(self.unetaKategorija.text() == ""):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
@@ -99,7 +120,9 @@ class ProzorZaPretragu(QDialog):
                     msg.setStandardButtons(QMessageBox.Ok)
                     msg.exec()
                     return
-        self.kategorije.append(self.unetaKategorija.text().lower())
+        self.kategorije.append(
+            QApplication.instance().actionManager.receptiMenadzer.vratiIdKategorije(
+                self.unetaKategorija.text()))
         item = QTreeWidgetItem()
         item.setCheckState(0, Qt.Unchecked)
         item.setText(1, self.unetaKategorija.text())
@@ -116,7 +139,9 @@ class ProzorZaPretragu(QDialog):
                 for i in range(self.lista.topLevelItemCount()):
                     item = self.lista.topLevelItem(i)
                     if item.checkState(0) == Qt.Checked:
-                        self.kategorije.remove(self.lista.topLevelItem(i).text(1))
+                        self.kategorije.remove( QApplication.instance().actionManager.receptiMenadzer.vratiIdKategorije(
+                            self.lista.topLevelItem(i).text(1)))
+
                         self.lista.takeTopLevelItem(i)
 
                         prolaz = True

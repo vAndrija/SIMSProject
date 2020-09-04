@@ -2,7 +2,7 @@ import json
 import os
 import shutil
 import traceback
-
+from model.Kategorija import *
 import jsonpickle
 from PyQt5.QtWidgets import *
 
@@ -12,6 +12,9 @@ from model.ObicniRecept import *
 class ManipulacijaReceptima():
     def __init__(self):
         self.recepti = []
+        self.kategorije = []
+
+        self.ucitajKategorije()
         self.ucitajRecepte()
         #self.kreirajRecept("Piletina","C:\\Users\\korisnik\\Desktop\piletina.jpeg",
                            #"Glavno jelo za posebne prilike",[],["glavno jelo","ukusno"],{})
@@ -26,6 +29,17 @@ class ManipulacijaReceptima():
         for item in tekst:
             recept = ObicniRecept(**item)
             self.recepti.append(recept)
+
+
+
+    def ucitajKategorije(self):
+        tekst=  open('.\..\podaci\\kategorije.json').read()
+        tekst= jsonpickle.decode(tekst)
+        for item in tekst:
+            kategorija = Kategorija(**item)
+            self.kategorije.append(kategorija)
+
+
 
     def objToDict(self, obj):
         """
@@ -42,6 +56,11 @@ class ManipulacijaReceptima():
         """
         with open('.\..\podaci\\recepti.json', "w") as stream:
             json.dump(self.recepti, stream, default=self.objToDict, indent=4)
+
+
+    def sacuvajKategorije(self):
+        with open('.\..\podaci\\kategorije.json', "w") as stream:
+            json.dump(self.kategorije, stream, default=self.objToDict, indent=4)
 
     def kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci):
         """
@@ -89,6 +108,7 @@ class ManipulacijaReceptima():
         self.sacuvajRecepte()
 
     def receptiPretraga(self, naziv, kategorije):
+
         try:
             povratna = []
             for recept in self.recepti:
@@ -110,6 +130,16 @@ class ManipulacijaReceptima():
         for recept in self.recepti:
             if (recept.id == id):
                 return recept
+
+
+
+
+    def vratiIdKategorije(self,naziv):
+        for kategorija in self.kategorije:
+            if(kategorija.naziv.lower()==naziv.lower()):
+                return kategorija.id
+
+
 
     def receptiZaPrikaz(self):
         """
@@ -142,3 +172,19 @@ class ManipulacijaReceptima():
                     recepti.append(recept)
 
         return recepti
+
+
+    def vratiNaziveKategorija(self):
+
+        povratna=[]
+        for kategorija in self.kategorije:
+            povratna.append(kategorija.naziv)
+
+        return povratna
+
+    def postojanjeKategorije(self,naziv):
+        for kategorija in self.kategorije:
+            if(naziv.lower()==kategorija.naziv.lower()):
+                return kategorija.id()
+            else:
+                return -1
