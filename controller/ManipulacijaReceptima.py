@@ -247,6 +247,10 @@ class ManipulacijaReceptima():
     def postojanjeKategorije(self,naziv):
         for kategorija in self.kategorije:
             if(naziv.lower()==kategorija.naziv.lower()):
-                return kategorija.id()
-            else:
-                return -1
+                return kategorija.id
+        return -1
+
+    def vratiNazivKategorije(self,id):
+        for kategorija in self.kategorije:
+            if kategorija.id==id:
+                return kategorija.naziv

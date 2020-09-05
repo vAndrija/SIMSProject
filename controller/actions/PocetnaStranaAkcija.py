@@ -8,4 +8,5 @@ class PocetnaStranaAkcija(QAction):
         self.setIcon(QIcon('..\slike\\vracanjePocetna.png'))
 
     def actionCalled(self):
+        QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
         QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None,None,None,None)
