@@ -1,12 +1,12 @@
 [
     {
         "sifra": 0,
-        "naziv": "Prvi sastojak",
+        "naziv": "Jaja",
         "tipKolicine": "KOMAD"
     },
     {
         "sifra": 1,
-        "naziv": "Drugi sastojak",
+        "naziv": "Secer",
         "tipKolicine": "GRAM"
     }
 ]

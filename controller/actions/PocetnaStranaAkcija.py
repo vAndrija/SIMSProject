@@ -9,4 +9,6 @@ class PocetnaStranaAkcija(QAction):
 
     def actionCalled(self):
         QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
+        QApplication.instance().actionManager.glavniProzor.sledecaPostoji = True
+        QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac = 0
         QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None,None,None,None)

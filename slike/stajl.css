@@ -52,3 +52,21 @@ QMainWindow
      color: #ffffff;
 
 }
+QListWidget
+{
+    background-color: #ffffff;
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-width: 40px;
+
+}
+QListWidget:hover,QListWidget:pressed
+{
+    background-color: #4d004d;
+}

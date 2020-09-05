@@ -3,29 +3,24 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from view.Tabela import *
 import traceback
-class PrikazKategorija(QDialog):
 
+class PraceniKuvari(QDialog):
 
     def __init__(self,parent):
-
         super().__init__(parent)
 
-        self.setWindowTitle("Uredjivanje pracenih kategorija")
-        self.initUi()
+        self.initUI()
         self.setModal(True)
         self.show()
 
 
-    def initUi(self):
-        self.setFixedSize(700, 700)
-        image = QImage("..\slike\sastojci6.jpg")
-        sImage = image.scaled(QSize(700, 700))
-        palette = QPalette()
-        palette.setBrush(QPalette.Window, QBrush(sImage))
-        self.setPalette(palette)
+
+    def initUI(self):
+        self.setWindowTitle("Prikaz i uredjivanje pracenih kuvara")
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
         sadrzaj = ""
+        self.setFixedSize(600,600)
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
@@ -34,66 +29,67 @@ class PrikazKategorija(QDialog):
     def definisiIzgled(self):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
-        self.kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
-        self.nazivi  =[]
-        for kategorija in self.kuvarPocetnik.praceneKategorije:
-            self.nazivi.append(QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(kategorija))
+        self.kuvarPocetnik  = QApplication.instance().actionManager.prijavljeniKorisnik
         matrica = ['Pracene kategorije:', '', '',
                    '', '1', '',
-                   '', '4','',
+                   '', '4', '',
                    'Dodavanje nove kategorije:', '2', '',
                    '', '3', '',
                    ]
+
+        self.sviKorisnici = []
+        for korisnik in QApplication.instance().actionManager.informacije.sviKuvari:
+            if korisnik is not self.kuvarPocetnik:
+                self.sviKorisnici.append(korisnik.korisnickoIme)
+
         pozicije = [(i, j) for i in range(5) for j in range(3)]
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "1":
-                self.tabela= Tabela(len(self.nazivi) + 1, 2)
-                self.tabela.dodajZaglavlja(["Sifra","Naziv"])
+                self.tabela = Tabela(len(self.kuvarPocetnik.praceniKuvari) + 1, 3)
+                self.tabela.dodajZaglavlja(["Korisnicko"])
                 self.tabela.setColumnWidth(0, 120)
-                self.tabela.setColumnWidth(1, 120)
+
                 brojac = 1
-                for naziv in self.nazivi:
+                for naziv in self.kuvarPocetnik.praceniKuvari:
                     self.tabela.setItem(brojac, 0, QTableWidgetItem(
-                        str(self.kuvarPocetnik.praceneKategorije[brojac-1])))
-                    self.tabela.setItem(brojac, 1, QTableWidgetItem(naziv))
+                       naziv))
                     brojac += 1
-                self.tabela.setFixedSize(270, 160)
+                self.tabela.setFixedSize(150, 160)
                 self.grid.addWidget(self.tabela, *pozicija)
             elif sadrzaj == "2":
-                self.kategorijeNazivi = QApplication.instance().actionManager.receptiMenadzer.vratiNaziveKategorija()
-                kompleter = QCompleter(self.kategorijeNazivi)
+
+                kompleter = QCompleter(self.sviKorisnici)
                 kompleter.setCaseSensitivity(Qt.CaseInsensitive)
                 self.labela = QLineEdit()
                 self.labela.setCompleter(kompleter)
                 self.labela.setFixedSize(130, 20)
                 self.grid.addWidget(self.labela, *pozicija)
             elif sadrzaj == "3":
-                self.dugme = QPushButton("Dodaj novu kategoriju")
-                self.dugme.setFixedSize(200,20)
+                self.dugme = QPushButton("Zaprati kuvara")
+                self.dugme.setFixedSize(200, 20)
                 self.grid.addWidget(self.dugme)
-                self.dugme.clicked.connect(self.dodavanjeNove)
-            elif sadrzaj =="4":
-                self.brisanje = QPushButton("Izbrisi kategoriju")
-                self.brisanje.setFixedSize(200,20)
+                self.dugme.clicked.connect(self.dodavanjeNovog)
+            elif sadrzaj == "4":
+                self.brisanje = QPushButton("Optrati kuvara")
+                self.brisanje.setFixedSize(200, 20)
                 self.grid.addWidget(self.brisanje)
-                self.brisanje.clicked.connect(self.brisanjeKategorije)
+                self.brisanje.clicked.connect(self.otpratiKuvara)
             else:
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(130, 20)
                 self.grid.addWidget(labela, *pozicija)
 
-    def brisanjeKategorije(self):
+
+    def otpratiKuvara(self):
         selektovaniRedovi = self.tabela.selectionModel().selectedRows()
         for red in selektovaniRedovi:
-                self.nazivi.pop(red.row() - 1)
-                self.kuvarPocetnik.praceneKategorije.pop(red.row()-1)
-                QApplication.instance().actionManager.informacije.upisiKorisnika()
-                self.refresujTabelu()
+            self.kuvarPocetnik.praceniKuvari.pop(red.row() - 1)
+            QApplication.instance().actionManager.informacije.upisiKorisnika()
+            self.refresujTabelu()
 
-    def dodavanjeNove(self):
-
-        if self.labela.text().lower() not in self.kategorijeNazivi:
+    def dodavanjeNovog(self):
+        if self.labela.text().lower() not in self.sviKorisnici:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
 
@@ -102,7 +98,7 @@ class PrikazKategorija(QDialog):
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
             return
-        if self.labela.text().lower() in  self.nazivi:
+        if self.labela.text().lower() in  self.kuvarPocetnik.praceniKuvari:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Ne mozete pratiti jednu kategoriju dva puta!")
@@ -120,24 +116,20 @@ class PrikazKategorija(QDialog):
             msg.exec()
             return
 
-        id = QApplication.instance().actionManager.receptiMenadzer.postojanjeKategorije(self.labela.text().lower())
-        self.kuvarPocetnik.praceneKategorije.append(id)
-        self.nazivi.append(self.labela.text().lower())
+        self.kuvarPocetnik.praceniKuvari.append(self.labela.text())
         QApplication.instance().actionManager.informacije.upisiKorisnika()
         self.refresujTabelu()
 
-
-
     def refresujTabelu(self):
-        self.tabela = Tabela(len(self.nazivi) + 1, 2)
-        self.tabela.dodajZaglavlja(["Sifra", "Naziv"])
+        self.tabela = Tabela(len(self.kuvarPocetnik.praceniKuvari) + 1, 3)
+        self.tabela.dodajZaglavlja(["Korisnicko"])
         self.tabela.setColumnWidth(0, 120)
-        self.tabela.setColumnWidth(1, 120)
+
         brojac = 1
-        for naziv in self.nazivi:
+        for naziv in self.kuvarPocetnik.praceniKuvari:
             self.tabela.setItem(brojac, 0, QTableWidgetItem(
-                str(self.kuvarPocetnik.praceneKategorije[brojac - 1])))
-            self.tabela.setItem(brojac, 1, QTableWidgetItem(naziv))
+                naziv))
+
             brojac += 1
-        self.tabela.setFixedSize(270, 160)
+        self.tabela.setFixedSize(150, 160)
         self.grid.addWidget(self.tabela, 1,1)

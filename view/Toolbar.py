@@ -6,6 +6,7 @@ from controller.actions.PrikazSvogProfila import *
 from controller.actions.Pretraga import *
 from controller.actions.PocetnaStranaAkcija import *
 from controller.actions.UrednjivanjeKategorija import *
+from controller.actions.UredjivanjePratilaca import *
 class Toolbar(QToolBar):
     def __init__(self,parent):
         super().__init__(parent)
@@ -15,9 +16,10 @@ class Toolbar(QToolBar):
     def dodajSadrzaj(self):
         vidzet = QWidget()
 
-        vidzet.setFixedSize(1100,40)
+        vidzet.setFixedSize(1050,40)
         vidzet.show()
         self.addWidget(vidzet)
+        self.addAction(UredjivanjePratilaca(self))
         self.addAction(UredjivanjeKategorija(self))
         self.addAction(PocetnaStranaAkcija(self))
         self.addAction(PretragaAkcija(self))

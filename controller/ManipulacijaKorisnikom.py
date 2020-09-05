@@ -56,8 +56,8 @@ class ManipulacijaKorisnikom(object):
             if ('<h6 name="kIme">' in sadrzaj[i]):
                 sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Korisnicko ime: " + kIme)
             if ('<h6 name="ime">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="ime">{}</h6>\n'.format("Ime: " + ime)
-            if ('<h6 name="prezime">' in sadrzaj[i]):
+                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Ime: " + ime)
+            if ('<h6 name="kIme">' in sadrzaj[i]):
                 sadrzaj[i] = '<h6 name="prezime">{}</h6>\n'.format("Prezime: " + prezime)
 
         with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"), "w") as output:
@@ -124,67 +124,11 @@ class ManipulacijaKorisnikom(object):
             urednik.mesto=mjesto
             self.sviUrednici.append(urednik)
 
-    def upisiUrednike(self):
-        with open('.\..\podaci\\urednici.json', 'w') as izlazniFajl:
-            # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
-            json.dump(self.sviUrednici, izlazniFajl, default= self.objToDict,  indent=4)
-
-
-    def kreirajUrednika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol, noviRecepti):
-        grad = Mesto(mesto, postanskiBr)
-        noviKorisnik = Urednik(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol, noviRecepti)
-        osnovnaPutanja = os.getcwd()[:-4]
-        shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonProfilKorisnika.html"),
-                    os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika"))
-        os.rename(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", "sablonProfilKorisnika.html"),
-                  os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"))
-
-        sadrzaj = []
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"), "r") as stream:
-            sadrzaj = stream.readlines()
-
-        for i in range(len(sadrzaj)):
-            if ('<h6 name="kIme">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Korisnicko ime: " + kIme)
-            if ('<h6 name="ime">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="ime">{}</h6>\n'.format("Ime: " + ime)
-            if ('<h6 name="prezime">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="prezime">{}</h6>\n'.format("Prezime: " + prezime)
-
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kIme + ".html"), "w") as output:
-            output.writelines(sadrzaj)
-
-        self.sviUrednici.append(noviKorisnik)
-        self.upisiUrednike()
-        return noviKorisnik
-
     def vratiKuvara(self,korisnickoIme):
         for kuvar in self.sviKuvari:
             if(kuvar.korisnickoIme==korisnickoIme):
                 return kuvar
 
 
-    def azurirajHtmlDokument(self, kuvar, staroKorisnicko):
-        osnovnaPutanja = os.getcwd()[:-4]
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", staroKorisnicko + ".html"), "r") as stream:
-            sadrzaj = stream.readlines()
-
-        os.remove(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", staroKorisnicko + ".html"))
-
-        for i in range(len(sadrzaj)):
-            if ('<h6 name="kIme">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Korisnicko ime: " + kuvar.korisnickoIme)
-
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kuvar.korisnickoIme + ".html"), "w") as output:
-            output.writelines(sadrzaj)
 
 
-    def obrisiKuvara(self, kuvar):
-        osnovnaPutanja = os.getcwd()[:-4]
-        os.remove(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kuvar.korisnickoIme + ".html"))
-        self.sviKuvari.remove(kuvar)
-
-    def obrisiUrednika(self, urednik):
-        osnovnaPutanja = os.getcwd()[:-4]
-        os.remove(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", urednik.korisnickoIme + ".html"))
-        self.sviUrednici.remove(urednik)

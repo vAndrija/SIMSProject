@@ -80,12 +80,12 @@ class ManipulacijaReceptima():
         """
         osnovnaPutanja = os.getcwd()[:-4]
         putanja = os.path.join(osnovnaPutanja, 'dizajn')
-        ekstenzija = "." + putanjaSlike.split(".")[1]
+        ekstenzija =+ putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("\\")[-1]
         id = self.recepti[-1].id + 1
         noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
-        os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) + ekstenzija))
+        os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))
         os.rename(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", "sablonPocetna.html"),
@@ -98,7 +98,7 @@ class ManipulacijaReceptima():
             if ("<img src=" in sadrzaj[i]):
                 sadrzaj[
                     i] = '<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
-                    "..\\" + str(id) + ekstenzija)
+                    "..\\" + str(id) +"."+ ekstenzija)
             if ('<h3 class="name">' in sadrzaj[i]):
                 sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(naziv)
         with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(id) + ".html"), "w") as output:
@@ -159,6 +159,8 @@ class ManipulacijaReceptima():
                                 nedostajeOpreme[len(povratna) - 1] += 1
                         break
             QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
+            QApplication.instance().actionManager.glavniProzor.sledecaPostoji =True
+            QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac = 0
             QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna,nedostajeOpreme,nedostajeSastojaka,napredno)
 
         except:

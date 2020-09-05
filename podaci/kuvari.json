@@ -20,10 +20,11 @@
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [
-            "Necika"
+            "mladjo"
         ],
         "praceneKategorije": [
-            1
+            1,
+            0
         ]
     },
     {

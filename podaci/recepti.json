@@ -3,11 +3,12 @@
         "id": 1,
         "naziv": "Sampita",
         "oprema": [0],
-        "sastojci": {},
+        "sastojci": {"0": 10,
+            "1": 300},
         "kategorije": [
             1
         ],
-        "ocena": "Kolac sa najvise slasti poznat svima od malena",
+        "ocena": 0,
         "ekstenzijaSlike": "jpg",
         "opis": "Najsladji kolac"
     },
@@ -20,9 +21,9 @@
             0,
             1
         ],
-        "ocena": "Kolac sa najvise slasti poznat svima od malena sa pudingom",
+        "ocena": 0,
         "ekstenzijaSlike": "jpg",
-        "opis": "Jos sladji kolac"
+        "opis": "Kolac sa najvise slasti poznat svima od malena. Vrlo jednostavna priprema a pri tome kolac koji ce sigurno zadovoljiti svaciji ukus"
     },
     {
         "id": 3,
@@ -34,7 +35,7 @@
             0
         ],
         "ocena": 0,
-        "ekstenzijaSlike": ".jpg",
+        "ekstenzijaSlike": "jpg",
         "opis": "slano ukusno jelo"
     },
     {
@@ -46,7 +47,7 @@
             0
         ],
         "ocena": 0,
-        "ekstenzijaSlike": ".jpeg",
+        "ekstenzijaSlike": "jpeg",
         "opis": "brzi dorucak"
     },
     {
@@ -58,7 +59,7 @@
             0
         ],
         "ocena": 0,
-        "ekstenzijaSlike": ".jpeg",
+        "ekstenzijaSlike": "jpeg",
         "opis": "Glavno jelo za posebne prilike"
     }
 ]
