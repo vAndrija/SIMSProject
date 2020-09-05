@@ -34,8 +34,8 @@ class ProzorZaRegistraciju(QDialog):
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
 
-        grid = QGridLayout()
-        self.setLayout(grid)
+        self.grid = QGridLayout()
+        self.setLayout(self.grid)
 
         matrica = ['', '', 'Unesite ime:', '-',
                  '', '', 'Unesite prezime:', '-',
@@ -48,8 +48,8 @@ class ProzorZaRegistraciju(QDialog):
                  '', '', 'Unesite mesto:', '-',
                  '', '', 'Unesite postanski broj:', '-',
                  '', '', 'Izaberite pol:', '*',
-                 '', '', '+', ')',
-                   '', '', '', '(',
+                 '', '', '', '',
+                   '', '', '', '',
                  ]
 
         pozicije = [(i, j) for i in range(13) for j in range(4)]
@@ -64,47 +64,53 @@ class ProzorZaRegistraciju(QDialog):
                 tekst = QLineEdit()
                 tekst.setFixedSize(250,25)
                 self.tekstovi.append(tekst)
-                grid.addWidget(tekst, *pozicija)
+                self.grid.addWidget(tekst, *pozicija)
             elif sadrzaj == "*":
                 comboBox = QComboBox()
                 comboBox.addItem("Zenski")
                 comboBox.addItem("Muski")
                 self.pol = comboBox
-                grid.addWidget(comboBox, *pozicija)
+                self.grid.addWidget(comboBox, *pozicija)
             elif sadrzaj == '/':
                 datum = QDateEdit(calendarPopup = True)
                 datum.setDateTime(QDateTime.currentDateTime())
                 self.datum = datum
-                grid.addWidget(datum,*pozicija)
-            elif sadrzaj == "+":
-                dugme = QPushButton("Izaberite sastojke")
-                dugme.setFixedSize(250,30)
-                dugme.clicked.connect(self.dodavanjeSastojaka)
-                grid.addWidget(dugme, *pozicija)
-            elif sadrzaj == ")":
-                dugme = QPushButton("Izaberite opremu")
-                dugme.setFixedSize(250,30)
-                dugme.clicked.connect(self.dodavanjeOpremen)
-                grid.addWidget(dugme, *pozicija)
-            elif sadrzaj == "(":
-                dugme = QPushButton("Registrujte se")
-                dugme.setFixedSize(250,30)
-                dugme.clicked.connect(self.registracija)
-                grid.addWidget(dugme, *pozicija)
+                self.grid.addWidget(datum,*pozicija)
             else:
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(200,60)
-                grid.addWidget(labela, *pozicija)
+                self.grid.addWidget(labela, *pozicija)
+
+        self.dodajOpremuISastojke()
+        self.dodajDugmeRegistracije()
 
 
 
         self.exec()
+
+    def dodajOpremuISastojke(self):
+        self.dugmeSastojci = QPushButton("Izaberite sastojke")
+        self.dugmeSastojci.setFixedSize(250, 30)
+        self.dugmeSastojci.clicked.connect(self.dodavanjeSastojaka)
+        self.grid.addWidget(self.dugmeSastojci, 11, 2)
+
+        self.dugmeOprema = QPushButton("Izaberite opremu")
+        self.dugmeOprema.setFixedSize(250, 30)
+        self.dugmeOprema.clicked.connect(self.dodavanjeOpremen)
+        self.grid.addWidget(self.dugmeOprema, 11, 3)
+
+    def dodajDugmeRegistracije(self):
+        dugme = QPushButton("Registrujte se")
+        dugme.setFixedSize(250, 30)
+        dugme.clicked.connect(self.registracija)
+        self.grid.addWidget(dugme, 12, 3)
 
     def registracija(self):
         """
         Funkcija koja preuzima podatke koje je korisnik uneo i kreira novog korisnika aplikacije.
         :return:
         """
+
         ime = self.tekstovi[0].text()
         prezime = self.tekstovi[1].text()
         kIme = self.tekstovi[2].text()
@@ -116,11 +122,11 @@ class ProzorZaRegistraciju(QDialog):
         ppt = self.tekstovi[8].text()
         pol = self.pol.currentIndex()
         datum = self.datum.date().toPyDate()
-        if lozinka != ponovnaLozinka:
-            ObavestavajucaPoruka("Vasa lozinka nije ispravna.")
-        elif ime == "" or prezime == "" or kIme == "" or lozinka == "" or mejl == "" or adresa == "" or mesto == "" or ppt == "":
+        if ime == "" or prezime == "" or kIme == "" or lozinka == "" or mejl == "" or adresa == "" or mesto == "" or ppt == "":
             ObavestavajucaPoruka("Niste popunili sva polja.")
         else:
+            if lozinka != ponovnaLozinka:
+                ObavestavajucaPoruka("Vasa lozinka nije ispravna.")
             self.registrovaniKorisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol,
                                                                                           self.dugotrajniSastojci, self.dugotrajnaOprema, [], 0, 0, [], [])
             self.hide()

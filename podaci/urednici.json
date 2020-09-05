@@ -13,5 +13,80 @@
         },
         "pol": 1,
         "noviRecepti": []
+    },
+    {
+        "korisnickoIme": "Miki",
+        "lozinka": "milosmilos",
+        "ime": "Milos",
+        "prezime": "Stankovic",
+        "mejl": "milos@gmail.com",
+        "datumRodjenja": "1987-07-15",
+        "adresa": "Cara Lazara 10",
+        "mesto": {
+            "nazivMesta": "Novi Sad",
+            "postanskiBroj": "21000"
+        },
+        "pol": 1,
+        "noviRecepti": []
+    },
+    {
+        "korisnickoIme": "Sofi",
+        "lozinka": "sofijasofija",
+        "ime": "Sofija",
+        "prezime": "Mitrovic",
+        "mejl": "sofija@gmail.com",
+        "datumRodjenja": "1994-09-25",
+        "adresa": "Futoska 34 ",
+        "mesto": {
+            "nazivMesta": "Novi Sad",
+            "postanskiBroj": "21000"
+        },
+        "pol": 0,
+        "noviRecepti": []
+    },
+    {
+        "korisnickoIme": "Jela",
+        "lozinka": "jelenajelena",
+        "ime": "Jelena",
+        "prezime": "Bozic",
+        "mejl": "jelena@gmail.com",
+        "datumRodjenja": "1987-11-19",
+        "adresa": "Puskinova 32",
+        "mesto": {
+            "nazivMesta": "Novi Sad",
+            "postanskiBroj": "21000"
+        },
+        "pol": 0,
+        "noviRecepti": []
+    },
+    {
+        "korisnickoIme": "Marko85",
+        "lozinka": "markomarko",
+        "ime": "Marko",
+        "prezime": "Marko",
+        "mejl": "marko@gmail.com",
+        "datumRodjenja": "1985-09-15",
+        "adresa": "Mise Dimitrijevica 54",
+        "mesto": {
+            "nazivMesta": "Novi Sad",
+            "postanskiBroj": "21000"
+        },
+        "pol": 1,
+        "noviRecepti": []
+    },
+    {
+        "korisnickoIme": "Dragana99",
+        "lozinka": "sofija",
+        "ime": "Dragana",
+        "prezime": "Filipovic",
+        "mejl": "dragana@gmail.com",
+        "datumRodjenja": "1999-12-21",
+        "adresa": "Petra Drapsina 21",
+        "mesto": {
+            "nazivMesta": "Novi Sad",
+            "postanskiBroj": "21000"
+        },
+        "pol": 0,
+        "noviRecepti": []
     }
 ]

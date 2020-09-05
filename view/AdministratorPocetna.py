@@ -8,16 +8,20 @@ from view.ProzorZaAzuriranjeNaloga import *
 import os
 from PyQt5.QtWebEngineWidgets import *
 from functools import partial
+from view.PrikazInformacijaUrednika import *
+from view.ProzorZaRegistracijuUrednika import *
 
 class AdministratorPocetna(QMainWindow):
     def __init__(self):
         super().__init__()
         self.sledecaPostojiTab1 = None
         self.sledecaStranicaBrTab1 = 0
+        self.sledecaPostojiTab2 = None
+        self.sledecaStranicaBrTab2 = 0
         self.showMinimized()
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.show()
-        self.setFixedSize(1000, 900)
+        self.setFixedSize(1000, 950)
         self.inicijalizacijaToolbar()
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
@@ -44,7 +48,7 @@ class AdministratorPocetna(QMainWindow):
 
         # self.inicijalizujTab1()
         self.inicijalizujTabKuvari()
-        self.tab2 = QWidget()
+        self.inicijalizujTabUrednici()
         self.tab3 = QWidget()
         self.tabovi.addTab(self.tab1, "Kuvari pocetnici")
         self.tabovi.addTab(self.tab2, "Urednici")
@@ -112,6 +116,7 @@ class AdministratorPocetna(QMainWindow):
         dugmeSledecaStrana = QPushButton("Sledeca strana")
         dugmePrethodnaStrana =  QPushButton("Prethodna strana")
         dugmeDodajNovi = QPushButton("Dodajte novi nalog")
+        dugmeDodajNovi.clicked.connect(self.dodajNoviNalog)
 
         dugmici = []
         if self.sledecaStranicaBrTab1 != 0:
@@ -139,96 +144,6 @@ class AdministratorPocetna(QMainWindow):
         self.inicijalizujTabove()
 
 
-
-    def inicijalizujTab1(self):
-        grid = QGridLayout()
-        self.tab1.setLayout(grid)
-
-        matrica = [ '', '', '',
-                    '', '', '',
-                 '', 'Izaberite nalog:', '',
-                 '', '*', '',
-                 '', '?', '',
-                 '', '-', '',
-                 '', '/', '',
-                 '', '+', '',
-                 '', '', '',
-                 '', '', '',
-                 '', '', '',
-                 ]
-
-        pozicije = [(i, j) for i in range(10) for j in range(3)]
-
-        for pozicija, sadrzaj in zip(pozicije, matrica):
-
-            if sadrzaj == "*":
-                self.napraviTabeluKorisnika()
-                grid.addWidget(self.kuvari, *pozicija)
-            elif sadrzaj == "?":
-                dugme = QPushButton("Obrisi nalog")
-                dugme.clicked.connect(self.brisanjeNaloga)
-                grid.addWidget(dugme, *pozicija)
-            elif sadrzaj == "-":
-                dugme = QPushButton("Azuriraj nalog")
-                dugme.clicked.connect(self.azuriranjeNaloga)
-                grid.addWidget(dugme, *pozicija)
-            elif sadrzaj == "/":
-                dugme = QPushButton("Prikazi detaljne informacije")
-                dugme.clicked.connect(self.prikazDetaljnihAplikacija)
-                grid.addWidget(dugme, *pozicija)
-            elif sadrzaj == "+":
-                dugme = QPushButton("Dodaj novi nalog")
-                dugme.clicked.connect(self.dodavanjeNovogNaloga)
-                grid.addWidget(dugme, *pozicija)
-            else:
-                labela = QLabel(sadrzaj)
-                labela.setFixedSize(110, 20)
-                grid.addWidget(labela, *pozicija)
-
-
-    def napraviTabeluKorisnika(self):
-        sviKuvari = self.informacije.sviKuvari
-        self.kuvari = Tabela(len(sviKuvari) + 1, 4)
-        self.kuvari.setColumnWidth(0,150)
-        self.kuvari.setColumnWidth(1, 150)
-        self.kuvari.setColumnWidth(2, 150)
-        self.kuvari.setColumnWidth(3, 150)
-        self.kuvari.dodajZaglavlja(["Ime", "Prezime", "Korisnicko ime", "Mejl"])
-
-        brojac = 1
-        for kuvarPocetnik in sviKuvari:
-            # item1 = QTableWidgetItem(kuvarPocetnik.ime)
-            # item1.setToolTip(kuvarPocetnik.ime)
-            # item2 = QTableWidgetItem(kuvarPocetnik.prezime)
-            # item2.setToolTip(kuvarPocetnik.prezime)
-            # item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
-            # item3.setToolTip(kuvarPocetnik.korisnickoIme)
-            # item4 = QTableWidgetItem(kuvarPocetnik.mejl)
-            # item4.setToolTip(kuvarPocetnik.mejl)
-            # self.kuvari.setItem(brojac, 0, item1)
-            # self.kuvari.setItem(brojac, 1, item2)
-            # self.kuvari.setItem(brojac, 2, item3)
-            # self.kuvari.setItem(brojac, 3, item4)
-            self.dodajRedUTabelu(kuvarPocetnik, brojac)
-            brojac += 1
-
-        self.kuvari.setFixedSize(700, 500)
-
-
-    def dodajRedUTabelu(self, kuvarPocetnik, brojReda):
-        item1 = QTableWidgetItem(kuvarPocetnik.ime)
-        item1.setToolTip(kuvarPocetnik.ime)
-        item2 = QTableWidgetItem(kuvarPocetnik.prezime)
-        item2.setToolTip(kuvarPocetnik.prezime)
-        item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
-        item3.setToolTip(kuvarPocetnik.korisnickoIme)
-        item4 = QTableWidgetItem(kuvarPocetnik.mejl)
-        item4.setToolTip(kuvarPocetnik.mejl)
-        self.kuvari.setItem(brojReda, 0, item1)
-        self.kuvari.setItem(brojReda, 1, item2)
-        self.kuvari.setItem(brojReda, 2, item3)
-        self.kuvari.setItem(brojReda, 3, item4)
-
     def prikazDetaljnihInformacija(self, kuvar):
         # sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
         # redovi = self.kuvari.selectionModel().selectedRows()
@@ -240,50 +155,19 @@ class AdministratorPocetna(QMainWindow):
         #             ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
         #         else:
         #             kuvar = sviKuvari[red.row()-1]
-                    prozor = PrikazInformacijaKuvara(kuvar)
+                    prozor = PrikazInformacijaKuvara(kuvar, self)
 
 
-    def dodavanjeNovogNaloga(self):
+    def refresujStranu(self):
+        self.inicijalizujTabove()
+
+
+    def dodajNoviNalog(self):
         prozor = ProzorZaRegistraciju()
         self.setWindowModality(Qt.WindowModal)
-        registrovaniKorisnik = prozor.registrovaniKorisnik
-        self.kuvari.insertRow(self.kuvari.rowCount())
-        self.dodajRedUTabelu(registrovaniKorisnik, self.kuvari.rowCount()-1)
-
-    def brisanjeNaloga(self):
-        sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
-        redovi = self.kuvari.selectionModel().selectedRows()
-        if len(redovi) == 0:
-            ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da obrisete.")
-        else:
-            for red in redovi:
-                if red.row() - 1 < 0:
-                    ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
-                else:
-                    potvrda = QMessageBox
-                    odgovor = potvrda.question(self, '', "Da li ste sigurni da zelite da obrisete nalog?", potvrda.Yes | potvrda.No)
-                    if odgovor == potvrda.Yes:
-                        kuvar = sviKuvari[red.row() - 1]
-                        sviKuvari.remove(kuvar)
-                        QApplication.instance().actionManager.informacije.sviKuvari = sviKuvari
-                        QApplication.instance().actionManager.informacije.upisiKorisnika()
-                        self.kuvari.removeRow(red.row())
-
-
-    def azuriranjeNaloga(self):
-        sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
-        redovi = self.kuvari.selectionModel().selectedRows()
-        if len(redovi) == 0:
-            ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da azurirate.")
-        else:
-            for red in redovi:
-                if red.row() - 1 < 0:
-                    ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
-                else:
-                    kuvar = sviKuvari[red.row() - 1]
-                    prozor = ProzorZaAzuriranjeNaloga(kuvar)
-                    self.setWindowModality(Qt.WindowModal)
-                    self.dodajRedUTabelu(kuvar, red.row())
+        # try:
+        #     registrovaniKorisnik = prozor.registrovaniKorisnik
+        self.refresujStranu()
 
 
     def postaviPoziciju(self):
@@ -295,3 +179,246 @@ class AdministratorPocetna(QMainWindow):
         x = (dWidth - wWidth) / 2
         y = y - 50
         self.move(x, y)
+
+
+    def inicijalizujTabUrednici(self):
+        self.tab2 = QWidget()
+        grid = QGridLayout()
+        self.tab2.setLayout(grid)
+
+
+        dio = os.getcwd()[:-4]
+        dio = dio.split("\\")
+        dio = "/".join(dio)
+        putanja = 'file:///' + dio + 'dizajn/profilKorisnika'
+
+        pozicije = [(i, j) for i in range(4) for j in range(2)]
+
+        sviUrednici = self.informacije.sviUrednici
+
+        self.dugmad = []
+        trenutni = []
+
+        if len(sviUrednici) >= (self.sledecaStranicaBrTab2 + 1)*4:
+            if len(sviUrednici) == (self.sledecaStranicaBrTab2 + 1)*4:
+                self.sledecaPostojiTab2 = False
+            else:
+                self.sledecaPostojiTab2 = True
+            for i in range(self.sledecaStranicaBrTab2*4, self.sledecaStranicaBrTab2*4+4):
+                trenutni.append(sviUrednici[i])
+        else:
+            self.sledecaPostojiTab2 = False
+            for i in range(self.sledecaStranicaBrTab2 * 4, len(sviUrednici)):
+                trenutni.append(sviUrednici[i])
+            for i in range(len(sviUrednici), (self.sledecaStranicaBrTab2 + 1) * 4):
+                trenutni.append("*")
+
+
+
+        for pozicija, urednik in zip(pozicije, trenutni):
+            # if (pozicija[0] != 3):
+                if (urednik != "*"):
+                    privrem = QWidget()
+                    izgled1 = QVBoxLayout()
+                    privrem.setLayout(izgled1)
+                    privremeni = QWebEngineView()
+                    privremeni.setUrl(QUrl(putanja + "/" + urednik.korisnickoIme + ".html"))
+                    izgled1.addWidget(privremeni)
+                    dugme = QPushButton(">>")
+                    self.dugmad.append(dugme)
+                    dugme.clicked.connect(partial(self.prikazDetaljnihInformacijaUrednika, urednik))
+                    dugme.setFixedSize(30, 30)
+                    izgled1.addWidget(dugme)
+
+                    grid.addWidget(privrem, *pozicija)
+
+                else:
+                    privrem = QWidget()
+                    izgled1 = QVBoxLayout()
+                    privrem.setLayout(izgled1)
+                    grid.addWidget(privrem, *pozicija)
+
+        pozicije = [(i, j) for i in range(4, 6) for j in range(2)]
+
+        dugmeSledecaStrana = QPushButton("Sledeca strana")
+        dugmePrethodnaStrana = QPushButton("Prethodna strana")
+        dugmeDodajNovi = QPushButton("Dodajte novi nalog")
+        dugmeDodajNovi.clicked.connect(self.dodajNovogUrednika)
+
+        dugmici = []
+        if self.sledecaStranicaBrTab2 != 0:
+            dugmici.append(dugmePrethodnaStrana)
+            dugmePrethodnaStrana.clicked.connect(self.refresujPrethodnuTab2)
+        else:
+            dugmici.append(QLabel(""))
+        if self.sledecaPostojiTab2:
+            dugmici.append(dugmeSledecaStrana)
+            dugmeSledecaStrana.clicked.connect(self.refresujSledecuTab2)
+        else:
+            dugmici.append(QLabel(""))
+        dugmici.append(dugmeDodajNovi)
+
+        for pozicija, dugme in zip(pozicije, dugmici):
+            grid.addWidget(dugme, *pozicija)
+
+
+    def refresujSledecuTab2(self):
+        self.sledecaStranicaBrTab2 += 1
+        self.inicijalizujTabove()
+        self.refresujTab2()
+
+    def refresujPrethodnuTab2(self):
+        self.sledecaStranicaBrTab2 -= 1
+        self.inicijalizujTabove()
+        self.refresujTab2()
+
+    def prikazDetaljnihInformacijaUrednika(self, urednik):
+        PrikazInformacijaUrednika(urednik, self)
+
+
+    def dodajNovogUrednika(self):
+        ProzorZaRegistracijuUrednika()
+        self.setWindowModality(Qt.WindowModal)
+        self.refresujStranu()
+        self.refresujTab2()
+
+
+    def refresujTab2(self):
+        self.tabovi.setCurrentWidget(self.tab2)
+
+
+
+    # def inicijalizujTab1(self):
+    #     grid = QGridLayout()
+    #     self.tab1.setLayout(grid)
+    #
+    #     matrica = [ '', '', '',
+    #                 '', '', '',
+    #              '', 'Izaberite nalog:', '',
+    #              '', '*', '',
+    #              '', '?', '',
+    #              '', '-', '',
+    #              '', '/', '',
+    #              '', '+', '',
+    #              '', '', '',
+    #              '', '', '',
+    #              '', '', '',
+    #              ]
+    #
+    #     pozicije = [(i, j) for i in range(10) for j in range(3)]
+    #
+    #     for pozicija, sadrzaj in zip(pozicije, matrica):
+    #
+    #         if sadrzaj == "*":
+    #             self.napraviTabeluKorisnika()
+    #             grid.addWidget(self.kuvari, *pozicija)
+    #         elif sadrzaj == "?":
+    #             dugme = QPushButton("Obrisi nalog")
+    #             dugme.clicked.connect(self.brisanjeNaloga)
+    #             grid.addWidget(dugme, *pozicija)
+    #         elif sadrzaj == "-":
+    #             dugme = QPushButton("Azuriraj nalog")
+    #             dugme.clicked.connect(self.azuriranjeNaloga)
+    #             grid.addWidget(dugme, *pozicija)
+    #         elif sadrzaj == "/":
+    #             dugme = QPushButton("Prikazi detaljne informacije")
+    #             dugme.clicked.connect(self.prikazDetaljnihAplikacija)
+    #             grid.addWidget(dugme, *pozicija)
+    #         elif sadrzaj == "+":
+    #             dugme = QPushButton("Dodaj novi nalog")
+    #             dugme.clicked.connect(self.dodavanjeNovogNaloga)
+    #             grid.addWidget(dugme, *pozicija)
+    #         else:
+    #             labela = QLabel(sadrzaj)
+    #             labela.setFixedSize(110, 20)
+    #             grid.addWidget(labela, *pozicija)
+    #
+    #
+    # def napraviTabeluKorisnika(self):
+    #     sviKuvari = self.informacije.sviKuvari
+    #     self.kuvari = Tabela(len(sviKuvari) + 1, 4)
+    #     self.kuvari.setColumnWidth(0,150)
+    #     self.kuvari.setColumnWidth(1, 150)
+    #     self.kuvari.setColumnWidth(2, 150)
+    #     self.kuvari.setColumnWidth(3, 150)
+    #     self.kuvari.dodajZaglavlja(["Ime", "Prezime", "Korisnicko ime", "Mejl"])
+    #
+    #     brojac = 1
+    #     for kuvarPocetnik in sviKuvari:
+    #         # item1 = QTableWidgetItem(kuvarPocetnik.ime)
+    #         # item1.setToolTip(kuvarPocetnik.ime)
+    #         # item2 = QTableWidgetItem(kuvarPocetnik.prezime)
+    #         # item2.setToolTip(kuvarPocetnik.prezime)
+    #         # item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
+    #         # item3.setToolTip(kuvarPocetnik.korisnickoIme)
+    #         # item4 = QTableWidgetItem(kuvarPocetnik.mejl)
+    #         # item4.setToolTip(kuvarPocetnik.mejl)
+    #         # self.kuvari.setItem(brojac, 0, item1)
+    #         # self.kuvari.setItem(brojac, 1, item2)
+    #         # self.kuvari.setItem(brojac, 2, item3)
+    #         # self.kuvari.setItem(brojac, 3, item4)
+    #         self.dodajRedUTabelu(kuvarPocetnik, brojac)
+    #         brojac += 1
+    #
+    #     self.kuvari.setFixedSize(700, 500)
+    #
+    #
+    # def dodajRedUTabelu(self, kuvarPocetnik, brojReda):
+    #     item1 = QTableWidgetItem(kuvarPocetnik.ime)
+    #     item1.setToolTip(kuvarPocetnik.ime)
+    #     item2 = QTableWidgetItem(kuvarPocetnik.prezime)
+    #     item2.setToolTip(kuvarPocetnik.prezime)
+    #     item3 = QTableWidgetItem(kuvarPocetnik.korisnickoIme)
+    #     item3.setToolTip(kuvarPocetnik.korisnickoIme)
+    #     item4 = QTableWidgetItem(kuvarPocetnik.mejl)
+    #     item4.setToolTip(kuvarPocetnik.mejl)
+    #     self.kuvari.setItem(brojReda, 0, item1)
+    #     self.kuvari.setItem(brojReda, 1, item2)
+    #     self.kuvari.setItem(brojReda, 2, item3)
+    #     self.kuvari.setItem(brojReda, 3, item4)
+    #
+    #
+    #
+    # def dodavanjeNovogNaloga(self):
+    #     prozor = ProzorZaRegistraciju()
+    #     self.setWindowModality(Qt.WindowModal)
+    #     registrovaniKorisnik = prozor.registrovaniKorisnik
+    #     self.kuvari.insertRow(self.kuvari.rowCount())
+    #     self.dodajRedUTabelu(registrovaniKorisnik, self.kuvari.rowCount()-1)
+    #
+    # def brisanjeNaloga(self):
+    #     sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
+    #     redovi = self.kuvari.selectionModel().selectedRows()
+    #     if len(redovi) == 0:
+    #         ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da obrisete.")
+    #     else:
+    #         for red in redovi:
+    #             if red.row() - 1 < 0:
+    #                 ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
+    #             else:
+    #                 potvrda = QMessageBox
+    #                 odgovor = potvrda.question(self, '', "Da li ste sigurni da zelite da obrisete nalog?", potvrda.Yes | potvrda.No)
+    #                 if odgovor == potvrda.Yes:
+    #                     kuvar = sviKuvari[red.row() - 1]
+    #                     sviKuvari.remove(kuvar)
+    #                     QApplication.instance().actionManager.informacije.sviKuvari = sviKuvari
+    #                     QApplication.instance().actionManager.informacije.upisiKorisnika()
+    #                     self.kuvari.removeRow(red.row())
+    #
+    #
+    # def azuriranjeNaloga(self):
+    #     sviKuvari = QApplication.instance().actionManager.informacije.sviKuvari
+    #     redovi = self.kuvari.selectionModel().selectedRows()
+    #     if len(redovi) == 0:
+    #         ObavestavajucaPoruka("Morate oznaciti korisnika kog zelite da azurirate.")
+    #     else:
+    #         for red in redovi:
+    #             if red.row() - 1 < 0:
+    #                 ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
+    #             else:
+    #                 kuvar = sviKuvari[red.row() - 1]
+    #                 prozor = ProzorZaAzuriranjeNaloga(kuvar)
+    #                 self.setWindowModality(Qt.WindowModal)
+    #                 self.dodajRedUTabelu(kuvar, red.row())
+    #
+    #

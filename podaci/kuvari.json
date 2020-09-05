@@ -35,7 +35,7 @@
         "datumRodjenja": "1999-04-13",
         "adresa": "pucile",
         "mesto": {
-            "nazivMesta": "biljeljina",
+            "nazivMesta": "bijeljina",
             "postanskiBroj": "18945"
         },
         "pol": 1,
@@ -77,18 +77,23 @@
     {
         "korisnickoIme": "Andro",
         "lozinka": "kokica",
-        "ime": "andrija",
-        "prezime": "vojnovic",
-        "mejl": "andrija.vojnovic@gmail.com",
+        "ime": "Andrija",
+        "prezime": "Vojnovic",
+        "mejl": "andrija@gmail.com",
         "datumRodjenja": "1998-09-21",
-        "adresa": "ljeskovac 29",
+        "adresa": "Ljeskovac",
         "mesto": {
             "nazivMesta": "Bijeljina",
-            "postanskiBroj": "76300"
+            "postanskiBroj": "76800"
         },
         "pol": 1,
-        "dugotrajniSastojci": [],
-        "oprema": [],
+        "dugotrajniSastojci": [
+            1
+        ],
+        "oprema": [
+            0,
+            1
+        ],
         "recepti": [],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
@@ -141,29 +146,6 @@
         ],
         "oprema": [
             0
-        ],
-        "recepti": [],
-        "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Dajana99",
-        "lozinka": "megi",
-        "ime": "Dajana",
-        "prezime": "Vukovic",
-        "mejl": "dajana@gmail.com",
-        "datumRodjenja": "1999-06-21",
-        "adresa": "Kralja Petra 58",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [],
-        "oprema": [
-            3
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
@@ -227,16 +209,37 @@
         "praceneKategorije": []
     },
     {
-        "korisnickoIme": "ja",
-        "lozinka": "ja",
-        "ime": "ja",
-        "prezime": "ja",
-        "mejl": "ja",
-        "datumRodjenja": "2020-09-03",
-        "adresa": "ja",
+        "korisnickoIme": "Dajana99",
+        "lozinka": "megi",
+        "ime": "Dajana",
+        "prezime": "Vukovic",
+        "mejl": "dajana@gmail.com",
+        "datumRodjenja": "1999-06-21",
+        "adresa": "Kralja Petra 58",
         "mesto": {
-            "nazivMesta": "ja",
-            "postanskiBroj": "ja"
+            "nazivMesta": "Mali Zvornik",
+            "postanskiBroj": "15318"
+        },
+        "pol": 0,
+        "dugotrajniSastojci": [],
+        "oprema": [],
+        "recepti": [],
+        "virtuelniKuvar": 0,
+        "spisakZaKupovinu": 0,
+        "praceniKuvari": [],
+        "praceneKategorije": []
+    },
+    {
+        "korisnickoIme": "Tea99",
+        "lozinka": "animacije",
+        "ime": "Teodora",
+        "prezime": "Jovanovic",
+        "mejl": "teodora@gmail.com",
+        "datumRodjenja": "1999-11-15",
+        "adresa": "Jovanovici ",
+        "mesto": {
+            "nazivMesta": "Mali Zvornik",
+            "postanskiBroj": "15318"
         },
         "pol": 0,
         "dugotrajniSastojci": [],
