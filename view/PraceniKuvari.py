@@ -30,10 +30,10 @@ class PraceniKuvari(QDialog):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
         self.kuvarPocetnik  = QApplication.instance().actionManager.prijavljeniKorisnik
-        matrica = ['Pracene kategorije:', '', '',
+        matrica = ['Praceni kuvari:', '', '',
                    '', '1', '',
                    '', '4', '',
-                   'Dodavanje nove kategorije:', '2', '',
+                   'Dodavanje novog kuvara:', '2', '',
                    '', '3', '',
                    ]
 
@@ -89,19 +89,19 @@ class PraceniKuvari(QDialog):
             self.refresujTabelu()
 
     def dodavanjeNovog(self):
-        if self.labela.text().lower() not in self.sviKorisnici:
+        if self.labela.text() not in self.sviKorisnici:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
 
-            msg.setText("Potrebno je uneti vec postojecu kategoriju!")
+            msg.setText("Potrebno je uneti vec postojeceg korisnika!")
             msg.setWindowTitle("Greska")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
             return
-        if self.labela.text().lower() in  self.kuvarPocetnik.praceniKuvari:
+        if self.labela.text() in  self.kuvarPocetnik.praceniKuvari:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
-            msg.setText("Ne mozete pratiti jednu kategoriju dva puta!")
+            msg.setText("Ne mozete pratiti jednog korisnika dva puta!")
             msg.setWindowTitle("Greska")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
@@ -110,7 +110,7 @@ class PraceniKuvari(QDialog):
         if (self.labela.text() == ""):
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
-            msg.setText("Morate uneti kategoriju!")
+            msg.setText("Morate uneti korisnicko ime!")
             msg.setWindowTitle("Greska")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
