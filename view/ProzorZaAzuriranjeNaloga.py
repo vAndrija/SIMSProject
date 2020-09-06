@@ -12,6 +12,7 @@ class ProzorZaAzuriranjeNaloga(QDialog):
         self.exec_()
 
     def initUI(self):
+
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         self.setFixedSize(650,550)
         image = QImage("..\slike\profil.jpg")
