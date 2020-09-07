@@ -10,5 +10,9 @@
     {
         "id": 2,
         "naziv": "pasta"
+    },
+    {
+        "id": 3,
+        "naziv": "Pice"
     }
 ]

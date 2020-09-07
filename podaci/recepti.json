@@ -2,9 +2,13 @@
     {
         "id": 1,
         "naziv": "Sampita",
-        "oprema": [0],
-        "sastojci": {"0": 10,
-            "1": 300},
+        "oprema": [
+            0
+        ],
+        "sastojci": {
+            "0": 10,
+            "1": 300
+        },
         "kategorije": [
             1
         ],
@@ -15,7 +19,9 @@
     {
         "id": 2,
         "naziv": "Krempita",
-        "oprema": [1],
+        "oprema": [
+            1
+        ],
         "sastojci": {},
         "kategorije": [
             0,
@@ -61,5 +67,23 @@
         "ocena": 0,
         "ekstenzijaSlike": "jpeg",
         "opis": "Glavno jelo za posebne prilike"
+    },
+    {
+        "id": 6,
+        "naziv": "Hladna voda",
+        "oprema": [
+            8
+        ],
+        "sastojci": {
+            "2": 30.0,
+            "3": 15.0
+        },
+        "kategorije": [
+            3,
+            0
+        ],
+        "ocena": 0,
+        "ekstenzijaSlike": "jpg",
+        "opis": "Doda se casa vode i to je to"
     }
 ]

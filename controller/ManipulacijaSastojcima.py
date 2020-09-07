@@ -92,7 +92,31 @@ class ManipulacijaSastojcima(object):
                 return True
         return False
 
+    def provjeraPostojanjaSastojkaUBazi(self,nazivNovog,tipKolicineNovog):
+        """
+        Funkcija koja provjerava za prosljedeni naziv i tip kolicine, da li postoji vec takav sastojak u bazi
+        :param nazivNovog: naziv koji se provjerava
+        :param tipKolicineNovog: tip kolicine koji se provjerava
+        :return:
+        """
+        for jedanSastojak in self.sviSastojci:
+            if jedanSastojak.naziv.upper() == nazivNovog.upper() and jedanSastojak.tipKolicine == tipKolicineNovog:
+                return True
+        return False
+
+
     def vratiSastojak(self,id):
         for sastojak in self.sviSastojci:
             if sastojak.sifra==id:
+                return sastojak
+
+    def vratiSastojak(self,naziv,tipKolicine):
+        """
+        Funkcija na osnovu naziva i tipa kolicine vraca sastojak
+        :param naziv: odnosi se na naziv trazenog sastojka
+        :param tipKolicine: odnosi se na tip kolicine trazenog sastojka
+        :return:
+        """
+        for sastojak in self.sviSastojci:
+            if sastojak.naziv.upper() == naziv.upper() and sastojak.tipKolicine == tipKolicine:
                 return sastojak

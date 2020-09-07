@@ -24,7 +24,7 @@
         ],
         "praceneKategorije": [
             1,
-            0
+            3
         ]
     },
     {
@@ -45,12 +45,16 @@
         "recepti": [
             1,
             2,
-            5
+            5,
+            6
         ],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
         "praceniKuvari": [],
-        "praceneKategorije": []
+        "praceneKategorije": [
+            2,
+            0
+        ]
     },
     {
         "korisnickoIme": "mladjo",

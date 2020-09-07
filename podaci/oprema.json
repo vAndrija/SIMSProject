@@ -33,5 +33,15 @@
         "sifra": 6,
         "naziv": "sokovnik",
         "marka": "andrija"
+    },
+    {
+        "sifra": 7,
+        "naziv": "mikser",
+        "marka": ""
+    },
+    {
+        "sifra": 8,
+        "naziv": "Casa",
+        "marka": ""
     }
 ]

@@ -8,5 +8,15 @@
         "sifra": 1,
         "naziv": "Secer",
         "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 2,
+        "naziv": "Voda",
+        "tipKolicine": "DL"
+    },
+    {
+        "sifra": 3,
+        "naziv": "Led",
+        "tipKolicine": "KOMAD"
     }
 ]

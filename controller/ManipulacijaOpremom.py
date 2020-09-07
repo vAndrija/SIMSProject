@@ -77,7 +77,24 @@ class ManipulacijaOpremom(object):
 
         return False
 
+    def provjeraPostojanjaOpreme(self,noviNaziv):
+        """
+        Funkcija koja na osnovu naziva opreme vraca da li je ista oprema u pitanju
+        :param noviNaziv:
+        :return:
+        """
+        for oprema in self.svaOprema:
+            if oprema.naziv.upper() == noviNaziv.upper():
+                return True
+
+        return False
+
     def vratiOpremu(self,id):
         for oprema in self.svaOprema:
             if oprema.sifra==id:
+                return oprema
+
+    def vratiOpremuPoNazivu(self,naziv):
+        for oprema in self.svaOprema:
+            if oprema.naziv.upper() == naziv.upper():
                 return oprema

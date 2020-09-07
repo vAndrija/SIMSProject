@@ -39,7 +39,10 @@ class ManipulacijaReceptima():
             kategorija = Kategorija(**item)
             self.kategorije.append(kategorija)
 
-
+    def dodajKategoriju(self,naziv):
+        kategorija= Kategorija(len(self.kategorije),naziv)
+        self.kategorije.append(kategorija)
+        self.sacuvajKategorije()
 
     def objToDict(self, obj):
         """
@@ -80,11 +83,17 @@ class ManipulacijaReceptima():
         """
         osnovnaPutanja = os.getcwd()[:-4]
         putanja = os.path.join(osnovnaPutanja, 'dizajn')
-        ekstenzija =+ putanjaSlike.split(".")[1]
-        nazivSlike = putanjaSlike.split("\\")[-1]
+        ekstenzija =  putanjaSlike.split(".")[1]
+        nazivSlike = putanjaSlike.split("/")[-1]
         id = self.recepti[-1].id + 1
         noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
+        print(ekstenzija)
+        print(nazivSlike)
+        print(putanja)
+        print(osnovnaPutanja)
+        print(os.path.join(putanja,nazivSlike))
+        print(os.path.join(putanja, str(id) +"." +ekstenzija))
         os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))
@@ -106,6 +115,9 @@ class ManipulacijaReceptima():
 
         self.recepti.append(noviRecept)
         self.sacuvajRecepte()
+        QApplication.instance().actionManager.prijavljeniKorisnik.recepti.append(id)
+        QApplication.instance().actionManager.informacije.upisiKorisnika()
+
 
     def receptiPretraga(self, naziv, kategorije,napredno):
         korisnik = QApplication.instance().actionManager.prijavljeniKorisnik
@@ -248,11 +260,17 @@ class ManipulacijaReceptima():
 
     def postojanjeKategorije(self,naziv):
         for kategorija in self.kategorije:
-            if(naziv.lower()==kategorija.naziv.lower()):
+            if(naziv.lower() == kategorija.naziv.lower()):
                 return kategorija.id
         return -1
+
 
     def vratiNazivKategorije(self,id):
         for kategorija in self.kategorije:
             if kategorija.id==id:
                 return kategorija.naziv
+
+    def vratiKategoriju(self,naziv):
+        for kategorija in self.kategorije:
+            if(naziv.lower()==kategorija.naziv.lower()):
+                return kategorija
