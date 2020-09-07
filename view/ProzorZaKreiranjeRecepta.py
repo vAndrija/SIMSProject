@@ -1,3 +1,5 @@
+import sys
+
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import (QWidget, QGridLayout,
@@ -5,7 +7,7 @@ from PyQt5.QtWidgets import (QWidget, QGridLayout,
                              QTableWidgetItem, QScrollArea, QMainWindow, QFileDialog, QAbstractItemView)
 from enum import Enum
 
-from src.view.ObavjestavajucaPoruka import ObavjestavajucaPoruka
+from view.ObavestavajucaPoruka import ObavestavajucaPoruka
 
 
 class QStringList(object):
@@ -57,24 +59,24 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
             self.tabelaSastojaka.removeRow(row.row() - brojac)
             brojac += 1
     def vecDodatSastojak(self):
-        for i in range(1,self.tabelaSastojaka.rowCount()):
-            if(self.nazivSastojka.text().upper() == self.tabelaSastojaka.item(i,1).text().upper()):
+        for i in range(0,self.tabelaSastojaka.rowCount()):
+            if(self.nazivSastojka.text().upper() == self.tabelaSastojaka.item(i,0).text().upper()):
                 return True
         return False
     def vecDodataStavka(self):
-        for i in range(1,self.tabelaOpreme.rowCount()):
-            if(self.nazivStavkeOpreme.text().upper() == self.tabelaOpreme.item(i,1).text().upper()):
+        for i in range(0,self.tabelaOpreme.rowCount()):
+            if(self.nazivStavkeOpreme.text().upper() == self.tabelaOpreme.item(i,0).text().upper()):
                 return True
         return False
     def dodajSastojak(self):
         if(self.popunjenaPoljaSastojci() != True):
-            ObavjestavajucaPoruka("POPUNITE SVA POLJA!")
+            ObavestavajucaPoruka("POPUNITE SVA POLJA!")
             return
         if(self.provjeriKolicinu() != True):
-            ObavjestavajucaPoruka("UNESITE ISKLJUCIVO BROJ ZA KOLICINU")
+            ObavestavajucaPoruka("UNESITE ISKLJUCIVO BROJ ZA KOLICINU")
             return
         if(self.vecDodatSastojak()):
-            ObavjestavajucaPoruka("Sastojak je vec dodat")
+            ObavestavajucaPoruka("Sastojak je vec dodat")
             return
         brojac = self.tabelaSastojaka.rowCount()
 
@@ -83,17 +85,17 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
 
 
 
-        self.tabelaSastojaka.setItem(brojac, 0, QTableWidgetItem("DODATI SIFRU KASNIJE"))
-        self.tabelaSastojaka.setItem(brojac, 1, QTableWidgetItem(self.nazivSastojka.text()))
+
+        self.tabelaSastojaka.setItem(brojac, 0, QTableWidgetItem(self.nazivSastojka.text()))
         self.tabelaSastojaka.setItem(brojac, 2, QTableWidgetItem(self.kolicinaSastojka.text()))
-        self.tabelaSastojaka.setItem(brojac, 3, QTableWidgetItem(str(self.combo.currentText())))
+        self.tabelaSastojaka.setItem(brojac, 1, QTableWidgetItem(str(self.combo.currentText())))
 
     def dodajStavkuOpreme(self):
         if(self.nazivStavkeOpreme.text() == ""):
-            ObavjestavajucaPoruka("Unesite naziv stavke")
+            ObavestavajucaPoruka("Unesite naziv stavke")
             return
         if(self.vecDodataStavka()):
-            ObavjestavajucaPoruka("Stavka je vec unijeta")
+            ObavestavajucaPoruka("Stavka je vec unijeta")
             return
 
         brojac = self.tabelaOpreme.rowCount()
@@ -101,8 +103,8 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
         self.tabelaOpreme.setRowCount(brojac)
         self.tabelaOpreme.insertRow(brojac)
 
-        self.tabelaOpreme.setItem(brojac, 0, QTableWidgetItem("DODATI SIFRU KASNIJE"))
-        self.tabelaOpreme.setItem(brojac, 1, QTableWidgetItem(self.nazivStavkeOpreme.text()))
+
+        self.tabelaOpreme.setItem(brojac, 0, QTableWidgetItem(self.nazivStavkeOpreme.text()))
 
     def dodajRecept(self):
         """
@@ -111,7 +113,7 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
         :return:
         """
         if(self.popunjenaPoljaRecept()!=True):
-            ObavjestavajucaPoruka("Popunite sva polja!")
+            ObavestavajucaPoruka("Popunite sva polja!")
             return
 
 
@@ -136,29 +138,36 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
         if(fname[0][-5:] == ".jpeg"):
             self.putanja.setText(fname[0])
             return
-        ObavjestavajucaPoruka("Izaberite iskljucivo sliku sa ekstenzijama jpg, png i jpeg")
+        ObavestavajucaPoruka("Izaberite iskljucivo sliku sa ekstenzijama jpg, png i jpeg")
     def vecDodataKategorija(self):
-        for i in range(1,self.tabelaKategorija.rowCount()):
-            if(self.kategorijaRecepta.text().upper() == self.tabelaKategorija.item(i,1).text().upper()):
+        for i in range(0,self.tabelaKategorija.rowCount()):
+            if(self.kategorijaRecepta.text().upper() == self.tabelaKategorija.item(i,0).text().upper()):
                 return True
         return False
     def dodajKategoriju(self):
         if (self.kategorijaRecepta.text() == ""):
-            ObavjestavajucaPoruka("Unesite naziv kategorije")
+            ObavestavajucaPoruka("Unesite naziv kategorije")
             return
 
         if (self.vecDodataKategorija()):
-            ObavjestavajucaPoruka("Kategorija je vec dodata")
+            ObavestavajucaPoruka("Kategorija je vec dodata")
             return
         brojac = self.tabelaKategorija.rowCount()
 
         self.tabelaKategorija.setRowCount(brojac)
         self.tabelaKategorija.insertRow(brojac)
 
-        self.tabelaKategorija.setItem(brojac, 0, QTableWidgetItem("DODATI SIFRU KASNIJE"))
-        self.tabelaKategorija.setItem(brojac, 1, QTableWidgetItem(self.kategorijaRecepta.text()))
 
+        self.tabelaKategorija.setItem(brojac, 0, QTableWidgetItem(self.kategorijaRecepta.text()))
 
+    def izbrisiStavkuOpremeIzTabele(self):
+        rows = self.tabelaOpreme.selectionModel().selectedRows()
+        brojac = 0
+        for row in rows:
+            if (row.row() == 0):
+                continue
+            self.tabelaOpreme.removeRow(row.row() - brojac)
+            brojac += 1
     def izbrisiKategoriju(self):
         rows = self.tabelaKategorija.selectionModel().selectedRows()
         brojac = 0
@@ -169,28 +178,28 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
             brojac += 1
     def initUI(self):
         self.tabelaSastojaka = QTableWidget()
-        self.tabelaSastojaka.setColumnCount(4)
+        self.tabelaSastojaka.setColumnCount(3)
         self.tabelaSastojaka.setRowCount(1)
 
-        self.tabelaSastojaka.setItem(0, 0, QTableWidgetItem("Sifra"))
-        self.tabelaSastojaka.setItem(0, 1, QTableWidgetItem("Naziv sastojka"))
-        self.tabelaSastojaka.setItem(0, 2, QTableWidgetItem("mjerna jedinica"))
-        self.tabelaSastojaka.setItem(0, 3, QTableWidgetItem("kolicina"))
+
+        self.tabelaSastojaka.setItem(0, 0, QTableWidgetItem("Naziv sastojka"))
+        self.tabelaSastojaka.setItem(0, 1, QTableWidgetItem("mjerna jedinica"))
+        self.tabelaSastojaka.setItem(0, 2, QTableWidgetItem("kolicina"))
 
 
 
         self.tabelaOpreme = QTableWidget()
-        self.tabelaOpreme.setColumnCount(2)
+        self.tabelaOpreme.setColumnCount(1)
         self.tabelaOpreme.setRowCount(1)
 
-        self.tabelaOpreme.setItem(0, 0, QTableWidgetItem("Sifra"))
-        self.tabelaOpreme.setItem(0, 1, QTableWidgetItem("Naziv stavke"))
+
+        self.tabelaOpreme.setItem(0, 0, QTableWidgetItem("Naziv stavke"))
 
         self.tabelaKategorija = QTableWidget()
-        self.tabelaKategorija.setColumnCount(2)
+        self.tabelaKategorija.setColumnCount(1)
         self.tabelaKategorija.setRowCount(1)
-        self.tabelaKategorija.setItem(0,0,QTableWidgetItem("Sifra"))
-        self.tabelaKategorija.setItem(0,1,QTableWidgetItem("Naziv kategorije"))
+
+        self.tabelaKategorija.setItem(0,0,QTableWidgetItem("Naziv kategorije"))
 
 
         grid = QGridLayout()
@@ -230,11 +239,11 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
                  ]
 
         self.combo = QComboBox(self)
-        self.combo.addItem("komad")
-        self.combo.addItem("gram")
-        self.combo.addItem("supena kasika")
-        self.combo.addItem("dl")
-        self.combo.addItem("prstohvat")
+        self.combo.addItem("Gram")
+        self.combo.addItem("DL")
+        self.combo.addItem("Komad")
+        self.combo.addItem("Supena kasika")
+        self.combo.addItem("Prstohvat")
 
         image = QImage("stajl\\profil.jpg")
         image2 = QImage("stajl\\bela.jfif")
@@ -339,6 +348,7 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
                 grid.addWidget(self.izbrisiSastojak, *position)
             elif name == "$$$":
                 self.izbrisiStavkuOpreme = QPushButton("Izbrisi stavku")
+                self.izbrisiStavkuOpreme.clicked.connect(self.izbrisiStavkuOpremeIzTabele)
                 self.izbrisiStavkuOpreme.setFixedWidth(200)
                 grid.addWidget(self.izbrisiStavkuOpreme,*position)
 
@@ -361,12 +371,3 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
         self.show()
 
 
-class TipKolicine(Enum):
-    GRAM = 0
-    DL = 1
-    KOMAD = 2
-    SUPENAKASIKA = 3
-    PRSTOHVAT = 4
-
-    def __str__(self):
-        return self.name
