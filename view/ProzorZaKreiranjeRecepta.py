@@ -245,8 +245,8 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
         self.combo.addItem("Supena kasika")
         self.combo.addItem("Prstohvat")
 
-        image = QImage("stajl\\profil.jpg")
-        image2 = QImage("stajl\\bela.jfif")
+        image = QImage('..\slike\kreiranjeReceptaIkonica.jpg')
+        image2 = QImage('..\slike\bijelaPozadina.jfif')
         sImage = image.scaled(QSize(650, 420))
         sImage2 = image2.scaled((QSize(600,450)))
         palette = QPalette()
@@ -258,7 +258,7 @@ class ProzorZaKreiranjeRecepta(QMainWindow):
 
 
         sadrzaj = ""
-        with open("stajl/stajlKreiranjeRecepta.css", "r") as stream:
+        with open("..\slike\stajlKreiranjeRecepta.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
         positions = [(i, j) for i in range(28) for j in range(4)]
