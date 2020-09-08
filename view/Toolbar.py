@@ -9,6 +9,7 @@ from controller.actions.Pretraga import *
 from controller.actions.PocetnaStranaAkcija import *
 from controller.actions.UrednjivanjeKategorija import *
 from controller.actions.UredjivanjePratilaca import *
+from controller.actions.SopstveniReceptiAkcija import *
 class Toolbar(QToolBar):
     def __init__(self,parent):
         super().__init__(parent)
@@ -21,6 +22,7 @@ class Toolbar(QToolBar):
         vidzet.setFixedSize(1000,40)
         vidzet.show()
         self.addWidget(vidzet)
+        self.addAction(SopstveniReceptiAkcija(self))
         self.addAction(KreiranjeReceptaAkcija(self))
         self.addAction(UredjivanjePratilaca(self))
         self.addAction(UredjivanjeKategorija(self))

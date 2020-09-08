@@ -13,6 +13,7 @@ class ManipulacijaReceptima():
     def __init__(self):
         self.recepti = []
         self.kategorije = []
+        self.receptiPrijavljenog = []
 
         self.ucitajKategorije()
         self.ucitajRecepte()
@@ -274,3 +275,12 @@ class ManipulacijaReceptima():
         for kategorija in self.kategorije:
             if(naziv.lower()==kategorija.naziv.lower()):
                 return kategorija
+
+
+    def pronadjiReceptePrijavljenog(self):
+        kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
+        recepti = kuvarPocetnik.recepti
+        for id in recepti:
+            for recept in self.recepti:
+                if recept.id == id:
+                    self.receptiPrijavljenog.append(recept)

@@ -10,6 +10,7 @@ from model.Administrator import *
 from model.KuvarPocetnik import *
 from model.Urednik import *
 from view.AdministratorPocetna import *
+from view.UrednikPocetna import *
 
 
 class ProzorZaPrijavu(QWidget):
@@ -108,7 +109,10 @@ class ProzorZaPrijavu(QWidget):
                 QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
                 QApplication.instance().actionManager.glavniProzor.show()
             elif(isinstance(korisnik,Urednik)):
-                pass
+                QApplication.instance().actionManager.prijavljeniKorisnik = korisnik
+                QApplication.instance().actionManager.glavniProzor = UrednikPocetna()
+                QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
+                QApplication.instance().actionManager.glavniProzor.show()
             else:
                 QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
                 QApplication.instance().actionManager.glavniProzor=KuvarPocetna()

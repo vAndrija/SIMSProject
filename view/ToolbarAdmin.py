@@ -16,6 +16,7 @@ class ToolbarAdmin(QToolBar):
         vidzet.setFixedSize(900,40)
         vidzet.show()
         self.addWidget(vidzet)
+        # napraviti prozor za prikazivanje informacija admina i urednika
         self.addAction(SopstveniProfilAkcija(self))
         self.addAction(OdjavaAkcija(self))
 
