@@ -18,5 +18,30 @@
         "sifra": 3,
         "naziv": "Led",
         "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 4,
+        "naziv": "Salama",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 5,
+        "naziv": "brasno",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 6,
+        "naziv": "ulja",
+        "tipKolicine": "DL"
+    },
+    {
+        "sifra": 7,
+        "naziv": "so",
+        "tipKolicine": "SUPENAKASIKA"
+    },
+    {
+        "sifra": 8,
+        "naziv": "kvasac",
+        "tipKolicine": "SUPENAKASIKA"
     }
 ]

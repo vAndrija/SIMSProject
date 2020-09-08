@@ -85,5 +85,28 @@
         "ocena": 0,
         "ekstenzijaSlike": "jpg",
         "opis": "Doda se casa vode i to je to"
+    },
+    {
+        "id": 7,
+        "naziv": "Kapricoza pica",
+        "oprema": [
+            9,
+            10
+        ],
+        "sastojci": {
+            "4": 300.0,
+            "5": 950.0,
+            "2": 5.0,
+            "6": 0.8,
+            "7": 2.0,
+            "8": 0.5
+        },
+        "kategorije": [
+            0,
+            4
+        ],
+        "ocena": 0,
+        "ekstenzijaSlike": "jpg",
+        "opis": "U toploj vodi vodi staviti ka\u0161i\u010dicu \u0161e\u0107era i izdrobiti kvasac. Sa\u010dekati da naraste. U bra\u0161no staviti so, ostatak \u0161e\u0107era, ulje, i vodu sa kvascem. Umesiti testo (ako je potrebno dodati jo\u0161 bra\u0161na). Podeliti testo na 2 dela i ostaviti da naraste (odprilike 15-ak minuta).\n\n2\nOba pleha dobro premazati uljem (da se ne bi testo zalepilo) i razvu\u0107i testo rukama. Po testu sipatu ke\u010dap i ravnomerno razmazati.\n\n3\nZatim staviti: \u0161unku (na polukrugove), \u010dajnu kobasicu, slaninicu, pe\u010durke (na listi\u0107e), masline (koli\u010dina po \u017eelji). Na svaku 1/8 testa rabiti jaje (po \u017eelji). Posuti sa origanom i obilno nastrugati ka\u010dkavalj.\n\n4\nStaviti da se pe\u010de u prethodno zagrejanu rernu na 190 stepeni."
     }
 ]

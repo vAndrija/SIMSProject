@@ -43,5 +43,15 @@
         "sifra": 8,
         "naziv": "Casa",
         "marka": ""
+    },
+    {
+        "sifra": 9,
+        "naziv": "oklagija",
+        "marka": ""
+    },
+    {
+        "sifra": 10,
+        "naziv": "tepsija",
+        "marka": ""
     }
 ]

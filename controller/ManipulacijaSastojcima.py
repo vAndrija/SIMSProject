@@ -110,7 +110,7 @@ class ManipulacijaSastojcima(object):
             if sastojak.sifra==id:
                 return sastojak
 
-    def vratiSastojak(self,naziv,tipKolicine):
+    def vratiSastojakPoNazivuITipuKolicine(self,naziv,tipKolicine):
         """
         Funkcija na osnovu naziva i tipa kolicine vraca sastojak
         :param naziv: odnosi se na naziv trazenog sastojka

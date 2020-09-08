@@ -14,5 +14,9 @@
     {
         "id": 3,
         "naziv": "Pice"
+    },
+    {
+        "id": 4,
+        "naziv": "Brza hrana"
     }
 ]

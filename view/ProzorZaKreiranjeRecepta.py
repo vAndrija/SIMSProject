@@ -155,10 +155,10 @@ class ProzorZaKreiranjeRecepta(QDialog):
 
                     self.menadzerSastojcima.kreirajSastojak(nazivSastojka,tipKolicine)
 
-                    sastojak = self.menadzerSastojcima.vratiSastojak(nazivSastojka,tipKolicine)
+                    sastojak = self.menadzerSastojcima.vratiSastojakPoNazivuITipuKolicine(nazivSastojka,tipKolicine)
                     sastojci[sastojak.sifra] = float(self.tabelaSastojaka.item(i,2).text())
                 else:
-                    sastojak = self.menadzerSastojcima.vratiSastojak(nazivSastojka, tipKolicine)
+                    sastojak = self.menadzerSastojcima.vratiSastojakPoNazivuITipuKolicine(nazivSastojka, tipKolicine)
                     sastojci[sastojak.sifra] = float(self.tabelaSastojaka.item(i, 2).text())
                    
 
@@ -320,13 +320,13 @@ class ProzorZaKreiranjeRecepta(QDialog):
         self.combo.addItem("Prstohvat")
 
         image = QImage('..\slike\kreiranjeReceptaIkonica.jpg')
-
+        image2 = QImage('..\slike\bijelaPozadina.jfif')
         sImage = image.scaled(QSize(650, 420))
-
+        sImage2 = image2.scaled((QSize(1000, 1000)))
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
-
-
+        palette2 = QPalette()
+        palette2.setBrush(QPalette.Window, QBrush(sImage2))
 
         sadrzaj = ""
         with open("..\slike\stajlKreiranjeRecepta.css", "r") as stream:
@@ -434,7 +434,8 @@ class ProzorZaKreiranjeRecepta(QDialog):
         self.scroll.setWidget(self.widget)
         self.izgled = QHBoxLayout()
         self.izgled.addWidget(self.scroll)
-
+        self.scroll.setPalette(palette2)
+        self.setPalette(palette2)
         self.setLayout(self.izgled)
         self.setFixedWidth(700)
         self.setFixedHeight(600)
