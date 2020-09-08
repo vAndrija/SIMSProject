@@ -182,7 +182,6 @@ class ProzorZaKreiranjeRecepta(QDialog):
                     idKat = self.menadzerReceptima.vratiIdKategorije(nazivKategorije)
                     kategorije.append(idKat)
                 else:
-                    print("USLO DA DODA")
                     self.menadzerReceptima.dodajKategoriju(nazivKategorije)
                     kategorija = self.menadzerReceptima.vratiKategoriju(nazivKategorije)
                     kategorije.append(kategorija.id)
@@ -321,13 +320,13 @@ class ProzorZaKreiranjeRecepta(QDialog):
         self.combo.addItem("Prstohvat")
 
         image = QImage('..\slike\kreiranjeReceptaIkonica.jpg')
-        image2 = QImage('..\slike\bijelaPozadina.jfif')
+
         sImage = image.scaled(QSize(650, 420))
-        sImage2 = image2.scaled((QSize(600, 450)))
+
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
-        palette2 = QPalette()
-        palette2.setBrush(QPalette.Window, QBrush(sImage2))
+
+
 
         sadrzaj = ""
         with open("..\slike\stajlKreiranjeRecepta.css", "r") as stream:
@@ -435,10 +434,11 @@ class ProzorZaKreiranjeRecepta(QDialog):
         self.scroll.setWidget(self.widget)
         self.izgled = QHBoxLayout()
         self.izgled.addWidget(self.scroll)
+
         self.setLayout(self.izgled)
-        self.scroll.setPalette(palette2)
         self.setFixedWidth(700)
         self.setFixedHeight(600)
+
         self.move(300, 150)
         self.setWindowTitle('Dodavanje recepata')
         self.show()

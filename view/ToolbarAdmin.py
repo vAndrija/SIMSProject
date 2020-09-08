@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from controller.actions.Odajava import *
+from controller.actions.Odjava import *
 from controller.actions.PrikazSvogProfila import *
 from controller.actions.Pretraga import *
 class ToolbarAdmin(QToolBar):

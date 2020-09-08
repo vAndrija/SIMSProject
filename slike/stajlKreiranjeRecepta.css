@@ -65,15 +65,21 @@ QComboBox:hover,QPushButton:hover
 
 }
 
-QToolBar
+QDialog
 {
-    background-color: #4d004d;
-	spacing: 3px;
-	padding: 4px;
+    background-color: white;
+    border-color: white;
+}
+QScrollPane
+{
+    background-color: white;
+    border-color: white;
+    gridline-color: white;
+}
+QTableView
+{
+
+    background-color: white;
+
 }
 
-QMainWindow
-{
-     color: #ffffff;
-
-}
