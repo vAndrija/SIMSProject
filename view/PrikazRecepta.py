@@ -17,67 +17,69 @@ class PrikazRecepta(QDialog):
         self.setWindowTitle("Prikaz recepta")
         self.setModal(True)
         image = QImage("..\slike\slika6.jpg")
-        sImage = image.scaled(QSize(800, 800))
+        sImage = image.scaled(QSize(1000, 900))
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
-        self.setFixedSize(800,800)
+        self.setFixedSize(1000,900)
         self.izgled = QGridLayout()
         self.setLayout(self.izgled)
         matrica = ['1','','',
                  '3','','2',
                  '6', '', '7',
                  '4','','5',
-                 '8','9','10']
+                 '8','10','9']
         self.selekcije=[]
         pozicije = [(i, j) for i in range(5) for j in range(3)]
         for sadrzaj,pozicija in zip(matrica,pozicije):
             if sadrzaj=='1':
                 labela =QLabel()
                 labela.setText("<h1 style='color:black'><b>{0}<b></h1>".format(self.recept.naziv))
-                labela.setFixedSize(130,40)
+                labela.setFixedSize(300,40)
                 self.izgled.addWidget(labela,*pozicija)
             if sadrzaj =='2':
                 labela = QLabel()
                 labela.setBackgroundRole(True)
 
                 pixmapa = QPixmap('..\dizajn\\'+str(self.recept.id)+"."+str(self.recept.ekstenzijaSlike))
+                pixmapa.scaled(350,350)
                 labela.setPixmap(pixmapa)
-                labela.setMinimumSize(300,300)
+                labela.setFixedSize(350,350)
                 self.izgled.addWidget(labela,*pozicija)
             if sadrzaj =='3':
                 opis = QLabel()
                 opis.setWordWrap(True)
                 opis.setText("<h6><i>{0}</i></h6>".format(self.recept.opis))
                 self.izgled.addWidget(opis,*pozicija)
-                opis.setMaximumSize(200,300)
+                opis.setMaximumSize(350,350)
             if sadrzaj =='4':
                 self.lista = QListWidget()
                 for id in self.recept.sastojci.keys():
                     sastojak = self.menadzerSastojci.vratiSastojak(int(id))
                     self.lista.addItem("{0} {1}".format(sastojak.naziv,self.recept.sastojci[id]))
-                self.lista.setFixedSize(200, 200)
+                self.lista.setFixedSize(350, 350)
                 self.izgled.addWidget(self.lista,*pozicija)
             if sadrzaj=='5':
                 self.listaOpreme = QListWidget()
                 for id in self.recept.oprema:
                     oprema = self.menadzerOprema.vratiOpremu(id)
                     self.listaOpreme.addItem("{0} {1}".format(oprema.naziv,oprema.marka))
-                self.listaOpreme.setFixedSize(200,200)
+                self.listaOpreme.setFixedSize(350,350)
                 self.izgled.addWidget(self.listaOpreme,*pozicija)
             if sadrzaj =='6':
                 kategorije = QLabel()
+                kategorije.setWordWrap(True)
                 nazivi = []
                 for id in self.recept.kategorije:
                     naziv = QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(id)
                     nazivi.append(naziv)
                 spojeno = ",".join(nazivi)
-                kategorije.setFixedSize(300,30)
+                kategorije.setFixedSize(350,50)
                 kategorije.setText("<h3>Kategorije: {0}</h3>".format(spojeno))
                 self.izgled.addWidget(kategorije,*pozicija)
             if sadrzaj =='7':
                 ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena))
-                ocjena.setFixedSize(200,30)
+                ocjena.setFixedSize(350,30)
                 self.izgled.addWidget(ocjena,*pozicija)
             if sadrzaj =='8':
                 self.dodajSastojkeUKorpu=QPushButton("Dodaj sastojke")

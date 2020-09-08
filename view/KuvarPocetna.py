@@ -62,105 +62,108 @@ class KuvarPocetna(QMainWindow):
                 return element[0]
 
     def refresujPocetnu(self, recepti, oprema, sastojci, napredno):
-        if not self.sledecaPostoji:
-            return False
-        self.inicijalizujPocetnu()
-        dio = os.getcwd()[:-4]
-        dio = dio.split("\\")
-        dio = "/".join(dio)
-        putanja = 'file:///' + dio + 'dizajn/pocetnaRecepti'
-        pozicije = [(i, j) for i in range(4) for j in range(2)]
-        self.dugmad = []
-        if (recepti == None):
-            self.recepti = QApplication.instance().actionManager.receptiMenadzer.receptiZaPrikaz()
-        else:
-            self.recepti = recepti
-        if napredno:
-
-            self.zbirno = []
-            for prvi, drugi in zip(oprema, sastojci):
-                self.zbirno.append(0)
-                self.zbirno[-1] = prvi + drugi
-            self.mapiranje = []
-            for kljuc, vrijednost in zip(self.zbirno, self.recepti):
-                self.mapiranje.append([kljuc, vrijednost])
-            self.mapiranje1=[]
-            for prvi,drugi,recept in zip(oprema,sastojci,self.recepti):
-                self.mapiranje1.append([prvi,drugi,recept])
-
-            self.recepti.sort(key=self.sortiraj)
-        trenutni = []
-        if (len(self.recepti) >= ((self.sledecaStranicaBrojac + 1) * 4)):
-            if ((len(self.recepti) == ((self.sledecaStranicaBrojac + 1) * 4))):
-                self.sledecaPostoji = False
+        try:
+            if not self.sledecaPostoji:
+                return False
+            self.inicijalizujPocetnu()
+            dio = os.getcwd()[:-4]
+            dio = dio.split("\\")
+            dio = "/".join(dio)
+            putanja = 'file:///' + dio + 'dizajn/pocetnaRecepti'
+            pozicije = [(i, j) for i in range(4) for j in range(2)]
+            self.dugmad = []
+            if (recepti == None):
+                self.recepti = QApplication.instance().actionManager.receptiMenadzer.receptiZaPrikaz()
             else:
-                self.sledecaPostoji = True
-            for i in range(self.sledecaStranicaBrojac * 4, self.sledecaStranicaBrojac + 4):
-                trenutni.append(self.recepti[i])
-        else:
-            self.sledecaPostoji = False
-            for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti)):
-                trenutni.append(self.recepti[i])
-            for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti),
-                           (self.sledecaStranicaBrojac + 1) * 4):
-                trenutni.append("*")
+                self.recepti = recepti
+            if napredno:
 
-        self.sledecaStranicaBrojac+=1
+                self.zbirno = []
+                for prvi, drugi in zip(oprema, sastojci):
+                    self.zbirno.append(0)
+                    self.zbirno[-1] = prvi + drugi
+                self.mapiranje = []
+                for kljuc, vrijednost in zip(self.zbirno, self.recepti):
+                    self.mapiranje.append([kljuc, vrijednost])
+                self.mapiranje1=[]
+                for prvi,drugi,recept in zip(oprema,sastojci,self.recepti):
+                    self.mapiranje1.append([prvi,drugi,recept])
 
-        for pozicija, recept in zip(pozicije, trenutni):
-            if (pozicija[0] != 3):
-                if (recept != "*"):
-                    privrem = QWidget()
-                    izgled1 = QVBoxLayout()
-                    privrem.setLayout(izgled1)
-                    privremeni = QWebEngineView()
-                    privremeni.setUrl(QUrl(putanja + "/" + str(recept.id) + ".html"))
-                    izgled1.addWidget(privremeni)
-                    dugme =  QPushButton(">>")
-                    dugme.clicked.connect(partial(self.prikazRecepta,recept))
-                    horizontalno = QHBoxLayout()
-                    horizontalno.addWidget(dugme)
-                    if napredno:
-                        for clan in self.mapiranje1:
-                            if(clan[2] is recept):
-                                if (clan[1] == 0 and clan[0] == 0):
-                                    tekst = "Imate sve potrebne sastojke i opremu"
-                                else:
-                                    tekst = "Nedostaje {0} sastojaka i {1} opreme".format(
-                                        clan[1], clan[0])
-                                labela = QLabel(tekst)
-                                toolTip = QApplication.instance().actionManager.receptiMenadzer.vracanjeToolTipSadrzaja(
-                                    recept)
-                                labela.setToolTip(toolTip)
-                                horizontalno.addWidget(labela)
-                    drugi = QWidget()
-                    drugi.setLayout(horizontalno)
-                    self.dugmad.append(dugme)
-                    dugme.setFixedSize(30, 30)
-                    izgled1.addWidget(drugi)
-                    privrem.setMaximumSize(350,600)
-                    self.izgled.addWidget(privrem, *pozicija)
+                self.recepti.sort(key=self.sortiraj)
+            trenutni = []
+            if (len(self.recepti) >= ((self.sledecaStranicaBrojac + 1) * 4)):
+                if ((len(self.recepti) == ((self.sledecaStranicaBrojac + 1) * 4))):
+                    self.sledecaPostoji = False
                 else:
-                    privrem = QWidget()
-                    izgled1 = QVBoxLayout()
-                    privrem.setLayout(izgled1)
+                    self.sledecaPostoji = True
+                for i in range(self.sledecaStranicaBrojac * 4, self.sledecaStranicaBrojac + 4):
+                    trenutni.append(self.recepti[i])
+            else:
+                self.sledecaPostoji = False
+                for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti)):
+                    trenutni.append(self.recepti[i])
+                for i in range(self.sledecaStranicaBrojac * 4, len(self.recepti),
+                               (self.sledecaStranicaBrojac + 1) * 4):
+                    trenutni.append("*")
 
-                    self.izgled.addWidget(privrem, *pozicija)
+            self.sledecaStranicaBrojac+=1
 
-        if (len(self.recepti) == 0):
-            for pozicija in pozicije:
+            for pozicija, recept in zip(pozicije, trenutni):
                 if (pozicija[0] != 3):
-                    privrem = QWidget()
-                    izgled1 = QVBoxLayout()
-                    privrem.setLayout(izgled1)
-                    self.izgled.addWidget(privrem, *pozicija)
+                    if (recept != "*"):
+                        privrem = QWidget()
+                        izgled1 = QVBoxLayout()
+                        privrem.setLayout(izgled1)
+                        privremeni = QWebEngineView()
+                        privremeni.setUrl(QUrl(putanja + "/" + str(recept.id) + ".html"))
+                        izgled1.addWidget(privremeni)
+                        dugme =  QPushButton(">>")
+                        dugme.clicked.connect(partial(self.prikazRecepta,recept))
+                        horizontalno = QHBoxLayout()
+                        horizontalno.addWidget(dugme)
+                        if napredno:
+                            for clan in self.mapiranje1:
+                                if(clan[2] is recept):
+                                    if (clan[1] == 0 and clan[0] == 0):
+                                        tekst = "Imate sve potrebne sastojke i opremu"
+                                    else:
+                                        tekst = "Nedostaje {0} sastojaka i {1} opreme".format(
+                                            clan[1], clan[0])
+                                    labela = QLabel(tekst)
+                                    toolTip = QApplication.instance().actionManager.receptiMenadzer.vracanjeToolTipSadrzaja(
+                                        recept)
+                                    labela.setToolTip(toolTip)
+                                    horizontalno.addWidget(labela)
+                        drugi = QWidget()
+                        drugi.setLayout(horizontalno)
+                        self.dugmad.append(dugme)
+                        dugme.setFixedSize(30, 30)
+                        izgled1.addWidget(drugi)
+                        privrem.setMaximumSize(350,600)
+                        self.izgled.addWidget(privrem, *pozicija)
+                    else:
+                        privrem = QWidget()
+                        izgled1 = QVBoxLayout()
+                        privrem.setLayout(izgled1)
 
-        self.sledecaStranica = QPushButton("Sledeca stranica")
-        self.sledecaStranica.clicked.connect(lambda x:self.refresujPocetnu(self.recepti,oprema,sastojci,napredno))
-        self.prethodnaStranica = QPushButton("Prethodna stranica")
-        self.prethodnaStranica.clicked.connect(lambda x: self.prethodnaStranicaAkcija(self.recepti, oprema, sastojci, napredno))
-        self.izgled.addWidget(self.prethodnaStranica,3,0)
-        self.izgled.addWidget(self.sledecaStranica, 3, 1)
+                        self.izgled.addWidget(privrem, *pozicija)
+
+            if (len(self.recepti) == 0):
+                for pozicija in pozicije:
+                    if (pozicija[0] != 3):
+                        privrem = QWidget()
+                        izgled1 = QVBoxLayout()
+                        privrem.setLayout(izgled1)
+                        self.izgled.addWidget(privrem, *pozicija)
+
+            self.sledecaStranica = QPushButton("Sledeca stranica")
+            self.sledecaStranica.clicked.connect(lambda x:self.refresujPocetnu(self.recepti,oprema,sastojci,napredno))
+            self.prethodnaStranica = QPushButton("Prethodna stranica")
+            self.prethodnaStranica.clicked.connect(lambda x: self.prethodnaStranicaAkcija(self.recepti, oprema, sastojci, napredno))
+            self.izgled.addWidget(self.prethodnaStranica,3,0)
+            self.izgled.addWidget(self.sledecaStranica, 3, 1)
+        except:
+            traceback.print_exc()
 
 
     def prikazRecepta(self,recept):

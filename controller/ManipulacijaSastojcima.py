@@ -107,7 +107,8 @@ class ManipulacijaSastojcima(object):
 
     def vratiSastojak(self,id):
         for sastojak in self.sviSastojci:
-            if sastojak.sifra==id:
+
+            if sastojak.sifra==int(id):
                 return sastojak
 
     def vratiSastojakPoNazivuITipuKolicine(self,naziv,tipKolicine):
