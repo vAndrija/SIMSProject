@@ -88,7 +88,7 @@ class ManipulacijaSastojcima(object):
         :return:
         """
         for jedanSastojak in self.sviSastojci:
-            if jedanSastojak.naziv.upper() == sastojak.naziv.upper():
+            if jedanSastojak.naziv.upper() == sastojak.naziv.upper() and jedanSastojak.tipKolicine == sastojak.tipKolicine:
                 return True
         return False
 

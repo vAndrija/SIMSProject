@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+from controller.actions.AkcijaBrisanjaRecepata import AkcijaBrisanjaRecepata
 from controller.actions.KreiranjeReceptaAkcija import KreiranjeReceptaAkcija
 from controller.actions.Odjava import *
 from controller.actions.PrikazSvogProfila import *
@@ -19,9 +20,10 @@ class Toolbar(QToolBar):
     def dodajSadrzaj(self):
         vidzet = QWidget()
 
-        vidzet.setFixedSize(1000,40)
+        vidzet.setFixedSize(950,40)
         vidzet.show()
         self.addWidget(vidzet)
+        self.addAction(AkcijaBrisanjaRecepata(self))
         self.addAction(SopstveniReceptiAkcija(self))
         self.addAction(KreiranjeReceptaAkcija(self))
         self.addAction(UredjivanjePratilaca(self))

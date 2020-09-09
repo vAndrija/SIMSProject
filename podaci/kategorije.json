@@ -18,5 +18,9 @@
     {
         "id": 4,
         "naziv": "Brza hrana"
+    },
+    {
+        "id": 5,
+        "naziv": "jela sa piletinom"
     }
 ]

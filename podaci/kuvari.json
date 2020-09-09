@@ -17,7 +17,8 @@
             1
         ],
         "recepti": [
-            7
+            7,
+            9
         ],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
@@ -27,7 +28,8 @@
         "praceneKategorije": [
             1,
             3,
-            0
+            0,
+            5
         ]
     },
     {
@@ -48,8 +50,7 @@
         "recepti": [
             1,
             2,
-            5,
-            6
+            5
         ],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,

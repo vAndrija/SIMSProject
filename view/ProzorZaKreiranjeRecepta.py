@@ -176,7 +176,7 @@ class ProzorZaKreiranjeRecepta(QDialog):
 
             for i in range(1, self.tabelaKategorija.rowCount()):
                 nazivKategorije = self.tabelaKategorija.item(i, 0).text()
-                print(nazivKategorije)
+
                 if (self.menadzerReceptima.postojanjeKategorije(nazivKategorije) != -1):
 
                     idKat = self.menadzerReceptima.vratiIdKategorije(nazivKategorije)
@@ -327,7 +327,7 @@ class ProzorZaKreiranjeRecepta(QDialog):
         palette.setBrush(QPalette.Window, QBrush(sImage))
         palette2 = QPalette()
         palette2.setBrush(QPalette.Window, QBrush(sImage2))
-
+        self.setModal(True)
         sadrzaj = ""
         with open("..\slike\stajlKreiranjeRecepta.css", "r") as stream:
             sadrzaj = stream.read()

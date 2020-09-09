@@ -43,5 +43,35 @@
         "sifra": 8,
         "naziv": "kvasac",
         "tipKolicine": "SUPENAKASIKA"
+    },
+    {
+        "sifra": 9,
+        "naziv": "pileca prsa",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 10,
+        "naziv": "ulje",
+        "tipKolicine": "DL"
+    },
+    {
+        "sifra": 11,
+        "naziv": "rezanca",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 12,
+        "naziv": "Pileci file",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 13,
+        "naziv": "sampinjoni",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 14,
+        "naziv": "pavlaka za kuvanje",
+        "tipKolicine": "GRAM"
     }
 ]

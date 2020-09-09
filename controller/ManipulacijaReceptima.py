@@ -66,6 +66,15 @@ class ManipulacijaReceptima():
         with open('.\..\podaci\\kategorije.json', "w") as stream:
             json.dump(self.kategorije, stream, default=self.objToDict, indent=4)
 
+
+    def izbrisiRecept(self,id):
+        for recept in self.recepti:
+            if recept.id == id:
+
+                recept.kategorije = []
+                recept.naziv += '.-.'
+
+
     def kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci):
         """
         Funkcija izvrsava kreiranje novog recepta u sledecim koracima:
@@ -89,12 +98,6 @@ class ManipulacijaReceptima():
         id = self.recepti[-1].id + 1
         noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
-        print(ekstenzija)
-        print(nazivSlike)
-        print(putanja)
-        print(osnovnaPutanja)
-        print(os.path.join(putanja,nazivSlike))
-        print(os.path.join(putanja, str(id) +"." +ekstenzija))
         os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))

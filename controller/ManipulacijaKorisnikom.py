@@ -68,6 +68,8 @@ class ManipulacijaKorisnikom(object):
         self.upisiKorisnika()
         return noviKorisnik
 
+
+
     def objToDict(self, obj):
         """
         Pomocna funkcija za redefinisanje serijalizacije za json paket

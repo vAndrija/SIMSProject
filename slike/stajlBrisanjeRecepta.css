@@ -1,0 +1,84 @@
+QLineEdit
+{
+
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    font-family: cursive;
+}
+
+QPlainTextEdit
+{
+    padding: 1px;
+    border-style: solid;
+    border: 1px solid #1e1e1e;
+    border-radius: 5;
+    font-family: cursive;
+}
+
+QLabel
+{
+    border: 0px solid black;
+    color: #14141f;
+    font-size: 14px;
+    font-family: Bahnschrift;
+}
+
+QPushButton
+{
+    color: #ffffff;
+    background-color:  QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-width: 40px;
+}
+QComboBox
+{
+    color: #ffffff;
+    background-color:  QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #565656, stop: 0.1 #525252, stop: 0.5 #4e4e4e, stop: 0.9 #4a4a4a, stop: 1 #464646);
+    border-width: 1px;
+    border-color: #1e1e1e;
+    border-style: solid;
+    border-radius: 6;
+    padding: 3px;
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-width: 40px;
+}
+
+
+QPushButton:pressed
+{
+    background-color: #4d004d;
+}
+QComboBox:hover,QPushButton:hover
+{
+    border: 2px solid #ffffff
+
+}
+
+QDialog
+{
+    border-color: white;
+
+}
+QScrollPane
+{
+    background-color: white;
+    border-color: white;
+    gridline-color: white;
+}
+QTableView
+{
+
+    background-color: white;
+
+}
