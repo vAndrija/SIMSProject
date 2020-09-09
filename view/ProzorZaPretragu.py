@@ -28,7 +28,7 @@ class ProzorZaPretragu(QDialog):
                    "Unos kategorije", "kat", "dodaj",
                    "Naziv recepta", "naziv", "",
                    "brisanje", "", "",
-                   "Napredna pretraga(sastojci i oprema): ", "*", ""
+                   "1", "*", ""
                    
                    "", "", "",
                    "",
@@ -82,6 +82,10 @@ class ProzorZaPretragu(QDialog):
                 self.unetNaziv = QLineEdit()
                 self.unetNaziv.setFixedSize(250, 25)
                 grid.addWidget(self.unetNaziv, *pozicija)
+            elif sadrzaj =="1":
+                labela = QLabel("Napredna pretraga")
+                labela.setToolTip("Napredna pretraga omogucava prikaz recepata sortiranih po info"
+                                  "rmacijama o dugotrajnim sastojcima i opremama")
             else:
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(200, 30)

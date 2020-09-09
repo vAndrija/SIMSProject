@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 1,
+        "sastojci": {
+            "8": 550
+        },
+        "oprema": {
+            "10": 3
+        }
+    },
+    {
+        "id": 2,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 3,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 4,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 5,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 6,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 7,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 8,
+        "sastojci": {},
+        "oprema": {}
+    },
+    {
+        "id": 9,
+        "sastojci": {},
+        "oprema": {}
+    }
+]

@@ -8,7 +8,7 @@ import  jsonpickle
 import os
 import shutil
 import traceback
-
+from PyQt5.QtWidgets import *
 class ManipulacijaKorisnikom(object):
     def __init__(self):
         super().__init__()
@@ -39,9 +39,10 @@ class ManipulacijaKorisnikom(object):
         :return:
         """
         grad = Mesto(mesto, postanskiBr)
+
         noviKorisnik = KuvarPocetnik(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol, sastojci, oprema, recepti,
                                      kuvar, spisak, praceniKuvari, praceneKategorije)
-
+        QApplication.instance().actionManager.spiskoviMenadzer.kreirajSpisakZaKupovinu(noviKorisnik)
         osnovnaPutanja = os.getcwd()[:-4]
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonProfilKorisnika.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika"))

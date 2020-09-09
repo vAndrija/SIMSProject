@@ -8,6 +8,7 @@ from controller.actions.Odjava import *
 from controller.actions.PrikazSvogProfila import *
 from controller.actions.Pretraga import *
 from controller.actions.PocetnaStranaAkcija import *
+from controller.actions.SpisakZaKupovinuAkcija import SpisakZaKupovinuAkcija
 from controller.actions.UrednjivanjeKategorija import *
 from controller.actions.UredjivanjePratilaca import *
 from controller.actions.SopstveniReceptiAkcija import *
@@ -20,9 +21,10 @@ class Toolbar(QToolBar):
     def dodajSadrzaj(self):
         vidzet = QWidget()
 
-        vidzet.setFixedSize(950,40)
+        vidzet.setFixedSize(900,40)
         vidzet.show()
         self.addWidget(vidzet)
+        self.addAction(SpisakZaKupovinuAkcija(self))
         self.addAction(AkcijaBrisanjaRecepata(self))
         self.addAction(SopstveniReceptiAkcija(self))
         self.addAction(KreiranjeReceptaAkcija(self))

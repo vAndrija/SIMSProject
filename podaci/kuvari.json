@@ -52,7 +52,7 @@
             5
         ],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 1,
         "praceniKuvari": [],
         "praceneKategorije": [
             2,
@@ -78,7 +78,7 @@
             3
         ],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 2,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -104,7 +104,7 @@
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 3,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -132,7 +132,7 @@
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 4,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -157,7 +157,7 @@
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 5,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -185,7 +185,7 @@
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 6,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -212,7 +212,7 @@
         ],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 7,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -233,7 +233,7 @@
         "oprema": [],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 8,
         "praceniKuvari": [],
         "praceneKategorije": []
     },
@@ -254,7 +254,7 @@
         "oprema": [],
         "recepti": [],
         "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
+        "spisakZaKupovinu": 9,
         "praceniKuvari": [],
         "praceneKategorije": []
     }

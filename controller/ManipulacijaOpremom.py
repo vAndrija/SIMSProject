@@ -91,7 +91,7 @@ class ManipulacijaOpremom(object):
 
     def vratiOpremu(self,id):
         for oprema in self.svaOprema:
-            if oprema.sifra==id:
+            if oprema.sifra==int(id):
                 return oprema
 
     def vratiOpremuPoNazivu(self,naziv):
