@@ -75,6 +75,20 @@ class ManipulacijaReceptima():
                 recept.naziv += '.-.'
 
 
+    def izbrisiReceptKorisniku(self, id):
+        for korisnik in QApplication.instance().actionManager.informacije.sviKuvari:
+            provera = False
+            for recept in korisnik.recepti:
+                if id == recept:
+                    provera = True
+                    korisnik.recepti.remove(recept)
+                    break
+            if provera:
+                break
+        QApplication.instance().actionManager.informacije.upisiKorisnika()
+
+
+
     def kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci):
         """
         Funkcija izvrsava kreiranje novog recepta u sledecim koracima:
@@ -291,3 +305,25 @@ class ManipulacijaReceptima():
             for recept in self.recepti:
                 if recept.id == id:
                     self.receptiPrijavljenog.append(recept)
+
+
+    def pronadjiRecepteZaUredjivanje(self, urednik):
+        recepti = []
+        for id in urednik.noviRecepti:
+            for recept in self.recepti:
+                if id == recept.id:
+                    recepti.append(recept)
+        return recepti
+
+
+    def azurirajHtmlDokument(self, recept):
+        osnovnaPutanja = os.getcwd()[:-4]
+        putanja = os.path.join(osnovnaPutanja, 'dizajn')
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "r") as stream:
+            sadrzaj = stream.readlines()
+
+        for i in range(len(sadrzaj)):
+            if ('<h3 class="name">' in sadrzaj[i]):
+                sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(recept.naziv)
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
+            output.writelines(sadrzaj)

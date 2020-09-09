@@ -186,7 +186,10 @@ class PrikazInformacijaKuvara(QDialog):
             self.hide()
 
     def obrisiNalog(self):
-        QApplication.instance().actionManager.informacije.obrisiKuvara(self.korisnik)
-        QApplication.instance().actionManager.informacije.upisiKorisnika()
-        self.parent.refresujStranu()
-        self.hide()
+        potvrda = QMessageBox
+        odgovor = potvrda.question(self, '', "Da li ste sigurni da zelite da obrisete nalog?", potvrda.Yes | potvrda.No)
+        if odgovor == potvrda.Yes:
+            QApplication.instance().actionManager.informacije.obrisiKuvara(self.korisnik)
+            QApplication.instance().actionManager.informacije.upisiKorisnika()
+            self.parent.refresujStranu()
+            self.hide()

@@ -127,11 +127,14 @@ class PrikazInformacijaUrednika(QDialog):
 
 
     def obrisiNalog(self):
-        QApplication.instance().actionManager.informacije.obrisiUrednika(self.urednik)
-        QApplication.instance().actionManager.informacije.upisiUrednike()
-        self.parent.refresujStranu()
-        self.parent.refresujTab2()
-        self.hide()
+        potvrda = QMessageBox
+        odgovor = potvrda.question(self, '', "Da li ste sigurni da zelite da obrisete nalog?", potvrda.Yes | potvrda.No)
+        if odgovor == potvrda.Yes:
+            QApplication.instance().actionManager.informacije.obrisiUrednika(self.urednik)
+            QApplication.instance().actionManager.informacije.upisiUrednike()
+            self.parent.refresujStranu()
+            self.parent.refresujTab2()
+            self.hide()
 
     def azurirajNalog(self):
         if self.novoKIme.text() == "" and self.novoMesto.text() == "" and self.noviPostanskiBr.text() == "":

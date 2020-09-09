@@ -57,7 +57,12 @@
             "postanskiBroj": "21000"
         },
         "pol": 0,
-        "noviRecepti": []
+        "noviRecepti": [
+            1,
+            2,
+            3,
+            7
+        ]
     },
     {
         "korisnickoIme": "Marko85",

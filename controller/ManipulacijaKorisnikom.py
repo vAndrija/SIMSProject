@@ -186,6 +186,10 @@ class ManipulacijaKorisnikom(object):
         osnovnaPutanja = os.getcwd()[:-4]
         os.remove(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kuvar.korisnickoIme + ".html"))
         self.sviKuvari.remove(kuvar)
+        for kuvarPocetnik in self.sviKuvari:
+            for praceniKuvar in kuvarPocetnik.praceniKuvari:
+                if praceniKuvar == kuvar.korisnickoIme:
+                    kuvarPocetnik.praceniKuvari.remove(praceniKuvar)
 
     def obrisiUrednika(self, urednik):
         osnovnaPutanja = os.getcwd()[:-4]

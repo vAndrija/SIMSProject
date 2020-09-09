@@ -112,7 +112,12 @@ class ProzorZaPrijavu(QWidget):
                 QApplication.instance().actionManager.prijavljeniKorisnik = korisnik
                 QApplication.instance().actionManager.glavniProzor = UrednikPocetna()
                 QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
-                QApplication.instance().actionManager.glavniProzor.show()
+                try:
+                    receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(korisnik)
+
+                    QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None, None)
+                except Exception as e:
+                    print(e)
             else:
                 QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
                 QApplication.instance().actionManager.glavniProzor=KuvarPocetna()
