@@ -131,7 +131,8 @@ class ManipulacijaReceptima():
             nedostajeSastojaka = []
             for recept in self.recepti:
 
-                if ( naziv!="" and (naziv.lower() in recept.naziv.lower())):
+                if ( naziv!="" and (naziv.lower() in recept.naziv.lower()) and
+                    recept.naziv[-3:]!='.-.'):
                     povratna.append(recept)
                     nedostajeOpreme.append(0)
                     nedostajeSastojaka.append(0)
@@ -231,6 +232,8 @@ class ManipulacijaReceptima():
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         for pracenaKategorija in kuvarPocetnik.praceneKategorije:
             for recept in self.recepti:
+                if(recept.id in kuvarPocetnik.recepti):
+                    continue
                 for kategorija in recept.kategorije:
                     if (kategorija == pracenaKategorija):
                         postoji = False
@@ -281,6 +284,7 @@ class ManipulacijaReceptima():
 
 
     def pronadjiReceptePrijavljenog(self):
+        self.receptiPrijavljenog=[]
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         recepti = kuvarPocetnik.recepti
         for id in recepti:

@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "naziv": "Sampita",
+        "naziv": "Sampita.-.",
         "oprema": [
             0
         ],
@@ -9,9 +9,7 @@
             "0": 10,
             "1": 300
         },
-        "kategorije": [
-            1
-        ],
+        "kategorije": [],
         "ocena": 0,
         "ekstenzijaSlike": "jpg",
         "opis": "Najsladji kolac"
