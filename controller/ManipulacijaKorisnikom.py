@@ -132,6 +132,11 @@ class ManipulacijaKorisnikom(object):
             # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
             json.dump(self.sviUrednici, izlazniFajl, default= self.objToDict,  indent=4)
 
+    def upisiAdministratora(self):
+        with open('.\..\podaci\\administratori.json', 'w') as izlazniFajl:
+            # json.dump(self.podaci, outfile, default=lambda  o: o.__dict__, indent=4)
+            json.dump(self.administrator, izlazniFajl, default= self.objToDict,  indent=4)
+
 
     def kreirajUrednika(self, ime, prezime, kIme, lozinka, mejl, datum, adresa, mesto, postanskiBr, pol, noviRecepti):
         grad = Mesto(mesto, postanskiBr)

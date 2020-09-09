@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from controller.actions.Odjava import *
-from controller.actions.PrikazSvogProfila import *
+from controller.actions.AdminUrednikProfil import *
 from controller.actions.Pretraga import *
 class ToolbarAdmin(QToolBar):
     def __init__(self,parent):
@@ -17,7 +17,7 @@ class ToolbarAdmin(QToolBar):
         vidzet.show()
         self.addWidget(vidzet)
         # napraviti prozor za prikazivanje informacija admina i urednika
-        self.addAction(SopstveniProfilAkcija(self))
+        self.addAction(AdminUrednikProfil(self))
         self.addAction(OdjavaAkcija(self))
 
 

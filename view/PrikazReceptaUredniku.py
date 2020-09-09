@@ -180,17 +180,8 @@ class PrikazReceptaUredniku(QDialog):
                     self.recept.opis = opis
                     for kategorija in self.dodateKategorije:
                         self.recept.kategorije.append(kategorija)
-                    QApplication.instance().actionManager.prijavljeniKorisnik.noviRecepti.remove(int(self.recept.id))
-                    QApplication.instance().actionManager.receptiMenadzer.sacuvajRecepte()
-                    QApplication.instance().actionManager.informacije.upisiUrednike()
-                    receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(
-                        QApplication.instance().actionManager.prijavljeniKorisnik)
-                    QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
-                    QApplication.instance().actionManager.glavniProzor.sledecaPostoji = True
-                    QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac -= 1
-                    QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None,
-                                                                                       None)
-                    self.hide()
+                    self.sacuvajPromene()
+                    self.close()
         except Exception as e:
             print(e)
 
@@ -201,18 +192,24 @@ class PrikazReceptaUredniku(QDialog):
                 "Da li ste sigurni da zelite da obrisete recept. Ako pritisnete Yes vise necete imati pravo da ga azurirate.",
                                    potvrda.Yes | potvrda.No)
         if odgovor == potvrda.Yes:
-            QApplication.instance().actionManager.receptiMenadzer.izbrisiRecept(self.recept.id)
-            QApplication.instance().actionManager.receptiMenadzer.izbrisiReceptKorisniku(self.recept.id)
-            QApplication.instance().actionManager.prijavljeniKorisnik.noviRecepti.remove(int(self.recept.id))
-            QApplication.instance().actionManager.receptiMenadzer.sacuvajRecepte()
-            QApplication.instance().actionManager.informacije.upisiUrednike()
-            receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(
-                QApplication.instance().actionManager.prijavljeniKorisnik)
-            QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
-            QApplication.instance().actionManager.glavniProzor.sledecaPostoji = True
+            self.sacuvajPromene()
+            self.close()
+
+
+    def sacuvajPromene(self):
+        QApplication.instance().actionManager.receptiMenadzer.izbrisiRecept(self.recept.id)
+        QApplication.instance().actionManager.receptiMenadzer.izbrisiReceptKorisniku(self.recept.id)
+        QApplication.instance().actionManager.prijavljeniKorisnik.noviRecepti.remove(int(self.recept.id))
+        QApplication.instance().actionManager.receptiMenadzer.sacuvajRecepte()
+        QApplication.instance().actionManager.informacije.upisiUrednike()
+        receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(
+            QApplication.instance().actionManager.prijavljeniKorisnik)
+        QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
+        QApplication.instance().actionManager.glavniProzor.sledecaPostoji = True
+        QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac -= 1
+        if len(receptiZaUredjivanje) == QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac * 4:
             QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac -= 1
-            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None,
-                                                                               None)
-            self.hide()
+        QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None,
+                                                                           None)
 
 

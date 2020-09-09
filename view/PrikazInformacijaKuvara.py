@@ -16,7 +16,7 @@ class PrikazInformacijaKuvara(QDialog):
         self.exec_()
 
     def initUI(self):
-        self.setWindowTitle("Aplikacija za kuvare pocetnike")
+        self.setWindowTitle("Prikaz profila")
         self.setFixedSize(800,800)
         image = QImage("..\slike\profil.jpg")
         sImage = image.scaled(self.size())

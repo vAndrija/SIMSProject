@@ -14,7 +14,7 @@ class PrikazInformacijaUrednika(QDialog):
 
 
     def initUI(self):
-        self.setWindowTitle("Aplikacija za kuvare pocetnike")
+        self.setWindowTitle("Prikaz profila")
         self.setFixedSize(800,800)
         image = QImage("..\slike\\urednik.jpg")
         sImage = image.scaled(self.size())
