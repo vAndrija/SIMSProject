@@ -5,14 +5,14 @@ import traceback
 class PrikazRecepta(QDialog):
     def __init__(self,parent,recept):
         super().__init__(parent)
-        try:
-            self.recept = recept
-            self.menadzerSastojci  =QApplication.instance().actionManager.sastojciMenadzer
-            self.menadzerOprema = QApplication.instance().actionManager.opremaMenadzer
-            self.initUi()
-        except:
-            traceback.print_exc()
+        self.parent = parent
+        self.recept = recept
+        self.menadzerSastojci  =QApplication.instance().actionManager.sastojciMenadzer
+        self.menadzerOprema = QApplication.instance().actionManager.opremaMenadzer
+        self.initUi()
+
         self.show()
+        self.exec_()
     def initUi(self):
         self.kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         self.setWindowTitle("Prikaz recepta")
@@ -25,7 +25,7 @@ class PrikazRecepta(QDialog):
         self.setFixedSize(1000,900)
         self.izgled = QGridLayout()
         self.setLayout(self.izgled)
-        matrica = ['1','','',
+        matrica = ['1','','11',
                  '3','','2',
                  '6', '', '7',
                  '4','','5',
@@ -88,6 +88,11 @@ class PrikazRecepta(QDialog):
                 ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena))
                 ocjena.setFixedSize(350,30)
                 self.izgled.addWidget(ocjena,*pozicija)
+        self.definisanjeDugmica(matrica,pozicije)
+
+    def definisanjeDugmica(self,matrica,pozicije):
+
+        for sadrzaj, pozicija in zip(matrica, pozicije):
             if sadrzaj =='8':
                 self.dodajSastojkeUKorpu=QPushButton("Dodaj sastojke")
                 self.dodajSastojkeUKorpu.clicked.connect(self.dodajSastojak)
@@ -100,7 +105,23 @@ class PrikazRecepta(QDialog):
                 self.ocjeniDugme = QPushButton("Ocjeni recept")
 
                 self.izgled.addWidget(self.ocjeniDugme,*pozicija)
+            if sadrzaj =='11':
+                self.dodajUKuvar = QPushButton('Dodaj u kuvar')
+                self.dodajUKuvar.clicked.connect(self.dodavanjeUVirtuelniKuvar)
+                self.izgled.addWidget(self.dodajUKuvar,*pozicija)
 
+
+
+    def dodavanjeUVirtuelniKuvar(self):
+
+        try:
+            vKuvar = QApplication.instance().actionManager.vKuvarMenadzer.vratiVirtuelniKuvar(
+                self.kuvarPocetnik.virtuelniKuvar
+            )
+            vKuvar.recepti.append(self.recept.id)
+            QApplication.instance().actionManager.vKuvarMenadzer.upisiVirtuelneKuvare()
+        except:
+            traceback.print_exc()
 
 
     def dodajSastojak(self):

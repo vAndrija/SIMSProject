@@ -47,9 +47,10 @@
         "oprema": [],
         "recepti": [
             2,
-            5
+            5,
+            1
         ],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 1,
         "spisakZaKupovinu": 1,
         "praceniKuvari": [],
         "praceneKategorije": [
@@ -75,7 +76,7 @@
         "recepti": [
             3
         ],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 2,
         "spisakZaKupovinu": 2,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -101,7 +102,7 @@
             1
         ],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 3,
         "spisakZaKupovinu": 3,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -129,7 +130,7 @@
             4
         ],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 4,
         "spisakZaKupovinu": 4,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -154,7 +155,7 @@
             0
         ],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 5,
         "spisakZaKupovinu": 5,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -182,7 +183,7 @@
             4
         ],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 6,
         "spisakZaKupovinu": 6,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -209,7 +210,7 @@
             4
         ],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 7,
         "spisakZaKupovinu": 7,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -230,7 +231,7 @@
         "dugotrajniSastojci": [],
         "oprema": [],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 8,
         "spisakZaKupovinu": 8,
         "praceniKuvari": [],
         "praceneKategorije": []
@@ -251,7 +252,7 @@
         "dugotrajniSastojci": [],
         "oprema": [],
         "recepti": [],
-        "virtuelniKuvar": 0,
+        "virtuelniKuvar": 9,
         "spisakZaKupovinu": 9,
         "praceniKuvari": [],
         "praceneKategorije": []
