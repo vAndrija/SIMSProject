@@ -266,12 +266,14 @@ class ProzorZaKreiranjeRecepta(QDialog):
 
         self.tabelaOpreme = QTableWidget()
         self.tabelaOpreme.setColumnCount(1)
+        self.tabelaOpreme.setColumnWidth(0,self.tabelaOpreme.width())
         self.tabelaOpreme.setRowCount(1)
 
         self.tabelaOpreme.setItem(0, 0, QTableWidgetItem("Naziv stavke"))
 
         self.tabelaKategorija = QTableWidget()
         self.tabelaKategorija.setColumnCount(1)
+        self.tabelaKategorija.setColumnWidth(0,self.tabelaKategorija.width())
         self.tabelaKategorija.setRowCount(1)
 
         self.tabelaKategorija.setItem(0, 0, QTableWidgetItem("Naziv kategorije"))
