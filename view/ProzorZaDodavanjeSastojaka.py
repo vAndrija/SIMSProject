@@ -34,7 +34,6 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
-
         self.postaviGrid()
 
         self.exec_()
@@ -49,7 +48,8 @@ class ProzorZaDodavanjeSastojaka(QDialog):
 
         matrica = [ '', '', '',
                     '', '', '',
-                 '', 'Izaberite sastojke:', '',
+                    '', 'Pretrazite tabelu:', '',
+                 '', '1', '',
                  '', '*', '',
                  '', '?', '',
                  '', 'Dodajte novi sastojak:', '',
@@ -60,7 +60,6 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                     '', '+', '',
                     '', '!', '',
                     '', '#', '',
-                    '', '', '',
                  ]
 
         pozicije = [(i, j) for i in range(14) for j in range(3)]
@@ -76,17 +75,13 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 grid.addWidget(self.nazivSastojka, *pozicija)
             elif sadrzaj == "*":
                 sviSastojci = self.sastojciMenadzer.sviSastojci
-                self.postojeciSastojci = Tabela(len(sviSastojci) + 1, 3)
+                self.postojeciSastojci = Tabela(1, 3)
                 self.postojeciSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
                 self.postojeciSastojci.setColumnWidth(0, 120)
                 self.postojeciSastojci.setColumnWidth(1,219)
                 self.postojeciSastojci.setColumnWidth(2, 140)
                 brojac = 1
-                for sastojak in sviSastojci:
-                    self.postojeciSastojci.setItem(brojac, 0, QTableWidgetItem(str(sastojak.sifra)))
-                    self.postojeciSastojci.setItem(brojac, 1, QTableWidgetItem(sastojak.naziv))
-                    self.postojeciSastojci.setItem(brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
-                    brojac += 1
+                self.popuniTabeluPostojece(sviSastojci)
                 self.postojeciSastojci.setFixedSize(500, 165)
                 grid.addWidget(self.postojeciSastojci, *pozicija)
             elif sadrzaj == "?":
@@ -120,6 +115,12 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 dugme.setFixedSize(250,30)
                 dugme.clicked.connect(self.zavrsenoDodavanje)
                 grid.addWidget(dugme, *pozicija)
+            elif sadrzaj == "1":
+                self.nazivFilter = QLineEdit()
+                self.nazivFilter.textChanged.connect(self.izvrsiPretragu)
+                self.nazivFilter.setFixedSize(250, 25)
+                self.nazivFilter.setToolTip("Unesite naziv sastojka da biste pretrazili tabelu.")
+                grid.addWidget(self.nazivFilter, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(170,35)
@@ -140,7 +141,11 @@ class ProzorZaDodavanjeSastojaka(QDialog):
             if red.row()-1 < 0:
                 ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
             else:
-                sastojak = sviSastojci[red.row()-1]
+                naziv = self.postojeciSastojci.item(red.row(), 2).text()
+                tipKolicine = self.vratiEnum(naziv)
+                sastojak = QApplication.instance().actionManager.sastojciMenadzer.vratiSastojakPoNazivuITipuKolicine(
+                    self.postojeciSastojci.item(red.row(), 1).text(), tipKolicine)
+                # sastojak = sviSastojci[red.row()-1]
                 if sastojak in self.dodatiUTabelu:
                     ObavestavajucaPoruka("Vec ste dodali ovaj sastojak.")
                 else:
@@ -196,3 +201,43 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 self.dodatiSastojci.setItem(brojRedova, 0, QTableWidgetItem(str(sastojak.sifra)))
                 self.dodatiSastojci.setItem(brojRedova, 1, QTableWidgetItem(sastojak.naziv))
                 self.dodatiSastojci.setItem(brojRedova, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
+
+    def izvrsiPretragu(self):
+        if self.nazivFilter.text() == "":
+            self.postojeciSastojci.setRowCount(1)
+            self.popuniTabeluPostojece(self.sastojciMenadzer.sviSastojci)
+        else:
+            self.postojeciSastojci.setRowCount(1)
+            self.filtrirajTabeluPostojece()
+
+    def popuniTabeluPostojece(self, sviSastojci):
+        self.postojeciSastojci.setColumnWidth(0, 120)
+        self.postojeciSastojci.setColumnWidth(1, 219)
+        self.postojeciSastojci.setColumnWidth(2, 140)
+        brojac = self.postojeciSastojci.rowCount()
+        self.postojeciSastojci.setRowCount(self.postojeciSastojci.rowCount()+len(sviSastojci))
+
+
+        for sastojak in sviSastojci:
+            self.postojeciSastojci.setItem(brojac, 0, QTableWidgetItem(str(sastojak.sifra)))
+            self.postojeciSastojci.setItem(brojac, 1, QTableWidgetItem(sastojak.naziv))
+            self.postojeciSastojci.setItem(brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
+            brojac += 1
+
+    def filtrirajTabeluPostojece(self):
+        naziv = self.nazivFilter.text()
+        for i in self.sastojciMenadzer.sviSastojci:
+            if i.naziv.upper().startswith(naziv.upper()):
+                self.popuniTabeluPostojece([i])
+
+    def vratiEnum(self, naziv):
+        if naziv == "GRAM":
+            return TipKolicine.GRAM
+        elif naziv == "DL":
+            return TipKolicine.DL
+        elif naziv == "KOMAD":
+            return TipKolicine.KOMAD
+        elif naziv == "SUPENAKASIKA":
+            return TipKolicine.SUPENAKASIKA
+        elif naziv == "PRSTOHVAT":
+            return  TipKolicine.PRSTOHVAT

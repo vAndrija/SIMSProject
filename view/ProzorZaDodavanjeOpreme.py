@@ -46,7 +46,8 @@ class ProzorZaDodavanjeOpreme(QDialog):
         self.setLayout(grid)
 
         matrica = [
-                   '', '','Izaberite opremu:',
+                   '', '','Pretrazite tabelu:',
+                    '', '', '1',
                    '', '', '*',
                    '', '', '?',
                    '', '','Dodajte novi aparat:',
@@ -62,7 +63,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
                     '', '', '',
                    ]
 
-        pozicije = [(i, j) for i in range(14) for j in range(3)]
+        pozicije = [(i, j) for i in range(15) for j in range(3)]
 
         for pozicija, sadrzaj in zip(pozicije, matrica):
             if sadrzaj == "-":
@@ -72,18 +73,13 @@ class ProzorZaDodavanjeOpreme(QDialog):
             elif sadrzaj == "*":
                 svaOprema = self.opremaMenadzer.svaOprema
 
-                self.postojecaOprema = Tabela(len(svaOprema) + 1, 3)
+                self.postojecaOprema = Tabela(1, 3)
                 self.postojecaOprema.dodajZaglavlja(["Sifra", "Naziv aparata", "Naziv marke"])
                 self.postojecaOprema.setColumnWidth(0, 120)
                 self.postojecaOprema.setColumnWidth(1,219)
                 self.postojecaOprema.setColumnWidth(2, 140)
 
-                brojac = 1
-                for aparat in svaOprema:
-                    self.postojecaOprema.setItem(brojac, 0, QTableWidgetItem(str(aparat.sifra)))
-                    self.postojecaOprema.setItem(brojac, 1, QTableWidgetItem(aparat.naziv))
-                    self.postojecaOprema.setItem(brojac, 2, QTableWidgetItem(aparat.marka))
-                    brojac += 1
+                self.popuniTabeluPostojece(svaOprema)
 
                 self.postojecaOprema.setFixedSize(522, 165)
                 grid.addWidget(self.postojecaOprema, *pozicija)
@@ -114,9 +110,15 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 dugme.setFixedSize(250,30)
                 dugme.clicked.connect(self.zavrsenoDodavanje)
                 grid.addWidget(dugme, *pozicija)
+            elif sadrzaj == "1":
+                self.nazivFilter = QLineEdit()
+                self.nazivFilter.textChanged.connect(self.izvrsiPretragu)
+                self.nazivFilter.setFixedSize(250, 25)
+                self.nazivFilter.setToolTip("Unesite ime aparata da biste pretrazili tabelu.")
+                grid.addWidget(self.nazivFilter, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(110,35)
+                labela.setFixedSize(150,35)
                 grid.addWidget(labela, *pozicija)
 
 
@@ -136,7 +138,8 @@ class ProzorZaDodavanjeOpreme(QDialog):
             if red.row() - 1 < 0:
                 self.kreirajDijalogSPorukom("Ne mozete oznaciti red sa nazivima kolona.")
             else:
-                oprema = svaOprema[red.row() - 1]
+                # oprema = svaOprema[red.row() - 1]
+                oprema = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(self.postojecaOprema.item(red.row(), 0).text())
                 if oprema in self.dodatiUTabelu:
                     ObavestavajucaPoruka("Oznaceni aparat ste vec dodali.")
                 else:
@@ -183,4 +186,36 @@ class ProzorZaDodavanjeOpreme(QDialog):
         self.hide()
         return self.dodatiUTabelu
 
+
+
+    def izvrsiPretragu(self):
+        if self.nazivFilter.text() == "":
+            self.postojecaOprema.setRowCount(1)
+            self.popuniTabeluPostojece(self.opremaMenadzer.svaOprema)
+        else:
+            self.postojecaOprema.setRowCount(1)
+            self.filtrirajTabeluPostojece()
+
+
+    def popuniTabeluPostojece(self, svaOprema):
+        self.postojecaOprema.setColumnWidth(0, 120)
+        self.postojecaOprema.setColumnWidth(1, 219)
+        self.postojecaOprema.setColumnWidth(2, 140)
+        # self.postojecaOprema = Tabela(len(svaOprema) + 1, 3)
+        brojac = self.postojecaOprema.rowCount()
+        self.postojecaOprema.setRowCount(self.postojecaOprema.rowCount()+len(svaOprema))
+
+
+        for aparat in svaOprema:
+            self.postojecaOprema.setItem(brojac, 0, QTableWidgetItem(str(aparat.sifra)))
+            self.postojecaOprema.setItem(brojac, 1, QTableWidgetItem(aparat.naziv))
+            self.postojecaOprema.setItem(brojac, 2, QTableWidgetItem(aparat.marka))
+            brojac += 1
+
+
+    def filtrirajTabeluPostojece(self):
+        naziv = self.nazivFilter.text()
+        for i in self.opremaMenadzer.svaOprema:
+            if i.naziv.upper().startswith(naziv.upper()):
+                self.popuniTabeluPostojece([i])
 

@@ -106,7 +106,7 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
     def azurirajProfil(self):
         try:
             if self.labelaIme.text() == self.korisnik.ime and self.labelaKorisnicko.text() == self.korisnik.korisnickoIme and self.labelaPrezime.text() == self.korisnik.prezime and self.korisnik.datumRodjenja == str(
-                self.labelaDatum.date().toPyDate()) and self.labelaAdresa.text() == self.korisnik.adresa and self.labelaMejl.text() == self.korisnik.mejl and self.labelaMesto.text() == self.korisnik.mesto.nazivMesta and self.labelaPostanski.text() == self.korisnik.mesto.postanskiBroj:
+                self.labelaDatum.date().toPyDate()) and self.labelaAdresa.text() == self.korisnik.adresa and self.labelaMejl.text() == self.korisnik.mejl and self.labelaMesto.text() == self.korisnik.mesto.nazivMesta and self.labelaPostanski.text() == self.korisnik.mesto.postanskiBroj and self.comboBox.currentIndex() == self.korisnik.pol:
                     ObavestavajucaPoruka("Morate naciniti neke promene.")
             else:
                 self.korisnik.ime = self.labelaIme.text()

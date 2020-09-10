@@ -21,6 +21,11 @@ class PraceniKuvari(QDialog):
         self.setWindowIcon(icon)
         sadrzaj = ""
         self.setFixedSize(600,600)
+        image = QImage("..\slike\praceniKuvari.jpg")
+        sImage = image.scaled(self.size())
+        palette = QPalette()
+        palette.setBrush(QPalette.Window, QBrush(sImage))
+        self.setPalette(palette)
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
@@ -46,16 +51,16 @@ class PraceniKuvari(QDialog):
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "1":
-                self.tabela = Tabela(len(self.kuvarPocetnik.praceniKuvari) + 1, 3)
+                self.tabela = Tabela(len(self.kuvarPocetnik.praceniKuvari) + 1, 1)
                 self.tabela.dodajZaglavlja(["Korisnicko"])
-                self.tabela.setColumnWidth(0, 120)
+                self.tabela.setColumnWidth(0, 200)
 
                 brojac = 1
                 for naziv in self.kuvarPocetnik.praceniKuvari:
                     self.tabela.setItem(brojac, 0, QTableWidgetItem(
                        naziv))
                     brojac += 1
-                self.tabela.setFixedSize(150, 160)
+                self.tabela.setFixedSize(200, 160)
                 self.grid.addWidget(self.tabela, *pozicija)
             elif sadrzaj == "2":
 
@@ -77,7 +82,7 @@ class PraceniKuvari(QDialog):
                 self.brisanje.clicked.connect(self.otpratiKuvara)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(130, 20)
+                labela.setFixedSize(200, 20)
                 self.grid.addWidget(labela, *pozicija)
 
 

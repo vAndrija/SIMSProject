@@ -18,7 +18,7 @@ class PrikazKategorija(QDialog):
 
     def initUi(self):
         self.setFixedSize(700, 700)
-        image = QImage("..\slike\sastojci6.jpg")
+        image = QImage("..\slike\kategorije.jpg")
         sImage = image.scaled(QSize(700, 700))
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
@@ -38,13 +38,14 @@ class PrikazKategorija(QDialog):
         self.nazivi  =[]
         for kategorija in self.kuvarPocetnik.praceneKategorije:
             self.nazivi.append(QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(kategorija))
-        matrica = ['Pracene kategorije:', '', '',
+        matrica = ['', 'Pracene kategorije:', '',
                    '', '1', '',
                    '', '4','',
-                   'Dodavanje nove kategorije:', '2', '',
+                   '','Dodavanje nove kategorije:','',
+                   '', '2', '',
                    '', '3', '',
                    ]
-        pozicije = [(i, j) for i in range(5) for j in range(3)]
+        pozicije = [(i, j) for i in range(6) for j in range(3)]
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "1":
@@ -66,7 +67,7 @@ class PrikazKategorija(QDialog):
                 kompleter.setCaseSensitivity(Qt.CaseInsensitive)
                 self.labela = QLineEdit()
                 self.labela.setCompleter(kompleter)
-                self.labela.setFixedSize(130, 20)
+                self.labela.setFixedSize(180, 20)
                 self.grid.addWidget(self.labela, *pozicija)
             elif sadrzaj == "3":
                 self.dugme = QPushButton("Dodaj novu kategoriju")
@@ -80,7 +81,7 @@ class PrikazKategorija(QDialog):
                 self.brisanje.clicked.connect(self.brisanjeKategorije)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(130, 20)
+                labela.setFixedSize(180, 20)
                 self.grid.addWidget(labela, *pozicija)
 
     def brisanjeKategorije(self):

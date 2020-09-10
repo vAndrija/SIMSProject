@@ -85,7 +85,7 @@ class SpisakZaKupovinu(QDialog):
                             str(str(self.spisak.oprema[str(proizvod.sifra)]))
                         ))
                     brojac += 1
-                self.setMinimumSize(200,400)
+                self.tabela.setFixedSize(385,400)
                 self.grid.addWidget(self.tabela,*pozicija)
             elif sadrzaj =="2":
                 self.narucivanje = QPushButton("Naruci sa sajta")
@@ -98,7 +98,7 @@ class SpisakZaKupovinu(QDialog):
                 self.grid.addWidget(self.stampanje,*pozicija)
             elif sadrzaj =="0":
                 labela = QLabel('<h6>{0}</h6>'.format('Dodati proizvodi u korpu:'))
-                labela.setFixedSize(200,20)
+                labela.setFixedSize(180,20)
                 self.grid.addWidget(labela,*pozicija)
             else:
                 labela = QLabel(sadrzaj)

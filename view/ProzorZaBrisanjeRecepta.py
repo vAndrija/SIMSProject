@@ -94,8 +94,8 @@ class ProzorZaBrisanjeRecepta(QDialog):
         self.tabelaRecepata = QTableWidget()
         self.tabelaRecepata.setColumnCount(2)
         self.tabelaRecepata.setRowCount(1)
-        self.tabelaRecepata.setItem(0, 0, QTableWidgetItem("sifra recepta"))
-        self.tabelaRecepata.setItem(0, 1, QTableWidgetItem("naziv recepta"))
+        self.tabelaRecepata.setItem(0, 0, QTableWidgetItem("Sifra recepta"))
+        self.tabelaRecepata.setItem(0, 1, QTableWidgetItem("Naziv recepta"))
 
         self.tabelaRecepata.setColumnWidth(0, 225)
         self.tabelaRecepata.setColumnWidth(1, 225)
@@ -122,7 +122,7 @@ class ProzorZaBrisanjeRecepta(QDialog):
                 self.nazivRecepta.setFixedSize(250, 25)
                 grid.addWidget(self.nazivRecepta, *position)
             elif name == '/':
-                self.labelaNaziva = QLabel("Naziv recepta")
+                self.labelaNaziva = QLabel("Naziv recepta:")
                 grid.addWidget(self.labelaNaziva, *position)
 
             elif name == '^^^':
@@ -136,7 +136,7 @@ class ProzorZaBrisanjeRecepta(QDialog):
 
         image = QImage('..\slike\slicicaBrisanje.jpg')
 
-        sImage = image.scaled(QSize(650, 420))
+        sImage = image.scaled(QSize(700, 600))
 
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
@@ -154,5 +154,5 @@ class ProzorZaBrisanjeRecepta(QDialog):
         self.setFixedWidth(700)
         self.setFixedHeight(600)
         self.move(300, 150)
-        self.setWindowTitle('Dodavanje recepata')
+        self.setWindowTitle('Brisanje recepta')
         self.show()
