@@ -105,7 +105,7 @@ class PrikazReceptaUredniku(QDialog):
                 self.kategorije.setFont(QFont('Times', 12))
                 self.izgled.addWidget(self.kategorije,*pozicija)
             if sadrzaj =='7':
-                ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena))
+                ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
                 ocjena.setAlignment(Qt.AlignCenter)
                 ocjena.setFixedSize(350,30)
                 self.izgled.addWidget(ocjena,*pozicija)

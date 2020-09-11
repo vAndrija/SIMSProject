@@ -29,7 +29,7 @@ class PrikazRecepta(QDialog):
                  '3','','2',
                  '6', '', '7',
                  '4','','5',
-                 '8','10','9']
+                 '8','','9']
         self.sastojci=[]
         self.oprema = []
         pozicije = [(i, j) for i in range(5) for j in range(3)]
@@ -85,10 +85,12 @@ class PrikazRecepta(QDialog):
                 kategorije.setText("<h3>Kategorije: {0}</h3>".format(spojeno))
                 self.izgled.addWidget(kategorije,*pozicija)
             if sadrzaj =='7':
-                ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena))
-                ocjena.setFixedSize(350,30)
-                self.izgled.addWidget(ocjena,*pozicija)
+                self.ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost), self)
+                self.ocjena.setFixedSize(350,30)
+                self.izgled.addWidget(self.ocjena,*pozicija)
         self.definisanjeDugmica(matrica,pozicije)
+        if QApplication.instance().actionManager.receptiMenadzer.proveriPripadnostRecepta(self.recept.id) == False:
+            self.dodajElementeZaOcenjivanje()
 
     def definisanjeDugmica(self,matrica,pozicije):
 
@@ -101,14 +103,30 @@ class PrikazRecepta(QDialog):
                self.dodajOpremu =QPushButton("Dodaj opremu")
                self.dodajOpremu.clicked.connect(self.dodajOpremuMetoda)
                self.izgled.addWidget(self.dodajOpremu,*pozicija)
-            if sadrzaj =='10':
-                self.ocjeniDugme = QPushButton("Ocjeni recept")
-
-                self.izgled.addWidget(self.ocjeniDugme,*pozicija)
             if sadrzaj =='11':
                 self.dodajUKuvar = QPushButton('Dodaj u kuvar')
                 self.dodajUKuvar.clicked.connect(self.dodavanjeUVirtuelniKuvar)
                 self.izgled.addWidget(self.dodajUKuvar,*pozicija)
+
+    def dodajElementeZaOcenjivanje(self):
+        labela = QLabel("<h3>Izaberite ocenu:</h3>")
+        self.izgled.addWidget(labela, 2, 1)
+        self.comboOcena = QComboBox()
+        for i in range(1,11):
+            self.comboOcena.addItem(str(i))
+        font = QFont()
+        font.setBold(True)
+        self.comboOcena.setFont(font)
+        self.izgled.addWidget(self.comboOcena, 3, 1)
+        self.ocjeniDugme = QPushButton("Ocjeni recept")
+        self.ocjeniDugme.clicked.connect(self.oceniRecept)
+        self.izgled.addWidget(self.ocjeniDugme, 4, 1)
+
+
+    def oceniRecept(self):
+        ocena = self.comboOcena.currentIndex() + 1
+        QApplication.instance().actionManager.receptiMenadzer.dodajOcenuReceptu(self.recept, ocena)
+        self.ocjena.setText("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
 
 
 

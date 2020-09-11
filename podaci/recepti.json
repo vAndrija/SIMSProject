@@ -10,7 +10,10 @@
             "1": 300
         },
         "kategorije": [],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "Najsladji kolac ikadaaaa"
     },
@@ -25,7 +28,10 @@
             0,
             1
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "Kolac sa najvise slasti poznat svima od malena. Vrlo jednostavna priprema a pri tome kolac koji ce sigurno zadovoljiti svaciji ukus"
     },
@@ -38,7 +44,10 @@
             2,
             0
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 4.0,
+            "brojOcena": 15
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "slano ukusno jelo. jednostavna priprema."
     },
@@ -50,7 +59,10 @@
         "kategorije": [
             0
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpeg",
         "opis": "brzi dorucak"
     },
@@ -62,7 +74,10 @@
         "kategorije": [
             0
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 9.7,
+            "brojOcena": 3
+        },
         "ekstenzijaSlike": "jpeg",
         "opis": "Glavno jelo za posebne prilike"
     },
@@ -77,7 +92,10 @@
             "3": 15.0
         },
         "kategorije": [],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "Doda se casa vode i to je to"
     },
@@ -100,7 +118,10 @@
             0,
             4
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "U toploj vodi vodi staviti ka\u0161i\u010dicu \u0161e\u0107era i izdrobiti kvasac. Sa\u010dekati da naraste. U bra\u0161no staviti so, ostatak \u0161e\u0107era, ulje, i vodu sa kvascem. Umesiti testo (ako je potrebno dodati jo\u0161 bra\u0161na). Podeliti testo na 2 dela i ostaviti da naraste (odprilike 15-ak minuta).\n\n2\nOba pleha dobro premazati uljem (da se ne bi testo zalepilo) i razvu\u0107i testo rukama. Po testu sipatu ke\u010dap i ravnomerno razmazati.\n\n3\nZatim staviti: \u0161unku (na polukrugove), \u010dajnu kobasicu, slaninicu, pe\u010durke (na listi\u0107e), masline (koli\u010dina po \u017eelji). Na svaku 1/8 testa rabiti jaje (po \u017eelji). Posuti sa origanom i obilno nastrugati ka\u010dkavalj.\n\n4\nStaviti da se pe\u010de u prethodno zagrejanu rernu na 190 stepeni."
     },
@@ -117,7 +138,10 @@
             "11": 250.0
         },
         "kategorije": [],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "Piletinu operite i posu\u0161ite papirnatim ubrusom. Zajedno pomije\u0161ajte sol, Vegetu Natur za piletinu i \u010dili, pa s tom mje\u0161avinom dobro natrljajte piletinu. 2. Tepsiju (32x17 cm) lagano prema\u017eite uljem i u nju poslo\u017eite piletinu tako da ko\u017eica bude okrenuta prema gore. 3. Piletinu prelijte s ostatkom ulja i stavite pe\u0107i u prethodno zagrijanu pe\u0107nicu na 180 \u00b0C i pecite 80 minuta. Piletinu ni u kom slu\u010daju nemojte okretati kako bi se ko\u017eica zarumenila i postala hrskava. 4. Vodu pustite da zakuha, pa dodajte koko\u0161ju kocku, sol i pustite da lagano kuha 5 minuta. Dodajte tijesto i kad je kuhano ocijedite ga, isperite, a dio teku\u0107ine sa\u010duvajte."
     },
@@ -137,7 +161,10 @@
             0,
             5
         ],
-        "ocena": 0,
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0
+        },
         "ekstenzijaSlike": "jpg",
         "opis": "\nPiletinu ise\u0107i na kockice, za\u010diniti, pa pr\u017eiti na ulju. Kada je ispr\u017eena, izvaditi je iz tiganja pa u istom ulju propr\u017eiti sitno seckan luk i \u0161ampinjone. Posoliti po ukusu. Kada bude gotovo, u tiganj vratiti piletinu pa na tihoj vatri pr\u017eiti.\n\n2\nU posudi razmutiti dva jaja, pa dodati pavlaku za kuvanje. Sve sjediniti, pa preliti smesu u tiganju. Sve zajedno pr\u017eiti nekoliko minuta i onda skinuti sa vatre.\n\n3\nLisnato testo rasklagijati \u0161to tanje, i odprilike u obliku va\u0161e posude za pe\u010denje.\n\n4\nU vatrostalnu posudu sipati smesu iz tiganja, pa prekriti lisnatim testom. Pe\u0107i 30 minuta na 200 stepeni. Kada je pe\u010denje odprilike na pola, onda razmutiti preostalo jaje i premazati lisnato testo. Vratiti nakon toga odmah u \u0161poret da se dope\u010de"
     }
