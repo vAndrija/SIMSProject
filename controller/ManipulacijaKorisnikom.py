@@ -41,9 +41,9 @@ class ManipulacijaKorisnikom(object):
         :return:
         """
         grad = Mesto(mesto, postanskiBr)
-
+        promocija = 0
         noviKorisnik = KuvarPocetnik(ime, prezime, kIme, lozinka, mejl, datum, adresa, grad, pol, sastojci, oprema, recepti,
-                                     kuvar, spisak, praceniKuvari, praceneKategorije)
+                                     kuvar, spisak, praceniKuvari, praceneKategorije,promocija)
         QApplication.instance().actionManager.spiskoviMenadzer.kreirajSpisakZaKupovinu(noviKorisnik)
         QApplication.instance().actionManager.vKuvarMenadzer.kreirajVirtuelniKuvar(noviKorisnik)
         osnovnaPutanja = os.getcwd()[:-4]

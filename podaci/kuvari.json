@@ -32,7 +32,8 @@
         ],
         "praceneKategorije": [
             0
-        ]
+        ],
+        "promocija": 0
     },
     {
         "korisnickoIme": "jovanica",
@@ -55,7 +56,8 @@
         "virtuelniKuvar": 1,
         "spisakZaKupovinu": 1,
         "praceniKuvari": [],
-        "praceneKategorije": []
+        "praceneKategorije": [],
+        "promocija": 0
     },
     {
         "korisnickoIme": "nemanja99",
@@ -82,6 +84,7 @@
         "virtuelniKuvar": 2,
         "spisakZaKupovinu": 2,
         "praceniKuvari": [],
-        "praceneKategorije": []
+        "praceneKategorije": [],
+        "promocija": 0
     }
 ]
