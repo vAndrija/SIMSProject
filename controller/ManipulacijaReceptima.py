@@ -5,7 +5,7 @@ import traceback
 from model.Kategorija import *
 import jsonpickle
 from PyQt5.QtWidgets import *
-
+from model.Ocena import *
 from model.ObicniRecept import *
 
 
@@ -33,7 +33,7 @@ class ManipulacijaReceptima():
                 recept.ocena = ocena
                 self.recepti.append(recept)
         except:
-            pass
+            traceback.print_exc()
 
 
 
@@ -117,8 +117,12 @@ class ManipulacijaReceptima():
         putanja = os.path.join(osnovnaPutanja, 'dizajn')
         ekstenzija =  putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("/")[-1]
-        id = self.recepti[-1].id + 1
-        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
+        if len(self.recepti)==0:
+            id=0
+        else:
+            id = self.recepti[-1].id + 1
+        ocena = Ocena(0,0)
+        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, ocena, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
         os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
@@ -147,6 +151,7 @@ class ManipulacijaReceptima():
 
     def receptiPretraga(self, naziv, kategorije,napredno):
         korisnik = QApplication.instance().actionManager.prijavljeniKorisnik
+
         try:
             povratna = []
             nedostajeOpreme = []
@@ -161,7 +166,7 @@ class ManipulacijaReceptima():
                     for sastojak in recept.sastojci.keys():
                         postoji = False
                         for dugotrajni in korisnik.dugotrajniSastojci:
-                            if(dugotrajni==sastojak):
+                            if(dugotrajni==int(sastojak)):
                                 postoji =True
                                 break
                         if not postoji:
@@ -235,7 +240,7 @@ class ManipulacijaReceptima():
         for sastojak in recept.sastojci.keys():
             postoji=False
             for dugotrajniSastojak in kuvarPocetnik.dugotrajniSastojci:
-                if(sastojak==dugotrajniSastojak):
+                if(int(sastojak)==dugotrajniSastojak):
                     postoji=True
                     break
             if not postoji:
@@ -335,3 +340,15 @@ class ManipulacijaReceptima():
                 sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(recept.naziv)
         with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
             output.writelines(sadrzaj)
+
+    def proveriPripadnostRecepta(self, idRecepta):
+        for recept in QApplication.instance().actionManager.prijavljeniKorisnik.recepti:
+            if recept == idRecepta:
+                return True
+        return False
+
+    def dodajOcenuReceptu(self, recept, novaOcena):
+        suma = recept.ocena.vrednost * recept.ocena.brojOcena + novaOcena
+        recept.ocena.brojOcena += 1
+        recept.ocena.vrednost = round(suma / recept.ocena.brojOcena, 1)
+        self.sacuvajRecepte()
