@@ -58,27 +58,30 @@ class ManipulacijaSastojcima(object):
         Funkcija koja ucitava sve sastojke iz fajla sastojci.json u listu svih sastojaka.
         :return:
         """
-        tekst = open('.\..\podaci\sastojci.json').read()
-        if tekst == "":
-            self.podaci = []
-        else:
-            self.podaci = jsonpickle.decode(tekst)
-
-        for podatak in self.podaci:
-            sastojak = Sastojak(**podatak)
-            if podatak["tipKolicine"] == "GRAM":
-                tipKolicine = TipKolicine.GRAM
-            elif podatak["tipKolicine"] == "KOMAD":
-                tipKolicine = TipKolicine.KOMAD
-            elif podatak["tipKolicine"] == "DL":
-                tipKolicine = TipKolicine.DL
-            elif podatak["tipKolicine"] == "PRSTOHVAT":
-                tipKolicine = TipKolicine.PRSTOHVAT
+        try:
+            tekst = open('.\..\podaci\sastojci.json').read()
+            if tekst == "":
+                self.podaci = []
             else:
-                tipKolicine = TipKolicine.SUPENAKASIKA
-            sastojak.tipKolicine = tipKolicine
+                self.podaci = jsonpickle.decode(tekst)
 
-            self.sviSastojci.append(sastojak)
+            for podatak in self.podaci:
+                sastojak = Sastojak(**podatak)
+                if podatak["tipKolicine"] == "GRAM":
+                    tipKolicine = TipKolicine.GRAM
+                elif podatak["tipKolicine"] == "KOMAD":
+                    tipKolicine = TipKolicine.KOMAD
+                elif podatak["tipKolicine"] == "DL":
+                    tipKolicine = TipKolicine.DL
+                elif podatak["tipKolicine"] == "PRSTOHVAT":
+                    tipKolicine = TipKolicine.PRSTOHVAT
+                else:
+                    tipKolicine = TipKolicine.SUPENAKASIKA
+                sastojak.tipKolicine = tipKolicine
+
+                self.sviSastojci.append(sastojak)
+        except:
+            pass
 
 
     def proveraPostojanjaSastojka(self, sastojak):

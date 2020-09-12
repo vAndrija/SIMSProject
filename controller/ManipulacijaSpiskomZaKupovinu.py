@@ -18,15 +18,18 @@ class ManipulacijaSpiskomZaKupovinu:
 
         return obj.__dict__
     def ucitajSpiskove(self):
-        tekst = open('.\..\podaci\spiskovi.json').read()
-        if tekst != "":
-            self.podaci = jsonpickle.decode(tekst)
-        else:
-            return
+        try:
+            tekst = open('.\..\podaci\spiskovi.json').read()
+            if tekst != "":
+                self.podaci = jsonpickle.decode(tekst)
+            else:
+                return
 
-        for podatak in self.podaci:
-            spisak =SpisakZaKupovinu(**podatak)
-            self.sviSpiskovi.append(spisak)
+            for podatak in self.podaci:
+                spisak =SpisakZaKupovinu(**podatak)
+                self.sviSpiskovi.append(spisak)
+        except:
+            pass
 
     def upisiSpiskove(self):
         """

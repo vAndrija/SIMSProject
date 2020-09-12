@@ -95,17 +95,20 @@ class ManipulacijaKorisnikom(object):
         """
         # with open('.\..\podaci\kuvari.json', 'r') as outfile:
         #     self.sviKorisnici = json.load(outfile,default=lambda  o: o.__dict__,indent = 4)
-        tekst = open('.\..\podaci\kuvari.json').read()
-        if tekst == "":
-            self.podaci = []
-        else:
-            self.podaci = jsonpickle.decode(tekst)
+        try:
+            tekst = open('.\..\podaci\kuvari.json').read()
+            if tekst == "":
+                self.podaci = []
+            else:
+                self.podaci = jsonpickle.decode(tekst)
 
-        for i in self.podaci:
-            korisnik = KuvarPocetnik(**i)
-            mesto = Mesto(**i['mesto'])
-            korisnik.mesto = mesto
-            self.sviKuvari.append(korisnik)
+            for i in self.podaci:
+                korisnik = KuvarPocetnik(**i)
+                mesto = Mesto(**i['mesto'])
+                korisnik.mesto = mesto
+                self.sviKuvari.append(korisnik)
+        except:
+            pass
 
 
     def citajAdmineUrednike(self):

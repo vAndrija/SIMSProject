@@ -7,7 +7,6 @@ import jsonpickle
 from PyQt5.QtWidgets import *
 
 from model.ObicniRecept import *
-from model.Ocena import *
 
 
 class ManipulacijaReceptima():
@@ -18,30 +17,36 @@ class ManipulacijaReceptima():
 
         self.ucitajKategorije()
         self.ucitajRecepte()
-        #self.kreirajRecept("Piletina","C:\\Users\\korisnik\\Desktop\piletina.jpeg",
-                           #"Glavno jelo za posebne prilike",[],["glavno jelo","ukusno"],{})
+
 
     def ucitajRecepte(self):
         """
         Funkcija ucitava sadrzaj iz .json fajla i kastuje ih u objekte ObicniRecept klase
         :return:
         """
-        tekst = open('.\..\podaci\\recepti.json').read()
-        tekst = jsonpickle.decode(tekst)
-        for item in tekst:
-            recept = ObicniRecept(**item)
-            ocena = Ocena(**item['ocena'])
-            recept.ocena = ocena
-            self.recepti.append(recept)
+        try:
+            tekst = open('.\..\podaci\\recepti.json').read()
+            tekst = jsonpickle.decode(tekst)
+            for item in tekst:
+                recept = ObicniRecept(**item)
+                ocena = Ocena(**item['ocena'])
+                recept.ocena = ocena
+                self.recepti.append(recept)
+        except:
+            pass
+
 
 
 
     def ucitajKategorije(self):
-        tekst=  open('.\..\podaci\\kategorije.json').read()
-        tekst= jsonpickle.decode(tekst)
-        for item in tekst:
-            kategorija = Kategorija(**item)
-            self.kategorije.append(kategorija)
+        try:
+            tekst=  open('.\..\podaci\\kategorije.json').read()
+            tekst= jsonpickle.decode(tekst)
+            for item in tekst:
+                kategorija = Kategorija(**item)
+                self.kategorije.append(kategorija)
+        except:
+            pass
 
     def dodajKategoriju(self,naziv):
         kategorija= Kategorija(len(self.kategorije),naziv)
@@ -113,8 +118,7 @@ class ManipulacijaReceptima():
         ekstenzija =  putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("/")[-1]
         id = self.recepti[-1].id + 1
-        ocena = Ocena(0,0)
-        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, ocena, ekstenzija, opis)
+        noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, 0, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
         os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
@@ -331,15 +335,3 @@ class ManipulacijaReceptima():
                 sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(recept.naziv)
         with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
             output.writelines(sadrzaj)
-
-    def proveriPripadnostRecepta(self, idRecepta):
-        for recept in QApplication.instance().actionManager.prijavljeniKorisnik.recepti:
-            if recept == idRecepta:
-                return True
-        return False
-
-    def dodajOcenuReceptu(self, recept, novaOcena):
-        suma = recept.ocena.vrednost * recept.ocena.brojOcena + novaOcena
-        recept.ocena.brojOcena += 1
-        recept.ocena.vrednost = round(suma/recept.ocena.brojOcena,1)
-        self.sacuvajRecepte()

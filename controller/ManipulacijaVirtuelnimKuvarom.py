@@ -19,15 +19,18 @@ class ManipulacijaVirtuelnimKuvarom:
 
         return obj.__dict__
     def ucitajVirtuelneKuvare(self):
-        tekst = open('.\..\podaci\\virtuelniKuvar.json').read()
-        if tekst != "":
-            self.podaci = jsonpickle.decode(tekst)
-        else:
-            return
+        try:
+            tekst = open('.\..\podaci\\virtuelniKuvar.json').read()
+            if tekst != "":
+                self.podaci = jsonpickle.decode(tekst)
+            else:
+                return
 
-        for podatak in self.podaci:
-            vKuvar =VirtuelniKuvar(**podatak)
-            self.sviVirtuelniKuvari.append(vKuvar)
+            for podatak in self.podaci:
+                vKuvar =VirtuelniKuvar(**podatak)
+                self.sviVirtuelniKuvari.append(vKuvar)
+        except:
+            pass
 
     def upisiVirtuelneKuvare(self):
         """
@@ -39,10 +42,10 @@ class ManipulacijaVirtuelnimKuvarom:
 
     def kreirajVirtuelniKuvar(self,kuvarPocetnik):
         id = None
-        if len(self.sviSpiskovi) == 0:
+        if len(self.sviVirtuelniKuvari) == 0:
             id = 0
         else:
-            id = self.sviSpiskovi[-1].id+1
+            id = self.sviVirtuelniKuvari[-1].id+1
         novi = VirtuelniKuvar(id,"",[])
         kuvarPocetnik.virtuelniKuvar=id
         self.sviVirtuelniKuvari.append(novi)

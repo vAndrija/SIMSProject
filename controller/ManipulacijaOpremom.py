@@ -55,15 +55,18 @@ class ManipulacijaOpremom(object):
         Funkcija koja ucitava sve aparate iz oprema.json fajla i smesta ih u listu.
         :return:
         """
-        tekst = open('.\..\podaci\oprema.json').read()
-        if tekst == "":
-            self.podaci = []
-        else:
-            self.podaci = jsonpickle.decode(tekst)
+        try:
+            tekst = open('.\..\podaci\oprema.json').read()
+            if tekst == "":
+                self.podaci = []
+            else:
+                self.podaci = jsonpickle.decode(tekst)
 
-        for podatak in self.podaci:
-            oprema = Oprema(**podatak)
-            self.svaOprema.append(oprema)
+            for podatak in self.podaci:
+                oprema = Oprema(**podatak)
+                self.svaOprema.append(oprema)
+        except:
+            pass
 
     def proveraPostojanjaOpreme(self, novaOprema):
         """
