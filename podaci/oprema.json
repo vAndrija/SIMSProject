@@ -8,5 +8,15 @@
         "sifra": 1,
         "naziv": "tepsija",
         "marka": ""
+    },
+    {
+        "sifra": 2,
+        "naziv": "tiganj",
+        "marka": ""
+    },
+    {
+        "sifra": 3,
+        "naziv": "serpa",
+        "marka": ""
     }
 ]

@@ -11,6 +11,7 @@ from model.KuvarPocetnik import *
 from model.Urednik import *
 from view.AdministratorPocetna import *
 from view.UrednikPocetna import *
+from view.ObavestavajucaPoruka import *
 
 
 class ProzorZaPrijavu(QWidget):
@@ -123,7 +124,9 @@ class ProzorZaPrijavu(QWidget):
                 QApplication.instance().actionManager.glavniProzor=KuvarPocetna()
                 QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None,None,None,None)
         else:
-            self.lozinka.setText("Pogresna lozinka ili korisnicko ime")
+            ObavestavajucaPoruka("Pogresno korisnicko ime ili lozinka. Pokusajte ponovo.")
+            self.lozinka.setText("")
+            self.korisnickoIme.setText("")
 
 
 

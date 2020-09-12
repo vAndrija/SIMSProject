@@ -140,7 +140,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
             else:
                 # oprema = svaOprema[red.row() - 1]
                 oprema = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(self.postojecaOprema.item(red.row(), 0).text())
-                if oprema in self.dodatiUTabelu:
+                if oprema.sifra in self.dodatiUTabelu:
                     ObavestavajucaPoruka("Oznaceni aparat ste vec dodali.")
                 else:
                     self.dodataOprema.insertRow(brojRedova + brojac)

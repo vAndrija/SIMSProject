@@ -146,7 +146,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 sastojak = QApplication.instance().actionManager.sastojciMenadzer.vratiSastojakPoNazivuITipuKolicine(
                     self.postojeciSastojci.item(red.row(), 1).text(), tipKolicine)
                 # sastojak = sviSastojci[red.row()-1]
-                if sastojak in self.dodatiUTabelu:
+                if sastojak.sifra in self.dodatiUTabelu:
                     ObavestavajucaPoruka("Vec ste dodali ovaj sastojak.")
                 else:
                     self.dodatiSastojci.insertRow(brojRedova + brojac)

@@ -27,7 +27,9 @@
         ],
         "virtuelniKuvar": 0,
         "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
+        "praceniKuvari": [
+            "jovanica"
+        ],
         "praceneKategorije": [
             0
         ]
@@ -47,7 +49,9 @@
         "pol": 0,
         "dugotrajniSastojci": [],
         "oprema": [],
-        "recepti": [],
+        "recepti": [
+            3
+        ],
         "virtuelniKuvar": 1,
         "spisakZaKupovinu": 1,
         "praceniKuvari": [],

@@ -98,5 +98,35 @@
         "sifra": 19,
         "naziv": "mlijeko",
         "tipKolicine": "DL"
+    },
+    {
+        "sifra": 20,
+        "naziv": "pilece belo meso",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 21,
+        "naziv": "pavlaka za kuvanje",
+        "tipKolicine": "DL"
+    },
+    {
+        "sifra": 22,
+        "naziv": "taljatele",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 23,
+        "naziv": "vegeta",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 24,
+        "naziv": "tikvice",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 25,
+        "naziv": "crvene paprike",
+        "tipKolicine": "KOMAD"
     }
 ]

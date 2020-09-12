@@ -6,6 +6,8 @@ class Tabela(QTableWidget):
         super().__init__()
         self.setRowCount(brojRedova)
         self.setColumnCount(brojKolona)
+        self.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.setSelectionMode(QAbstractItemView.SingleSelection)
 
     def dodajZaglavlja(self, lista):
         brojac = 0

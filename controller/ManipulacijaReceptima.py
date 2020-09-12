@@ -121,7 +121,7 @@ class ManipulacijaReceptima():
             id=0
         else:
             id = self.recepti[-1].id + 1
-        ocena = Ocena(0,0)
+        ocena = Ocena(0,0, [])
         noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, ocena, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
         os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
@@ -347,8 +347,16 @@ class ManipulacijaReceptima():
                 return True
         return False
 
+
+    def proveriPrethodnoOcenjivanje(self, recept):
+        for korisnicko in recept.ocena.kuvari:
+            if korisnicko == QApplication.instance().actionManager.prijavljeniKorisnik.korisnickoIme:
+                return True
+        return False
+
     def dodajOcenuReceptu(self, recept, novaOcena):
         suma = recept.ocena.vrednost * recept.ocena.brojOcena + novaOcena
         recept.ocena.brojOcena += 1
         recept.ocena.vrednost = round(suma / recept.ocena.brojOcena, 1)
+        recept.ocena.kuvari.append(QApplication.instance().actionManager.prijavljeniKorisnik.korisnickoIme)
         self.sacuvajRecepte()

@@ -18,7 +18,8 @@
         ],
         "ocena": {
             "vrednost": 0,
-            "brojOcena": 0
+            "brojOcena": 0,
+            "kuvari": []
         },
         "ekstenzijaSlike": "jpg",
         "opis": "Maline samljeti pa ih pomje sa secerom i jogurtom.\n\nMaskarpone sjediniti sa Lino ladom, sirom i vanilinim secerom, dobro izmjesat.\nPripremiti 3-4 case zavisi od velicine Kod mene su bile malo vece. Na dno redjati malina smjesu preko sir smjesu pa Po vrhu jos ukrasiti sa malo malina smjesom.\nPreko stavljati svjeze maline i ribanu cokoladu."
@@ -49,7 +50,8 @@
         ],
         "ocena": {
             "vrednost": 0,
-            "brojOcena": 0
+            "brojOcena": 0,
+            "kuvari": []
         },
         "ekstenzijaSlike": "jpg",
         "opis": "U toploj vodi vodi staviti ka\u0161i\u010dicu \u0161e\u0107era i izdrobiti kvasac. Sa\u010dekati da naraste. U bra\u0161no staviti so, ostatak \u0161e\u0107era, ulje, i vodu sa kvascem. Umesiti testo (ako je potrebno dodati jo\u0161 bra\u0161na). Podeliti testo na 2 dela i ostaviti da naraste (odprilike 15-ak minuta).Oba pleha dobro premazati uljem (da se ne bi testo zalepilo) i razvu\u0107i testo rukama. Po testu sipatu ke\u010dap i ravnomerno razmazati.Zatim staviti: \u0161unku (na polukrugove), \u010dajnu kobasicu, slaninicu, pe\u010durke (na listi\u0107e), masline (koli\u010dina po \u017eelji). Na svaku 1/8 testa rabiti jaje (po \u017eelji). Posuti sa origanom i obilno nastrugati ka\u010dkavalj.Staviti da se pe\u010de u prethodno zagrejanu rernu na 190 stepeni."
@@ -72,9 +74,39 @@
         ],
         "ocena": {
             "vrednost": 0,
-            "brojOcena": 0
+            "brojOcena": 0,
+            "kuvari": []
         },
         "ekstenzijaSlike": "jpg",
         "opis": "Zumanjke i secer mijesajte dok se secer ne otopi. Dodajte mlijeko, ulje i brasno pomijesano s praskom za pecivo.\nSmjesu dobro izmijesajte i izlijte u namasceni pobrasnjeni lim za pecenje (30 x 20 cm) te pecite u pecnici zagrijanoj na 200\u00b0C 10 minuta.\n3.Saum nanesite preko pecenog biskvita, poravnajte i vratite u pecnicu na 5 minuta (da se formira korica).\nOhladite na sobnoj temperaturi, a zatim nastavite hladiti u hladnjaku.\nZa Saum:\nSecer i vodu zagrijte na srednjoj temperaturi dok se secer ne otopi i pocne formirati mjehurice.\nBjelanjke istucite u cvrsti snijeg (kad okrenete posudu naopacke da saum ne ispadne).\nPolako dodavajte vrci, rastopljeni secer uz stalno mijesanje i tako nastavite jos 15 minuta.\nNa kraju sampitu vratite u iskljucenu rernu kako bi se na saumu uhvatila korica, sampita ce se lakse rezati."
+    },
+    {
+        "id": 3,
+        "naziv": "Taljatele sa piletinom",
+        "oprema": [
+            2,
+            3
+        ],
+        "sastojci": {
+            "20": 300.0,
+            "21": 100.0,
+            "22": 400.0,
+            "2": 5.0,
+            "23": 5.0,
+            "24": 1.0,
+            "25": 2.0
+        },
+        "kategorije": [
+            2
+        ],
+        "ocena": {
+            "vrednost": 9.0,
+            "brojOcena": 1,
+            "kuvari": [
+                "andros"
+            ]
+        },
+        "ekstenzijaSlike": "jpg",
+        "opis": "Na maslinovom ulju isprziti komadice belog mesa i pred kraj przenja dodati sitno nasecenu tikvicu i paprike. zaciniti solju i vegetom. Dodati pavlaku. kuvati jos 5 minuta na umerenoj vatri. U dubokoj serpi skuvati taljatele u posoljenoj vodi. Kada su taljatele gotove ubaciti ih u posudu, ja koristim vok,sa pripremljenim prelivom i promesati! Po zelji dodati parmezan ili drugi omiljeni sir! Prijatno."
     }
 ]

@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import traceback
+from view.ObavestavajucaPoruka import *
 class PrikazRecepta(QDialog):
     def __init__(self,parent,recept):
         super().__init__(parent)
@@ -124,9 +125,12 @@ class PrikazRecepta(QDialog):
 
 
     def oceniRecept(self):
-        ocena = self.comboOcena.currentIndex() + 1
-        QApplication.instance().actionManager.receptiMenadzer.dodajOcenuReceptu(self.recept, ocena)
-        self.ocjena.setText("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
+        if QApplication.instance().actionManager.receptiMenadzer.proveriPrethodnoOcenjivanje(self.recept) == False:
+            ocena = self.comboOcena.currentIndex() + 1
+            QApplication.instance().actionManager.receptiMenadzer.dodajOcenuReceptu(self.recept, ocena)
+            self.ocjena.setText("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
+        else:
+            ObavestavajucaPoruka("Vec ste ocenili ovaj recept.")
 
 
 
