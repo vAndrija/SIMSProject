@@ -42,14 +42,20 @@
         "prezime": "Jevtic",
         "mejl": "jovanica@gmail.com",
         "datumRodjenja": "1999-06-22",
-        "adresa": "Drinska 16",
+        "adresa": "Drinska 13",
         "mesto": {
             "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "2131231"
+            "postanskiBroj": "15318"
         },
         "pol": 0,
-        "dugotrajniSastojci": [],
-        "oprema": [],
+        "dugotrajniSastojci": [
+            0,
+            10,
+            18
+        ],
+        "oprema": [
+            0
+        ],
         "recepti": [
             3
         ],

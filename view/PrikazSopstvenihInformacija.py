@@ -107,6 +107,10 @@ class PrikazSopstvenihInformacija(QDialog):
                 # labela = QLineEdit(pol)
                 self.comboBox.setFixedSize(130, 20)
                 self.grid.addWidget(self.comboBox, *pozicija)
+            # elif sadrzaj == "15":
+            #     self.labelaLozinka  =QLineEdit(self.korisnik.lozinka)
+            #     self.labelaLozinka.setFixedSize(130,20)
+            #     self.grid.addWidget(self.labelaLozinka,*pozicija)
             elif sadrzaj == "10":
                 sastojci = self.korisnik.dugotrajniSastojci
                 sviSastojci = nadjiSastojke(sastojci)
@@ -193,7 +197,7 @@ class PrikazSopstvenihInformacija(QDialog):
             brojac += 1
 
         self.tabela.setFixedSize(522, 165)
-        self.grid.addWidget(self.tabela, 15, 1)
+        self.grid.addWidget(self.tabela, 14, 1)
 
     def dodavanjeNovihSastojaka(self):
         prozor = ProzorZaDodavanjeSastojaka()
@@ -216,7 +220,7 @@ class PrikazSopstvenihInformacija(QDialog):
             self.postojeciSastojci.setItem(brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
             brojac += 1
         self.postojeciSastojci.setFixedSize(522, 165)
-        self.grid.addWidget(self.postojeciSastojci, 11, 1)
+        self.grid.addWidget(self.postojeciSastojci, 10, 1)
 
     def azuriranjePotvrdjeno(self):
 
