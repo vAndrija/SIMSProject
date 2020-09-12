@@ -1,11 +1,8 @@
-# Napomena: da li dodati novi aparat u tabelu sa vec postojecim aparatima
-
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
 from view.ObavestavajucaPoruka import *
 from view.Tabela import *
+
 
 class ProzorZaDodavanjeOpreme(QDialog):
     def __init__(self):
@@ -22,7 +19,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         ikonica = QIcon('..\slike\ikonica.png')
         self.setWindowIcon(ikonica)
-        self.setFixedSize(900,900)
+        self.setFixedSize(900, 900)
         image = QImage("..\slike\oprema.jpg")
         sImage = image.scaled(QSize(900, 900))
         palette = QPalette()
@@ -46,29 +43,29 @@ class ProzorZaDodavanjeOpreme(QDialog):
         self.setLayout(grid)
 
         matrica = [
-                   '', '','Pretrazite tabelu:',
-                    '', '', '1',
-                   '', '', '*',
-                   '', '', '?',
-                   '', '','Dodajte novi aparat:',
-                   '', '','Unesite ime:',
-                   '', '', '-',
-                   '', '', 'Unesite marku:',
-                   '', '', '/',
-                   '', '', '+',
-                   '', '', '!',
-                   '', '', '#',
-                   '', '', '',
-                    '', '', '',
-                    '', '', '',
-                   ]
+            '', '', 'Pretrazite tabelu:',
+            '', '', '1',
+            '', '', '*',
+            '', '', '?',
+            '', '', 'Dodajte novi aparat:',
+            '', '', 'Unesite ime:',
+            '', '', '-',
+            '', '', 'Unesite marku:',
+            '', '', '/',
+            '', '', '+',
+            '', '', '!',
+            '', '', '#',
+            '', '', '',
+            '', '', '',
+            '', '', '',
+        ]
 
         pozicije = [(i, j) for i in range(15) for j in range(3)]
 
         for pozicija, sadrzaj in zip(pozicije, matrica):
             if sadrzaj == "-":
                 self.nazivOpreme = QLineEdit()
-                self.nazivOpreme.setFixedSize(250,25)
+                self.nazivOpreme.setFixedSize(250, 25)
                 grid.addWidget(self.nazivOpreme, *pozicija)
             elif sadrzaj == "*":
                 svaOprema = self.opremaMenadzer.svaOprema
@@ -76,7 +73,7 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 self.postojecaOprema = Tabela(1, 3)
                 self.postojecaOprema.dodajZaglavlja(["Sifra", "Naziv aparata", "Naziv marke"])
                 self.postojecaOprema.setColumnWidth(0, 120)
-                self.postojecaOprema.setColumnWidth(1,219)
+                self.postojecaOprema.setColumnWidth(1, 219)
                 self.postojecaOprema.setColumnWidth(2, 140)
 
                 self.popuniTabeluPostojece(svaOprema)
@@ -90,24 +87,24 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "/":
                 self.nazivMarke = QLineEdit()
-                self.nazivMarke.setFixedSize(250,25)
+                self.nazivMarke.setFixedSize(250, 25)
                 grid.addWidget(self.nazivMarke, *pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Dodaj aparat")
-                dugme.setFixedSize(250,30)
+                dugme.setFixedSize(250, 30)
                 dugme.clicked.connect(self.dodajNoviAparat)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "!":
                 self.dodataOprema = Tabela(1, 3)
                 self.dodataOprema.setColumnWidth(0, 120)
-                self.dodataOprema.setColumnWidth(1,219)
+                self.dodataOprema.setColumnWidth(1, 219)
                 self.dodataOprema.setColumnWidth(2, 140)
                 self.dodataOprema.setFixedSize(522, 165)
                 self.dodataOprema.dodajZaglavlja(["Sifra", "Naziv aparata", "Naziv marke"])
                 grid.addWidget(self.dodataOprema, *pozicija)
             elif sadrzaj == "#":
                 dugme = QPushButton("Zavrsi dodavanje")
-                dugme.setFixedSize(250,30)
+                dugme.setFixedSize(250, 30)
                 dugme.clicked.connect(self.zavrsenoDodavanje)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "1":
@@ -118,10 +115,8 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 grid.addWidget(self.nazivFilter, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(150,35)
+                labela.setFixedSize(150, 35)
                 grid.addWidget(labela, *pozicija)
-
-
 
     def dodajIzTabele(self):
         """
@@ -139,7 +134,8 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 self.kreirajDijalogSPorukom("Ne mozete oznaciti red sa nazivima kolona.")
             else:
                 # oprema = svaOprema[red.row() - 1]
-                oprema = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(self.postojecaOprema.item(red.row(), 0).text())
+                oprema = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(
+                    self.postojecaOprema.item(red.row(), 0).text())
                 if oprema.sifra in self.dodatiUTabelu:
                     ObavestavajucaPoruka("Oznaceni aparat ste vec dodali.")
                 else:
@@ -149,8 +145,6 @@ class ProzorZaDodavanjeOpreme(QDialog):
                     self.dodataOprema.setItem(brojRedova + brojac, 1, QTableWidgetItem(oprema.naziv))
                     self.dodataOprema.setItem(brojRedova + brojac, 2, QTableWidgetItem(oprema.marka))
                     brojac += 1
-
-
 
     def dodajNoviAparat(self):
         """
@@ -176,7 +170,6 @@ class ProzorZaDodavanjeOpreme(QDialog):
                 self.dodataOprema.setItem(brojRedova, 1, QTableWidgetItem(oprema.naziv))
                 self.dodataOprema.setItem(brojRedova, 2, QTableWidgetItem(oprema.marka))
 
-
     def zavrsenoDodavanje(self):
         """
         Funkcija koja se poziva kada korisnik pritisne dugme 'Zavrsi dodavanje'. Prozor za dodavanje opreme se
@@ -186,8 +179,6 @@ class ProzorZaDodavanjeOpreme(QDialog):
         self.hide()
         return self.dodatiUTabelu
 
-
-
     def izvrsiPretragu(self):
         if self.nazivFilter.text() == "":
             self.postojecaOprema.setRowCount(1)
@@ -196,15 +187,13 @@ class ProzorZaDodavanjeOpreme(QDialog):
             self.postojecaOprema.setRowCount(1)
             self.filtrirajTabeluPostojece()
 
-
     def popuniTabeluPostojece(self, svaOprema):
         self.postojecaOprema.setColumnWidth(0, 120)
         self.postojecaOprema.setColumnWidth(1, 219)
         self.postojecaOprema.setColumnWidth(2, 140)
         # self.postojecaOprema = Tabela(len(svaOprema) + 1, 3)
         brojac = self.postojecaOprema.rowCount()
-        self.postojecaOprema.setRowCount(self.postojecaOprema.rowCount()+len(svaOprema))
-
+        self.postojecaOprema.setRowCount(self.postojecaOprema.rowCount() + len(svaOprema))
 
         for aparat in svaOprema:
             self.postojecaOprema.setItem(brojac, 0, QTableWidgetItem(str(aparat.sifra)))
@@ -212,10 +201,8 @@ class ProzorZaDodavanjeOpreme(QDialog):
             self.postojecaOprema.setItem(brojac, 2, QTableWidgetItem(aparat.marka))
             brojac += 1
 
-
     def filtrirajTabeluPostojece(self):
         naziv = self.nazivFilter.text()
         for i in self.opremaMenadzer.svaOprema:
             if i.naziv.upper().startswith(naziv.upper()):
                 self.popuniTabeluPostojece([i])
-

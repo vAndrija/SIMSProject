@@ -1,7 +1,10 @@
-from model.Sastojak import *
 import json
-import  jsonpickle
+
+import jsonpickle
+
+from model.Sastojak import *
 from model.TipKolicine import *
+
 
 class ManipulacijaSastojcima(object):
     def __init__(self):
@@ -21,8 +24,7 @@ class ManipulacijaSastojcima(object):
         if len(self.sviSastojci) == 0:
             sifra = 0
         else:
-            sifra = self.sviSastojci[len(self.sviSastojci)-1].sifra + 1
-
+            sifra = self.sviSastojci[len(self.sviSastojci) - 1].sifra + 1
 
         noviSastojak = Sastojak(sifra, nazivSastojka, tipKolicine)
         provera = self.proveraPostojanjaSastojka(noviSastojak)
@@ -32,7 +34,6 @@ class ManipulacijaSastojcima(object):
             self.sviSastojci.append(noviSastojak)
             self.upisiSastojak()
             return noviSastojak
-
 
     def objToDict(self, obj):
         """
@@ -83,7 +84,6 @@ class ManipulacijaSastojcima(object):
         except:
             pass
 
-
     def proveraPostojanjaSastojka(self, sastojak):
         """
         Funkcija koja proverava da li je prosledjenji objekat vec upisan u fajl.
@@ -95,7 +95,7 @@ class ManipulacijaSastojcima(object):
                 return True
         return False
 
-    def provjeraPostojanjaSastojkaUBazi(self,nazivNovog,tipKolicineNovog):
+    def provjeraPostojanjaSastojkaUBazi(self, nazivNovog, tipKolicineNovog):
         """
         Funkcija koja provjerava za prosljedeni naziv i tip kolicine, da li postoji vec takav sastojak u bazi
         :param nazivNovog: naziv koji se provjerava
@@ -107,14 +107,13 @@ class ManipulacijaSastojcima(object):
                 return True
         return False
 
-
-    def vratiSastojak(self,id):
+    def vratiSastojak(self, id):
         for sastojak in self.sviSastojci:
 
-            if sastojak.sifra==int(id):
+            if sastojak.sifra == int(id):
                 return sastojak
 
-    def vratiSastojakPoNazivuITipuKolicine(self,naziv,tipKolicine):
+    def vratiSastojakPoNazivuITipuKolicine(self, naziv, tipKolicine):
         """
         Funkcija na osnovu naziva i tipa kolicine vraca sastojak
         :param naziv: odnosi se na naziv trazenog sastojka

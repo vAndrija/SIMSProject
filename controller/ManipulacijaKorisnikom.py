@@ -1,14 +1,16 @@
-from model.KorisnickiNalog import *
-from model.Administrator import *
-from model.Urednik import *
-from model.Mesto import *
-from model.KuvarPocetnik import *
 import json
-import  jsonpickle
 import os
 import shutil
-import traceback
+
+import jsonpickle
 from PyQt5.QtWidgets import *
+
+from model.Administrator import *
+from model.KuvarPocetnik import *
+from model.Mesto import *
+from model.Urednik import *
+
+
 class ManipulacijaKorisnikom(object):
     def __init__(self):
         super().__init__()

@@ -1,8 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from controller.osnovneFunkcije import *
-from view.Tabela import *
 from view.ObavestavajucaPoruka import *
+from view.Tabela import *
 
 
 class PrikazInformacijaKuvara(QDialog):
@@ -17,7 +15,7 @@ class PrikazInformacijaKuvara(QDialog):
 
     def initUI(self):
         self.setWindowTitle("Prikaz profila")
-        self.setFixedSize(800,800)
+        self.setFixedSize(800, 800)
         image = QImage("..\slike\profil.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -34,25 +32,25 @@ class PrikazInformacijaKuvara(QDialog):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ 'Ime:', '1', '',
-                    'Prezime:', '2', '',
-                  'Korisnicko ime:', '3', '',
-                    'Azurirajte korisnicko ime:', '/', '',
-                  'Mejl:', '4', '',
-                  'Datum rodjenja:', '5', '',
-                  'Adresa:', '6', '',
-                  'Naziv mesta:', '7', '',
-                    'Azurirajte naziv mesta:', '*', '',
-                  'Postanski broj:', '8', '',
-                    'Azurirajte postanski broj:', '-', '',
-                  'Pol:', '9', '',
-                  'Dugotrajni sastojci:', '', '',
-                  '', '10', '',
-                  'Dugotrajna oprema:', '', '',
-                  '', '11', '',
-                    '', '12', '',
-                    '', '13', '',
-                 ]
+        matrica = ['Ime:', '1', '',
+                   'Prezime:', '2', '',
+                   'Korisnicko ime:', '3', '',
+                   'Azurirajte korisnicko ime:', '/', '',
+                   'Mejl:', '4', '',
+                   'Datum rodjenja:', '5', '',
+                   'Adresa:', '6', '',
+                   'Naziv mesta:', '7', '',
+                   'Azurirajte naziv mesta:', '*', '',
+                   'Postanski broj:', '8', '',
+                   'Azurirajte postanski broj:', '-', '',
+                   'Pol:', '9', '',
+                   'Dugotrajni sastojci:', '', '',
+                   '', '10', '',
+                   'Dugotrajna oprema:', '', '',
+                   '', '11', '',
+                   '', '12', '',
+                   '', '13', '',
+                   ]
 
         pozicije = [(i, j) for i in range(18) for j in range(3)]
 
@@ -104,7 +102,7 @@ class PrikazInformacijaKuvara(QDialog):
                 self.postojeciSastojci = Tabela(len(sviSastojci) + 1, 3)
                 self.postojeciSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
                 self.postojeciSastojci.setColumnWidth(0, 120)
-                self.postojeciSastojci.setColumnWidth(1,219)
+                self.postojeciSastojci.setColumnWidth(1, 219)
                 self.postojeciSastojci.setColumnWidth(2, 140)
                 brojac = 1
                 for sastojak in sviSastojci:
@@ -117,10 +115,10 @@ class PrikazInformacijaKuvara(QDialog):
             elif sadrzaj == "11":
                 oprema = self.korisnik.oprema
                 svaOprema = nadjiOpremu(oprema)
-                tabela = Tabela(len(svaOprema) + 1,3)
+                tabela = Tabela(len(svaOprema) + 1, 3)
                 tabela.dodajZaglavlja(["Sifra", "Naziv", "Naziv marke"])
                 tabela.setColumnWidth(0, 120)
-                tabela.setColumnWidth(1,219)
+                tabela.setColumnWidth(1, 219)
                 tabela.setColumnWidth(2, 140)
 
                 brojac = 1
@@ -159,7 +157,6 @@ class PrikazInformacijaKuvara(QDialog):
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(160, 20)
                 grid.addWidget(labela, *pozicija)
-
 
     def azurirajNalog(self):
         if self.novoKIme.text() == "" and self.novoMesto.text() == "" and self.noviPostanskiBr.text() == "":

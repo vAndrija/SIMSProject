@@ -1,7 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
+from controller.osnovneFunkcije import *
 from view.ObavestavajucaPoruka import *
-from  controller.osnovneFunkcije import *
+
 
 class ProzorZaAzuriranjeNaloga(QDialog):
     def __init__(self, korisnik):
@@ -14,7 +13,7 @@ class ProzorZaAzuriranjeNaloga(QDialog):
     def initUI(self):
 
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
-        self.setFixedSize(650,550)
+        self.setFixedSize(650, 550)
         image = QImage("..\slike\profil.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -27,29 +26,27 @@ class ProzorZaAzuriranjeNaloga(QDialog):
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
 
-
     def initGrid(self):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ '', '', '',
-                    'Trenutno korisnicko ime:', '', '',
-                    '1', '', '',
-                    'Unesite novo korisnicko ime:', '', '',
-                  '2', '', '',
-                  'Trenutni naziv mesta prebivalista:', '', '',
-                    '3', '', '',
-                  'Unesite novi naziv mesta prebivalista:', '', '',
-                  '4', '', '',
-                  'Trenutni postanski broj mesta prebivalista:', '', '',
-                    '5', '', '',
-                  'Unesite novi postanski broj mesta prebivalista:', '', '',
-                  '6', '', '',
-                  '', '*', '',
-                 ]
+        matrica = ['', '', '',
+                   'Trenutno korisnicko ime:', '', '',
+                   '1', '', '',
+                   'Unesite novo korisnicko ime:', '', '',
+                   '2', '', '',
+                   'Trenutni naziv mesta prebivalista:', '', '',
+                   '3', '', '',
+                   'Unesite novi naziv mesta prebivalista:', '', '',
+                   '4', '', '',
+                   'Trenutni postanski broj mesta prebivalista:', '', '',
+                   '5', '', '',
+                   'Unesite novi postanski broj mesta prebivalista:', '', '',
+                   '6', '', '',
+                   '', '*', '',
+                   ]
 
         pozicije = [(i, j) for i in range(14) for j in range(3)]
-
 
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
@@ -68,7 +65,7 @@ class ProzorZaAzuriranjeNaloga(QDialog):
                 italic.setItalic(True)
                 labela = QLabel(self.korisnik.mesto.nazivMesta)
                 labela.setFont(italic)
-                labela.setFixedSize(130,20)
+                labela.setFixedSize(130, 20)
                 grid.addWidget(labela, *pozicija)
             elif sadrzaj == "4":
                 self.noviNazivMesta = QLineEdit()
@@ -78,7 +75,7 @@ class ProzorZaAzuriranjeNaloga(QDialog):
                 italic.setItalic(True)
                 labela = QLabel(self.korisnik.mesto.postanskiBroj)
                 labela.setFont(italic)
-                labela.setFixedSize(130,20)
+                labela.setFixedSize(130, 20)
                 grid.addWidget(labela, *pozicija)
             elif sadrzaj == "6":
                 self.noviPostanskiBroj = QLineEdit()
@@ -91,7 +88,6 @@ class ProzorZaAzuriranjeNaloga(QDialog):
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(270, 20)
                 grid.addWidget(labela, *pozicija)
-
 
     def azuriranjeNaloga(self):
         provera = False
@@ -110,5 +106,3 @@ class ProzorZaAzuriranjeNaloga(QDialog):
         else:
             azurirajKuvara(staroKorisnicko, self.korisnik)
             self.hide()
-
-

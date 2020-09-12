@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from view.Tabela import *
+
 from view.ObavestavajucaPoruka import *
+from view.Tabela import *
+
 
 class PrikazReceptaUredniku(QDialog):
     def __init__(self, parent, recept):
@@ -25,41 +25,41 @@ class PrikazReceptaUredniku(QDialog):
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
         self.setPalette(palette)
-        self.setFixedSize(1000,900)
+        self.setFixedSize(1000, 900)
         self.izgled = QGridLayout()
         self.setLayout(self.izgled)
-        matrica = ['1','','',
-                 '3','','2',
-                 '6', '', '7',
-                 '12', '8', '9',
-                 '4','','5',
+        matrica = ['1', '', '',
+                   '3', '', '2',
+                   '6', '', '7',
+                   '12', '8', '9',
+                   '4', '', '5',
                    '', '', '',
-                  '10', '', '11',
+                   '10', '', '11',
                    ]
-        self.selekcije=[]
+        self.selekcije = []
         pozicije = [(i, j) for i in range(7) for j in range(3)]
-        for sadrzaj,pozicija in zip(matrica,pozicije):
-            if sadrzaj=='1':
-                self.noviNaziv =QTextEdit()
+        for sadrzaj, pozicija in zip(matrica, pozicije):
+            if sadrzaj == '1':
+                self.noviNaziv = QTextEdit()
                 self.noviNaziv.setText("<h1 style='color:black'><b>{0}<b></h1>".format(self.recept.naziv))
-                self.noviNaziv.setFixedSize(300,50)
-                self.izgled.addWidget(self.noviNaziv,*pozicija)
-            if sadrzaj =='2':
+                self.noviNaziv.setFixedSize(300, 50)
+                self.izgled.addWidget(self.noviNaziv, *pozicija)
+            if sadrzaj == '2':
                 labela = QLabel()
                 labela.setBackgroundRole(True)
 
-                pixmapa = QPixmap('..\dizajn\\'+str(self.recept.id)+"."+str(self.recept.ekstenzijaSlike))
-                pixmapa.scaled(350,350)
+                pixmapa = QPixmap('..\dizajn\\' + str(self.recept.id) + "." + str(self.recept.ekstenzijaSlike))
+                pixmapa.scaled(350, 350)
                 labela.setPixmap(pixmapa)
-                labela.setFixedSize(350,350)
-                self.izgled.addWidget(labela,*pozicija)
-            if sadrzaj =='3':
+                labela.setFixedSize(350, 350)
+                self.izgled.addWidget(labela, *pozicija)
+            if sadrzaj == '3':
                 self.noviOpis = QTextEdit()
                 self.noviOpis.setWordWrapMode(QTextOption.WordWrap)
                 self.noviOpis.setText("<h6><i>{0}</i></h6>".format(self.recept.opis))
-                self.izgled.addWidget(self.noviOpis,*pozicija)
-                self.noviOpis.setMaximumSize(350,350)
-            if sadrzaj =='4':
+                self.izgled.addWidget(self.noviOpis, *pozicija)
+                self.noviOpis.setMaximumSize(350, 350)
+            if sadrzaj == '4':
                 sviSastojci = self.menadzerSastojci.sviSastojci
                 self.tabelaSastojci = Tabela(len(sviSastojci) + 1, 3)
                 self.tabelaSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
@@ -74,13 +74,13 @@ class PrikazReceptaUredniku(QDialog):
                     brojac += 1
                 self.tabelaSastojci.setFixedSize(400, 165)
                 self.izgled.addWidget(self.tabelaSastojci, *pozicija)
-            if sadrzaj=='5':
+            if sadrzaj == '5':
                 svaOprema = self.menadzerOprema.svaOprema
 
                 self.tabelaOprema = Tabela(len(svaOprema) + 1, 3)
                 self.tabelaOprema.dodajZaglavlja(["Sifra", "Naziv aparata", "Naziv marke"])
                 self.tabelaOprema.setColumnWidth(0, 80)
-                self.tabelaOprema.setColumnWidth(1,150)
+                self.tabelaOprema.setColumnWidth(1, 150)
                 self.tabelaOprema.setColumnWidth(2, 120)
 
                 brojac = 1
@@ -91,8 +91,8 @@ class PrikazReceptaUredniku(QDialog):
                     brojac += 1
 
                 self.tabelaOprema.setFixedSize(400, 165)
-                self.izgled.addWidget(self.tabelaOprema,*pozicija)
-            if sadrzaj =='6':
+                self.izgled.addWidget(self.tabelaOprema, *pozicija)
+            if sadrzaj == '6':
                 self.kategorije = QLabel()
                 self.kategorije.setWordWrap(True)
                 nazivi = []
@@ -103,16 +103,17 @@ class PrikazReceptaUredniku(QDialog):
                 # self.kategorije.setFixedSize(350,50)
                 self.kategorije.setText("<b>Kategorije: {0}</b>".format(spojeno))
                 self.kategorije.setFont(QFont('Times', 12))
-                self.izgled.addWidget(self.kategorije,*pozicija)
-            if sadrzaj =='7':
+                self.izgled.addWidget(self.kategorije, *pozicija)
+            if sadrzaj == '7':
                 ocjena = QLabel("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
                 ocjena.setAlignment(Qt.AlignCenter)
-                ocjena.setFixedSize(350,30)
-                self.izgled.addWidget(ocjena,*pozicija)
+                ocjena.setFixedSize(350, 30)
+                self.izgled.addWidget(ocjena, *pozicija)
             if sadrzaj == "8":
                 self.kategorijeNazivi = QApplication.instance().actionManager.receptiMenadzer.vratiNaziveKategorija()
                 for kategorija in self.recept.kategorije:
-                    self.kategorijeNazivi.remove(QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(kategorija))
+                    self.kategorijeNazivi.remove(
+                        QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(kategorija))
                 kompleter = QCompleter(self.kategorijeNazivi)
                 kompleter.setCaseSensitivity(Qt.CaseInsensitive)
                 self.unetaKategorija = QLineEdit()
@@ -163,38 +164,33 @@ class PrikazReceptaUredniku(QDialog):
         self.kategorije.setText("<b>{0}</b>".format(tekst))
 
     def azurirajRecept(self):
-        try:
-            naziv = self.noviNaziv.toPlainText()
-            opis = self.noviOpis.toPlainText()
-            if naziv == self.recept.naziv and opis == self.recept.opis and len(self.dodateKategorije) == 0:
-                ObavestavajucaPoruka("Morate naciniti neke izmene.")
-            else:
-                potvrda = QMessageBox
-                odgovor = potvrda.question(self, 'Potvrda',
-                    "Da li ste sigurni da zelite da azurirate recept. Ako pritisnete Yes necete vise imati pristup ovom receptu.",
-                                           potvrda.Yes | potvrda.No)
-                if odgovor == potvrda.Yes:
-                    if naziv != self.recept.naziv:
-                        self.recept.naziv = naziv
-                        QApplication.instance().actionManager.receptiMenadzer.azurirajHtmlDokument(self.recept)
-                    self.recept.opis = opis
-                    for kategorija in self.dodateKategorije:
-                        self.recept.kategorije.append(kategorija)
-                    self.sacuvajPromene()
-                    self.close()
-        except Exception as e:
-            print(e)
-
+        naziv = self.noviNaziv.toPlainText()
+        opis = self.noviOpis.toPlainText()
+        if naziv == self.recept.naziv and opis == self.recept.opis and len(self.dodateKategorije) == 0:
+            ObavestavajucaPoruka("Morate naciniti neke izmene.")
+        else:
+            potvrda = QMessageBox
+            odgovor = potvrda.question(self, 'Potvrda',
+                                       "Da li ste sigurni da zelite da azurirate recept. Ako pritisnete Yes necete vise imati pristup ovom receptu.",
+                                       potvrda.Yes | potvrda.No)
+            if odgovor == potvrda.Yes:
+                if naziv != self.recept.naziv:
+                    self.recept.naziv = naziv
+                    QApplication.instance().actionManager.receptiMenadzer.azurirajHtmlDokument(self.recept)
+                self.recept.opis = opis
+                for kategorija in self.dodateKategorije:
+                    self.recept.kategorije.append(kategorija)
+                self.sacuvajPromene()
+                self.close()
 
     def obrisiRecept(self):
         potvrda = QMessageBox
         odgovor = potvrda.question(self, 'Potvrda',
-                "Da li ste sigurni da zelite da obrisete recept. Ako pritisnete Yes vise necete imati pravo da ga azurirate.",
+                                   "Da li ste sigurni da zelite da obrisete recept. Ako pritisnete Yes vise necete imati pravo da ga azurirate.",
                                    potvrda.Yes | potvrda.No)
         if odgovor == potvrda.Yes:
             self.sacuvajPromene()
             self.close()
-
 
     def sacuvajPromene(self):
         QApplication.instance().actionManager.receptiMenadzer.izbrisiRecept(self.recept.id)
@@ -211,5 +207,3 @@ class PrikazReceptaUredniku(QDialog):
             QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac -= 1
         QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None,
                                                                            None)
-
-

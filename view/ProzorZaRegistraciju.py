@@ -1,11 +1,6 @@
-# Kreiran prozor za registraciju, potrebno preuzeti informacije iz widgeta
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
-from PyQt5.QtCore import *
-from view.ProzorZaDodavanjeSastojaka import *
-from view.ProzorZaDodavanjeOpreme import *
 from view.ObavestavajucaPoruka import *
+from view.ProzorZaDodavanjeOpreme import *
+from view.ProzorZaDodavanjeSastojaka import *
 
 
 class ProzorZaRegistraciju(QDialog):
@@ -21,7 +16,7 @@ class ProzorZaRegistraciju(QDialog):
         :return:
         """
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
-        self.setFixedSize(1000,800)
+        self.setFixedSize(1000, 800)
         image = QImage("..\slike\zaRegistraciju.jpg")
         sImage = image.scaled(QSize(1000, 800))
         palette = QPalette()
@@ -38,19 +33,19 @@ class ProzorZaRegistraciju(QDialog):
         self.setLayout(self.grid)
 
         matrica = ['', '', 'Unesite ime:', '-',
-                 '', '', 'Unesite prezime:', '-',
-                 '', '', 'Unesite korisnicko ime:', '-',
-                 '', '', 'Unesite lozinku:', '-',
-                 '', '', 'Ponovo unesite lozinku:', '-',
-                 '', '', 'Unesite mejl:', '-',
-                 '', '', 'Unesite datumRodjenja:', '/',
-                 '', '', 'Unesite adresu:', '-',
-                 '', '', 'Unesite mesto:', '-',
-                 '', '', 'Unesite postanski broj:', '-',
-                 '', '', 'Izaberite pol:', '*',
-                 '', '', '', '',
+                   '', '', 'Unesite prezime:', '-',
+                   '', '', 'Unesite korisnicko ime:', '-',
+                   '', '', 'Unesite lozinku:', '-',
+                   '', '', 'Ponovo unesite lozinku:', '-',
+                   '', '', 'Unesite mejl:', '-',
+                   '', '', 'Unesite datumRodjenja:', '/',
+                   '', '', 'Unesite adresu:', '-',
+                   '', '', 'Unesite mesto:', '-',
+                   '', '', 'Unesite postanski broj:', '-',
+                   '', '', 'Izaberite pol:', '*',
                    '', '', '', '',
-                 ]
+                   '', '', '', '',
+                   ]
 
         pozicije = [(i, j) for i in range(13) for j in range(4)]
 
@@ -62,7 +57,7 @@ class ProzorZaRegistraciju(QDialog):
 
             if sadrzaj == "-":
                 tekst = QLineEdit()
-                tekst.setFixedSize(250,25)
+                tekst.setFixedSize(250, 25)
                 self.tekstovi.append(tekst)
                 self.grid.addWidget(tekst, *pozicija)
             elif sadrzaj == "*":
@@ -72,13 +67,13 @@ class ProzorZaRegistraciju(QDialog):
                 self.pol = comboBox
                 self.grid.addWidget(comboBox, *pozicija)
             elif sadrzaj == '/':
-                datum = QDateEdit(calendarPopup = True)
+                datum = QDateEdit(calendarPopup=True)
                 datum.setDateTime(QDateTime.currentDateTime())
                 self.datum = datum
-                self.grid.addWidget(datum,*pozicija)
+                self.grid.addWidget(datum, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(200,60)
+                labela.setFixedSize(200, 60)
                 self.grid.addWidget(labela, *pozicija)
 
         self.tekstovi[3].setEchoMode(QLineEdit.Password)
@@ -86,8 +81,6 @@ class ProzorZaRegistraciju(QDialog):
 
         self.dodajOpremuISastojke()
         self.dodajDugmeRegistracije()
-
-
 
         self.exec()
 
@@ -130,10 +123,19 @@ class ProzorZaRegistraciju(QDialog):
         else:
             if lozinka != ponovnaLozinka:
                 ObavestavajucaPoruka("Vasa lozinka nije ispravna.")
-            self.registrovaniKorisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime,prezime,kIme,lozinka,mejl,str(datum),adresa,mesto,ppt,pol,
-                                                                                          self.dugotrajniSastojci, self.dugotrajnaOprema, [], 0, 0, [], [])
+            self.registrovaniKorisnik = QApplication.instance().actionManager.informacije.kreirajKorisnika(ime, prezime,
+                                                                                                           kIme,
+                                                                                                           lozinka,
+                                                                                                           mejl,
+                                                                                                           str(datum),
+                                                                                                           adresa,
+                                                                                                           mesto, ppt,
+                                                                                                           pol,
+                                                                                                           self.dugotrajniSastojci,
+                                                                                                           self.dugotrajnaOprema,
+                                                                                                           [], 0, 0, [],
+                                                                                                           [])
             self.hide()
-
 
     def dodavanjeSastojaka(self):
         """
@@ -153,4 +155,3 @@ class ProzorZaRegistraciju(QDialog):
         prozor = ProzorZaDodavanjeOpreme()
         self.setWindowModality(Qt.WindowModal)
         self.dugotrajnaOprema = prozor.dodatiUTabelu
-

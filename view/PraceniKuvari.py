@@ -1,26 +1,23 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
 from view.Tabela import *
-import traceback
+
 
 class PraceniKuvari(QDialog):
 
-    def __init__(self,parent):
+    def __init__(self, parent):
         super().__init__(parent)
 
         self.initUI()
         self.setModal(True)
         self.show()
 
-
-
     def initUI(self):
         self.setWindowTitle("Prikaz i uredjivanje pracenih kuvara")
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
         sadrzaj = ""
-        self.setFixedSize(600,600)
+        self.setFixedSize(600, 600)
         image = QImage("..\slike\praceniKuvari.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -34,7 +31,7 @@ class PraceniKuvari(QDialog):
     def definisiIzgled(self):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
-        self.kuvarPocetnik  = QApplication.instance().actionManager.prijavljeniKorisnik
+        self.kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         matrica = ['Praceni kuvari:', '', '',
                    '', '1', '',
                    '', '4', '',
@@ -58,7 +55,7 @@ class PraceniKuvari(QDialog):
                 brojac = 1
                 for naziv in self.kuvarPocetnik.praceniKuvari:
                     self.tabela.setItem(brojac, 0, QTableWidgetItem(
-                       naziv))
+                        naziv))
                     brojac += 1
                 self.tabela.setFixedSize(200, 160)
                 self.grid.addWidget(self.tabela, *pozicija)
@@ -85,7 +82,6 @@ class PraceniKuvari(QDialog):
                 labela.setFixedSize(200, 20)
                 self.grid.addWidget(labela, *pozicija)
 
-
     def otpratiKuvara(self):
         selektovaniRedovi = self.tabela.selectionModel().selectedRows()
         for red in selektovaniRedovi:
@@ -103,7 +99,7 @@ class PraceniKuvari(QDialog):
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
             return
-        if self.labela.text() in  self.kuvarPocetnik.praceniKuvari:
+        if self.labela.text() in self.kuvarPocetnik.praceniKuvari:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Ne mozete pratiti jednog korisnika dva puta!")
@@ -137,4 +133,4 @@ class PraceniKuvari(QDialog):
 
             brojac += 1
         self.tabela.setFixedSize(150, 160)
-        self.grid.addWidget(self.tabela, 1,1)
+        self.grid.addWidget(self.tabela, 1, 1)

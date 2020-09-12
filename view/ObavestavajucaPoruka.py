@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
 
 class ObavestavajucaPoruka(QMessageBox):
     def __init__(self, porukaZaIspis):
@@ -8,5 +9,5 @@ class ObavestavajucaPoruka(QMessageBox):
         icon = QIcon("..\slike\ikonica.png")
         self.setWindowIcon(icon)
         self.setText(porukaZaIspis)
-        self.setFixedSize(350,200)
+        self.setFixedSize(350, 200)
         self.exec_()

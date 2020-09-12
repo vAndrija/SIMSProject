@@ -1,5 +1,6 @@
 from view.PrikazInformacijaAdminaIUrednika import *
 
+
 class AdminUrednikProfil(QAction):
     def __init__(self, parent):
         super().__init__("Prikaz profila", parent)

@@ -1,8 +1,6 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
-from view.ProzorZaKreiranjeRecepta import ProzorZaKreiranjeRecepta
-import traceback
 
 class SopstveniReceptiAkcija(QAction):
     def __init__(self, parent):

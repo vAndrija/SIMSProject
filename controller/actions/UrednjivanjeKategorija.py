@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from view.PrikazKategorija import *
+
+
 class UredjivanjeKategorija(QAction):
     def __init__(self, parent):
         super().__init__("Pregled i uredjivanje pracenih kategorija", parent)

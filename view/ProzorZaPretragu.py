@@ -1,9 +1,9 @@
-#Kreiran prozor za pretragu recepata
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
 import traceback
+
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
 
 class ProzorZaPretragu(QDialog):
     def __init__(self):
@@ -21,21 +21,19 @@ class ProzorZaPretragu(QDialog):
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
-        self.kategorije=[]
+        self.kategorije = []
         grid = QGridLayout()
         self.setLayout(grid)
-        matrica = ["List","","",
+        matrica = ["List", "", "",
                    "Unos kategorije", "kat", "dodaj",
                    "Naziv recepta", "naziv", "",
                    "brisanje", "", "",
                    "1", "*", ""
-                   
-                   "", "", "",
+
+                             "", "", "",
                    "",
                    "refresh", "", ""
                    ]
-
-
 
         pozicije = [(i, j) for i in range(9) for j in range(3)]
         for pozicija, sadrzaj in zip(pozicije, matrica):
@@ -64,8 +62,8 @@ class ProzorZaPretragu(QDialog):
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "*":
                 self.napredno = QCheckBox()
-                self.napredno.setFixedSize(50,50)
-                grid.addWidget(self.napredno,*pozicija)
+                self.napredno.setFixedSize(50, 50)
+                grid.addWidget(self.napredno, *pozicija)
 
             elif sadrzaj == "kat":
                 try:
@@ -82,7 +80,7 @@ class ProzorZaPretragu(QDialog):
                 self.unetNaziv = QLineEdit()
                 self.unetNaziv.setFixedSize(250, 25)
                 grid.addWidget(self.unetNaziv, *pozicija)
-            elif sadrzaj =="1":
+            elif sadrzaj == "1":
                 labela = QLabel("Napredna pretraga")
                 labela.setToolTip("Napredna pretraga omogucava prikaz recepata sortiranih po info"
                                   "rmacijama o dugotrajnim sastojcima i opremama")
@@ -104,8 +102,7 @@ class ProzorZaPretragu(QDialog):
             msg.exec()
             return
 
-
-        if(self.unetaKategorija.text() == ""):
+        if (self.unetaKategorija.text() == ""):
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
 
@@ -115,7 +112,7 @@ class ProzorZaPretragu(QDialog):
             msg.exec()
             return
 
-        if(self.lista.topLevelItemCount() != 0):
+        if (self.lista.topLevelItemCount() != 0):
             for i in range(self.lista.topLevelItemCount()):
                 if self.lista.topLevelItem(i).text(1) == self.unetaKategorija.text():
                     msg = QMessageBox()
@@ -145,7 +142,7 @@ class ProzorZaPretragu(QDialog):
                 for i in range(self.lista.topLevelItemCount()):
                     item = self.lista.topLevelItem(i)
                     if item.checkState(0) == Qt.Checked:
-                        self.kategorije.remove( QApplication.instance().actionManager.receptiMenadzer.vratiIdKategorije(
+                        self.kategorije.remove(QApplication.instance().actionManager.receptiMenadzer.vratiIdKategorije(
                             self.lista.topLevelItem(i).text(1)))
 
                         self.lista.takeTopLevelItem(i)
@@ -161,8 +158,5 @@ class ProzorZaPretragu(QDialog):
         naziv = self.unetNaziv.text()
         kategorije = self.kategorije
         napredno = self.napredno.isChecked()
-        QApplication.instance().actionManager.receptiMenadzer.receptiPretraga(naziv,kategorije,napredno)
+        QApplication.instance().actionManager.receptiMenadzer.receptiPretraga(naziv, kategorije, napredno)
         self.close()
-
-
-

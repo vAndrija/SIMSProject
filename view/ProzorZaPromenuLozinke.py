@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from view.ObavestavajucaPoruka import *
+
 
 class ProzorZaPromenuLozinke(QDialog):
     def __init__(self, korisnik):
@@ -13,7 +12,7 @@ class ProzorZaPromenuLozinke(QDialog):
 
     def initUI(self):
         self.setWindowTitle("Promena lozinke")
-        self.setFixedSize(400,500)
+        self.setFixedSize(400, 500)
         image = QImage("..\slike\lozinka.png")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -30,20 +29,20 @@ class ProzorZaPromenuLozinke(QDialog):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ '', '', '',
-                    '', '', '',
-                    '', '', '',
-                    '', '', '',
-                 'Unesite staru lozinku:', '', '',
-                 '*', '', '',
-                 'Unesite novu lozinku:', '', '',
-                 '^', '', '',
-                 'Ponovo unesite novu lozinku:', '', '',
-                 '/', '', '',
-                    '', '', '',
-                    '+', '', '',
-                    '', '', '',
-                 ]
+        matrica = ['', '', '',
+                   '', '', '',
+                   '', '', '',
+                   '', '', '',
+                   'Unesite staru lozinku:', '', '',
+                   '*', '', '',
+                   'Unesite novu lozinku:', '', '',
+                   '^', '', '',
+                   'Ponovo unesite novu lozinku:', '', '',
+                   '/', '', '',
+                   '', '', '',
+                   '+', '', '',
+                   '', '', '',
+                   ]
 
         pozicije = [(i, j) for i in range(13) for j in range(3)]
 
@@ -72,7 +71,6 @@ class ProzorZaPromenuLozinke(QDialog):
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(240, 20)
                 grid.addWidget(labela, *pozicija)
-
 
     def promeniLozinku(self):
         if QApplication.instance().actionManager.prijavljeniKorisnik.lozinka != self.staraLozinka.text():

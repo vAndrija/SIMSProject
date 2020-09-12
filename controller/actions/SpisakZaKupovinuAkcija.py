@@ -1,4 +1,6 @@
 from view.SpisakZaKupovinu import *
+
+
 class SpisakZaKupovinuAkcija(QAction):
     def __init__(self, parent):
         super().__init__("Spisak za kupovinu", parent)

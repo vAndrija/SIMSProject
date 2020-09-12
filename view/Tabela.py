@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
 
 class Tabela(QTableWidget):
     def __init__(self, brojRedova, brojKolona):

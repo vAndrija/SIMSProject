@@ -1,8 +1,8 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 
 from view.ProzorZaKreiranjeRecepta import ProzorZaKreiranjeRecepta
-import traceback
+
 
 class KreiranjeReceptaAkcija(QAction):
     def __init__(self, parent):
@@ -12,7 +12,5 @@ class KreiranjeReceptaAkcija(QAction):
         self.setIcon(QIcon('..\slike\plusic.png'))
 
     def actionCalled(self):
-        try:
-            ProzorZaKreiranjeRecepta()
-        except:
-            traceback.print_exc()
+        ProzorZaKreiranjeRecepta()
+

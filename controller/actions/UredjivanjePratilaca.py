@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from view.PraceniKuvari import *
+
+
 class UredjivanjePratilaca(QAction):
     def __init__(self, parent):
         super().__init__("Pregled i uredjivanje pracenih kuvara", parent)
@@ -10,4 +10,3 @@ class UredjivanjePratilaca(QAction):
 
     def actionCalled(self):
         prozor = PraceniKuvari(QApplication.instance().actionManager.glavniProzor)
-

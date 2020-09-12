@@ -1,12 +1,13 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from view.Tabela import *
-from model.Sastojak import *
-from model.Oprema import *
 import traceback
+
+from PyQt5.QtCore import *
+
+from model.Sastojak import *
+from view.Tabela import *
+
+
 class SpisakZaKupovinu(QDialog):
-    def __init__(self,parent):
+    def __init__(self, parent):
         super().__init__(parent)
         self.setModal(True)
         try:
@@ -45,7 +46,7 @@ class SpisakZaKupovinu(QDialog):
                    '4', '', ''
                    ]
 
-        self.proizvodi=[]
+        self.proizvodi = []
         self.spisak = QApplication.instance().actionManager.spiskoviMenadzer.vratiSpisak(
             self.kuvarPocetnik.spisakZaKupovinu
         )
@@ -56,16 +57,16 @@ class SpisakZaKupovinu(QDialog):
             self.proizvodi.append(self.menadzerOprema.vratiOpremu(kljuc))
 
         pozicije = [(i, j) for i in range(5) for j in range(3)]
-        for pozicija,sadrzaj  in zip(pozicije,matrica):
-            if sadrzaj=="1":
-                self.tabela = Tabela(len(self.proizvodi)+1,3)
-                self.tabela.dodajZaglavlja(["Naziv", "Tip kol./Marka","Kolicina"])
+        for pozicija, sadrzaj in zip(pozicije, matrica):
+            if sadrzaj == "1":
+                self.tabela = Tabela(len(self.proizvodi) + 1, 3)
+                self.tabela.dodajZaglavlja(["Naziv", "Tip kol./Marka", "Kolicina"])
                 self.tabela.setColumnWidth(0, 120)
                 self.tabela.setColumnWidth(1, 160)
                 self.tabela.setColumnWidth(2, 80)
-                brojac=1
+                brojac = 1
                 for proizvod in self.proizvodi:
-                    if isinstance(proizvod,Sastojak):
+                    if isinstance(proizvod, Sastojak):
 
                         self.tabela.setItem(brojac, 0, QTableWidgetItem(
                             str(proizvod.naziv)))
@@ -85,21 +86,21 @@ class SpisakZaKupovinu(QDialog):
                             str(str(self.spisak.oprema[str(proizvod.sifra)]))
                         ))
                     brojac += 1
-                self.tabela.setFixedSize(385,400)
-                self.grid.addWidget(self.tabela,*pozicija)
-            elif sadrzaj =="2":
+                self.tabela.setFixedSize(385, 400)
+                self.grid.addWidget(self.tabela, *pozicija)
+            elif sadrzaj == "2":
                 self.narucivanje = QPushButton("Naruci sa sajta")
-                self.grid.addWidget(self.narucivanje,*pozicija)
-            elif sadrzaj =="3":
+                self.grid.addWidget(self.narucivanje, *pozicija)
+            elif sadrzaj == "3":
                 self.slanjeEmail = QPushButton("Slanje spiska na email")
-                self.grid.addWidget(self.slanjeEmail,*pozicija)
-            elif sadrzaj =="4":
+                self.grid.addWidget(self.slanjeEmail, *pozicija)
+            elif sadrzaj == "4":
                 self.stampanje = QPushButton("Stampanje spiska")
-                self.grid.addWidget(self.stampanje,*pozicija)
-            elif sadrzaj =="0":
+                self.grid.addWidget(self.stampanje, *pozicija)
+            elif sadrzaj == "0":
                 labela = QLabel('<h6>{0}</h6>'.format('Dodati proizvodi u korpu:'))
-                labela.setFixedSize(180,20)
-                self.grid.addWidget(labela,*pozicija)
+                labela.setFixedSize(180, 20)
+                self.grid.addWidget(labela, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
-                self.grid.addWidget(labela,*pozicija)
+                self.grid.addWidget(labela, *pozicija)

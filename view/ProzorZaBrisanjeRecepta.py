@@ -1,11 +1,13 @@
+import traceback
+
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QGridLayout, QLineEdit, QLabel, QPushButton, QWidget, \
     QHBoxLayout, QTableWidget, QApplication
-import traceback
+
 
 class ProzorZaBrisanjeRecepta(QDialog):
-    def __init__(self,parent):
+    def __init__(self, parent):
         super().__init__(parent)
         try:
             self.initUI()
@@ -21,10 +23,11 @@ class ProzorZaBrisanjeRecepta(QDialog):
 
             self.filtrirajRecepte()
 
-    def izbrisiIzMojihRecepata(self,id):
+    def izbrisiIzMojihRecepata(self, id):
         for recept in self.mojiRecepti:
-            if(recept.id == id):
+            if (recept.id == id):
                 self.mojiRecepti.remove(recept)
+
     def izbrisiRecept(self):
         rows = self.tabelaRecepata.selectionModel().selectedRows()
         brojac = 0
@@ -33,8 +36,8 @@ class ProzorZaBrisanjeRecepta(QDialog):
                 if (row.row() == 0):
                     continue
 
-                sifra = self.tabelaRecepata.item(row.row() - brojac,0).text()
-                naziv = self.tabelaRecepata.item(row.row() - brojac,1).text()
+                sifra = self.tabelaRecepata.item(row.row() - brojac, 0).text()
+                naziv = self.tabelaRecepata.item(row.row() - brojac, 1).text()
                 self.tabelaRecepata.removeRow(row.row() - brojac)
 
                 self.menadzerRecepti.izbrisiRecept(int(sifra))
@@ -51,7 +54,6 @@ class ProzorZaBrisanjeRecepta(QDialog):
         self.menadzerRecepti.sacuvajRecepte()
         self.menadzerKorisnicima.upisiKorisnika()
 
-
     def dodajSveRecepte(self):
         for recept in self.mojiRecepti:
             brojac = self.tabelaRecepata.rowCount()
@@ -62,7 +64,7 @@ class ProzorZaBrisanjeRecepta(QDialog):
             self.tabelaRecepata.setItem(brojac, 1, QTableWidgetItem(recept.naziv))
 
     def filtrirajRecepte(self):
-        tekst  = self.nazivRecepta.text()
+        tekst = self.nazivRecepta.text()
         self.izbrisiSveRecepte()
         for recept in self.mojiRecepti:
 
@@ -74,10 +76,9 @@ class ProzorZaBrisanjeRecepta(QDialog):
                 self.tabelaRecepata.setItem(brojac, 0, QTableWidgetItem(str(recept.id)))
                 self.tabelaRecepata.setItem(brojac, 1, QTableWidgetItem(recept.naziv))
 
-
-
     def izbrisiSveRecepte(self):
         self.tabelaRecepata.setRowCount(1)
+
     def odrediMojeRecepte(self):
         print()
         self.mojiRecepti = []
@@ -87,7 +88,7 @@ class ProzorZaBrisanjeRecepta(QDialog):
 
     def initUI(self):
         self.menadzerRecepti = QApplication.instance().actionManager.receptiMenadzer
-        self.prijavljenKorisnik =  QApplication.instance().actionManager.prijavljeniKorisnik
+        self.prijavljenKorisnik = QApplication.instance().actionManager.prijavljeniKorisnik
         self.menadzerKorisnicima = QApplication.instance().actionManager.informacije
         self.odrediMojeRecepte()
 
@@ -140,7 +141,6 @@ class ProzorZaBrisanjeRecepta(QDialog):
 
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))
-
 
         self.widget.setPalette(palette)
         self.widget.setLayout(grid)

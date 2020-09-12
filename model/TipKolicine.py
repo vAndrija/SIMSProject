@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class TipKolicine(Enum):
     GRAM = 0
     DL = 1

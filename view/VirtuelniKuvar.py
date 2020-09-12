@@ -1,21 +1,20 @@
-from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import traceback
+from PyQt5.QtWidgets import *
 
 from view.PrikazRecepaVirtuelniKuvar import PrikazReceptaVirtuelniKuvar
 
 
 class VirtuelniKuvar(QDialog):
-    def __init__(self,parent):
+    def __init__(self, parent):
         super().__init__(parent)
 
-        self.menadzerVKuvara  = QApplication.instance().actionManager.vKuvarMenadzer
+        self.menadzerVKuvara = QApplication.instance().actionManager.vKuvarMenadzer
         self.kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         self.menadzerReceptima = QApplication.instance().actionManager.receptiMenadzer
         self.trenutni = 0
         self.recept = None
-        self.pocetna  =False
+        self.pocetna = False
         self.initUi()
         self.show()
         self.exec_()
@@ -36,48 +35,42 @@ class VirtuelniKuvar(QDialog):
         self.setLayout(self.izgled)
         matrica = ['', '3', '',
                    '', '1', '',
-                   '', '',  '',
+                   '', '', '',
                    '', '4', '2']
         self.sastojci = []
         self.oprema = []
         pozicije = [(i, j) for i in range(4) for j in range(3)]
-        for pozicija,sadrzaj  in zip(pozicije,matrica):
+        for pozicija, sadrzaj in zip(pozicije, matrica):
             if sadrzaj == "3":
                 labela = QLabel('<h1>Moj virtuelni kuvar</h1>')
                 labela.setAlignment(Qt.AlignCenter)
-                self.izgled.addWidget(labela,*pozicija)
-            elif sadrzaj =="1":
+                self.izgled.addWidget(labela, *pozicija)
+            elif sadrzaj == "1":
                 self.predgovor = QLabel('<i><b>{0}</i></b>'.format(self.vKuvar.predgovor))
                 self.predgovor.setWordWrap(True)
                 self.predgovor.setAlignment(Qt.AlignCenter)
-                self.izgled.addWidget(self.predgovor,*pozicija)
-            elif sadrzaj =="2":
+                self.izgled.addWidget(self.predgovor, *pozicija)
+            elif sadrzaj == "2":
                 self.dugme = QPushButton("Azuriraj predogovor")
-                self.izgled.addWidget(self.dugme,*pozicija)
-            elif sadrzaj =="4":
+                self.izgled.addWidget(self.dugme, *pozicija)
+            elif sadrzaj == "4":
                 self.prikaziRecepte = QPushButton("Prikazi recepte")
                 self.prikaziRecepte.clicked.connect(self.prikaziRecepteAkcija)
-                self.izgled.addWidget(self.prikaziRecepte,*pozicija)
+                self.izgled.addWidget(self.prikaziRecepte, *pozicija)
 
             else:
                 self.labela = QLabel(sadrzaj)
-                self.izgled.addWidget(self.labela,*pozicija)
-
+                self.izgled.addWidget(self.labela, *pozicija)
 
     def prikaziRecepteAkcija(self):
 
-
-
-        if(len(self.vKuvar.recepti)==0):
+        if (len(self.vKuvar.recepti) == 0):
             return
         self.hide()
         self.recept = self.menadzerReceptima.vratiRecept(self.vKuvar.recepti[self.trenutni])
-        PrikazReceptaVirtuelniKuvar(self,self.recept)
+        PrikazReceptaVirtuelniKuvar(self, self.recept)
         self.close()
         if self.pocetna:
-            self.pocetna=False
+            self.pocetna = False
 
             VirtuelniKuvar(QApplication.instance().actionManager.glavniProzor)
-
-
-

@@ -1,17 +1,12 @@
-import sys
+import traceback
 
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import (QWidget, QGridLayout,
                              QPushButton, QApplication, QLineEdit, QComboBox, QLabel, QPlainTextEdit, QTableWidget,
-                             QTableWidgetItem, QScrollArea, QMainWindow, QFileDialog, QAbstractItemView, QDialog,
+                             QTableWidgetItem, QScrollArea, QFileDialog, QDialog,
                              QHBoxLayout)
-from enum import Enum
-import traceback
-from controller.ManipulacijaOpremom import ManipulacijaOpremom
-from controller.ManipulacijaReceptima import ManipulacijaReceptima
-from controller.ManipulacijaSastojcima import ManipulacijaSastojcima
-from model.Sastojak import Sastojak
+
 from model.TipKolicine import TipKolicine
 from view.ObavestavajucaPoruka import ObavestavajucaPoruka
 
@@ -152,25 +147,23 @@ class ProzorZaKreiranjeRecepta(QDialog):
 
                 if (self.menadzerSastojcima.provjeraPostojanjaSastojkaUBazi(nazivSastojka, tipKolicine) == False):
 
+                    self.menadzerSastojcima.kreirajSastojak(nazivSastojka, tipKolicine)
 
-                    self.menadzerSastojcima.kreirajSastojak(nazivSastojka,tipKolicine)
-
-                    sastojak = self.menadzerSastojcima.vratiSastojakPoNazivuITipuKolicine(nazivSastojka,tipKolicine)
-                    sastojci[sastojak.sifra] = float(self.tabelaSastojaka.item(i,2).text())
+                    sastojak = self.menadzerSastojcima.vratiSastojakPoNazivuITipuKolicine(nazivSastojka, tipKolicine)
+                    sastojci[sastojak.sifra] = float(self.tabelaSastojaka.item(i, 2).text())
                 else:
                     sastojak = self.menadzerSastojcima.vratiSastojakPoNazivuITipuKolicine(nazivSastojka, tipKolicine)
                     sastojci[sastojak.sifra] = float(self.tabelaSastojaka.item(i, 2).text())
-                   
 
             for i in range(1, self.tabelaOpreme.rowCount()):
                 nazivOpreme = self.tabelaOpreme.item(i, 0).text()
                 if (self.menadzerOpremom.provjeraPostojanjaOpreme(nazivOpreme) == True):
-                    
+
                     stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme)
                     oprema.append(stavka.sifra)
                 else:
 
-                    self.menadzerOpremom.kreirajOpremu(nazivOpreme,"")
+                    self.menadzerOpremom.kreirajOpremu(nazivOpreme, "")
                     stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme)
                     oprema.append(stavka.sifra)
 
@@ -189,11 +182,10 @@ class ProzorZaKreiranjeRecepta(QDialog):
             naziv = self.nazivRecepta.text()
             putanjaSlike = self.putanja.text()
             opis = self.informacije.toPlainText()
-            
+
             self.menadzerReceptima.kreirajRecept(naziv, putanjaSlike, opis, oprema, kategorije, sastojci)
         except:
             traceback.print_exc()
-
 
     def izaberiSliku(self):
         fname = QFileDialog.getOpenFileName(self, 'Open file',
@@ -266,14 +258,14 @@ class ProzorZaKreiranjeRecepta(QDialog):
 
         self.tabelaOpreme = QTableWidget()
         self.tabelaOpreme.setColumnCount(1)
-        self.tabelaOpreme.setColumnWidth(0,self.tabelaOpreme.width())
+        self.tabelaOpreme.setColumnWidth(0, self.tabelaOpreme.width())
         self.tabelaOpreme.setRowCount(1)
 
         self.tabelaOpreme.setItem(0, 0, QTableWidgetItem("Naziv stavke"))
 
         self.tabelaKategorija = QTableWidget()
         self.tabelaKategorija.setColumnCount(1)
-        self.tabelaKategorija.setColumnWidth(0,self.tabelaKategorija.width())
+        self.tabelaKategorija.setColumnWidth(0, self.tabelaKategorija.width())
         self.tabelaKategorija.setRowCount(1)
 
         self.tabelaKategorija.setItem(0, 0, QTableWidgetItem("Naziv kategorije"))

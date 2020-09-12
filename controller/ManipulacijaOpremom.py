@@ -1,6 +1,9 @@
+import json
+
+import jsonpickle
+
 from model.Oprema import *
-import  json
-import  jsonpickle
+
 
 class ManipulacijaOpremom(object):
     def __init__(self):
@@ -8,7 +11,6 @@ class ManipulacijaOpremom(object):
         self.svaOprema = []
         self.podaci = []
         self.citanjeOpreme()
-
 
     def kreirajOpremu(self, naziv, marka):
         """
@@ -32,7 +34,6 @@ class ManipulacijaOpremom(object):
             self.upisiOpremu()
             return novaOprema
 
-
     def objToDict(self, obj):
         """
         Pomocna funkcija za redefinisanje serijalizacije za json paket
@@ -40,7 +41,6 @@ class ManipulacijaOpremom(object):
         :return:
         """
         return obj.__dict__
-
 
     def upisiOpremu(self):
         """
@@ -80,7 +80,7 @@ class ManipulacijaOpremom(object):
 
         return False
 
-    def provjeraPostojanjaOpreme(self,noviNaziv):
+    def provjeraPostojanjaOpreme(self, noviNaziv):
         """
         Funkcija koja na osnovu naziva opreme vraca da li je ista oprema u pitanju
         :param noviNaziv:
@@ -92,12 +92,12 @@ class ManipulacijaOpremom(object):
 
         return False
 
-    def vratiOpremu(self,id):
+    def vratiOpremu(self, id):
         for oprema in self.svaOprema:
-            if oprema.sifra==int(id):
+            if oprema.sifra == int(id):
                 return oprema
 
-    def vratiOpremuPoNazivu(self,naziv):
+    def vratiOpremuPoNazivu(self, naziv):
         for oprema in self.svaOprema:
             if oprema.naziv.upper() == naziv.upper():
                 return oprema

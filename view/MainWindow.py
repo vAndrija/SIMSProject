@@ -1,4 +1,5 @@
-from PyQt5.QtWidgets import  *
+from PyQt5.QtWidgets import *
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -10,6 +11,3 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Simple menu')
         self.showMaximized()
         self.show()
-
-
-

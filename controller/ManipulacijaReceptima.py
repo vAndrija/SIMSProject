@@ -2,11 +2,13 @@ import json
 import os
 import shutil
 import traceback
-from model.Kategorija import *
+
 import jsonpickle
 from PyQt5.QtWidgets import *
-from model.Ocena import *
+
+from model.Kategorija import *
 from model.ObicniRecept import *
+from model.Ocena import *
 
 
 class ManipulacijaReceptima():
@@ -17,7 +19,6 @@ class ManipulacijaReceptima():
 
         self.ucitajKategorije()
         self.ucitajRecepte()
-
 
     def ucitajRecepte(self):
         """
@@ -33,23 +34,20 @@ class ManipulacijaReceptima():
                 recept.ocena = ocena
                 self.recepti.append(recept)
         except:
-            traceback.print_exc()
-
-
-
+            pass
 
     def ucitajKategorije(self):
         try:
-            tekst=  open('.\..\podaci\\kategorije.json').read()
-            tekst= jsonpickle.decode(tekst)
+            tekst = open('.\..\podaci\\kategorije.json').read()
+            tekst = jsonpickle.decode(tekst)
             for item in tekst:
                 kategorija = Kategorija(**item)
                 self.kategorije.append(kategorija)
         except:
             pass
 
-    def dodajKategoriju(self,naziv):
-        kategorija= Kategorija(len(self.kategorije),naziv)
+    def dodajKategoriju(self, naziv):
+        kategorija = Kategorija(len(self.kategorije), naziv)
         self.kategorije.append(kategorija)
         self.sacuvajKategorije()
 
@@ -69,19 +67,15 @@ class ManipulacijaReceptima():
         with open('.\..\podaci\\recepti.json', "w") as stream:
             json.dump(self.recepti, stream, default=self.objToDict, indent=4)
 
-
     def sacuvajKategorije(self):
         with open('.\..\podaci\\kategorije.json', "w") as stream:
             json.dump(self.kategorije, stream, default=self.objToDict, indent=4)
 
-
-    def izbrisiRecept(self,id):
+    def izbrisiRecept(self, id):
         for recept in self.recepti:
             if recept.id == id:
-
                 recept.kategorije = []
                 recept.naziv += '.-.'
-
 
     def izbrisiReceptKorisniku(self, id):
         for korisnik in QApplication.instance().actionManager.informacije.sviKuvari:
@@ -94,8 +88,6 @@ class ManipulacijaReceptima():
             if provera:
                 break
         QApplication.instance().actionManager.informacije.upisiKorisnika()
-
-
 
     def kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci):
         """
@@ -115,16 +107,16 @@ class ManipulacijaReceptima():
         """
         osnovnaPutanja = os.getcwd()[:-4]
         putanja = os.path.join(osnovnaPutanja, 'dizajn')
-        ekstenzija =  putanjaSlike.split(".")[1]
+        ekstenzija = putanjaSlike.split(".")[1]
         nazivSlike = putanjaSlike.split("/")[-1]
-        if len(self.recepti)==0:
-            id=0
+        if len(self.recepti) == 0:
+            id = 0
         else:
             id = self.recepti[-1].id + 1
-        ocena = Ocena(0,0, [])
+        ocena = Ocena(0, 0, [])
         noviRecept = ObicniRecept(id, naziv, oprema, sastojci, kategorije, ocena, ekstenzija, opis)
         shutil.move(putanjaSlike, putanja)
-        os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) +"." +ekstenzija))
+        os.rename(os.path.join(putanja, nazivSlike), os.path.join(putanja, str(id) + "." + ekstenzija))
         shutil.copy(os.path.join(osnovnaPutanja, "dizajn", "sablonPocetna.html"),
                     os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti"))
         os.rename(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", "sablonPocetna.html"),
@@ -137,7 +129,7 @@ class ManipulacijaReceptima():
             if ("<img src=" in sadrzaj[i]):
                 sadrzaj[
                     i] = '<div class="box"><img src="{0}" class="rounded float-right" alt="Responsive image">\n'.format(
-                    "..\\" + str(id) +"."+ ekstenzija)
+                    "..\\" + str(id) + "." + ekstenzija)
             if ('<h3 class="name">' in sadrzaj[i]):
                 sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(naziv)
         with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(id) + ".html"), "w") as output:
@@ -148,8 +140,7 @@ class ManipulacijaReceptima():
         QApplication.instance().actionManager.prijavljeniKorisnik.recepti.append(id)
         QApplication.instance().actionManager.informacije.upisiKorisnika()
 
-
-    def receptiPretraga(self, naziv, kategorije,napredno):
+    def receptiPretraga(self, naziv, kategorije, napredno):
         korisnik = QApplication.instance().actionManager.prijavljeniKorisnik
 
         try:
@@ -158,27 +149,27 @@ class ManipulacijaReceptima():
             nedostajeSastojaka = []
             for recept in self.recepti:
 
-                if ( naziv!="" and (naziv.lower() in recept.naziv.lower()) and
-                    recept.naziv[-3:]!='.-.'):
+                if (naziv != "" and (naziv.lower() in recept.naziv.lower()) and
+                        recept.naziv[-3:] != '.-.'):
                     povratna.append(recept)
                     nedostajeOpreme.append(0)
                     nedostajeSastojaka.append(0)
                     for sastojak in recept.sastojci.keys():
                         postoji = False
                         for dugotrajni in korisnik.dugotrajniSastojci:
-                            if(dugotrajni==int(sastojak)):
-                                postoji =True
+                            if (dugotrajni == int(sastojak)):
+                                postoji = True
                                 break
                         if not postoji:
-                            nedostajeSastojaka[len(povratna)-1]+=1
+                            nedostajeSastojaka[len(povratna) - 1] += 1
                     for oprema in recept.oprema:
                         postoji = False
                         for opremaKuvar in korisnik.oprema:
-                            if oprema==opremaKuvar:
-                                postoji=True
+                            if oprema == opremaKuvar:
+                                postoji = True
                                 break
                         if not postoji:
-                            nedostajeOpreme[len(povratna)-1]+=1
+                            nedostajeOpreme[len(povratna) - 1] += 1
                     continue
                 for kategorija in recept.kategorije:
                     if (kategorija in kategorije):
@@ -203,9 +194,10 @@ class ManipulacijaReceptima():
                                 nedostajeOpreme[len(povratna) - 1] += 1
                         break
             QApplication.instance().actionManager.glavniProzor.inicijalizujPocetnu()
-            QApplication.instance().actionManager.glavniProzor.sledecaPostoji =True
+            QApplication.instance().actionManager.glavniProzor.sledecaPostoji = True
             QApplication.instance().actionManager.glavniProzor.sledecaStranicaBrojac = 0
-            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna,nedostajeOpreme,nedostajeSastojaka,napredno)
+            QApplication.instance().actionManager.glavniProzor.refresujPocetnu(povratna, nedostajeOpreme,
+                                                                               nedostajeSastojaka, napredno)
 
         except:
             traceback.print_exc()
@@ -215,38 +207,34 @@ class ManipulacijaReceptima():
             if (recept.id == id):
                 return recept
 
-
-
-
-    def vratiIdKategorije(self,naziv):
+    def vratiIdKategorije(self, naziv):
         for kategorija in self.kategorije:
-            if(kategorija.naziv.lower()==naziv.lower()):
+            if (kategorija.naziv.lower() == naziv.lower()):
                 return kategorija.id
 
+    def vracanjeToolTipSadrzaja(self, recept):
 
-    def vracanjeToolTipSadrzaja(self,recept):
-
-        sadrzaj ='<ul>Stvari koje nedostaju<br/>'
+        sadrzaj = '<ul>Stvari koje nedostaju<br/>'
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         for oprema in recept.oprema:
-            postoji=False
+            postoji = False
             for opremaKuvar in kuvarPocetnik.oprema:
-                if(oprema==opremaKuvar):
-                    postoji=True
+                if (oprema == opremaKuvar):
+                    postoji = True
                     break
             if not postoji:
                 objekat = QApplication.instance().actionManager.opremaMenadzer.vratiOpremu(oprema)
-                sadrzaj +='<li>{0}</li>'.format(objekat.naziv)
+                sadrzaj += '<li>{0}</li>'.format(objekat.naziv)
         for sastojak in recept.sastojci.keys():
-            postoji=False
+            postoji = False
             for dugotrajniSastojak in kuvarPocetnik.dugotrajniSastojci:
-                if(int(sastojak)==dugotrajniSastojak):
-                    postoji=True
+                if (int(sastojak) == dugotrajniSastojak):
+                    postoji = True
                     break
             if not postoji:
                 objekat = QApplication.instance().actionManager.sastojciMenadzer.vratiSastojak(sastojak)
-                sadrzaj +='<li>{0}</li>'.format(objekat.naziv)
-        sadrzaj+='</ul>'
+                sadrzaj += '<li>{0}</li>'.format(objekat.naziv)
+        sadrzaj += '</ul>'
         return sadrzaj
 
     def receptiZaPrikaz(self):
@@ -259,7 +247,7 @@ class ManipulacijaReceptima():
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         for pracenaKategorija in kuvarPocetnik.praceneKategorije:
             for recept in self.recepti:
-                if(recept.id in kuvarPocetnik.recepti):
+                if (recept.id in kuvarPocetnik.recepti):
                     continue
                 for kategorija in recept.kategorije:
                     if (kategorija == pracenaKategorija):
@@ -283,42 +271,38 @@ class ManipulacijaReceptima():
 
         return recepti
 
-
     def vratiNaziveKategorija(self):
 
-        povratna=[]
+        povratna = []
         for kategorija in self.kategorije:
             povratna.append(kategorija.naziv)
 
         return povratna
 
-    def postojanjeKategorije(self,naziv):
+    def postojanjeKategorije(self, naziv):
         for kategorija in self.kategorije:
-            if(naziv.lower() == kategorija.naziv.lower()):
+            if (naziv.lower() == kategorija.naziv.lower()):
                 return kategorija.id
         return -1
 
-
-    def vratiNazivKategorije(self,id):
+    def vratiNazivKategorije(self, id):
         for kategorija in self.kategorije:
-            if kategorija.id==id:
+            if kategorija.id == id:
                 return kategorija.naziv
 
-    def vratiKategoriju(self,naziv):
+    def vratiKategoriju(self, naziv):
         for kategorija in self.kategorije:
-            if(naziv.lower()==kategorija.naziv.lower()):
+            if (naziv.lower() == kategorija.naziv.lower()):
                 return kategorija
 
-
     def pronadjiReceptePrijavljenog(self):
-        self.receptiPrijavljenog=[]
+        self.receptiPrijavljenog = []
         kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
         recepti = kuvarPocetnik.recepti
         for id in recepti:
             for recept in self.recepti:
                 if recept.id == id:
                     self.receptiPrijavljenog.append(recept)
-
 
     def pronadjiRecepteZaUredjivanje(self, urednik):
         recepti = []
@@ -327,7 +311,6 @@ class ManipulacijaReceptima():
                 if id == recept.id:
                     recepti.append(recept)
         return recepti
-
 
     def azurirajHtmlDokument(self, recept):
         osnovnaPutanja = os.getcwd()[:-4]
@@ -346,7 +329,6 @@ class ManipulacijaReceptima():
             if recept == idRecepta:
                 return True
         return False
-
 
     def proveriPrethodnoOcenjivanje(self, recept):
         for korisnicko in recept.ocena.kuvari:

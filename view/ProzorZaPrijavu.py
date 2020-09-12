@@ -1,17 +1,7 @@
-#Kreiran prozor koji se prikazuje prilikom prijavljivanja
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QImage, QPalette, QBrush, QIcon, QFont
-from PyQt5.QtCore import QSize
-from view.ProzorZaRegistraciju import *
-from view.KuvarPocetna import *
-from controller.osnovneFunkcije import *
-from model.Administrator import *
-from model.KuvarPocetnik import *
 from model.Urednik import *
 from view.AdministratorPocetna import *
-from view.UrednikPocetna import *
 from view.ObavestavajucaPoruka import *
+from view.UrednikPocetna import *
 
 
 class ProzorZaPrijavu(QWidget):
@@ -25,7 +15,7 @@ class ProzorZaPrijavu(QWidget):
         :return:
         """
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
-        self.setFixedSize(800,600)
+        self.setFixedSize(800, 600)
         image = QImage("..\slike\prijava.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -41,22 +31,22 @@ class ProzorZaPrijavu(QWidget):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ '', '', '',
-                    '', '', '',
-                    '', '', '',
-                    '', '', '',
-                    '', '', '',
-                 '', 'Unesite korisniko ime:', '',
-                 '', '*', '',
-                 '', 'Unesite lozinku:', '',
-                 '', '^', '',
-                 '', '+', '',
-                 '', '/', '',
-                    '', '', '',
-                    '', '', '',
-                    '', '', '',
-                    '', '', '',
-                 ]
+        matrica = ['', '', '',
+                   '', '', '',
+                   '', '', '',
+                   '', '', '',
+                   '', '', '',
+                   '', 'Unesite korisniko ime:', '',
+                   '', '*', '',
+                   '', 'Unesite lozinku:', '',
+                   '', '^', '',
+                   '', '+', '',
+                   '', '/', '',
+                   '', '', '',
+                   '', '', '',
+                   '', '', '',
+                   '', '', '',
+                   ]
 
         pozicije = [(i, j) for i in range(14) for j in range(3)]
 
@@ -65,10 +55,10 @@ class ProzorZaPrijavu(QWidget):
             if sadrzaj == "*":
                 self.korisnickoIme = QLineEdit()
                 grid.addWidget(self.korisnickoIme, *pozicija)
-            elif sadrzaj =="^":
+            elif sadrzaj == "^":
                 self.lozinka = QLineEdit()
                 self.lozinka.setEchoMode(QLineEdit.Password)
-                grid.addWidget(self.lozinka,*pozicija)
+                grid.addWidget(self.lozinka, *pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Prijavite se")
                 dugme.clicked.connect(self.prijava)
@@ -98,39 +88,35 @@ class ProzorZaPrijavu(QWidget):
         proverava tacnost korisnickog imena i lozinke. U zavisnosti od uloge korisnika u sistemu objekat se kastuje.
         :return:
         """
-        #ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
+        # ovde je potrebno obaviti poziv za funkciju koja provjerava ad li je korisnik prijavljen
         # i vraca objekat sa svim njegovim informacijama
-        korisnik = provjeraPostojanjaKorisnika(self.korisnickoIme.text(),self.lozinka.text())
+        korisnik = provjeraPostojanjaKorisnika(self.korisnickoIme.text(), self.lozinka.text())
 
-        if(korisnik!=None):
+        if (korisnik != None):
             self.hide()
-            if(isinstance(korisnik,Administrator)):
-                QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
+            if (isinstance(korisnik, Administrator)):
+                QApplication.instance().actionManager.prijavljeniKorisnik = korisnik
                 QApplication.instance().actionManager.glavniProzor = AdministratorPocetna()
                 QApplication.instance().actionManager.glavniProzor.showMaximized()
                 QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
                 QApplication.instance().actionManager.glavniProzor.show()
-            elif(isinstance(korisnik,Urednik)):
+            elif (isinstance(korisnik, Urednik)):
                 QApplication.instance().actionManager.prijavljeniKorisnik = korisnik
                 QApplication.instance().actionManager.glavniProzor = UrednikPocetna()
                 QApplication.instance().actionManager.glavniProzor.postaviPoziciju()
                 try:
-                    receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(korisnik)
+                    receptiZaUredjivanje = QApplication.instance().actionManager.receptiMenadzer.pronadjiRecepteZaUredjivanje(
+                        korisnik)
 
-                    QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None, None)
+                    QApplication.instance().actionManager.glavniProzor.refresujPocetnu(receptiZaUredjivanje, None, None,
+                                                                                       None)
                 except Exception as e:
                     print(e)
             else:
-                QApplication.instance().actionManager.prijavljeniKorisnik=korisnik
-                QApplication.instance().actionManager.glavniProzor=KuvarPocetna()
-                QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None,None,None,None)
+                QApplication.instance().actionManager.prijavljeniKorisnik = korisnik
+                QApplication.instance().actionManager.glavniProzor = KuvarPocetna()
+                QApplication.instance().actionManager.glavniProzor.refresujPocetnu(None, None, None, None)
         else:
             ObavestavajucaPoruka("Pogresno korisnicko ime ili lozinka. Pokusajte ponovo.")
             self.lozinka.setText("")
             self.korisnickoIme.setText("")
-
-
-
-
-
-

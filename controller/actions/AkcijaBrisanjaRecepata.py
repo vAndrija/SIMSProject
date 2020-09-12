@@ -1,9 +1,7 @@
-
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from view.PraceniKuvari import *
 from view.ProzorZaBrisanjeRecepta import *
+
+
 class AkcijaBrisanjaRecepata(QAction):
     def __init__(self, parent):
         super().__init__("Brisanje recepta", parent)

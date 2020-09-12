@@ -1,12 +1,11 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
 from view.Tabela import *
-import traceback
+
+
 class PrikazKategorija(QDialog):
 
-
-    def __init__(self,parent):
+    def __init__(self, parent):
 
         super().__init__(parent)
 
@@ -14,7 +13,6 @@ class PrikazKategorija(QDialog):
         self.initUi()
         self.setModal(True)
         self.show()
-
 
     def initUi(self):
         self.setFixedSize(700, 700)
@@ -35,13 +33,13 @@ class PrikazKategorija(QDialog):
         self.grid = QGridLayout()
         self.setLayout(self.grid)
         self.kuvarPocetnik = QApplication.instance().actionManager.prijavljeniKorisnik
-        self.nazivi  =[]
+        self.nazivi = []
         for kategorija in self.kuvarPocetnik.praceneKategorije:
             self.nazivi.append(QApplication.instance().actionManager.receptiMenadzer.vratiNazivKategorije(kategorija))
         matrica = ['', 'Pracene kategorije:', '',
                    '', '1', '',
-                   '', '4','',
-                   '','Dodavanje nove kategorije:','',
+                   '', '4', '',
+                   '', 'Dodavanje nove kategorije:', '',
                    '', '2', '',
                    '', '3', '',
                    ]
@@ -49,14 +47,14 @@ class PrikazKategorija(QDialog):
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
             if sadrzaj == "1":
-                self.tabela= Tabela(len(self.nazivi) + 1, 2)
-                self.tabela.dodajZaglavlja(["Sifra","Naziv"])
+                self.tabela = Tabela(len(self.nazivi) + 1, 2)
+                self.tabela.dodajZaglavlja(["Sifra", "Naziv"])
                 self.tabela.setColumnWidth(0, 120)
                 self.tabela.setColumnWidth(1, 120)
                 brojac = 1
                 for naziv in self.nazivi:
                     self.tabela.setItem(brojac, 0, QTableWidgetItem(
-                        str(self.kuvarPocetnik.praceneKategorije[brojac-1])))
+                        str(self.kuvarPocetnik.praceneKategorije[brojac - 1])))
                     self.tabela.setItem(brojac, 1, QTableWidgetItem(naziv))
                     brojac += 1
                 self.tabela.setFixedSize(270, 160)
@@ -71,12 +69,12 @@ class PrikazKategorija(QDialog):
                 self.grid.addWidget(self.labela, *pozicija)
             elif sadrzaj == "3":
                 self.dugme = QPushButton("Dodaj novu kategoriju")
-                self.dugme.setFixedSize(200,20)
+                self.dugme.setFixedSize(200, 20)
                 self.grid.addWidget(self.dugme)
                 self.dugme.clicked.connect(self.dodavanjeNove)
-            elif sadrzaj =="4":
+            elif sadrzaj == "4":
                 self.brisanje = QPushButton("Izbrisi kategoriju")
-                self.brisanje.setFixedSize(200,20)
+                self.brisanje.setFixedSize(200, 20)
                 self.grid.addWidget(self.brisanje)
                 self.brisanje.clicked.connect(self.brisanjeKategorije)
             else:
@@ -87,10 +85,10 @@ class PrikazKategorija(QDialog):
     def brisanjeKategorije(self):
         selektovaniRedovi = self.tabela.selectionModel().selectedRows()
         for red in selektovaniRedovi:
-                self.nazivi.pop(red.row() - 1)
-                self.kuvarPocetnik.praceneKategorije.pop(red.row()-1)
-                QApplication.instance().actionManager.informacije.upisiKorisnika()
-                self.refresujTabelu()
+            self.nazivi.pop(red.row() - 1)
+            self.kuvarPocetnik.praceneKategorije.pop(red.row() - 1)
+            QApplication.instance().actionManager.informacije.upisiKorisnika()
+            self.refresujTabelu()
 
     def dodavanjeNove(self):
 
@@ -103,7 +101,7 @@ class PrikazKategorija(QDialog):
             msg.setStandardButtons(QMessageBox.Ok)
             msg.exec()
             return
-        if self.labela.text().lower() in  self.nazivi:
+        if self.labela.text().lower() in self.nazivi:
             msg = QMessageBox(self)
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Ne mozete pratiti jednu kategoriju dva puta!")
@@ -127,8 +125,6 @@ class PrikazKategorija(QDialog):
         QApplication.instance().actionManager.informacije.upisiKorisnika()
         self.refresujTabelu()
 
-
-
     def refresujTabelu(self):
         self.tabela = Tabela(len(self.nazivi) + 1, 2)
         self.tabela.dodajZaglavlja(["Sifra", "Naziv"])
@@ -141,4 +137,4 @@ class PrikazKategorija(QDialog):
             self.tabela.setItem(brojac, 1, QTableWidgetItem(naziv))
             brojac += 1
         self.tabela.setFixedSize(270, 160)
-        self.grid.addWidget(self.tabela, 1,1)
+        self.grid.addWidget(self.tabela, 1, 1)

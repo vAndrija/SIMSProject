@@ -1,5 +1,6 @@
 from view.ProzorZaRegistraciju import *
 
+
 class ProzorZaRegistracijuUrednika(ProzorZaRegistraciju):
     def __init__(self):
         super().__init__()
@@ -32,5 +33,9 @@ class ProzorZaRegistracijuUrednika(ProzorZaRegistraciju):
             if lozinka != ponovnaLozinka:
                 ObavestavajucaPoruka("Vasa lozinka nije ispravna.")
             self.registrovaniKorisnik = QApplication.instance().actionManager.informacije.kreirajUrednika(ime, prezime,
-                                        kIme, lozinka, mejl, str(datum), adresa, mesto, ppt, pol, [])
+                                                                                                          kIme, lozinka,
+                                                                                                          mejl,
+                                                                                                          str(datum),
+                                                                                                          adresa, mesto,
+                                                                                                          ppt, pol, [])
             self.hide()

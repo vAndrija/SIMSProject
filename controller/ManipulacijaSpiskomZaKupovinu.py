@@ -1,7 +1,9 @@
 import json
-import  jsonpickle
+
+import jsonpickle
+
 from model.SpisakZaKupovinu import *
-from PyQt5.QtWidgets import *
+
 
 class ManipulacijaSpiskomZaKupovinu:
 
@@ -17,6 +19,7 @@ class ManipulacijaSpiskomZaKupovinu:
         """
 
         return obj.__dict__
+
     def ucitajSpiskove(self):
         try:
             tekst = open('.\..\podaci\spiskovi.json').read()
@@ -26,7 +29,7 @@ class ManipulacijaSpiskomZaKupovinu:
                 return
 
             for podatak in self.podaci:
-                spisak =SpisakZaKupovinu(**podatak)
+                spisak = SpisakZaKupovinu(**podatak)
                 self.sviSpiskovi.append(spisak)
         except:
             pass
@@ -39,20 +42,19 @@ class ManipulacijaSpiskomZaKupovinu:
         with open('.\..\podaci\spiskovi.json', 'w') as izlazniFajl:
             json.dump(self.sviSpiskovi, izlazniFajl, default=self.objToDict, indent=4)
 
-    def kreirajSpisakZaKupovinu(self,kuvarPocetnik):
+    def kreirajSpisakZaKupovinu(self, kuvarPocetnik):
         id = None
         if len(self.sviSpiskovi) == 0:
             id = 0
         else:
-            id = self.sviSpiskovi[-1].id+1
-        novi = SpisakZaKupovinu(id,{},{})
+            id = self.sviSpiskovi[-1].id + 1
+        novi = SpisakZaKupovinu(id, {}, {})
         kuvarPocetnik.spisakZaKupovinu = id
         self.sviSpiskovi.append(novi)
         self.upisiSpiskove()
 
-    def vratiSpisak(self,id):
+    def vratiSpisak(self, id):
 
         for spisak in self.sviSpiskovi:
-            if spisak.id ==id:
+            if spisak.id == id:
                 return spisak
-

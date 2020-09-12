@@ -1,6 +1,5 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from view.ObavestavajucaPoruka import *
+
 
 class PrikazInformacijaUrednika(QDialog):
     def __init__(self, urednik, parent):
@@ -12,10 +11,9 @@ class PrikazInformacijaUrednika(QDialog):
 
         self.exec_()
 
-
     def initUI(self):
         self.setWindowTitle("Prikaz profila")
-        self.setFixedSize(800,800)
+        self.setFixedSize(800, 800)
         image = QImage("..\slike\\urednik.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -32,22 +30,22 @@ class PrikazInformacijaUrednika(QDialog):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ 'Ime:', '1', '',
-                    'Prezime:', '2', '',
-                  'Korisnicko ime:', '3', '',
-                    'Azurirajte korisnicko ime:', '/', '',
-                  'Mejl:', '4', '',
-                  'Datum rodjenja:', '5', '',
-                  'Adresa:', '6', '',
-                  'Naziv mesta:', '7', '',
-                    'Azurirajte naziv mesta:', '*', '',
-                  'Postanski broj:', '8', '',
-                    'Azurirajte postanski broj:', '-', '',
-                  'Pol:', '9', '',
-                  'Broj recepata koje nije uredio:', '10', '',
-                    '', '11', '',
-                    '', '12', '',
-                 ]
+        matrica = ['Ime:', '1', '',
+                   'Prezime:', '2', '',
+                   'Korisnicko ime:', '3', '',
+                   'Azurirajte korisnicko ime:', '/', '',
+                   'Mejl:', '4', '',
+                   'Datum rodjenja:', '5', '',
+                   'Adresa:', '6', '',
+                   'Naziv mesta:', '7', '',
+                   'Azurirajte naziv mesta:', '*', '',
+                   'Postanski broj:', '8', '',
+                   'Azurirajte postanski broj:', '-', '',
+                   'Pol:', '9', '',
+                   'Broj recepata koje nije uredio:', '10', '',
+                   '', '11', '',
+                   '', '12', '',
+                   ]
 
         pozicije = [(i, j) for i in range(18) for j in range(3)]
 
@@ -124,7 +122,6 @@ class PrikazInformacijaUrednika(QDialog):
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(210, 20)
                 grid.addWidget(labela, *pozicija)
-
 
     def obrisiNalog(self):
         potvrda = QMessageBox

@@ -1,15 +1,18 @@
 from PyQt5.QtWidgets import *
-def provjeraPostojanjaKorisnika(korisnickoIme,lozinka):
-    baza=QApplication.instance().actionManager.informacije
+
+
+def provjeraPostojanjaKorisnika(korisnickoIme, lozinka):
+    baza = QApplication.instance().actionManager.informacije
     for kuvar in baza.sviKuvari:
-        if(kuvar.korisnickoIme==korisnickoIme and kuvar.lozinka ==lozinka):
+        if (kuvar.korisnickoIme == korisnickoIme and kuvar.lozinka == lozinka):
             return kuvar
     for urednik in baza.sviUrednici:
-        if(urednik.korisnickoIme==korisnickoIme and urednik.lozinka==lozinka):
+        if (urednik.korisnickoIme == korisnickoIme and urednik.lozinka == lozinka):
             return urednik
-    if baza.administrator.korisnickoIme==korisnickoIme and baza.administrator.lozinka==lozinka:
+    if baza.administrator.korisnickoIme == korisnickoIme and baza.administrator.lozinka == lozinka:
         return baza.administrator
     return None
+
 
 def nadjiKorisnika(korisnickoIme):
     baza = QApplication.instance().actionManager.informacije
@@ -17,6 +20,7 @@ def nadjiKorisnika(korisnickoIme):
         if kuvar.korisnickoIme == korisnickoIme:
             return kuvar
     return None
+
 
 def nadjiSastojke(sastojci):
     nadjenjiSastojci = []
@@ -27,6 +31,7 @@ def nadjiSastojke(sastojci):
                 break
     return nadjenjiSastojci
 
+
 def nadjiOpremu(oprema):
     nadjenaOprema = []
     for aparat in oprema:
@@ -34,6 +39,7 @@ def nadjiOpremu(oprema):
             if aparat == aparatUBazi.sifra:
                 nadjenaOprema.append(aparatUBazi)
     return nadjenaOprema
+
 
 def azurirajKuvara(staroKorisnicko, azuriranKuvar):
     for kuvar in QApplication.instance().actionManager.informacije.sviKuvari:

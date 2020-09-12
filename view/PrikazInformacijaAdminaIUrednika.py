@@ -1,9 +1,8 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from view.ObavestavajucaPoruka import *
+
 from model.Administrator import *
-from model.Urednik import *
+from view.ObavestavajucaPoruka import *
+
 
 class PrikazInformacijaAdminaIUrednika(QDialog):
     def __init__(self, korisnik):
@@ -13,10 +12,9 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
         self.inicijalizujGrid()
         self.exec_()
 
-
     def initUI(self):
         self.setWindowTitle("Prikaz profila")
-        self.setFixedSize(700,650)
+        self.setFixedSize(700, 650)
         image = QImage("..\slike\\urednik.jpg")
         sImage = image.scaled(self.size())
         palette = QPalette()
@@ -28,7 +26,6 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
         with open("..\slike\stajl.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
-
 
     def inicijalizujGrid(self):
         self.grid = QGridLayout()
@@ -43,7 +40,7 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
                    'Naziv mesta:', '7', '',
                    'Postanski broj:', '8', '',
                    'Pol:', '9', '',
-                    '10', '', '']
+                   '10', '', '']
 
         pozicije = [(i, j) for i in range(10) for j in range(3)]
 
@@ -68,7 +65,7 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
 
             elif sadrzaj == "5":
                 self.labelaDatum = QDateEdit(calendarPopup=True)
-                self.labelaDatum.setDateTime(QDateTime.fromString(self.korisnik.datumRodjenja,"yyyy-MM-dd"))
+                self.labelaDatum.setDateTime(QDateTime.fromString(self.korisnik.datumRodjenja, "yyyy-MM-dd"))
 
                 self.labelaDatum.setFixedSize(130, 20)
                 self.grid.addWidget(self.labelaDatum, *pozicija)
@@ -104,30 +101,25 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
                 self.grid.addWidget(labela, *pozicija)
 
     def azurirajProfil(self):
-        try:
-            if self.labelaIme.text() == self.korisnik.ime and self.labelaKorisnicko.text() == self.korisnik.korisnickoIme and self.labelaPrezime.text() == self.korisnik.prezime and self.korisnik.datumRodjenja == str(
+        if self.labelaIme.text() == self.korisnik.ime and self.labelaKorisnicko.text() == self.korisnik.korisnickoIme and self.labelaPrezime.text() == self.korisnik.prezime and self.korisnik.datumRodjenja == str(
                 self.labelaDatum.date().toPyDate()) and self.labelaAdresa.text() == self.korisnik.adresa and self.labelaMejl.text() == self.korisnik.mejl and self.labelaMesto.text() == self.korisnik.mesto.nazivMesta and self.labelaPostanski.text() == self.korisnik.mesto.postanskiBroj and self.comboBox.currentIndex() == self.korisnik.pol:
-                    ObavestavajucaPoruka("Morate naciniti neke promene.")
+            ObavestavajucaPoruka("Morate naciniti neke promene.")
+        else:
+            self.korisnik.ime = self.labelaIme.text()
+            self.korisnik.prezime = self.labelaPrezime.text()
+            self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
+            self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
+            self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
+            self.korisnik.adresa = self.labelaAdresa.text()
+            self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
+            self.korisnik.mejl = self.labelaMejl.text()
+            if self.comboBox.currentIndex() == 0:
+                self.korisnik.pol = 0
             else:
-                self.korisnik.ime = self.labelaIme.text()
-                self.korisnik.prezime = self.labelaPrezime.text()
-                self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
-                self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
-                self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
-                self.korisnik.adresa = self.labelaAdresa.text()
-                self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
-                self.korisnik.mejl = self.labelaMejl.text()
-                if self.comboBox.currentIndex() == 0:
-                    self.korisnik.pol = 0
-                else:
-                    self.korisnik.pol = 1
+                self.korisnik.pol = 1
 
-                if isinstance(self.korisnik, Administrator):
-                    QApplication.instance().actionManager.informacije.upisiAdministratora()
-                else:
-                    QApplication.instance().actionManager.informacije.upisiUrednike()
-                self.close()
-        except Exception as e:
-            print(e)
-
-
+            if isinstance(self.korisnik, Administrator):
+                QApplication.instance().actionManager.informacije.upisiAdministratora()
+            else:
+                QApplication.instance().actionManager.informacije.upisiUrednike()
+            self.close()

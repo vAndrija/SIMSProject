@@ -1,11 +1,9 @@
-# Napomena: da li dodati novi sastojak u tabelu vec postojecih sastojaka
-
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+
 from model.TipKolicine import *
 from view.ObavestavajucaPoruka import *
 from view.Tabela import *
+
 
 class ProzorZaDodavanjeSastojaka(QDialog):
     def __init__(self):
@@ -24,7 +22,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         self.setWindowTitle("Aplikacija za kuvare pocetnike")
         ikonica = QIcon('..\slike\ikonica.png')
         self.setWindowIcon(ikonica)
-        self.setFixedSize(800,900)
+        self.setFixedSize(800, 900)
         image = QImage("..\slike\sastojci.jpg")
         sImage = image.scaled(QSize(800, 900))
         palette = QPalette()
@@ -46,39 +44,38 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         grid = QGridLayout()
         self.setLayout(grid)
 
-        matrica = [ '', '', '',
-                    '', '', '',
-                    '', 'Pretrazite tabelu:', '',
-                 '', '1', '',
-                 '', '*', '',
-                 '', '?', '',
-                 '', 'Dodajte novi sastojak:', '',
-                 '', 'Unesite ime sastojka:', '',
-                    '', '-', '',
-                 '', 'Izaberite tip kolicine sastojka:', '',
-                    '', '/', '',
-                    '', '+', '',
-                    '', '!', '',
-                    '', '#', '',
-                 ]
+        matrica = ['', '', '',
+                   '', '', '',
+                   '', 'Pretrazite tabelu:', '',
+                   '', '1', '',
+                   '', '*', '',
+                   '', '?', '',
+                   '', 'Dodajte novi sastojak:', '',
+                   '', 'Unesite ime sastojka:', '',
+                   '', '-', '',
+                   '', 'Izaberite tip kolicine sastojka:', '',
+                   '', '/', '',
+                   '', '+', '',
+                   '', '!', '',
+                   '', '#', '',
+                   ]
 
         pozicije = [(i, j) for i in range(14) for j in range(3)]
 
         self.postojeciSastojci = None
         self.dodatiSastojci = None
 
-
         for pozicija, sadrzaj in zip(pozicije, matrica):
             if sadrzaj == "-":
                 self.nazivSastojka = QLineEdit()
-                self.nazivSastojka.setFixedSize(250,25)
+                self.nazivSastojka.setFixedSize(250, 25)
                 grid.addWidget(self.nazivSastojka, *pozicija)
             elif sadrzaj == "*":
                 sviSastojci = self.sastojciMenadzer.sviSastojci
                 self.postojeciSastojci = Tabela(1, 3)
                 self.postojeciSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
                 self.postojeciSastojci.setColumnWidth(0, 120)
-                self.postojeciSastojci.setColumnWidth(1,219)
+                self.postojeciSastojci.setColumnWidth(1, 219)
                 self.postojeciSastojci.setColumnWidth(2, 140)
                 brojac = 1
                 self.popuniTabeluPostojece(sviSastojci)
@@ -99,20 +96,20 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 grid.addWidget(self.comboBox, *pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Dodaj sastojak")
-                dugme.setFixedSize(250,30)
+                dugme.setFixedSize(250, 30)
                 dugme.clicked.connect(self.dodavanjeNovogSastojka)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "!":
-                self.dodatiSastojci = Tabela(1,3)
+                self.dodatiSastojci = Tabela(1, 3)
                 self.dodatiSastojci.setColumnWidth(0, 120)
-                self.dodatiSastojci.setColumnWidth(1,219)
+                self.dodatiSastojci.setColumnWidth(1, 219)
                 self.dodatiSastojci.setColumnWidth(2, 140)
                 self.dodatiSastojci.dodajZaglavlja(["Sifra", "Naziv sastojka", "Tip kolicine"])
                 self.dodatiSastojci.setFixedSize(500, 165)
                 grid.addWidget(self.dodatiSastojci, *pozicija)
             elif sadrzaj == "#":
                 dugme = QPushButton("Zavrsi dodavanje")
-                dugme.setFixedSize(250,30)
+                dugme.setFixedSize(250, 30)
                 dugme.clicked.connect(self.zavrsenoDodavanje)
                 grid.addWidget(dugme, *pozicija)
             elif sadrzaj == "1":
@@ -123,9 +120,8 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                 grid.addWidget(self.nazivFilter, *pozicija)
             else:
                 labela = QLabel(sadrzaj)
-                labela.setFixedSize(170,35)
+                labela.setFixedSize(170, 35)
                 grid.addWidget(labela, *pozicija)
-
 
     def dodajSastojak(self):
         """
@@ -138,7 +134,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         brojRedova = self.dodatiSastojci.rowCount()
         brojac = 0
         for red in redovi:
-            if red.row()-1 < 0:
+            if red.row() - 1 < 0:
                 ObavestavajucaPoruka("Ne mozete oznaciti red sa nazivima kolona.")
             else:
                 naziv = self.postojeciSastojci.item(red.row(), 2).text()
@@ -156,8 +152,6 @@ class ProzorZaDodavanjeSastojaka(QDialog):
                     self.dodatiSastojci.setItem(brojRedova + brojac, 2, QTableWidgetItem(str(sastojak.tipKolicine)))
                     brojac += 1
 
-
-
     def zavrsenoDodavanje(self):
         """
         Funkcija koja se poziva kada korisnik pritisne dugme 'Zavrsi dodavanje'. Prozor za dodavanje sastojaka se
@@ -166,7 +160,6 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         """
         self.hide()
         return self.dodatiUTabelu
-
 
     def dodavanjeNovogSastojka(self):
         """
@@ -215,8 +208,7 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         self.postojeciSastojci.setColumnWidth(1, 219)
         self.postojeciSastojci.setColumnWidth(2, 140)
         brojac = self.postojeciSastojci.rowCount()
-        self.postojeciSastojci.setRowCount(self.postojeciSastojci.rowCount()+len(sviSastojci))
-
+        self.postojeciSastojci.setRowCount(self.postojeciSastojci.rowCount() + len(sviSastojci))
 
         for sastojak in sviSastojci:
             self.postojeciSastojci.setItem(brojac, 0, QTableWidgetItem(str(sastojak.sifra)))
@@ -240,4 +232,4 @@ class ProzorZaDodavanjeSastojaka(QDialog):
         elif naziv == "SUPENAKASIKA":
             return TipKolicine.SUPENAKASIKA
         elif naziv == "PRSTOHVAT":
-            return  TipKolicine.PRSTOHVAT
+            return TipKolicine.PRSTOHVAT
