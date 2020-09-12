@@ -67,6 +67,7 @@ class ProzorZaPrijavu(QWidget):
                 grid.addWidget(self.korisnickoIme, *pozicija)
             elif sadrzaj =="^":
                 self.lozinka = QLineEdit()
+                self.lozinka.setEchoMode(QLineEdit.Password)
                 grid.addWidget(self.lozinka,*pozicija)
             elif sadrzaj == "+":
                 dugme = QPushButton("Prijavite se")

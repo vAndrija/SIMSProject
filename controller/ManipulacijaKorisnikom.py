@@ -210,6 +210,13 @@ class ManipulacijaKorisnikom(object):
             if(kuvar.korisnickoIme==korisnickoIme):
                 return kuvar
 
-
+    def promeniLozinkuPrijavljenom(self, novaLozinka):
+        QApplication.instance().actionManager.prijavljeniKorisnik.lozinka = novaLozinka
+        if isinstance(QApplication.instance().actionManager.prijavljeniKorisnik, Administrator):
+            self.upisiAdministratora()
+        elif isinstance(QApplication.instance().actionManager.prijavljeniKorisnik,Urednik):
+            self.upisiUrednike()
+        else:
+            self.upisiKorisnika()
 
 

@@ -81,6 +81,9 @@ class ProzorZaRegistraciju(QDialog):
                 labela.setFixedSize(200,60)
                 self.grid.addWidget(labela, *pozicija)
 
+        self.tekstovi[3].setEchoMode(QLineEdit.Password)
+        self.tekstovi[4].setEchoMode(QLineEdit.Password)
+
         self.dodajOpremuISastojke()
         self.dodajDugmeRegistracije()
 
@@ -100,7 +103,7 @@ class ProzorZaRegistraciju(QDialog):
         self.grid.addWidget(self.dugmeOprema, 11, 3)
 
     def dodajDugmeRegistracije(self):
-        dugme = QPushButton("Registrujte se")
+        dugme = QPushButton("Registracija")
         dugme.setFixedSize(250, 30)
         dugme.clicked.connect(self.registracija)
         self.grid.addWidget(dugme, 12, 3)

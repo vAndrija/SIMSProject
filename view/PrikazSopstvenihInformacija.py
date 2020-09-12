@@ -44,7 +44,6 @@ class PrikazSopstvenihInformacija(QDialog):
         matrica = [ 'Ime:', '1', '',
                     'Prezime:', '2', '',
                   'Korisnicko ime:', '3', '',
-                   'Lozinka', '15','',
                   'Mejl:', '4', '',
                   'Datum rodjenja:', '5', '',
                   'Adresa:', '6', '',
@@ -62,7 +61,7 @@ class PrikazSopstvenihInformacija(QDialog):
                   '', '14','',
                  ]
 
-        pozicije = [(i, j) for i in range(19) for j in range(3)]
+        pozicije = [(i, j) for i in range(18) for j in range(3)]
 
         for pozicija, sadrzaj in zip(pozicije, matrica):
 
@@ -112,10 +111,10 @@ class PrikazSopstvenihInformacija(QDialog):
                 #labela = QLineEdit(pol)
                 self.comboBox.setFixedSize(130, 20)
                 self.grid.addWidget(self.comboBox, *pozicija)
-            elif sadrzaj == "15":
-                self.labelaLozinka  =QLineEdit(self.korisnik.lozinka)
-                self.labelaLozinka.setFixedSize(130,20)
-                self.grid.addWidget(self.labelaLozinka,*pozicija)
+            # elif sadrzaj == "15":
+            #     self.labelaLozinka  =QLineEdit(self.korisnik.lozinka)
+            #     self.labelaLozinka.setFixedSize(130,20)
+            #     self.grid.addWidget(self.labelaLozinka,*pozicija)
             elif sadrzaj == "10":
                 sastojci = self.korisnik.dugotrajniSastojci
                 sviSastojci = nadjiSastojke(sastojci)
@@ -236,7 +235,7 @@ class PrikazSopstvenihInformacija(QDialog):
         self.korisnik.ime = self.labelaIme.text()
         self.korisnik.prezime = self.labelaPrezime.text()
         self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
-        self.korisnik.lozinka = self.labelaLozinka.text()
+        # self.korisnik.lozinka = self.labelaLozinka.text()
         self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
         self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
         self.korisnik.adresa  = self.labelaAdresa.text()

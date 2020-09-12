@@ -56,5 +56,32 @@
         "spisakZaKupovinu": 1,
         "praceniKuvari": [],
         "praceneKategorije": []
+    },
+    {
+        "korisnickoIme": "nemanja99",
+        "lozinka": "novisad",
+        "ime": "Nemanja",
+        "prezime": "Milutinovic",
+        "mejl": "nemanja@gmail.com",
+        "datumRodjenja": "1999-04-13",
+        "adresa": "Pucile",
+        "mesto": {
+            "nazivMesta": "Bijeljina",
+            "postanskiBroj": "76300"
+        },
+        "pol": 1,
+        "dugotrajniSastojci": [
+            0,
+            2,
+            4
+        ],
+        "oprema": [
+            0
+        ],
+        "recepti": [],
+        "virtuelniKuvar": 2,
+        "spisakZaKupovinu": 2,
+        "praceniKuvari": [],
+        "praceneKategorije": []
     }
 ]
