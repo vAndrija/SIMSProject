@@ -1,259 +1,55 @@
 [
     {
-        "korisnickoIme": "Jojev",
-        "lozinka": "andro",
-        "ime": "jovana",
-        "prezime": "jevtic",
-        "mejl": "jo.jevtic@gmail.com",
-        "datumRodjenja": "1999-06-22",
-        "adresa": "drinska 13",
-        "mesto": {
-            "nazivMesta": "mali zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [],
-        "oprema": [
-            1
-        ],
-        "recepti": [
-            7,
-            9
-        ],
-        "virtuelniKuvar": 0,
-        "spisakZaKupovinu": 0,
-        "praceniKuvari": [],
-        "praceneKategorije": [
-            1,
-            3,
-            0,
-            5
-        ]
-    },
-    {
-        "korisnickoIme": "Necika",
-        "lozinka": "prijedor",
-        "ime": "Nemanja",
-        "prezime": "Milutinovic",
-        "mejl": "nemanja@gmail.com",
-        "datumRodjenja": "1999-04-13",
-        "adresa": "Pucile",
-        "mesto": {
-            "nazivMesta": "Biljeljina",
-            "postanskiBroj": "76854"
-        },
-        "pol": 1,
-        "dugotrajniSastojci": [],
-        "oprema": [],
-        "recepti": [
-            2,
-            5,
-            1
-        ],
-        "virtuelniKuvar": 1,
-        "spisakZaKupovinu": 1,
-        "praceniKuvari": [],
-        "praceneKategorije": [
-            2,
-            0
-        ]
-    },
-    {
-        "korisnickoIme": "mladjo",
-        "lozinka": "pricinovic",
-        "ime": "mladen",
-        "prezime": "vasic",
-        "mejl": "mladjo@gmail.com",
-        "datumRodjenja": "1999-08-02",
-        "adresa": "pricinovic",
-        "mesto": {
-            "nazivMesta": "sabac",
-            "postanskiBroj": "16978"
-        },
-        "pol": 1,
-        "dugotrajniSastojci": [],
-        "oprema": [],
-        "recepti": [
-            3
-        ],
-        "virtuelniKuvar": 2,
-        "spisakZaKupovinu": 2,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Andro",
-        "lozinka": "kokica",
+        "korisnickoIme": "andros",
+        "lozinka": "jovanica",
         "ime": "Andrija",
         "prezime": "Vojnovic",
         "mejl": "andrija@gmail.com",
         "datumRodjenja": "1998-09-21",
-        "adresa": "Ljeskovac",
+        "adresa": "Ljeskovac, Ulica I 29",
         "mesto": {
             "nazivMesta": "Bijeljina",
             "postanskiBroj": "76300"
         },
         "pol": 1,
         "dugotrajniSastojci": [
-            1
+            0,
+            1,
+            2
         ],
         "oprema": [
-            0,
-            1
+            0
         ],
-        "recepti": [],
-        "virtuelniKuvar": 3,
-        "spisakZaKupovinu": 3,
+        "recepti": [
+            0,
+            1,
+            2
+        ],
+        "virtuelniKuvar": 0,
+        "spisakZaKupovinu": 0,
         "praceniKuvari": [],
-        "praceneKategorije": []
+        "praceneKategorije": [
+            0
+        ]
     },
     {
-        "korisnickoIme": "Tasa99",
-        "lozinka": "vojnamedicina",
-        "ime": "Tamara",
-        "prezime": "Mitrovic",
-        "mejl": "tamara@gmail.com",
-        "datumRodjenja": "1999-02-18",
-        "adresa": "Donja Borina bb",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [
-            0,
-            1
-        ],
-        "oprema": [
-            0,
-            3,
-            4
-        ],
-        "recepti": [],
-        "virtuelniKuvar": 4,
-        "spisakZaKupovinu": 4,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Lule99",
-        "lozinka": "vaspitac",
+        "korisnickoIme": "jovanica",
+        "lozinka": "andros",
         "ime": "Jovana",
-        "prezime": "Lukic",
-        "mejl": "jovanal@gmail.com",
-        "datumRodjenja": "1999-08-25",
-        "adresa": "Milutina Milankovica 13",
-        "mesto": {
-            "nazivMesta": "Sakar",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [
-            1
-        ],
-        "oprema": [
-            0
-        ],
-        "recepti": [],
-        "virtuelniKuvar": 5,
-        "spisakZaKupovinu": 5,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Bilja99",
-        "lozinka": "medicina",
-        "ime": "Biljana",
-        "prezime": "Smiljanic",
-        "mejl": "bilja@gmail.com",
-        "datumRodjenja": "1999-04-01",
-        "adresa": "Velika Reka bb",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [
-            0,
-            1
-        ],
-        "oprema": [
-            0,
-            3,
-            4
-        ],
-        "recepti": [],
-        "virtuelniKuvar": 6,
-        "spisakZaKupovinu": 6,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Vanja02",
-        "lozinka": "odbojka",
-        "ime": "Valentina",
         "prezime": "Jevtic",
-        "mejl": "vanja@gmail.com",
-        "datumRodjenja": "2002-10-09",
-        "adresa": "Drisnka 13",
+        "mejl": "jovanica@gmail.com",
+        "datumRodjenja": "1999-06-22",
+        "adresa": "Drinska 16",
         "mesto": {
             "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [
-            1,
-            0
-        ],
-        "oprema": [
-            1,
-            4
-        ],
-        "recepti": [],
-        "virtuelniKuvar": 7,
-        "spisakZaKupovinu": 7,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Dajana99",
-        "lozinka": "megi",
-        "ime": "Dajana",
-        "prezime": "Vukovic",
-        "mejl": "dajana@gmail.com",
-        "datumRodjenja": "1999-06-21",
-        "adresa": "Kralja Petra 58",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
+            "postanskiBroj": "2131231"
         },
         "pol": 0,
         "dugotrajniSastojci": [],
         "oprema": [],
         "recepti": [],
-        "virtuelniKuvar": 8,
-        "spisakZaKupovinu": 8,
-        "praceniKuvari": [],
-        "praceneKategorije": []
-    },
-    {
-        "korisnickoIme": "Tea99",
-        "lozinka": "animacije",
-        "ime": "Teodora",
-        "prezime": "Jovanovic",
-        "mejl": "teodora@gmail.com",
-        "datumRodjenja": "1999-11-15",
-        "adresa": "Jovanovici ",
-        "mesto": {
-            "nazivMesta": "Mali Zvornik",
-            "postanskiBroj": "15318"
-        },
-        "pol": 0,
-        "dugotrajniSastojci": [],
-        "oprema": [],
-        "recepti": [],
-        "virtuelniKuvar": 9,
-        "spisakZaKupovinu": 9,
+        "virtuelniKuvar": 1,
+        "spisakZaKupovinu": 1,
         "praceniKuvari": [],
         "praceneKategorije": []
     }

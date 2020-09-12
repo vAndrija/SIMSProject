@@ -1,8 +1,8 @@
 [
     {
         "sifra": 0,
-        "naziv": "Jaja",
-        "tipKolicine": "KOMAD"
+        "naziv": "Brasno",
+        "tipKolicine": "GRAM"
     },
     {
         "sifra": 1,
@@ -11,43 +11,43 @@
     },
     {
         "sifra": 2,
-        "naziv": "Voda",
-        "tipKolicine": "DL"
+        "naziv": "So",
+        "tipKolicine": "GRAM"
     },
     {
         "sifra": 3,
-        "naziv": "Led",
-        "tipKolicine": "KOMAD"
+        "naziv": "malina",
+        "tipKolicine": "GRAM"
     },
     {
         "sifra": 4,
-        "naziv": "Salama",
+        "naziv": "jogurt",
         "tipKolicine": "GRAM"
     },
     {
         "sifra": 5,
-        "naziv": "brasno",
+        "naziv": "maskarpone sir",
         "tipKolicine": "GRAM"
     },
     {
         "sifra": 6,
-        "naziv": "ulja",
-        "tipKolicine": "DL"
+        "naziv": "Linolada milk",
+        "tipKolicine": "GRAM"
     },
     {
         "sifra": 7,
-        "naziv": "so",
-        "tipKolicine": "SUPENAKASIKA"
+        "naziv": "krem sir",
+        "tipKolicine": "GRAM"
     },
     {
         "sifra": 8,
-        "naziv": "kvasac",
-        "tipKolicine": "SUPENAKASIKA"
+        "naziv": "vanilin secer",
+        "tipKolicine": "KOMAD"
     },
     {
         "sifra": 9,
-        "naziv": "pileca prsa",
-        "tipKolicine": "GRAM"
+        "naziv": "voda",
+        "tipKolicine": "DL"
     },
     {
         "sifra": 10,
@@ -56,12 +56,12 @@
     },
     {
         "sifra": 11,
-        "naziv": "rezanca",
+        "naziv": "kvasac",
         "tipKolicine": "GRAM"
     },
     {
         "sifra": 12,
-        "naziv": "Pileci file",
+        "naziv": "stisnjena sunka",
         "tipKolicine": "GRAM"
     },
     {
@@ -71,7 +71,32 @@
     },
     {
         "sifra": 14,
-        "naziv": "pavlaka za kuvanje",
+        "naziv": "crni luk",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 15,
+        "naziv": "masline",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 16,
+        "naziv": "kackavalj",
         "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 17,
+        "naziv": "origano",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 18,
+        "naziv": "jaje",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 19,
+        "naziv": "mlijeko",
+        "tipKolicine": "DL"
     }
 ]

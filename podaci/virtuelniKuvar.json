@@ -1,55 +1,13 @@
 [
     {
         "id": 0,
-        "predgovor": "Ovi recepti su dugo skupljani, sa velikim strpljenjem i ljubavlju. Ovaj virtuelni kuvar je namijenjen ljudima koji preferiraju slatke ukuse ",
+        "predgovor": "",
         "recepti": [
-            2,
-            3,
-            4
+            0
         ]
     },
     {
         "id": 1,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 2,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 3,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 4,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 5,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 6,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 7,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 8,
-        "predgovor": "",
-        "recepti": []
-    },
-    {
-        "id": 9,
         "predgovor": "",
         "recepti": []
     }

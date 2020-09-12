@@ -1,57 +1,12 @@
 [
     {
         "sifra": 0,
-        "naziv": "Sokovnik",
+        "naziv": "Mikser",
         "marka": "Delimano"
     },
     {
         "sifra": 1,
-        "naziv": "Mikser",
-        "marka": "Gorenje"
-    },
-    {
-        "sifra": 2,
-        "naziv": "Aparat za krofnice",
-        "marka": "Delimano"
-    },
-    {
-        "sifra": 3,
-        "naziv": "Mikser",
-        "marka": "Delimano"
-    },
-    {
-        "sifra": 4,
-        "naziv": "Vaga",
-        "marka": "Gorenje"
-    },
-    {
-        "sifra": 5,
-        "naziv": "sokovnik",
-        "marka": ""
-    },
-    {
-        "sifra": 6,
-        "naziv": "sokovnik",
-        "marka": "andrija"
-    },
-    {
-        "sifra": 7,
-        "naziv": "mikser",
-        "marka": ""
-    },
-    {
-        "sifra": 8,
-        "naziv": "Casa",
-        "marka": ""
-    },
-    {
-        "sifra": 9,
-        "naziv": "oklagija",
-        "marka": ""
-    },
-    {
-        "sifra": 10,
         "naziv": "tepsija",
-        "marka": "delimano"
+        "marka": ""
     }
 ]

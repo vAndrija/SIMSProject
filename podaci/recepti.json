@@ -1,29 +1,17 @@
 [
     {
-        "id": 1,
-        "naziv": "Sampita.-.",
-        "oprema": [
-            0
-        ],
+        "id": 0,
+        "naziv": "Linolada sa malinama",
+        "oprema": [],
         "sastojci": {
-            "0": 10,
-            "1": 300
+            "3": 200.0,
+            "4": 150.0,
+            "1": 100.0,
+            "5": 250.0,
+            "6": 60.0,
+            "7": 130.0,
+            "8": 1.0
         },
-        "kategorije": [],
-        "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0
-        },
-        "ekstenzijaSlike": "jpg",
-        "opis": "Najsladji kolac ikadaaaa"
-    },
-    {
-        "id": 2,
-        "naziv": "Krempita",
-        "oprema": [
-            1
-        ],
-        "sastojci": {},
         "kategorije": [
             0,
             1
@@ -33,86 +21,50 @@
             "brojOcena": 0
         },
         "ekstenzijaSlike": "jpg",
-        "opis": "Kolac sa najvise slasti poznat svima od malena. Vrlo jednostavna priprema a pri tome kolac koji ce sigurno zadovoljiti svaciji ukus"
+        "opis": "Maline samljeti pa ih pomje sa secerom i jogurtom.\n\nMaskarpone sjediniti sa Lino ladom, sirom i vanilinim secerom, dobro izmjesat.\nPripremiti 3-4 case zavisi od velicine Kod mene su bile malo vece. Na dno redjati malina smjesu preko sir smjesu pa Po vrhu jos ukrasiti sa malo malina smjesom.\nPreko stavljati svjeze maline i ribanu cokoladu."
     },
     {
-        "id": 3,
-        "naziv": "makarone",
-        "oprema": [],
-        "sastojci": {},
+        "id": 1,
+        "naziv": "Pizza",
+        "oprema": [
+            1
+        ],
+        "sastojci": {
+            "0": 950.0,
+            "9": 5.0,
+            "10": 0.8,
+            "2": 10.0,
+            "1": 10.0,
+            "11": 10.0,
+            "12": 300.0,
+            "13": 200.0,
+            "14": 1.0,
+            "15": 3.0,
+            "16": 300.0,
+            "17": 1.0
+        },
         "kategorije": [
             2,
-            0
-        ],
-        "ocena": {
-            "vrednost": 4.0,
-            "brojOcena": 15
-        },
-        "ekstenzijaSlike": "jpg",
-        "opis": "slano ukusno jelo. jednostavna priprema."
-    },
-    {
-        "id": 4,
-        "naziv": "Jaje na oko",
-        "oprema": [],
-        "sastojci": {},
-        "kategorije": [
-            0
+            3
         ],
         "ocena": {
             "vrednost": 0,
             "brojOcena": 0
         },
-        "ekstenzijaSlike": "jpeg",
-        "opis": "brzi dorucak"
-    },
-    {
-        "id": 5,
-        "naziv": "Piletina",
-        "oprema": [],
-        "sastojci": {},
-        "kategorije": [
-            0
-        ],
-        "ocena": {
-            "vrednost": 9.7,
-            "brojOcena": 3
-        },
-        "ekstenzijaSlike": "jpeg",
-        "opis": "Glavno jelo za posebne prilike"
-    },
-    {
-        "id": 6,
-        "naziv": "Hladna voda.-.",
-        "oprema": [
-            8
-        ],
-        "sastojci": {
-            "2": 30.0,
-            "3": 15.0
-        },
-        "kategorije": [],
-        "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0
-        },
         "ekstenzijaSlike": "jpg",
-        "opis": "Doda se casa vode i to je to"
+        "opis": "U toploj vodi vodi staviti ka\u0161i\u010dicu \u0161e\u0107era i izdrobiti kvasac. Sa\u010dekati da naraste. U bra\u0161no staviti so, ostatak \u0161e\u0107era, ulje, i vodu sa kvascem. Umesiti testo (ako je potrebno dodati jo\u0161 bra\u0161na). Podeliti testo na 2 dela i ostaviti da naraste (odprilike 15-ak minuta).Oba pleha dobro premazati uljem (da se ne bi testo zalepilo) i razvu\u0107i testo rukama. Po testu sipatu ke\u010dap i ravnomerno razmazati.Zatim staviti: \u0161unku (na polukrugove), \u010dajnu kobasicu, slaninicu, pe\u010durke (na listi\u0107e), masline (koli\u010dina po \u017eelji). Na svaku 1/8 testa rabiti jaje (po \u017eelji). Posuti sa origanom i obilno nastrugati ka\u010dkavalj.Staviti da se pe\u010de u prethodno zagrejanu rernu na 190 stepeni."
     },
     {
-        "id": 7,
-        "naziv": "Kapricoza pica",
+        "id": 2,
+        "naziv": "Sampita",
         "oprema": [
-            9,
-            10
+            1
         ],
         "sastojci": {
-            "4": 300.0,
-            "5": 950.0,
-            "2": 5.0,
-            "6": 0.8,
-            "7": 2.0,
-            "8": 0.5
+            "18": 7.0,
+            "1": 100.0,
+            "19": 0.7,
+            "10": 0.7
         },
         "kategorije": [
             0,
@@ -123,49 +75,6 @@
             "brojOcena": 0
         },
         "ekstenzijaSlike": "jpg",
-        "opis": "U toploj vodi vodi staviti ka\u0161i\u010dicu \u0161e\u0107era i izdrobiti kvasac. Sa\u010dekati da naraste. U bra\u0161no staviti so, ostatak \u0161e\u0107era, ulje, i vodu sa kvascem. Umesiti testo (ako je potrebno dodati jo\u0161 bra\u0161na). Podeliti testo na 2 dela i ostaviti da naraste (odprilike 15-ak minuta).\n\n2\nOba pleha dobro premazati uljem (da se ne bi testo zalepilo) i razvu\u0107i testo rukama. Po testu sipatu ke\u010dap i ravnomerno razmazati.\n\n3\nZatim staviti: \u0161unku (na polukrugove), \u010dajnu kobasicu, slaninicu, pe\u010durke (na listi\u0107e), masline (koli\u010dina po \u017eelji). Na svaku 1/8 testa rabiti jaje (po \u017eelji). Posuti sa origanom i obilno nastrugati ka\u010dkavalj.\n\n4\nStaviti da se pe\u010de u prethodno zagrejanu rernu na 190 stepeni."
-    },
-    {
-        "id": 8,
-        "naziv": "Pecena piletina.-.",
-        "oprema": [
-            10
-        ],
-        "sastojci": {
-            "9": 250.0,
-            "10": 0.75,
-            "2": 25.0,
-            "11": 250.0
-        },
-        "kategorije": [],
-        "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0
-        },
-        "ekstenzijaSlike": "jpg",
-        "opis": "Piletinu operite i posu\u0161ite papirnatim ubrusom. Zajedno pomije\u0161ajte sol, Vegetu Natur za piletinu i \u010dili, pa s tom mje\u0161avinom dobro natrljajte piletinu. 2. Tepsiju (32x17 cm) lagano prema\u017eite uljem i u nju poslo\u017eite piletinu tako da ko\u017eica bude okrenuta prema gore. 3. Piletinu prelijte s ostatkom ulja i stavite pe\u0107i u prethodno zagrijanu pe\u0107nicu na 180 \u00b0C i pecite 80 minuta. Piletinu ni u kom slu\u010daju nemojte okretati kako bi se ko\u017eica zarumenila i postala hrskava. 4. Vodu pustite da zakuha, pa dodajte koko\u0161ju kocku, sol i pustite da lagano kuha 5 minuta. Dodajte tijesto i kad je kuhano ocijedite ga, isperite, a dio teku\u0107ine sa\u010duvajte."
-    },
-    {
-        "id": 9,
-        "naziv": "Piletina u lisnatom tijestu",
-        "oprema": [
-            10
-        ],
-        "sastojci": {
-            "12": 250.0,
-            "13": 250.0,
-            "0": 3.0,
-            "14": 250.0
-        },
-        "kategorije": [
-            0,
-            5
-        ],
-        "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0
-        },
-        "ekstenzijaSlike": "jpg",
-        "opis": "\nPiletinu ise\u0107i na kockice, za\u010diniti, pa pr\u017eiti na ulju. Kada je ispr\u017eena, izvaditi je iz tiganja pa u istom ulju propr\u017eiti sitno seckan luk i \u0161ampinjone. Posoliti po ukusu. Kada bude gotovo, u tiganj vratiti piletinu pa na tihoj vatri pr\u017eiti.\n\n2\nU posudi razmutiti dva jaja, pa dodati pavlaku za kuvanje. Sve sjediniti, pa preliti smesu u tiganju. Sve zajedno pr\u017eiti nekoliko minuta i onda skinuti sa vatre.\n\n3\nLisnato testo rasklagijati \u0161to tanje, i odprilike u obliku va\u0161e posude za pe\u010denje.\n\n4\nU vatrostalnu posudu sipati smesu iz tiganja, pa prekriti lisnatim testom. Pe\u0107i 30 minuta na 200 stepeni. Kada je pe\u010denje odprilike na pola, onda razmutiti preostalo jaje i premazati lisnato testo. Vratiti nakon toga odmah u \u0161poret da se dope\u010de"
+        "opis": "Zumanjke i secer mijesajte dok se secer ne otopi. Dodajte mlijeko, ulje i brasno pomijesano s praskom za pecivo.\nSmjesu dobro izmijesajte i izlijte u namasceni pobrasnjeni lim za pecenje (30 x 20 cm) te pecite u pecnici zagrijanoj na 200\u00b0C 10 minuta.\n3.Saum nanesite preko pecenog biskvita, poravnajte i vratite u pecnicu na 5 minuta (da se formira korica).\nOhladite na sobnoj temperaturi, a zatim nastavite hladiti u hladnjaku.\nZa Saum:\nSecer i vodu zagrijte na srednjoj temperaturi dok se secer ne otopi i pocne formirati mjehurice.\nBjelanjke istucite u cvrsti snijeg (kad okrenete posudu naopacke da saum ne ispadne).\nPolako dodavajte vrci, rastopljeni secer uz stalno mijesanje i tako nastavite jos 15 minuta.\nNa kraju sampitu vratite u iskljucenu rernu kako bi se na saumu uhvatila korica, sampita ce se lakse rezati."
     }
 ]

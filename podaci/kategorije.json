@@ -1,26 +1,22 @@
 [
     {
         "id": 0,
-        "naziv": "brza priprema"
-    },
-    {
-        "id": 1,
         "naziv": "desert"
     },
     {
+        "id": 1,
+        "naziv": "osvjezavajuce"
+    },
+    {
         "id": 2,
-        "naziv": "pasta"
+        "naziv": "italijanska kuhinja"
     },
     {
         "id": 3,
-        "naziv": "Pice"
+        "naziv": "brza hrana"
     },
     {
         "id": 4,
-        "naziv": "Brza hrana"
-    },
-    {
-        "id": 5,
-        "naziv": "jela sa piletinom"
+        "naziv": "slatkis"
     }
 ]
