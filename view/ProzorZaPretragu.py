@@ -84,6 +84,7 @@ class ProzorZaPretragu(QDialog):
                 labela = QLabel("Napredna pretraga")
                 labela.setToolTip("Napredna pretraga omogucava prikaz recepata sortiranih po info"
                                   "rmacijama o dugotrajnim sastojcima i opremama")
+                grid.addWidget(labela)
             else:
                 labela = QLabel(sadrzaj)
                 labela.setFixedSize(200, 30)

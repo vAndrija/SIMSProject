@@ -140,6 +140,21 @@ class ManipulacijaReceptima():
         QApplication.instance().actionManager.prijavljeniKorisnik.recepti.append(id)
         QApplication.instance().actionManager.informacije.upisiKorisnika()
 
+
+    def azuriranjeNaziva(self,recept):
+        sadrzaj = []
+        osnovnaPutanja = os.getcwd()[:-4]
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "r") as stream:
+            sadrzaj = stream.readlines()
+        for i in range(len(sadrzaj)):
+            if ('<h3 class="name">' in sadrzaj[i]):
+                sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(recept.naziv)
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
+            output.writelines(sadrzaj)
+        self.sacuvajRecepte()
+
+
+
     def receptiPretraga(self, naziv, kategorije, napredno):
         korisnik = QApplication.instance().actionManager.prijavljeniKorisnik
 
