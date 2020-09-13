@@ -80,7 +80,6 @@ class ProzorZaBrisanjeRecepta(QDialog):
         self.tabelaRecepata.setRowCount(1)
 
     def odrediMojeRecepte(self):
-        print()
         self.mojiRecepti = []
         for recept in self.menadzerRecepti.recepti:
             if recept.id in self.prijavljenKorisnik.recepti:

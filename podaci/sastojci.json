@@ -128,5 +128,100 @@
         "sifra": 25,
         "naziv": "crvene paprike",
         "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 26,
+        "naziv": "Brasno",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 27,
+        "naziv": "So",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 28,
+        "naziv": "Secer",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 29,
+        "naziv": "kvasac",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 30,
+        "naziv": "stisnjena sunka",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 31,
+        "naziv": "sampinjoni",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 32,
+        "naziv": "crni luk",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 33,
+        "naziv": "masline",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 34,
+        "naziv": "kackavalj",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 35,
+        "naziv": "origano",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 36,
+        "naziv": "jagoda",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 37,
+        "naziv": "jagodica",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 38,
+        "naziv": "malina",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 39,
+        "naziv": "jogurt",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 40,
+        "naziv": "maskarpone sir",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 41,
+        "naziv": "Linolada milk",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 42,
+        "naziv": "krem sir",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 43,
+        "naziv": "vanilin secer",
+        "tipKolicine": "PRSTOHVAT"
+    },
+    {
+        "sifra": 44,
+        "naziv": "aa",
+        "tipKolicine": "KOMAD"
     }
 ]
