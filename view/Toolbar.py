@@ -1,3 +1,4 @@
+from controller.actions.AkcijaAzuriranjeRecepta import AkcijaAzuriranjaRecepta
 from controller.actions.AkcijaBrisanjaRecepata import AkcijaBrisanjaRecepata
 from controller.actions.KreiranjeReceptaAkcija import KreiranjeReceptaAkcija
 from controller.actions.Odjava import *
@@ -22,9 +23,10 @@ class Toolbar(QToolBar):
     def dodajSadrzaj(self):
         vidzet = QWidget()
 
-        vidzet.setFixedSize(850, 40)
+        vidzet.setFixedSize(800, 40)
         vidzet.show()
         self.addWidget(vidzet)
+        self.addAction(AkcijaAzuriranjaRecepta(self))
         self.addAction(VirtuelniAkcija(self))
         self.addAction(SpisakZaKupovinuAkcija(self))
         self.addAction(AkcijaBrisanjaRecepata(self))
