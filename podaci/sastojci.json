@@ -128,5 +128,35 @@
         "sifra": 25,
         "naziv": "crvene paprike",
         "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 26,
+        "naziv": "Secer u prahu",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 27,
+        "naziv": "Margarin",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 28,
+        "naziv": "Secer",
+        "tipKolicine": "SUPENAKASIKA"
+    },
+    {
+        "sifra": 29,
+        "naziv": "Gustin",
+        "tipKolicine": "SUPENAKASIKA"
+    },
+    {
+        "sifra": 30,
+        "naziv": "Mlecna cokolada",
+        "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 31,
+        "naziv": "Slatka pavlaka",
+        "tipKolicine": "DL"
     }
 ]

@@ -108,5 +108,31 @@
         },
         "ekstenzijaSlike": "jpg",
         "opis": "Na maslinovom ulju isprziti komadice belog mesa i pred kraj przenja dodati sitno nasecenu tikvicu i paprike. zaciniti solju i vegetom. Dodati pavlaku. kuvati jos 5 minuta na umerenoj vatri. U dubokoj serpi skuvati taljatele u posoljenoj vodi. Kada su taljatele gotove ubaciti ih u posudu, ja koristim vok,sa pripremljenim prelivom i promesati! Po zelji dodati parmezan ili drugi omiljeni sir! Prijatno."
+    },
+    {
+        "id": 4,
+        "naziv": "Tart sa malinama",
+        "oprema": [
+            1
+        ],
+        "sastojci": {
+            "0": 220.0,
+            "26": 60.0,
+            "27": 150.0,
+            "28": 4.0,
+            "29": 1.0,
+            "30": 300.0,
+            "31": 2.0
+        },
+        "kategorije": [
+            0
+        ],
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0,
+            "kuvari": []
+        },
+        "ekstenzijaSlike": "jpg",
+        "opis": "Zamesiti testo od brasna, margarina, secera i zumanca. Testo peci 25 minuta na 180 stepeni. U serpi prokuvati maline, secer i 4 kasike vode. Kada prokuva, dodati gustin razmucen sa vodom i kuvati dok se ne zgusne. Kada se dovoljno zgusne rasporediti fil preko testa. Rastopiti cokoladu sa slatkom pavlakom i prelijte preko kolaca. Ostaviti u frizideru 3 sata, zatim posluziti."
     }
 ]

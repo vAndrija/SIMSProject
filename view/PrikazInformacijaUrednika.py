@@ -141,7 +141,8 @@ class PrikazInformacijaUrednika(QDialog):
                 staroKorisnicko = self.urednik.korisnickoIme
                 self.urednik.korisnickoIme = self.novoKIme.text()
                 self.kIme.setText(self.novoKIme.text())
-                QApplication.instance().actionManager.informacije.azurirajHtmlDokument(self.urednik, staroKorisnicko)
+                self.urednik.azurirajHtmlDokument(staroKorisnicko)
+                # QApplication.instance().actionManager.informacije.azurirajHtmlDokument(self.urednik, staroKorisnicko)
 
             if self.novoMesto.text() != "":
                 self.urednik.mesto.nazivMesta = self.novoMesto.text()

@@ -126,9 +126,12 @@ class PrikazRecepta(QDialog):
         self.izgled.addWidget(self.ocjeniDugme, 4, 1)
 
     def oceniRecept(self):
-        if QApplication.instance().actionManager.receptiMenadzer.proveriPrethodnoOcenjivanje(self.recept) == False:
+        # if QApplication.instance().actionManager.receptiMenadzer.proveriPrethodnoOcenjivanje(self.recept) == False:
+        if self.recept.proveriPrethodnoOcenjivanje(QApplication.instance().actionManager.prijavljeniKorisnik) == False:
             ocena = self.comboOcena.currentIndex() + 1
-            QApplication.instance().actionManager.receptiMenadzer.dodajOcenuReceptu(self.recept, ocena)
+            # QApplication.instance().actionManager.receptiMenadzer.dodajOcenuReceptu(self.recept, ocena)
+            self.recept.dodajOcenuReceptu(ocena, QApplication.instance().actionManager.prijavljeniKorisnik.korisnickoIme)
+            QApplication.instance().actionManager.receptiMenadzer.sacuvajRecepte()
             self.ocjena.setText("<h4>Ocjena :{0}</h4>".format(self.recept.ocena.vrednost))
         else:
             ObavestavajucaPoruka("Vec ste ocenili ovaj recept.")

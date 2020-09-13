@@ -40,7 +40,9 @@ class ProzorZaBrisanjeRecepta(QDialog):
                 naziv = self.tabelaRecepata.item(row.row() - brojac, 1).text()
                 self.tabelaRecepata.removeRow(row.row() - brojac)
 
-                self.menadzerRecepti.izbrisiRecept(int(sifra))
+                # self.menadzerRecepti.izbrisiRecept(int(sifra))
+                recept = self.menadzerRecepti.vratiRecept(int(sifra))
+                recept.izbrisiRecept()
                 for receptId in self.prijavljenKorisnik.recepti:
                     if receptId == int(sifra):
                         self.prijavljenKorisnik.recepti.remove(receptId)

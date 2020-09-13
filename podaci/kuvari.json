@@ -57,7 +57,8 @@
             0
         ],
         "recepti": [
-            3
+            3,
+            4
         ],
         "virtuelniKuvar": 1,
         "spisakZaKupovinu": 1,
@@ -91,6 +92,36 @@
         "spisakZaKupovinu": 2,
         "praceniKuvari": [],
         "praceneKategorije": [],
+        "promocija": 0
+    },
+    {
+        "korisnickoIme": "mladjo",
+        "lozinka": "sabac",
+        "ime": "Mladen",
+        "prezime": "Vasic",
+        "mejl": "mladen@gmail.com",
+        "datumRodjenja": "1999-08-02",
+        "adresa": "Pricinovici",
+        "mesto": {
+            "nazivMesta": "Sabac",
+            "postanskiBroj": "15000"
+        },
+        "pol": 1,
+        "dugotrajniSastojci": [
+            0,
+            1
+        ],
+        "oprema": [
+            0,
+            1
+        ],
+        "recepti": [],
+        "virtuelniKuvar": 3,
+        "spisakZaKupovinu": 3,
+        "praceniKuvari": [],
+        "praceneKategorije": [
+            0
+        ],
         "promocija": 0
     }
 ]

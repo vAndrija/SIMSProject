@@ -176,7 +176,8 @@ class PrikazReceptaUredniku(QDialog):
             if odgovor == potvrda.Yes:
                 if naziv != self.recept.naziv:
                     self.recept.naziv = naziv
-                    QApplication.instance().actionManager.receptiMenadzer.azurirajHtmlDokument(self.recept)
+                    # QApplication.instance().actionManager.receptiMenadzer.azurirajHtmlDokument(self.recept)
+                    self.recept.azurirajHtmlDokument()
                 self.recept.opis = opis
                 for kategorija in self.dodateKategorije:
                     self.recept.kategorije.append(kategorija)
@@ -193,7 +194,8 @@ class PrikazReceptaUredniku(QDialog):
             self.close()
 
     def sacuvajPromene(self):
-        QApplication.instance().actionManager.receptiMenadzer.izbrisiRecept(self.recept.id)
+        # QApplication.instance().actionManager.receptiMenadzer.izbrisiRecept(self.recept.id)
+        self.recept.izbrisiRecept()
         QApplication.instance().actionManager.receptiMenadzer.izbrisiReceptKorisniku(self.recept.id)
         QApplication.instance().actionManager.prijavljeniKorisnik.noviRecepti.remove(int(self.recept.id))
         QApplication.instance().actionManager.receptiMenadzer.sacuvajRecepte()

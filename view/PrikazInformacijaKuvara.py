@@ -166,7 +166,8 @@ class PrikazInformacijaKuvara(QDialog):
                 staroKorisnicko = self.korisnik.korisnickoIme
                 self.korisnik.korisnickoIme = self.novoKIme.text()
                 self.kIme.setText(self.novoKIme.text())
-                QApplication.instance().actionManager.informacije.azurirajHtmlDokument(self.korisnik, staroKorisnicko)
+                self.korisnik.azurirajHtmlDokument(staroKorisnicko)
+                # QApplication.instance().actionManager.informacije.azurirajHtmlDokument(self.korisnik, staroKorisnicko)
 
             if self.novoMesto.text() != "":
                 self.korisnik.mesto.nazivMesta = self.novoMesto.text()

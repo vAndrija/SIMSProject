@@ -1,3 +1,5 @@
+import os
+
 class Recept(object):
     def __init__(self, id, naziv, oprema, sastojci, kategorije, ocena, ekstenzijaSlike):
         self.id = id
@@ -7,3 +9,33 @@ class Recept(object):
         self.kategorije = kategorije
         self.ocena = ocena
         self.ekstenzijaSlike = ekstenzijaSlike
+
+
+    def izbrisiRecept(self):
+        self.kategorije = []
+        self.naziv += '.-.'
+
+
+    def azurirajHtmlDokument(self):
+        osnovnaPutanja = os.getcwd()[:-4]
+        putanja = os.path.join(osnovnaPutanja, 'dizajn')
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(self.id) + ".html"), "r") as stream:
+            sadrzaj = stream.readlines()
+
+        for i in range(len(sadrzaj)):
+            if ('<h3 class="name">' in sadrzaj[i]):
+                sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(self.naziv)
+        with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(self.id) + ".html"), "w") as output:
+            output.writelines(sadrzaj)
+
+    def proveriPrethodnoOcenjivanje(self, korisnik):
+        for korisnicko in self.ocena.kuvari:
+            if korisnicko == korisnik.korisnickoIme:
+                return True
+        return False
+
+    def dodajOcenuReceptu(self, novaOcena, korisnickoIme):
+        suma = self.ocena.vrednost * self.ocena.brojOcena + novaOcena
+        self.ocena.brojOcena += 1
+        self.ocena.vrednost = round(suma / self.ocena.brojOcena, 1)
+        self.ocena.kuvari.append(korisnickoIme)

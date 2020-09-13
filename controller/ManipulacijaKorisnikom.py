@@ -178,20 +178,6 @@ class ManipulacijaKorisnikom(object):
                 return kuvar
 
 
-    def azurirajHtmlDokument(self, kuvar, staroKorisnicko):
-        osnovnaPutanja = os.getcwd()[:-4]
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", staroKorisnicko + ".html"), "r") as stream:
-            sadrzaj = stream.readlines()
-
-        os.remove(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", staroKorisnicko + ".html"))
-
-        for i in range(len(sadrzaj)):
-            if ('<h6 name="kIme">' in sadrzaj[i]):
-                sadrzaj[i] = '<h6 name="kIme">{}</h6>\n'.format("Korisnicko ime: " + kuvar.korisnickoIme)
-
-        with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", kuvar.korisnickoIme + ".html"), "w") as output:
-            output.writelines(sadrzaj)
-
 
     def obrisiKuvara(self, kuvar):
         osnovnaPutanja = os.getcwd()[:-4]
@@ -213,7 +199,8 @@ class ManipulacijaKorisnikom(object):
                 return kuvar
 
     def promeniLozinkuPrijavljenom(self, novaLozinka):
-        QApplication.instance().actionManager.prijavljeniKorisnik.lozinka = novaLozinka
+        # QApplication.instance().actionManager.prijavljeniKorisnik.lozinka = novaLozinka
+        QApplication.instance().actionManager.prijavljeniKorisnik.promeniLozinku(novaLozinka)
         if isinstance(QApplication.instance().actionManager.prijavljeniKorisnik, Administrator):
             self.upisiAdministratora()
         elif isinstance(QApplication.instance().actionManager.prijavljeniKorisnik,Urednik):
