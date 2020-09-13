@@ -18,5 +18,17 @@
     {
         "id": 4,
         "naziv": "slatkis"
+    },
+    {
+        "id": 5,
+        "naziv": "brza priprema"
+    },
+    {
+        "id": 6,
+        "naziv": "kolaci"
+    },
+    {
+        "id": 7,
+        "naziv": "slatko"
     }
 ]

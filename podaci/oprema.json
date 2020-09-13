@@ -18,5 +18,10 @@
         "sifra": 3,
         "naziv": "serpa",
         "marka": ""
+    },
+    {
+        "sifra": 4,
+        "naziv": "tepsija",
+        "marka": "obicna"
     }
 ]

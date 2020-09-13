@@ -80,14 +80,14 @@ class ManipulacijaOpremom(object):
 
         return False
 
-    def provjeraPostojanjaOpreme(self, noviNaziv):
+    def provjeraPostojanjaOpreme(self, noviNaziv,markaOpreme):
         """
         Funkcija koja na osnovu naziva opreme vraca da li je ista oprema u pitanju
         :param noviNaziv:
         :return:
         """
         for oprema in self.svaOprema:
-            if oprema.naziv.upper() == noviNaziv.upper():
+            if oprema.naziv.upper() == noviNaziv.upper() and oprema.marka.upper() == markaOpreme.upper():
                 return True
 
         return False
@@ -97,7 +97,7 @@ class ManipulacijaOpremom(object):
             if oprema.sifra == int(id):
                 return oprema
 
-    def vratiOpremuPoNazivu(self, naziv):
+    def vratiOpremuPoNazivu(self, naziv,marka):
         for oprema in self.svaOprema:
-            if oprema.naziv.upper() == naziv.upper():
+            if oprema.naziv.upper() == naziv.upper() and oprema.marka.upper() == marka.upper():
                 return oprema

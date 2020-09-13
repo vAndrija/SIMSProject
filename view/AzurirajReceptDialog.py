@@ -62,8 +62,9 @@ class AzurirajRecept(QDialog):
         return False
 
     def vecDodataStavka(self):
-        for i in range(0,self.tabelaOpreme.rowCount()):
-            if(self.nazivStavkeOpreme.text().upper() == self.tabelaOpreme.item(i,0).text().upper()):
+        for i in range(0, self.tabelaOpreme.rowCount()):
+            if (self.nazivStavkeOpreme.text().upper() == self.tabelaOpreme.item(i, 0).text().upper() and
+            self.markaStavkeOpreme.text().upper() == self.tabelaOpreme.item(i,1).text().upper()):
                 return True
         return False
     def dodajSastojak(self):
@@ -89,20 +90,24 @@ class AzurirajRecept(QDialog):
         self.tabelaSastojaka.setItem(brojac, 1, QTableWidgetItem(str(self.combo.currentText())))
 
     def dodajStavkuOpreme(self):
-        if(self.nazivStavkeOpreme.text() == ""):
+        if (self.nazivStavkeOpreme.text() == ""):
             ObavestavajucaPoruka("Unesite naziv stavke")
             return
-        if(self.vecDodataStavka()):
+        if (self.markaStavkeOpreme.text() == ""):
+            ObavestavajucaPoruka("Unesite marku stavke opreme")
+            return
+        if (self.vecDodataStavka()):
             ObavestavajucaPoruka("Stavka je vec unijeta")
             return
+
 
         brojac = self.tabelaOpreme.rowCount()
 
         self.tabelaOpreme.setRowCount(brojac)
         self.tabelaOpreme.insertRow(brojac)
 
-
         self.tabelaOpreme.setItem(brojac, 0, QTableWidgetItem(self.nazivStavkeOpreme.text()))
+        self.tabelaOpreme.setItem(brojac, 1, QTableWidgetItem(self.markaStavkeOpreme.text()))
 
     def azurirajRecept(self):
         """
@@ -160,14 +165,15 @@ class AzurirajRecept(QDialog):
         self.recept.oprema = []
         for i in range(1, self.tabelaOpreme.rowCount()):
             nazivOpreme = self.tabelaOpreme.item(i, 0).text()
-            if (self.menadzerOpremom.provjeraPostojanjaOpreme(nazivOpreme) == True):
+            markaOpreme = self.tabelaOpreme.item(i, 1).text()
+            if (self.menadzerOpremom.provjeraPostojanjaOpreme(nazivOpreme, markaOpreme) == True):
 
-                stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme)
+                stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme, markaOpreme)
                 self.recept.oprema.append(stavka.sifra)
             else:
 
-                self.menadzerOpremom.kreirajOpremu(nazivOpreme, "")
-                stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme)
+                self.menadzerOpremom.kreirajOpremu(nazivOpreme, markaOpreme)
+                stavka = self.menadzerOpremom.vratiOpremuPoNazivu(nazivOpreme, markaOpreme)
                 self.recept.oprema.append(stavka.sifra)
     def azuirajKategorije(self):
         self.recept.kategorije = []
@@ -263,6 +269,7 @@ class AzurirajRecept(QDialog):
             self.tabelaOpreme.insertRow(brojac)
 
             self.tabelaOpreme.setItem(brojac, 0, QTableWidgetItem(oprema.naziv))
+            self.tabelaOpreme.setItem(brojac, 1, QTableWidgetItem(oprema.marka))
             brojac += 1
 
     def odrediRecept(self):
@@ -287,10 +294,11 @@ class AzurirajRecept(QDialog):
         self.tabelaSastojaka.setItem(0, 2, QTableWidgetItem("kolicina"))
 
         self.tabelaOpreme = QTableWidget()
-        self.tabelaOpreme.setColumnCount(1)
+        self.tabelaOpreme.setColumnCount(2)
         self.tabelaOpreme.setRowCount(1)
 
         self.tabelaOpreme.setItem(0, 0, QTableWidgetItem("Naziv stavke"))
+        self.tabelaOpreme.setItem(0,1,QTableWidgetItem("Marka stavke"))
 
         self.tabelaKategorija = QTableWidget()
         self.tabelaKategorija.setColumnCount(1)
@@ -326,6 +334,7 @@ class AzurirajRecept(QDialog):
                  '..', '', '', '',
                  '..', '', '', '',
                  'Naziv stavke opreme', '^^^^^', '', '',
+                 'Marka stavke opreme', '==', '', '',
                  '#', '', '', '',  # dodaj alat
                  '##', '', '', '',  # pregled svih potrebnih alata,tj tabela
                  '$$$', '', '', '',
@@ -356,7 +365,7 @@ class AzurirajRecept(QDialog):
         with open("..\slike\stajlKreiranjeRecepta.css", "r") as stream:
             sadrzaj = stream.read()
         self.setStyleSheet(sadrzaj)
-        positions = [(i, j) for i in range(28) for j in range(4)]
+        positions = [(i, j) for i in range(29) for j in range(4)]
 
         for position, name in zip(positions, names):
 
@@ -373,7 +382,10 @@ class AzurirajRecept(QDialog):
                 self.dodajKategorijuBtn.clicked.connect(self.dodajKategoriju)
                 grid.addWidget(self.dodajKategorijuBtn, *position)
 
-
+            elif name == '==':
+                self.markaStavkeOpreme = QLineEdit()
+                self.markaStavkeOpreme.setFixedSize(250,25)
+                grid.addWidget(self.markaStavkeOpreme,*position)
             elif name == '***':
                 grid.addWidget(self.tabelaKategorija, *position)
             elif name == '****':

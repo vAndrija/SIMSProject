@@ -158,5 +158,20 @@
         "sifra": 31,
         "naziv": "Slatka pavlaka",
         "tipKolicine": "DL"
+    },
+    {
+        "sifra": 32,
+        "naziv": "jabuka",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 33,
+        "naziv": "prasak za pecivo",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 34,
+        "naziv": "crna cokolada",
+        "tipKolicine": "GRAM"
     }
 ]

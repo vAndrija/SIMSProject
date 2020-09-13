@@ -4,7 +4,7 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtWidgets import *
 
-from src.view.AzurirajReceptDialog import AzurirajRecept
+from view.AzurirajReceptDialog import AzurirajRecept
 from view.ObavestavajucaPoruka import ObavestavajucaPoruka
 
 
