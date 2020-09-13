@@ -1,8 +1,10 @@
 [
     {
         "id": 0,
-        "naziv": "Linolada sa malinama",
-        "oprema": [],
+        "naziv": "LINOLADA SA MALINAMA",
+        "oprema": [
+            1
+        ],
         "sastojci": {
             "3": 200.0,
             "4": 150.0,

@@ -14,12 +14,15 @@ class ProzorZaAzuriranjeRecepta(QDialog):
         self.initUI()
         self.exec_()
     def refresh(self):
-        if (self.nazivRecepta.text() == ""):
-            self.izbrisiSveRecepte()
-            self.dodajSveRecepte()
-        else:
+        try:
+            if (self.nazivRecepta.text() == ""):
+                self.izbrisiSveRecepte()
+                self.dodajSveRecepte()
+            else:
 
-            self.filtrirajRecepte()
+                self.filtrirajRecepte()
+        except:
+            traceback.print_exc()
 
     def izbrisiIzMojihRecepata(self, id):
         for recept in self.mojiRecepti:
@@ -54,18 +57,23 @@ class ProzorZaAzuriranjeRecepta(QDialog):
         except:
             traceback.print_exc()
 
+    def izbrisiSveRecepte(self):
+        self.tabelaRecepata.setRowCount(1)
     def filtrirajRecepte(self):
-        tekst = self.nazivRecepta.text()
-        self.izbrisiSveRecepte()
-        for recept in self.mojiRecepti:
+        try:
+            tekst = self.nazivRecepta.text()
+            self.izbrisiSveRecepte()
+            for recept in self.mojiRecepti:
 
-            if recept.naziv.upper().startswith(tekst.upper()):
-                brojac = self.tabelaRecepata.rowCount()
+                if recept.naziv.upper().startswith(tekst.upper()):
+                    brojac = self.tabelaRecepata.rowCount()
 
-                self.tabelaRecepata.setRowCount(brojac)
-                self.tabelaRecepata.insertRow(brojac)
-                self.tabelaRecepata.setItem(brojac, 0, QTableWidgetItem(str(recept.id)))
-                self.tabelaRecepata.setItem(brojac, 1, QTableWidgetItem(recept.naziv))
+                    self.tabelaRecepata.setRowCount(brojac)
+                    self.tabelaRecepata.insertRow(brojac)
+                    self.tabelaRecepata.setItem(brojac, 0, QTableWidgetItem(str(recept.id)))
+                    self.tabelaRecepata.setItem(brojac, 1, QTableWidgetItem(recept.naziv))
+        except:
+            traceback.print_exc()
 
 
     def odrediMojeRecepte(self):
@@ -89,8 +97,8 @@ class ProzorZaAzuriranjeRecepta(QDialog):
         self.tabelaRecepata.setColumnWidth(1,225)
         self.dodajSveRecepte()
         grid  = QGridLayout()
-        self.nazivPolje = QLineEdit()
-        self.nazivPolje.textChanged.connect(self.refresh)#da radi u realnom vremenu, filtriranje u tabeli za naziv
+        self.nazivRecepta = QLineEdit()
+        self.nazivRecepta.textChanged.connect(self.refresh)#da radi u realnom vremenu, filtriranje u tabeli za naziv
 
         names = ['/', '^','',
                  '*', '','',
@@ -106,8 +114,8 @@ class ProzorZaAzuriranjeRecepta(QDialog):
             if name == '*':
                 grid.addWidget(self.tabelaRecepata)
             elif name == '^':
-                self.nazivPolje.setFixedSize(250, 25)
-                grid.addWidget(self.nazivPolje,*position)
+                self.nazivRecepta.setFixedSize(250, 25)
+                grid.addWidget(self.nazivRecepta,*position)
             elif name == '/':
                 self.labelaNaziva = QLabel("Naziv recepta")
                 grid.addWidget(self.labelaNaziva,*position)
@@ -117,7 +125,7 @@ class ProzorZaAzuriranjeRecepta(QDialog):
                 self.azurirajReceptBtn.setFixedSize(250, 25)
                 self.azurirajReceptBtn.clicked.connect(self.azurirajRecept)
                 grid.addWidget(self.azurirajReceptBtn,*position)
-        grid.addWidget(self.nazivPolje)
+        grid.addWidget(self.nazivRecepta)
         #self.setLayout(grid)
         self.widget = QWidget()
 
