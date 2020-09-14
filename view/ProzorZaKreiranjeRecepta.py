@@ -191,6 +191,7 @@ class ProzorZaKreiranjeRecepta(QDialog):
             opis = self.informacije.toPlainText()
 
             self.menadzerReceptima.kreirajRecept(naziv, putanjaSlike, opis, oprema, kategorije, sastojci)
+            ObavestavajucaPoruka("Recept uspjesno kreiran")
         except:
             traceback.print_exc()
 

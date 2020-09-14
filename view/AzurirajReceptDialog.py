@@ -110,11 +110,7 @@ class AzurirajRecept(QDialog):
         self.tabelaOpreme.setItem(brojac, 1, QTableWidgetItem(self.markaStavkeOpreme.text()))
 
     def azurirajRecept(self):
-        """
-        funkcija uzima unijete podatke i poziva funkciju kreirajRecept(self, naziv, putanjaSlike, opis, oprema, kategorije, sastojci)
-        s ciljem kreiranja novog recepta
-        :return:
-        """
+
         try:
             if(self.popunjenaPoljaRecept()!=True):
                 ObavestavajucaPoruka("Popunite sva polja!")
@@ -126,6 +122,7 @@ class AzurirajRecept(QDialog):
             self.azurirajOpremu()
             self.azurirajOpis()
             self.menadzerRecepti.sacuvajRecepte()
+            ObavestavajucaPoruka("Recept uspjesno azuriran")
         except:
             traceback.print_exc()
     def azurirajNaziv(self):

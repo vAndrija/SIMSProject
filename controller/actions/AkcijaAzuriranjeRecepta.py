@@ -6,7 +6,7 @@ import traceback
 
 class AkcijaAzuriranjaRecepta(QAction):
     def __init__(self, parent):
-        super().__init__("Brisanje recepta", parent)
+        super().__init__("Azuriranje recepta", parent)
         self.parent = parent
         self.triggered.connect(self.actionCalled)
         self.setIcon(QIcon('..\\slike\\update.png'))

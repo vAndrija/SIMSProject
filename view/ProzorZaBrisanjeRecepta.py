@@ -3,7 +3,7 @@ import traceback
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QImage, QPalette, QBrush
 from PyQt5.QtWidgets import QDialog, QTableWidgetItem, QGridLayout, QLineEdit, QLabel, QPushButton, QWidget, \
-    QHBoxLayout, QTableWidget, QApplication
+    QHBoxLayout, QTableWidget, QApplication, QMessageBox
 
 
 class ProzorZaBrisanjeRecepta(QDialog):
@@ -29,6 +29,10 @@ class ProzorZaBrisanjeRecepta(QDialog):
                 self.mojiRecepti.remove(recept)
 
     def izbrisiRecept(self):
+        buttonReply = QMessageBox.question(self, 'Potvrda brisanja recepta', "Da li ste sigurni da zelite izbrisati recept?",
+                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if buttonReply != QMessageBox.Yes:
+            return
         rows = self.tabelaRecepata.selectionModel().selectedRows()
         brojac = 0
         for row in rows:

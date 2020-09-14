@@ -16,7 +16,8 @@
         },
         "kategorije": [
             1,
-            0
+            0,
+            7
         ],
         "ocena": {
             "vrednost": 0,
@@ -161,5 +162,24 @@
         },
         "ekstenzijaSlike": "jpg",
         "opis": "\nUmutiti rendane jabuke, \u0161e\u0107er, griz i pra\u0161ak za pecivo. Kada se dobro sjedine sastojci, ostaviti da stoji 2 sata.\n\n2\nNakon toga u posudu za pe\u010denje staviti pek papir, sipati masu pa pe\u0107i 15 do 20 min. na 180 stepeni.\n\n3\nKola\u010d po \u017eelji preliti rastopljenom \u010dokoladom( otopiti \u010dokoladu sa malo margarina i 2 ka\u0161ike vode), pa preliti rashla\u0111en i ise\u010den kola\u010d na kocke."
+    },
+    {
+        "id": 6,
+        "naziv": "Rolnice sa sirom i \u0161parglom.-.",
+        "oprema": [],
+        "sastojci": {
+            "35": 20.0,
+            "36": 10.0,
+            "39": 10.0,
+            "38": 0.5
+        },
+        "kategorije": [],
+        "ocena": {
+            "vrednost": 0,
+            "brojOcena": 0,
+            "kuvari": []
+        },
+        "ekstenzijaSlike": "jpg",
+        "opis": "Kore presecite na polovine. \u0160pargle operite i odsecite im drvenaste krajeve.\n\nSvaku polovinu kore uz pomo\u0107 \u010detkice prema\u017eite uljem i presavijte na pola. Koru prema\u017eite ka\u0161ikicom sira, stavite \u0161parglu i umotajte u rolnicu (vidite animaciju iznad).\n\nRolnice sa \u0161parglama sla\u017eite u tepsiju oblo\u017eenu papirom (ili premazanu uljem) i svaku rolnicu spolja prema\u017eite uljem. Ako mislite da \u0107e biti masno, ne\u0107e. Za ovu koli\u010dinu namirnica dovoljno je otprilike 1/2 dl ulja, jer kad premazujete \u010detkicom potrebno je nauljiti samo vrh \u010detkice i tako tro\u0161ite mnogo manje ulja. Osim toga, ako ne prema\u017eete kore od gore pre pe\u010denja, one ne\u0107e biti krckave nego \u017eilave i drvenaste.\n\nPecite ih u rerni zagrejanoj na 200-220\u00b0C 30 minuta ili dok ne porumene i postanu krckave.\n\nPe\u010dene rolnice sa \u0161parglom poslu\u017eite kao predjelo, doru\u010dak, u\u017einu ili u bilo kom delu dana uz tartar sos, holandeze sos (koji je uvek dobar izbor uz \u0161pargle), majonez sa pavlakom i iseckanim per\u0161unovim listom ili bilo koji drugi sos ili salatu."
     }
 ]

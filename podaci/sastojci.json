@@ -173,5 +173,30 @@
         "sifra": 34,
         "naziv": "crna cokolada",
         "tipKolicine": "GRAM"
+    },
+    {
+        "sifra": 35,
+        "naziv": "spargle",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 36,
+        "naziv": "kora za pitu",
+        "tipKolicine": "KOMAD"
+    },
+    {
+        "sifra": 37,
+        "naziv": "sir",
+        "tipKolicine": "SUPENAKASIKA"
+    },
+    {
+        "sifra": 38,
+        "naziv": "maslinovo ulje",
+        "tipKolicine": "DL"
+    },
+    {
+        "sifra": 39,
+        "naziv": "sir",
+        "tipKolicine": "PRSTOHVAT"
     }
 ]
