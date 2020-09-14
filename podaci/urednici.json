@@ -1,20 +1,5 @@
 [
     {
-        "korisnickoIme": "comica",
-        "lozinka": "cicmi",
-        "ime": "Mitar",
-        "prezime": "Miric",
-        "mejl": "mitarcomi@gmail.com",
-        "datumRodjenja": "1960-05-28",
-        "adresa": "Centar",
-        "mesto": {
-            "nazivMesta": "Bijeljina",
-            "postanskiBroj": "76300"
-        },
-        "pol": 1,
-        "noviRecepti": []
-    },
-    {
         "korisnickoIme": "Miki",
         "lozinka": "milosmilos",
         "ime": "Milos",

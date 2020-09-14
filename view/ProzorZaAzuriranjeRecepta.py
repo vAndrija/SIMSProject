@@ -131,7 +131,7 @@ class ProzorZaAzuriranjeRecepta(QDialog):
 
         image = QImage("..\slike\slicica.jpg")
 
-        sImage = image.scaled(QSize(650, 420))
+        sImage = image.scaled(QSize(700, 600))
 
         palette = QPalette()
         palette.setBrush(QPalette.Window, QBrush(sImage))

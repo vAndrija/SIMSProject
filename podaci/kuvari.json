@@ -124,5 +124,37 @@
             0
         ],
         "promocija": 0
+    },
+    {
+        "korisnickoIme": "Tasa",
+        "lozinka": "vojnamedicina",
+        "ime": "Tamara",
+        "prezime": "Mitrovic",
+        "mejl": "tasa@gmail.com",
+        "datumRodjenja": "1999-02-18",
+        "adresa": "Donja Borina bb ",
+        "mesto": {
+            "nazivMesta": "Mali Zvornik",
+            "postanskiBroj": "15318"
+        },
+        "pol": 0,
+        "dugotrajniSastojci": [
+            0
+        ],
+        "oprema": [
+            0,
+            5,
+            6
+        ],
+        "recepti": [],
+        "virtuelniKuvar": 5,
+        "spisakZaKupovinu": 5,
+        "praceniKuvari": [
+            "jovanica"
+        ],
+        "praceneKategorije": [
+            1
+        ],
+        "promocija": 0
     }
 ]

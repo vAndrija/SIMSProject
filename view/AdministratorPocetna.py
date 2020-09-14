@@ -46,11 +46,8 @@ class AdministratorPocetna(QMainWindow):
         # self.inicijalizujTab1()
         self.inicijalizujTabKuvari()
         self.inicijalizujTabUrednici()
-        self.tab3 = QWidget()
         self.tabovi.addTab(self.tab1, "Kuvari pocetnici")
         self.tabovi.addTab(self.tab2, "Urednici")
-        self.tabovi.addTab(self.tab3, "Reklame")
-
         self.setCentralWidget(self.tabovi)
 
     def inicijalizujTabKuvari(self):

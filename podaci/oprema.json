@@ -23,5 +23,15 @@
         "sifra": 4,
         "naziv": "tepsija",
         "marka": "obicna"
+    },
+    {
+        "sifra": 5,
+        "naziv": "Kuhinjska vaga",
+        "marka": "Gorenje"
+    },
+    {
+        "sifra": 6,
+        "naziv": "Sokovnik",
+        "marka": "Delimano"
     }
 ]

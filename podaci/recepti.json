@@ -20,9 +20,11 @@
             7
         ],
         "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0,
-            "kuvari": []
+            "vrednost": 1.0,
+            "brojOcena": 1,
+            "kuvari": [
+                "Tasa"
+            ]
         },
         "ekstenzijaSlike": "jpg",
         "opis": "Maline samljeti pa ih pomje sa secerom i jogurtom.\n\nMaskarpone sjediniti sa Lino ladom, sirom i vanilinim secerom, dobro izmjesat.\nPripremiti 3-4 case zavisi od velicine Kod mene su bile malo vece. Na dno redjati malina smjesu preko sir smjesu pa Po vrhu jos ukrasiti sa malo malina smjesom.\nPreko stavljati svjeze maline i ribanu cokoladu."
