@@ -126,7 +126,11 @@ class AzurirajRecept(QDialog):
         except:
             traceback.print_exc()
     def azurirajNaziv(self):
-        self.recept.naziv = self.nazivRecepta.text()
+        if(self.recept.naziv!=self.nazivRecepta.text()):
+            self.recept.naziv = self.nazivRecepta.text()
+            self.menadzerRecepti.azuriranjeNaziva(self.recept)
+        else:
+            self.recept.naziv = self.nazivRecepta.text()
     def vratiTipKolicine(self, naziv):
         if naziv.lower() == "Gram".lower():
             tipKolicine = TipKolicine.GRAM

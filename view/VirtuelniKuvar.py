@@ -1,7 +1,10 @@
+import traceback
+
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
+from view.PredgovorDijalog import PredgovorDijalog
 from view.PrikazRecepaVirtuelniKuvar import PrikazReceptaVirtuelniKuvar
 
 
@@ -15,6 +18,7 @@ class VirtuelniKuvar(QDialog):
         self.trenutni = 0
         self.recept = None
         self.pocetna = False
+        self.azuriraniPredgovor = None
         self.initUi()
         self.show()
         self.exec_()
@@ -53,6 +57,7 @@ class VirtuelniKuvar(QDialog):
             elif sadrzaj == "2":
                 self.dugme = QPushButton("Azuriraj predogovor")
                 self.izgled.addWidget(self.dugme, *pozicija)
+                self.dugme.clicked.connect(self.azuriranjePredgovora)
             elif sadrzaj == "4":
                 self.prikaziRecepte = QPushButton("Prikazi recepte")
                 self.prikaziRecepte.clicked.connect(self.prikaziRecepteAkcija)
@@ -62,8 +67,18 @@ class VirtuelniKuvar(QDialog):
                 self.labela = QLabel(sadrzaj)
                 self.izgled.addWidget(self.labela, *pozicija)
 
-    def prikaziRecepteAkcija(self):
 
+    def azuriranjePredgovora(self):
+        PredgovorDijalog(self)
+        if(self.azuriraniPredgovor!= None):
+            self.vKuvar.predgovor = self.azuriraniPredgovor
+            self.predgovor.setText('<i><b>{0}</i></b>'.format(self.vKuvar.predgovor))
+            QApplication.instance().actionManager.vKuvarMenadzer.upisiVirtuelneKuvare()
+
+
+
+
+    def prikaziRecepteAkcija(self):
         if (len(self.vKuvar.recepti) == 0):
             return
         self.hide()
