@@ -92,7 +92,8 @@ class PrikazRecepta(QDialog):
                 self.ocjena.setFixedSize(350, 30)
                 self.izgled.addWidget(self.ocjena, *pozicija)
         self.definisanjeDugmica(matrica, pozicije)
-        if QApplication.instance().actionManager.receptiMenadzer.proveriPripadnostRecepta(self.recept.id) == False:
+        # if QApplication.instance().actionManager.receptiMenadzer.proveriPripadnostRecepta(self.recept.id) == False:
+        if QApplication.instance().actionManager.prijavljeniKorisnik.proveriPripadnostRecepta(self.recept.id) == False:
             self.dodajElementeZaOcenjivanje()
 
     def definisanjeDugmica(self, matrica, pozicije):

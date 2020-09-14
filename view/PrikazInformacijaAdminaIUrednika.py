@@ -105,21 +105,38 @@ class PrikazInformacijaAdminaIUrednika(QDialog):
                 self.labelaDatum.date().toPyDate()) and self.labelaAdresa.text() == self.korisnik.adresa and self.labelaMejl.text() == self.korisnik.mejl and self.labelaMesto.text() == self.korisnik.mesto.nazivMesta and self.labelaPostanski.text() == self.korisnik.mesto.postanskiBroj and self.comboBox.currentIndex() == self.korisnik.pol:
             ObavestavajucaPoruka("Morate naciniti neke promene.")
         else:
-            self.korisnik.ime = self.labelaIme.text()
-            self.korisnik.prezime = self.labelaPrezime.text()
-            self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
-            self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
-            self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
-            self.korisnik.adresa = self.labelaAdresa.text()
-            self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
-            self.korisnik.mejl = self.labelaMejl.text()
+            staroKorisnicko = self.korisnik.korisnickoIme
+            # self.korisnik.ime = self.labelaIme.text()
+            # self.korisnik.prezime = self.labelaPrezime.text()
+            # self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
+            # self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
+            # self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
+            # self.korisnik.adresa = self.labelaAdresa.text()
+            # self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
+            # self.korisnik.mejl = self.labelaMejl.text()
+            # if self.comboBox.currentIndex() == 0:
+            #     self.korisnik.pol = 0
+            # else:
+            #     self.korisnik.pol = 1
+            ime = self.labelaIme.text()
+            prezime = self.labelaPrezime.text()
+            kIme = self.labelaKorisnicko.text()
+            datum = str(self.labelaDatum.date().toPyDate())
+            nazivMesta = self.labelaMesto.text()
+            adresa = self.labelaAdresa.text()
+            ppt = self.labelaPostanski.text()
+            mejl = self.labelaMejl.text()
             if self.comboBox.currentIndex() == 0:
-                self.korisnik.pol = 0
+                pol = 0
             else:
-                self.korisnik.pol = 1
+                pol = 1
+
+            QApplication.instance().actionManager.prijavljeniKorisnik.azurirajNalog(ime, prezime, kIme, mejl, datum,
+                                                                                    adresa, nazivMesta, ppt, pol)
 
             if isinstance(self.korisnik, Administrator):
                 QApplication.instance().actionManager.informacije.upisiAdministratora()
             else:
                 QApplication.instance().actionManager.informacije.upisiUrednike()
+                self.korisnik.azurirajHtmlDokument(staroKorisnicko)
             self.close()

@@ -156,4 +156,4 @@ class PrikazInformacijaUrednika(QDialog):
             self.parent.refresujStranu()
             self.parent.refresujTab2()
             # mozda obrisati liniju ispod
-            self.hide()
+            # self.hide()

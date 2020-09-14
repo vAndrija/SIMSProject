@@ -30,3 +30,14 @@ class KorisnickiNalog(object):
         with open(os.path.join(osnovnaPutanja, "dizajn", "profilKorisnika", self.korisnickoIme + ".html"),
                   "w") as output:
             output.writelines(sadrzaj)
+
+    def azurirajNalog(self, ime, prezime, korisnickoIme, mejl, datumRodjenja, adresa, nazivMesta, postanskiBroj, pol):
+        self.ime = ime
+        self.prezime = prezime
+        self.korisnickoIme = korisnickoIme
+        self.mejl = mejl
+        self.datumRodjenja = datumRodjenja
+        self.adresa = adresa
+        self.mesto.nazivMesta = nazivMesta
+        self.mesto.postanskiBroj = postanskiBroj
+        self.pol = pol

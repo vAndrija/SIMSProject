@@ -181,7 +181,7 @@ class PrikazInformacijaKuvara(QDialog):
             # QApplication.instance().actionManager.informacije.citanjeKorisnika()
             self.parent.refresujStranu()
             # mozda obrisati liniju ispod
-            self.hide()
+            # self.hide()
 
     def obrisiNalog(self):
         potvrda = QMessageBox

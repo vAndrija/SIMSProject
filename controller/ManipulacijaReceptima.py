@@ -339,11 +339,11 @@ class ManipulacijaReceptima():
     #     with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
     #         output.writelines(sadrzaj)
 
-    def proveriPripadnostRecepta(self, idRecepta):
-        for recept in QApplication.instance().actionManager.prijavljeniKorisnik.recepti:
-            if recept == idRecepta:
-                return True
-        return False
+    # def proveriPripadnostRecepta(self, idRecepta):
+    #     for recept in QApplication.instance().actionManager.prijavljeniKorisnik.recepti:
+    #         if recept == idRecepta:
+    #             return True
+    #     return False
 
     # def proveriPrethodnoOcenjivanje(self, recept):
     #     for korisnicko in recept.ocena.kuvari:

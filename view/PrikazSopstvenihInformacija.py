@@ -223,24 +223,35 @@ class PrikazSopstvenihInformacija(QDialog):
         self.grid.addWidget(self.postojeciSastojci, 10, 1)
 
     def azuriranjePotvrdjeno(self):
+        staroKorisnicko = self.korisnik.korisnickoIme
+        # self.korisnik.ime = self.labelaIme.text()
+        # self.korisnik.prezime = self.labelaPrezime.text()
+        # self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
+        # # self.korisnik.lozinka = self.labelaLozinka.text()
+        # self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
+        # self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
+        # self.korisnik.adresa = self.labelaAdresa.text()
+        # self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
+        # self.korisnik.mejl = self.labelaMejl.text()
+        # if self.comboBox.currentIndex() == 0:
+        #     self.korisnik.pol = 0
+        # else:
+        #     self.korisnik.pol = 1
 
-        self.korisnik.ime = self.labelaIme.text()
-        self.korisnik.prezime = self.labelaPrezime.text()
-        self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
-        # self.korisnik.lozinka = self.labelaLozinka.text()
-        self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
-        self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
-        self.korisnik.adresa = self.labelaAdresa.text()
-        self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
-        self.korisnik.mejl = self.labelaMejl.text()
         if self.comboBox.currentIndex() == 0:
-            self.korisnik.pol = 0
+            pol = 0
         else:
-            self.korisnik.pol = 1
+            pol = 1
 
+
+        self.korisnik.azurirajNalog(self.labelaIme.text(), self.labelaPrezime.text(), self.labelaKorisnicko.text(),
+                                    self.labelaMejl.text(),
+                                    str(self.labelaDatum.date().toPyDate()), self.labelaAdresa.text(),
+                                    self.labelaMesto.text(), self.labelaPostanski.text(), pol)
         self.korisnik.oprema = self.privremenaOprema + self.dugotrajnaOprema
         self.korisnik.dugotrajniSastojci = self.privremenaSastojci + self.noviSastojci
         QApplication.instance().actionManager.informacije.upisiKorisnika()
+        self.korisnik.azurirajHtmlDokument(staroKorisnicko)
         self.close()
 
     def brisanjeOpremeFunkcija(self):

@@ -35,7 +35,4 @@ class Recept(object):
         return False
 
     def dodajOcenuReceptu(self, novaOcena, korisnickoIme):
-        suma = self.ocena.vrednost * self.ocena.brojOcena + novaOcena
-        self.ocena.brojOcena += 1
-        self.ocena.vrednost = round(suma / self.ocena.brojOcena, 1)
-        self.ocena.kuvari.append(korisnickoIme)
+        self.ocena.azurirajOcenu(novaOcena, korisnickoIme)

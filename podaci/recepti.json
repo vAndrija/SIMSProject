@@ -131,9 +131,11 @@
             0
         ],
         "ocena": {
-            "vrednost": 0,
-            "brojOcena": 0,
-            "kuvari": []
+            "vrednost": 10.0,
+            "brojOcena": 1,
+            "kuvari": [
+                "andros"
+            ]
         },
         "ekstenzijaSlike": "jpg",
         "opis": "Zamesiti testo od brasna, margarina, secera i zumanca. Testo peci 25 minuta na 180 stepeni. U serpi prokuvati maline, secer i 4 kasike vode. Kada prokuva, dodati gustin razmucen sa vodom i kuvati dok se ne zgusne. Kada se dovoljno zgusne rasporediti fil preko testa. Rastopiti cokoladu sa slatkom pavlakom i prelijte preko kolaca. Ostaviti u frizideru 3 sata, zatim posluziti."
