@@ -208,4 +208,11 @@ class ManipulacijaKorisnikom(object):
         else:
             self.upisiKorisnika()
 
+    def provjeriKorisnicko(self,korisnicko):
+        for kuvarPocetnik in self.sviKuvari:
+            if(kuvarPocetnik.korisnickoIme.lower()==korisnicko):
+                return True
+
+        return False
+
 

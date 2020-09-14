@@ -224,25 +224,14 @@ class PrikazSopstvenihInformacija(QDialog):
 
     def azuriranjePotvrdjeno(self):
         staroKorisnicko = self.korisnik.korisnickoIme
-        # self.korisnik.ime = self.labelaIme.text()
-        # self.korisnik.prezime = self.labelaPrezime.text()
-        # self.korisnik.korisnickoIme = self.labelaKorisnicko.text()
-        # # self.korisnik.lozinka = self.labelaLozinka.text()
-        # self.korisnik.datumRodjenja = str(self.labelaDatum.date().toPyDate())
-        # self.korisnik.mesto.nazivMesta = self.labelaMesto.text()
-        # self.korisnik.adresa = self.labelaAdresa.text()
-        # self.korisnik.mesto.postanskiBroj = self.labelaPostanski.text()
-        # self.korisnik.mejl = self.labelaMejl.text()
-        # if self.comboBox.currentIndex() == 0:
-        #     self.korisnik.pol = 0
-        # else:
-        #     self.korisnik.pol = 1
-
         if self.comboBox.currentIndex() == 0:
             pol = 0
         else:
             pol = 1
-
+        if( QApplication.instance().actionManager.informacije.provjeriKorisnicko(
+            self.labelaKorisnicko.text())==True):
+            ObavestavajucaPoruka("Vec postoji korisnik sa unijetim korisnickim imenom")
+            return
 
         self.korisnik.azurirajNalog(self.labelaIme.text(), self.labelaPrezime.text(), self.labelaKorisnicko.text(),
                                     self.labelaMejl.text(),

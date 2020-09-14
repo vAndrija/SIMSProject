@@ -327,33 +327,4 @@ class ManipulacijaReceptima():
                     recepti.append(recept)
         return recepti
 
-    # def azurirajHtmlDokument(self, recept):
-    #     osnovnaPutanja = os.getcwd()[:-4]
-    #     putanja = os.path.join(osnovnaPutanja, 'dizajn')
-    #     with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "r") as stream:
-    #         sadrzaj = stream.readlines()
-    #
-    #     for i in range(len(sadrzaj)):
-    #         if ('<h3 class="name">' in sadrzaj[i]):
-    #             sadrzaj[i] = '<h3 class="name">{}</h3>\n'.format(recept.naziv)
-    #     with open(os.path.join(osnovnaPutanja, "dizajn", "pocetnaRecepti", str(recept.id) + ".html"), "w") as output:
-    #         output.writelines(sadrzaj)
 
-    # def proveriPripadnostRecepta(self, idRecepta):
-    #     for recept in QApplication.instance().actionManager.prijavljeniKorisnik.recepti:
-    #         if recept == idRecepta:
-    #             return True
-    #     return False
-
-    # def proveriPrethodnoOcenjivanje(self, recept):
-    #     for korisnicko in recept.ocena.kuvari:
-    #         if korisnicko == QApplication.instance().actionManager.prijavljeniKorisnik.korisnickoIme:
-    #             return True
-    #     return False
-
-    # def dodajOcenuReceptu(self, recept, novaOcena):
-    #     suma = recept.ocena.vrednost * recept.ocena.brojOcena + novaOcena
-    #     recept.ocena.brojOcena += 1
-    #     recept.ocena.vrednost = round(suma / recept.ocena.brojOcena, 1)
-    #     recept.ocena.kuvari.append(QApplication.instance().actionManager.prijavljeniKorisnik.korisnickoIme)
-    #     self.sacuvajRecepte()

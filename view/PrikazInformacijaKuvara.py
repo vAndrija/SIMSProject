@@ -161,6 +161,9 @@ class PrikazInformacijaKuvara(QDialog):
     def azurirajNalog(self):
         if self.novoKIme.text() == "" and self.novoMesto.text() == "" and self.noviPostanskiBr.text() == "":
             ObavestavajucaPoruka("Niste uneli nove podatke.")
+        elif QApplication.instance().actionManager.informacije.provjeriKorisnicko(
+            self.novoKIme.text())==True:
+            ObavestavajucaPoruka("Vec postoji korisnik sa unijetim korisnickim imenom")
         else:
             if self.novoKIme.text() != "":
                 staroKorisnicko = self.korisnik.korisnickoIme

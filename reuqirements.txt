@@ -1,0 +1,8 @@
+importlib-metadata==1.7.0
+jsonpickle==1.4.1
+psycopg2==2.8.5
+PyQt5==5.15.0
+PyQt5-sip==12.8.0
+PyQtWebEngine==5.15.0
+PyQtWebKit==5.13.1
+zipp==3.1.0
